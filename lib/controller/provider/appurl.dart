@@ -1,0 +1,20 @@
+class AppURl {
+  static const path = "https://api.garjoo.com";
+  static const baseurl = "https://api.garjoo.com/api/";
+  static const register = baseurl + "register";
+  static const login = baseurl + "login";
+  static const arrival = baseurl + "new-arrivals/market";
+  static const discount = baseurl + "discounted-items";
+  static const fcategory = baseurl + "featured-categories";
+  static const fproducts = baseurl + "featured-items/market";
+  static const menfashion = baseurl + "new-arrivals/mens-fashion";
+  static const womenfashion = baseurl + "new-arrivals/womens-fashion";
+  static const relatedproduct = baseurl + "product/view/banjo-202";
+  static const service = baseurl + "filters/services";
+  static const market = baseurl + "filters/market";
+  static const updateuser = baseurl + "user-update";
+  static const toplisting = baseurl + "top-items/real-estate";
+  static const newproperties = baseurl + "new-arrivals/real-estate";
+  static const homecarousel = baseurl + "category-image-ads/get-by-type/home";
+  static const classifiedcarousel = baseurl + "general-image-ads/get/classified";
+}
