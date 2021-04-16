@@ -7,6 +7,9 @@ class UserModel {
   final String password;
   final String confirmPassword;
   final int id;
+  final String companyName;
+  final String companyEmail;
+  final int phoneNumber;
 
   UserModel({
     this.confirmPassword,
@@ -15,6 +18,9 @@ class UserModel {
     this.id,
     this.email,
     this.password,
+    this.companyName,
+    this.companyEmail,
+    this.phoneNumber
   });
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
       id: json["id"],
@@ -26,7 +32,7 @@ class UserModel {
 
   Map<String, dynamic> tojson() => {
         "id": id,
-        "name": username,
+       "name": username,
         'email': email,
         'password': password,
         'password_confirmation': confirmPassword,

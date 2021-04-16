@@ -95,6 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
           Padding(
             padding: const EdgeInsets.only(
               left: 15.0,
+              right: 15
             ),
             child: Card(
               elevation: 4,
@@ -127,16 +128,24 @@ class _LoginScreenState extends State<LoginScreen> {
                             );
                             try {
                               value.login(loginModel).then((response) {
+                                print("response.body"+response.body);
                                 if (response.statusCode == 200) {
                                   final snackbar = SnackBar(
                                       content: Text('Login Sucessfull!'));
-                                  // ignore: deprecated_member_use
-                                  Scaffold.of(context).showSnackBar(snackbar);
-                                } else {
+                                  
+                                  ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                                }
+                                else if(response.statusCode == 422){
+                                   final snackbar = SnackBar(
+                                      content: Text("Your account hasn't been activated"));
+                                 
+                                  ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                                } 
+                                else {
                                   final snackbar = SnackBar(
                                       content: Text('Login Unsucessfull!'));
-                                  // ignore: deprecated_member_use
-                                  Scaffold.of(context).showSnackBar(snackbar);
+                                
+                                  ScaffoldMessenger.of(context).showSnackBar(snackbar);
                                 }
                               }).catchError((error) => print(error));
                             } catch (e) {
@@ -161,23 +170,26 @@ class _LoginScreenState extends State<LoginScreen> {
             },
           ),
           SizedBox(height: 30),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text("Don't have an account? ",style: TextStyle(fontSize: 12),),
-              InkWell(
-                child: Text(
-                  'Create a new account.',
-                  style: TextStyle(fontSize:12,color: Colors.red),
-                ),
-                onTap: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => SignUp()),
-                  );
-                },
-              )
-            ],
+          Container(
+            margin: EdgeInsets.only(left:60),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text("Don't have an account? ",style: TextStyle(fontSize: 12),),
+                InkWell(
+                  child: Text(
+                    'Create a new account.',
+                    style: TextStyle(fontSize:12,color: Colors.red),
+                  ),
+                  onTap: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => SignUp()),
+                    );
+                  },
+                )
+              ],
+            ),
           ),
         ],
       ),

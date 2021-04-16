@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:provider/provider.dart';
 
 class Seller extends StatefulWidget {
   @override
@@ -63,7 +64,6 @@ class _SellerState extends State<Seller> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      
       body: Padding(
         padding: const EdgeInsets.only(top: 20),
         child: ListView(
@@ -106,8 +106,6 @@ class _SellerState extends State<Seller> {
                   child: Padding(
                     padding: EdgeInsets.only(left: 12.0, top: 6, bottom: 6),
                     child: TextFormField(
-
-                        
                         validator: (value) {
                           if (value.isEmpty) {
                             return 'Please enter valid name';
@@ -134,8 +132,6 @@ class _SellerState extends State<Seller> {
                   child: Padding(
                     padding: EdgeInsets.only(left: 12.0, top: 6, bottom: 6),
                     child: TextFormField(
-
-                        
                         validator: (value) {
                           if (value.isEmpty) {
                             return 'Please enter valid name';
@@ -162,8 +158,6 @@ class _SellerState extends State<Seller> {
                   child: Padding(
                     padding: EdgeInsets.only(left: 12.0, top: 6, bottom: 6),
                     child: TextFormField(
-
-                       
                         validator: (value) {
                           if (value.isEmpty) {
                             return 'Please enter valid name';
@@ -362,31 +356,66 @@ class _SellerState extends State<Seller> {
                           borderRadius: BorderRadius.circular(40)),
                       height: 50,
                       width: 320,
-                      child: MaterialButton(
-                          disabledColor: Colors.red[200],
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20)),
-                          color: Colors.red[300],
-                          child: Text(
-                            'Register',
-                            style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          onPressed: _isChecked && _isChecked1
-                              ? () {
-                                  sellerRegister(
-                                      name: fname + lname,
-                                      email: email,
-                                      password: password,
-                                      cemail: cemail,
-                                      cname: cname,
-                                      phone: ctycode + cphone,
-                                      confirmpassword: confirmpassword,
-                                      fileName: fileName);
-                                }
-                              : null),
+                      child: ChangeNotifierProvider<UserDetailsProvider>(
+                          create: (context) => UserDetailsProvider(),
+                          child: Consumer<UserDetailsProvider>(
+                              builder: (context, value, child) =>
+                                  MaterialButton(
+                                      disabledColor: Colors.red[200],
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(20)),
+                                      color: Colors.red[300],
+                                      child: Text(
+                                        'Register',
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      onPressed: _isChecked && _isChecked1
+                                          ? () {
+                                              var userModel = UserModel(
+                                                username: fname + lname,
+                                                email: email,
+                                                password: password,
+                                                confirmPassword:
+                                                    confirmpassword,
+                                                companyName: cname,
+                                                companyEmail: cemail,
+                                                phoneNumber: ctycode + cphone,
+                                              );
+                                              value
+                                                  .sellerRegister(
+                                                      filename: fileName,
+                                                      registerModel: userModel)
+                                                  .then((response) {
+                                                if (response.statusCode ==
+                                                    200) {
+                                                  var snackBar = SnackBar(
+                                                      content: Text(
+                                                          'Register Sucessful!'));
+                                                  ScaffoldMessenger.of(context)
+                                                      .showSnackBar(snackBar);
+                                                } else if (response
+                                                        .statusCode ==
+                                                    422) {
+                                                  var snackBar = SnackBar(
+                                                      content: Text(
+                                                          'The email has been already taken'));
+                                                  ScaffoldMessenger.of(context)
+                                                      .showSnackBar(snackBar);
+                                                } else {
+                                                  final snackbar = SnackBar(
+                                                    content: Text(
+                                                        'Register Unsucessfull!'),
+                                                  );
+                                                  ScaffoldMessenger.of(context)
+                                                      .showSnackBar(snackbar);
+                                                }
+                                              });
+                                            }
+                                          : null))),
                     ),
                   ),
                 ),
@@ -435,7 +464,7 @@ class _SellerState extends State<Seller> {
                   onTap: () {
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => Login()),
+                      MaterialPageRoute(builder: (context) => LoginScreen()),
                     );
                   },
                 )
@@ -457,112 +486,41 @@ class _SellerState extends State<Seller> {
     );
   }
 
-  sellerRegister(
-      {String name,
-      password,
-      type = 'seller',
-      confirmpassword,
-      cname,
-      cemail,
-      phone,
-      email,
-      fileName}) async {
-    var url = "https://api.garjoo.com/api/register";
-    var request = http.MultipartRequest('POST', Uri.parse(url));
-    Map data = {
-      'name': name,
-      'email': email,
-      'password': password,
-      'password_confirmation': confirmpassword,
-      'type': type,
-      'company_email': cemail,
-      'company_name': cname,
-      'company_phone': phone,
-    };
-
-    data.forEach((key, value) {
-      request.fields[key] = value;
-    });
-    request.files.add(http.MultipartFile('document',
-        File(fileName).readAsBytes().asStream(), File(fileName).lengthSync(),
-        filename: fileName.split("/").last));
-    // print(request);
-    var res = await request.send();
-    print(res.statusCode);
-    print(res.stream);
-  }
-
-  register(
-      {String name,
-      password,
-      type = 'seller',
-      confirmpassword,
-      cname,
-      cemail,
-      phone,
-      email,
-      fileName}) async {
-    Map data = {
-      'name': name,
-      'email': email,
-      'password': password,
-      'password_confirmation': confirmpassword,
-      'type': type,
-      'company_email': cemail,
-      'company_name': cname,
-      'company_phone': phone,
-      'document': fileName,
-    };
-    var jsonResponse = null;
-    var response =
-        await http.post("https://api.garjoo.com/api/register", body: data);
-    jsonResponse = json.decode(response.body);
-    print(jsonResponse);
-
-    print('Response status: ${response.statusCode}');
-
-    if (jsonResponse != null) {
-      Navigator.of(context).push(MaterialPageRoute(builder: (_) => Home()));
-    } else {}
-  }
-}
-
-Widget firstText() {
-  return Column(
-    children: [
-      Row(
+  Widget firstText() {
+    return Column(
+      children: [
+        Row(
           children: [
             Text(
-      'I have read and agreed to the ',
-      style: TextStyle(fontSize: 12.5, color: Colors.black),
+              'I have read and agreed to the ',
+              style: TextStyle(fontSize: 12.5, color: Colors.black),
             ),
             Text(
-      'User Agreement ',
-      style: TextStyle(fontSize: 12.5, color: Colors.red),
+              'User Agreement ',
+              style: TextStyle(fontSize: 12.5, color: Colors.red),
             ),
-           
           ],
         ),
-      Center(
-          child: Row(
-            children: [
-               Text(
+        Center(
+            child: Row(
+          children: [
+            Text(
               'and',
               style: TextStyle(fontSize: 12.5, color: Colors.black),
             ),
-              Text(" Privacy Policy.",
-                  style: TextStyle(fontSize: 12.5, color: Colors.red)),
-            ],
-          ))
-    ],
-  );
-}
+            Text(" Privacy Policy.",
+                style: TextStyle(fontSize: 12.5, color: Colors.red)),
+          ],
+        ))
+      ],
+    );
+  }
 
-Widget secondText() {
-  return Column(
-    children: [
-      Row(
-        mainAxisAlignment: MainAxisAlignment.start,
+  Widget secondText() {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
               'I accept the ',
@@ -578,15 +536,16 @@ Widget secondText() {
             ),
           ],
         ),
-      Text(
-        'provided by me is valid. If any misinformation is ',
-        style: TextStyle(fontSize: 12.5, color: Colors.black),
-      ),
-      Center(
-          child: Text(
-        "provided then, I will be  liable .",
-        style: TextStyle(fontSize: 12.5, color: Colors.black),
-      ))
-    ],
-  );
+        Text(
+          'provided by me is valid. If any misinformation is ',
+          style: TextStyle(fontSize: 12.5, color: Colors.black),
+        ),
+        Center(
+            child: Text(
+          "provided then, I will be  liable .",
+          style: TextStyle(fontSize: 12.5, color: Colors.black),
+        ))
+      ],
+    );
+  }
 }

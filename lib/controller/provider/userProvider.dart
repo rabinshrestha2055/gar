@@ -172,6 +172,7 @@ class UserDetailsProvider with ChangeNotifier {
         headers: headers,
         body: userModelToJson(loginModel),
       );
+      print(response.body);
       return response;
     } catch (e) {}
   }
@@ -211,13 +212,14 @@ class UserDetailsProvider with ChangeNotifier {
         headers: headers,
         body: userModelToJson(registerModel),
       );
+      print(response.body);
       return response;
     } catch (e) {}
   }
 
-  Future<http.StreamedResponse> sellerRegister(
+  Future<http.StreamedResponse> sellerRegister({
     String filename,
-    UserModel registerModel,
+    UserModel registerModel,}
   ) async {
     try {
       final request = http.MultipartRequest('POST', Uri.parse(AppURl.register));
@@ -232,6 +234,7 @@ class UserDetailsProvider with ChangeNotifier {
         filename: filename.split("/").last,
       ));
       var res = await request.send();
+
       return res;
     } catch (e) {}
   }

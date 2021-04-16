@@ -163,6 +163,41 @@ class _CustomerState extends State<Customer> {
                           ),
                         ),
                       ),
+                        SizedBox(height: 20),
+                      Row(
+                        children: [
+                          Checkbox(
+                              value: _isChecked,
+                              onChanged: (bool value) {
+                                setState(() {
+                                  
+                                  _isChecked = value;
+                                 
+                                });
+                              }),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 9),
+                            child: firstText1(),
+                          )
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Checkbox(
+                              value: _isChecked1,
+                              onChanged: (bool value) {
+                                setState(() {
+                                
+                                  _isChecked1 = value;
+                                  
+                                });
+                              }),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 9.0),
+                            child: secondText1(),
+                          )
+                        ],
+                      ),
                       SizedBox(height: 20),
                       Padding(
                         padding: const EdgeInsets.only(left: 10, right: 10),
@@ -201,9 +236,9 @@ class _CustomerState extends State<Customer> {
                                                       .validate()) {
                                                     var registerModel =
                                                         UserModel(
-                                                            username: fname +
-                                                                " " +
-                                                                lname,
+                                                            username: fname + lname
+                                                                
+                                                                ,
                                                             email: email,
                                                             password: password,
                                                             confirmPassword:
@@ -213,15 +248,17 @@ class _CustomerState extends State<Customer> {
                                                         .customerRegister(
                                                             registerModel)
                                                         .then((response) {
+                                                          var jsonData = json.decode(response.body);
+                                                          print(jsonData['errors']);
                                                       if (response.statusCode ==
                                                           200) {
                                                         final snackbar =
                                                             SnackBar(
                                                           content: Text(
-                                                              'Register Sucessfull!'),
+                                                              'Register Sucessfull and Please check your email'),
                                                         );
-                                                        Scaffold.of(context)
-                                                            // ignore: deprecated_member_use
+                                                        ScaffoldMessenger.of(context)
+                                                            
                                                             .showSnackBar(
                                                                 snackbar);
                                                       } else if (response
@@ -232,8 +269,8 @@ class _CustomerState extends State<Customer> {
                                                           content: Text(
                                                               'The email has already been taken.'),
                                                         );
-                                                        Scaffold.of(context)
-                                                            // ignore: deprecated_member_use
+                                                        ScaffoldMessenger.of(context)
+                                                            
                                                             .showSnackBar(
                                                                 snackbar);
                                                       } else {
@@ -242,8 +279,8 @@ class _CustomerState extends State<Customer> {
                                                           content: Text(
                                                               'Register Unsucessfull!'),
                                                         );
-                                                        Scaffold.of(context)
-                                                            // ignore: deprecated_member_use
+                                                        ScaffoldMessenger.of(context)
+                                                            
                                                             .showSnackBar(
                                                                 snackbar);
                                                       }
@@ -255,41 +292,7 @@ class _CustomerState extends State<Customer> {
                               )),
                         ),
                       ),
-                      SizedBox(height: 20),
-                      Row(
-                        children: [
-                          Checkbox(
-                              value: _isChecked,
-                              onChanged: (bool value) {
-                                setState(() {
-                                  
-                                  _isChecked = value;
-                                 
-                                });
-                              }),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 9),
-                            child: firstText1(),
-                          )
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Checkbox(
-                              value: _isChecked1,
-                              onChanged: (bool value) {
-                                setState(() {
-                                
-                                  _isChecked1 = value;
-                                  
-                                });
-                              }),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 9.0),
-                            child: secondText1(),
-                          )
-                        ],
-                      ),
+                    
                       SizedBox(height: 15),
                       SizedBox(height: 17),
                       Row(
@@ -306,7 +309,7 @@ class _CustomerState extends State<Customer> {
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => Login()),
+                                    builder: (context) => LoginScreen()),
                               );
                             },
                           )
@@ -331,32 +334,6 @@ class _CustomerState extends State<Customer> {
             )));
   }
 
-  register(
-      {String email,
-      password,
-      name,
-      confirmPassword,
-      type = "customer"}) async {
-    
-
-    Map data = {
-      'name': name,
-      'email': email,
-      'password': password,
-      'password_confirmation': confirmPassword,
-      'type': type,
-    };
-
-    var jsonResponse = null;
-    var response =
-        await http.post("https://api.garjoo.com/api/register", body: data);
-    jsonResponse = json.decode(response.body);
-
-    var jsonData = jsonResponse['data'];
-    print('jsonData');
-    print('Response status: ${response.statusCode}');
-  }
-}
 
 Widget firstText1() {
   return Column(
@@ -418,4 +395,4 @@ Widget secondText1() {
       )
     ],
   );
-}
+}}
