@@ -4,9 +4,11 @@ import 'package:garjoo/core.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:garjoo/widget/policy.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Seller extends StatefulWidget {
   @override
@@ -27,7 +29,7 @@ class _SellerState extends State<Seller> {
   String _extension;
   bool _loadingPath = false;
   bool _multiPick = false;
-  FileType _pickingType = FileType.any;
+  FileType _pickingType = FileType.custom;
   TextEditingController _controller = TextEditingController();
 
   @override
@@ -44,7 +46,7 @@ class _SellerState extends State<Seller> {
         type: _pickingType,
         allowMultiple: _multiPick,
         allowedExtensions: (_extension?.isNotEmpty ?? false)
-            ? _extension?.replaceAll(' ', '')?.split(',')
+            ? _extension?.replaceAll(' ', '')?.split('/')
             : null,
       ))
           ?.files;
@@ -210,7 +212,8 @@ class _SellerState extends State<Seller> {
                                           : _fileName ?? '...');
 
                                       return Text(
-                                        fileName,
+                                        
+                                        fileName.toString().split('/').last,
                                         style: TextStyle(
                                             color: Colors.grey[700],
                                             fontSize: 15.5),
@@ -378,12 +381,13 @@ class _SellerState extends State<Seller> {
                                               var userModel = UserModel(
                                                 username: fname + lname,
                                                 email: email,
+                                                type: 'seller',
                                                 password: password,
                                                 confirmPassword:
                                                     confirmpassword,
                                                 companyName: cname,
                                                 companyEmail: cemail,
-                                                phoneNumber: ctycode + cphone,
+                                                phoneNumber: ctycode+cphone,
                                               );
                                               value
                                                   .sellerRegister(
@@ -495,9 +499,12 @@ class _SellerState extends State<Seller> {
               'I have read and agreed to the ',
               style: TextStyle(fontSize: 12.5, color: Colors.black),
             ),
-            Text(
-              'User Agreement ',
-              style: TextStyle(fontSize: 12.5, color: Colors.red),
+            InkWell(
+              onTap:()=> Utils.openLink(url: 'https://garjoonepal.com/privacy-policy?redirect=2'),
+                          child: Text(
+                'User Agreement ',
+                style: TextStyle(fontSize: 12.5, color: Colors.red),
+              ),
             ),
           ],
         ),
@@ -508,8 +515,13 @@ class _SellerState extends State<Seller> {
               'and',
               style: TextStyle(fontSize: 12.5, color: Colors.black),
             ),
-            Text(" Privacy Policy.",
-                style: TextStyle(fontSize: 12.5, color: Colors.red)),
+              InkWell(
+              onTap:()=> Utils.openLink(url: 'https://garjoonepal.com/privacy-policy?redirect=2'),
+                          child: Text(
+                ' Privacy Policy.',
+                style: TextStyle(fontSize: 12.5, color: Colors.red),
+              ),
+            ),
           ],
         ))
       ],
@@ -526,26 +538,39 @@ class _SellerState extends State<Seller> {
               'I accept the ',
               style: TextStyle(fontSize: 12.5, color: Colors.black),
             ),
-            Text(
-              'Terms and Conditions ',
-              style: TextStyle(fontSize: 12.5, color: Colors.red),
+            InkWell(
+              onTap:()=> Utils.openLink(url: 'https://garjoonepal.com/privacy-policy?redirect=2'),
+                          child: Text(
+                'Terms and Conditions ',
+                style: TextStyle(fontSize: 12.5, color: Colors.red),
+              ),
             ),
-            Text(
-              'and all information',
-              style: TextStyle(fontSize: 12.5, color: Colors.black),
-            ),
+           Text(
+            'and all informa-',
+            style: TextStyle(fontSize: 12.5, color: Colors.black),
+          ),
           ],
         ),
         Text(
-          'provided by me is valid. If any misinformation is ',
-          style: TextStyle(fontSize: 12.5, color: Colors.black),
-        ),
-        Center(
-            child: Text(
-          "provided then, I will be  liable .",
-          style: TextStyle(fontSize: 12.5, color: Colors.black),
-        ))
+        'tion provided by me is valid. If any misinformation',
+        style: TextStyle(fontSize: 12.5, color: Colors.black),
+      ),
+        Text(
+        "is provided then, I will be  liable .",
+        style: TextStyle(
+      fontSize: 12,
+      color: Colors.black,
+        ),)
       ],
     );
+  }
+}
+
+ _launchURL1() async {
+  const url = 'https://garjoonepal.com/privacy-policy?redirect=2';
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
   }
 }

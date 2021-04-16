@@ -9,7 +9,7 @@ class UserModel {
   final int id;
   final String companyName;
   final String companyEmail;
-  final int phoneNumber;
+  final String phoneNumber;
 
   UserModel({
     this.confirmPassword,
@@ -28,15 +28,22 @@ class UserModel {
       username: json["name"],
       password: json["password"],
       confirmPassword: json['password_confirmation'],
+      phoneNumber: json['company_phone'],
+      companyEmail: json['company_email'],
+      companyName: json['company_name'],
       type: json['type']);
 
   Map<String, dynamic> tojson() => {
-        "id": id,
+    
        "name": username,
         'email': email,
         'password': password,
         'password_confirmation': confirmPassword,
-        "type": type
+        "type": type,
+        "company_phone": phoneNumber.toString(),
+        "company_email":companyEmail,
+        "company_name": companyName
+
       };
 }
 

@@ -234,7 +234,6 @@ class UserDetailsProvider with ChangeNotifier {
         filename: filename.split("/").last,
       ));
       var res = await request.send();
-
       return res;
     } catch (e) {}
   }

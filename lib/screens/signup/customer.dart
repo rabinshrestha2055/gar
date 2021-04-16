@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:garjoo/core.dart';
+import 'package:garjoo/widget/policy.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 
@@ -344,10 +345,13 @@ Widget firstText1() {
             'I have read and agreed to the ',
             style: TextStyle(fontSize: 12.5, color: Colors.black),
           ),
-          Text(
-            'User Agreement ',
-            style: TextStyle(fontSize: 12.5, color: Colors.red),
-          ),
+           InkWell(
+              onTap:()=> Utils.openLink(url: 'https://garjoonepal.com/privacy-policy?redirect=2'),
+                          child: Text(
+                'User Agreement ',
+                style: TextStyle(fontSize: 12.5, color: Colors.red),
+              ),
+            ),
           Text(
             'and',
             style: TextStyle(fontSize: 12.5, color: Colors.black),
@@ -355,8 +359,13 @@ Widget firstText1() {
         ],
       ),
       Center(
-          child: Text("Privacy Policy.",
-              style: TextStyle(fontSize: 12.5, color: Colors.red)))
+          child:   InkWell(
+              onTap:()=> Utils.openLink(url: 'https://garjoonepal.com/privacy-policy?redirect=2'),
+                          child: Text(
+                'Privacy Policy',
+                style: TextStyle(fontSize: 12.5, color: Colors.red),
+              ),
+            ),)
     ],
   );
 }
@@ -372,10 +381,13 @@ Widget secondText1() {
             'I accept the ',
             style: TextStyle(fontSize: 12, color: Colors.black),
           ),
-          Text(
-            'Terms and Conditions ',
-            style: TextStyle(fontSize: 12.5, color: Colors.red),
-          ),
+            InkWell(
+              onTap:()=> Utils.openLink(url: 'https://garjoonepal.com/privacy-policy?redirect=2'),
+                          child: Text(
+                'Terms and Conditions',
+                style: TextStyle(fontSize: 12.5, color: Colors.red),
+              ),
+            ),
           Text(
             'and all informa-',
             style: TextStyle(fontSize: 12.5, color: Colors.black),

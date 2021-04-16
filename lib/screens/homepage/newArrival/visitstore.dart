@@ -28,7 +28,7 @@ class VisitStore extends StatelessWidget {
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                 ),
-                SizedBox(height:10),
+                SizedBox(height:5),
                 ChangeNotifierProvider<UserDetailsProvider>(
                     create: (context) => UserDetailsProvider(),
                     child: Consumer<UserDetailsProvider>(
@@ -45,15 +45,16 @@ class VisitStore extends StatelessWidget {
                                 margin: EdgeInsets.only(left: 5, right: 5),
                                 child: GridView.builder(
                                     shrinkWrap: true,
+                                    scrollDirection: Axis.vertical,
                                     gridDelegate:
                                         SliverGridDelegateWithFixedCrossAxisCount(
                                       mainAxisSpacing: 0,
                                       crossAxisSpacing: 0,
                                       crossAxisCount: 3,
-                                      childAspectRatio: 3 / 4.7,
+                                      childAspectRatio: 3 / 4.2,
                                     ),
                                     itemCount: response.length,
-                                   // physics: ScrollPhysics(parent: NeverScrollableScrollPhysics()),
+                                
                                     itemBuilder: (context, index) => Container(
                                         width: 114,
                                         child: Card(

@@ -13,6 +13,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   bool showContainer = false;
+   bool showContainer1 = false;
   @override
   void initState() {
     super.initState();
@@ -30,11 +31,11 @@ class _HomeState extends State<Home> {
     return Scaffold(
       drawer: Container(
         width: showContainer == false
-            ? MediaQuery.of(context).size.width * 0.4
+            ? MediaQuery.of(context).size.width * 0.467
             : MediaQuery.of(context).size.width * 0.95,
         child: ClipRRect(
           borderRadius: BorderRadius.only(
-              topRight: Radius.circular(20), topLeft: Radius.circular(20)),
+              topRight: Radius.circular(20), topLeft: Radius.circular(1)),
           child: Drawer(
             child: ChangeNotifierProvider<UserDetailsProvider>(
               create: (context) => UserDetailsProvider(),
@@ -57,8 +58,8 @@ class _HomeState extends State<Home> {
                             children: [
                               
                               Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
+                                // mainAxisAlignment:
+                                //     MainAxisAlignment.spaceEvenly,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Padding(
@@ -72,7 +73,7 @@ class _HomeState extends State<Home> {
                                       children: [
                                         InkWell(
                                           onTap: () {
-                                            show(response[index].id);
+                                            // show(response[index].id);
                                           },
                                           child: CircleAvatar(
                                             radius: 25,
@@ -90,7 +91,7 @@ class _HomeState extends State<Home> {
                                   ),
                                   SizedBox(width: 30),
                                   Visibility(
-                                      visible: showContainer,
+                                      visible: showContainer1,
                                       child: Card(
                                           elevation: 2,
                                           child: Container(
@@ -99,6 +100,7 @@ class _HomeState extends State<Home> {
                                             child: Column(
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
+
                                                 children: [
                                                   Padding(
                                                     padding:
@@ -120,45 +122,7 @@ class _HomeState extends State<Home> {
                                                           children: [
                                                             
                                                             Text('rabin'),
-                                                            Text('rabin'),
-                                                            Text('rabin'),
-                                                            Text('rabin'),
-                                                            Text('rabin'),
-                                                            Text('rabin'),
-                                                            Text('rabin'),
-                                                            Text('rabin'),
-                                                            Text('rabin'),
-                                                            Text('rabin'),
-                                                            Text('rabin'),
-                                                            Text('rabin'),
-                                                            Text('rabin'),
-                                                            Text('rabin'),
-                                                            Text('rabin'),
-                                                            Text('rabin'),
-                                                            Text('rabin'),
-                                                            Text('rabin'),
-                                                            Text('rabin'),
-                                                            Text('rabin'),
-                                                            Text('rabin'),
-                                                            Text('rabin'),
-                                                            Text('rabin'),
-                                                            Text('rabin'),
-                                                            Text('rabin'),
-                                                            Text('rabin'),
-                                                            Text('rabin'),
-                                                            Text('rabin'),
-                                                            Text('rabin'),
-                                                            Text('rabin'),
-                                                            Text('rabin'),
-                                                            Text('rabin'),
-                                                            Text('rabin'),
-                                                            Text('rabin'),
-                                                            Text('rabin'),
-                                                            Text('rabin'),
-                                                            Text('rabin'),
-                                                            Text('rabin'),
-                                                            Text('rabin'),
-                                                            Text('rabin'),
+                                                         
                                                           ],
                                                         ),
                                                       ),
