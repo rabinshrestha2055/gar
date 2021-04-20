@@ -1,7 +1,11 @@
 
+import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:garjoo/core.dart';
+import 'package:garjoo/models/datamodel.dart';
+import 'package:garjoo/models/detailsmodel.dart';
+import 'package:garjoo/models/visitstoremodel.dart';
 import 'package:http/http.dart' as http;
 
 
@@ -29,7 +33,7 @@ class UserDetailsProvider with ChangeNotifier {
           "Accept": "application/json",
         },
       );
-
+      //print(response.body);
       return discountModelFromJson(response.body);
     } catch (e) {
       print(e.toString());
@@ -59,7 +63,7 @@ class UserDetailsProvider with ChangeNotifier {
           "Accept": "application/json",
         },
       );
-
+   
       return featuredProductModelFromJson(response.body);
     } catch (e) {
       print(e.toString());
@@ -88,16 +92,54 @@ class UserDetailsProvider with ChangeNotifier {
     return womenFashionModelFromJson(response.body);
   }
 
-  Future<List<RelatedProModel>> getRelatedProduct() async {
+  Future<List<RelatedProModel>> getRelatedProduct({String slug}) async {
     final response = await http.get(
-      AppURl.relatedproduct,
+      AppURl.relatedproduct + slug,
       headers: {
         "Accept": "application/json",
       },
     );
-
-    return reletedProductModelFromJson(response.body);
+  
+    return relatedProductModelFromJson(response.body);
   }
+    Future<StoreModel> getStoreProduct({String slug}) async {
+    final response = await http.get(
+      AppURl.storeproduct + slug,
+      headers: {
+        "Accept": "application/json",
+      },
+    );
+    print(response.body);
+    return storeModelFromJson(response.body);
+  }
+   Future<DetailsModel> getDetails({String slug}) async {
+    final response = await http.get(
+      AppURl.relatedproduct + slug,
+      headers: {
+        "Accept": "application/json",
+      },
+    );
+     
+    return detailsProductModelFromJson(response.body);
+  }
+
+  
+
+//data
+
+
+Future<List<DataModel>> getData({String slug}) async {
+    final response = await http.get(
+      AppURl.storeproduct + slug,
+      headers: {
+        "Accept": "application/json",
+      },
+    );
+    print(response.body);
+    return  dataModelFromJson(response.body);
+  }
+
+
 
   Future<List<MarketModel>> getMarket() async {
     final response = await http.get(

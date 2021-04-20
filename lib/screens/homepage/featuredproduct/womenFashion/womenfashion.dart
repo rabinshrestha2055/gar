@@ -1,4 +1,4 @@
-import 'package:carousel_pro/carousel_pro.dart';
+
 import 'package:flutter/material.dart';
 import 'package:garjoo/core.dart';
 import 'package:provider/provider.dart';
@@ -55,7 +55,7 @@ class _WomenFashionState extends State<WomenFashion> {
                     future: value.getWomenProduct(),
                     builder: (context, snapshot) {
                       if (snapshot.hasError) {
-                        return Center(child: CircularProgressIndicator());
+                        return Container();
                       } else if (snapshot.connectionState ==
                           ConnectionState.done) {
                         var response = snapshot.data as List<WomenFashionModel>;
@@ -111,7 +111,7 @@ class _WomenFashionState extends State<WomenFashion> {
                           
                         )])));
                       } else {
-                        return Center(child: CircularProgressIndicator());
+                        return Container();
                       }
                     })),
           ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:garjoo/screens/homePage.dart';
-import 'package:garjoo/screens/signup/seller.dart';
+
 
 void main() => runApp(Garjoo());
 

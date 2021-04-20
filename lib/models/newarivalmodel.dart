@@ -4,22 +4,28 @@ class ArrivalModel{
  
   final String image;
   final String title;
-  final String subtitle;
+  final double discount;
   final int price;
+  final String slug;
+ 
  
 
   ArrivalModel( {
      this.price,
       this.image,
        this.title,
-        this.subtitle,
+        this.discount,
+        this.slug,
+       
         });
 
      factory ArrivalModel.fromJson(Map<String, dynamic>json)=> ArrivalModel(
        image: json['thumbnail'],
         title: json['title'], 
         price: json['price'],
-        subtitle: json['slug']
+        slug: json['slug'],
+       
+      
         )
         ;
 

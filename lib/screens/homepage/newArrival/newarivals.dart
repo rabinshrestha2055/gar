@@ -4,12 +4,12 @@ import 'package:garjoo/screens/homepage/newArrival/arrivalView.dart';
 import 'package:provider/provider.dart';
 
 class Arrival extends StatelessWidget {
-  const Arrival({Key key}) : super(key: key);
+   Arrival({Key key}) : super(key: key);
+  final ArrivalModel arrivalModel=ArrivalModel();
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start, children: [
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Padding(
         padding: const EdgeInsets.only(left: 15),
         child: Row(
@@ -19,7 +19,6 @@ class Arrival extends StatelessWidget {
               'New Arivals',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-          
             InkWell(
               onTap: () {
                 Navigator.push(
@@ -28,7 +27,7 @@ class Arrival extends StatelessWidget {
                 );
               },
               child: Padding(
-                padding: const EdgeInsets.only(right:10.0),
+                padding: const EdgeInsets.only(right: 10.0),
                 child: Text(
                   'View More',
                   style: TextStyle(color: Colors.red),
@@ -60,7 +59,7 @@ class Arrival extends StatelessWidget {
                           mainAxisSpacing: 0,
                           crossAxisSpacing: 0,
                           crossAxisCount: 3,
-                          childAspectRatio: 3 / 4.4,
+                          childAspectRatio: 3 / 4.5,
                         ),
                         physics: ScrollPhysics(
                             parent: NeverScrollableScrollPhysics()),
@@ -69,7 +68,16 @@ class Arrival extends StatelessWidget {
                               onTap: () {
                                 Navigator.push(
                                   context,
-                                  MaterialPageRoute(builder: (_) => Navigate(length: response.length,)),
+                                  MaterialPageRoute(
+                                      builder: (_) => Navigate(
+                                            title: response[index].title,
+                                            image:response[index].image,
+                                            slug: response[index].slug,
+                                            price: response[index].price,
+                                           
+                                        
+                                           
+                                          )),
                                 );
                               },
                               child: Container(
@@ -89,7 +97,8 @@ class Arrival extends StatelessWidget {
                                             height: 120)),
                                     Center(
                                       child: Padding(
-                                        padding: const EdgeInsets.only(left:5.0),
+                                        padding:
+                                            const EdgeInsets.only(left: 5.0),
                                         child: Text(
                                           response[index].title,
                                           maxLines: 1,
@@ -97,10 +106,32 @@ class Arrival extends StatelessWidget {
                                         ),
                                       ),
                                     ),
-                                    Text(
-                                      "Add to cart",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold),
+                                    Container(
+                                      height: 22,
+                                      width: 88,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                          border:
+                                              Border.all(color: Colors.amber)),
+                                      child: Row(
+                                        children: [
+                                          SizedBox(width: 5),
+                                          Icon(Icons.shopping_cart,
+                                              size: 13, color: orange),
+                                          SizedBox(width: 5),
+                                          Center(
+                                            child: Text(
+                                              "Add to cart",
+                                              style: TextStyle(
+                                                  color: orange,
+                                                  fontSize: 13,
+                                                  fontWeight:
+                                                      FontWeight.bold),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -109,7 +140,7 @@ class Arrival extends StatelessWidget {
                   );
                 } else {
                   return Center(
-                    child: CircularProgressIndicator(),
+                    child: Container(),
                   );
                 }
               }),

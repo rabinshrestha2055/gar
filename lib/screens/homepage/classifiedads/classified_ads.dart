@@ -25,7 +25,7 @@ class ClassifiedAds extends StatelessWidget {
                     return Center(child: CircularProgressIndicator());
                   } else if (snapshot.connectionState == ConnectionState.done) {
                     var response = snapshot.data as List<AdsModel>;
-                    print(response);
+                    
                     return Container(
                 color: Colors.transparent,
                 height: MediaQuery.of(context).size.height * 0.3,
@@ -41,7 +41,7 @@ class ClassifiedAds extends StatelessWidget {
             );
                 }
                 else {
-                    return Center(child: CircularProgressIndicator());
+                    return Container();
                   }
                              
             

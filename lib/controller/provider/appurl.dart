@@ -9,7 +9,8 @@ class AppURl {
   static const fproducts = baseurl + "featured-items/market";
   static const menfashion = baseurl + "new-arrivals/mens-fashion";
   static const womenfashion = baseurl + "new-arrivals/womens-fashion";
-  static const relatedproduct = baseurl + "product/view/banjo-202";
+  static const relatedproduct = baseurl + "product/view/";
+  static const storeproduct = baseurl + "store/view/";
   static const service = baseurl + "filters/services";
   static const market = baseurl + "filters/market";
   static const updateuser = baseurl + "user-update";

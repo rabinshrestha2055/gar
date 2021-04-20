@@ -44,13 +44,13 @@ class FeaturedProduct extends StatelessWidget {
             future: value.getFProduct(),
             builder: (context, snapshot) {
               if (snapshot.hasError) {
-                return Center(child: CircularProgressIndicator());
+                return Container();
               } else if (snapshot.connectionState == ConnectionState.done) {
                 var response = snapshot.data as List<FeaturedProductModel>;
                 return Container(
                     margin: EdgeInsets.only(left: 10, right: 10),
                     width: MediaQuery.of(context).size.width,
-                    height: 180,
+                    height: 188,
                     child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount: response.length,
@@ -75,10 +75,37 @@ class FeaturedProduct extends StatelessWidget {
                                       style: TextStyle(fontSize: 13,
                                           fontWeight: FontWeight.bold),
                                     ),
+                                      Container(
+                                      height: 22,
+                                      width: 88,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                          border:
+                                              Border.all(color: Colors.amber)),
+                                      child: Row(
+                                        children: [
+                                          SizedBox(width: 5),
+                                          Icon(Icons.shopping_cart,
+                                              size: 13, color: orange),
+                                          SizedBox(width: 5),
+                                          Center(
+                                            child: Text(
+                                              "Add to cart",
+                                              style: TextStyle(
+                                                  color: orange,
+                                                  fontSize: 13,
+                                                  fontWeight:
+                                                      FontWeight.bold),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
                                   ],
                                 )))));
               } else {
-                return Center(child: CircularProgressIndicator());
+                return Container();
               }
             },
           ),

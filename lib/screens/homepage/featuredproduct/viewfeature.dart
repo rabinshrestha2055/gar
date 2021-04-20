@@ -1,4 +1,4 @@
-import 'package:carousel_pro/carousel_pro.dart';
+
 import 'package:flutter/material.dart';
 import 'package:garjoo/core.dart';
 import 'package:provider/provider.dart';
@@ -57,7 +57,7 @@ class _ViewFeatureState extends State<ViewFeature> {
                     future: value.getFProduct(),
                     builder: (context, snapshot) {
                       if (snapshot.hasError) {
-                        return Center(child: CircularProgressIndicator());
+                        return Container();
                       } else if (snapshot.connectionState ==
                           ConnectionState.done) {
                         var response = snapshot.data as List<FeaturedProductModel>;
@@ -115,7 +115,7 @@ class _ViewFeatureState extends State<ViewFeature> {
                           ),
                         );
                       } else {
-                        return Center(child: CircularProgressIndicator());
+                        return Container();
                       }
                     })),
           ),

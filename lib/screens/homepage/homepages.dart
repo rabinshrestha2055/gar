@@ -14,7 +14,7 @@ export 'featuredproduct/menFashion/menfashion.dart';
 export 'featuredproduct/womenFashion/womenfashion.dart';
 export 'featuredproduct/featured_products.dart';
 export 'featuredproduct/viewfeature.dart';
-export 'navigate/navigate.dart';
+export 'newArrival/navigate.dart';
 export 'newArrival/newarivals.dart';
 export 'newArrival/productna.dart';
 export 'newArrival/descriptionna.dart';

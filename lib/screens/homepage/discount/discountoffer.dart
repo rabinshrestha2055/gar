@@ -118,12 +118,34 @@ class _DiscountOffersState extends State<DiscountOffers> {
                                             const EdgeInsets.only(left: 10.0),
                                         child: Row(
                                           children: [
-                                            Text(
-                                              'Add to Cart',
+                                            Container(
+                                      height: 20,
+                                      width: 60,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                          border:
+                                              Border.all(color: Colors.amber)),
+                                      child: Row(
+                                        children: [
+                                          SizedBox(width: 1),
+                                          Icon(Icons.shopping_cart,
+                                              size: 10, color: orange),
+                                         
+                                          Center(
+                                            child: Text(
+                                              "Add to cart",
                                               style: TextStyle(
-                                                  fontSize: 10,
-                                                  fontWeight: FontWeight.bold),
+                                                  color: orange,
+                                                  fontSize: 9.5,
+                                                  fontWeight:
+                                                      FontWeight.bold),
                                             ),
+                                          ),
+                                           SizedBox(width: 1),
+                                        ],
+                                      ),
+                                    ),
                                             Card(
                                                 shape: RoundedRectangleBorder(
                                                     borderRadius:
@@ -161,7 +183,7 @@ class _DiscountOffersState extends State<DiscountOffers> {
                                   )))),
                     );
                   } else {
-                    return Center(child: CircularProgressIndicator());
+                    return Container();
                   }
                 }),
           ))

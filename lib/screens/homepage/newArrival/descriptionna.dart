@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:garjoo/core.dart';
-import 'package:provider/provider.dart';
 
 class DescriptionNA extends StatelessWidget {
   @override
@@ -10,7 +9,7 @@ class DescriptionNA extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
-          height: MediaQuery.of(context).size.height * 1.5,
+          height: MediaQuery.of(context).size.height * 1.0,
           child: ListView(
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
@@ -126,6 +125,71 @@ class DescriptionNA extends StatelessWidget {
                     ),
                   )),
               SizedBox(height: 10),
+                Padding(
+                padding: const EdgeInsets.only(right:2.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left:8.0,top: 8,bottom: 8),
+                      child: Container(
+                        height: 48,
+                        width: 155,
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              SizedBox(width: 18),
+                              Text('Buy Now'),
+                              SizedBox(width: 8),
+                              CircleAvatar(
+                                radius: 17,
+                                backgroundColor: Colors.grey,
+                                child: Icon(
+                                  Icons.arrow_upward_outlined,
+                                  color: Colors.white,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right:8.0),
+                      child: Container(
+                        height: 48,
+                        width: 151,
+                        child: Card(
+                          color: Colors.red[300],
+                          shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              SizedBox(width: 10),
+                              Text(
+                                'ADD TO CART',
+                                style: TextStyle(
+                                    fontSize: 13, color: Colors.white),
+                              ),
+                              CircleAvatar(
+                                  radius: 17,
+                                  child: Icon(
+                                    Icons.arrow_forward_ios,
+                                    size: 18,
+                                    color: Colors.red[300],
+                                  ))
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               Card(
                   elevation: 0.18,
                   margin: EdgeInsets.only(left: 10, right: 10),
@@ -213,92 +277,7 @@ class DescriptionNA extends StatelessWidget {
                     ],
                   )),
               SizedBox(height: 10),
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0, left: 8),
-                child: Text("Similar Products",
-                    style:
-                        TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-              ),
-              ChangeNotifierProvider(
-                create: (context) => UserDetailsProvider(),
-                child: Consumer<UserDetailsProvider>(
-                  builder: (context, value, child) => FutureBuilder(
-                      future: value.getRelatedProduct(),
-                      builder: (context, snapshot) {
-                        if (snapshot.hasError) {
-                          return Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        } else if (snapshot.connectionState ==
-                            ConnectionState.done) {
-                          var response =
-                              snapshot.data as List<RelatedProModel>;
-
-                          return Container(
-                            margin: EdgeInsets.only(left: 5, right: 5),
-                            child: GridView.builder(
-                                scrollDirection: Axis.vertical,
-                                shrinkWrap: true,
-                                gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
-                                  mainAxisSpacing: 0,
-                                  crossAxisSpacing: 0,
-                                  crossAxisCount: 2,
-                                  childAspectRatio: 4 / 4.5,
-                                ),
-                                physics: ScrollPhysics(
-                                    parent: NeverScrollableScrollPhysics()),
-                                itemCount: 3,
-                                itemBuilder: (context, index) => InkWell(
-                                      onTap: () {},
-                                      child: Card(
-                                        elevation: 2,
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10)),
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
-                                            Container(
-                                                child: Image.network(
-                                                    "https://api.garjoo.com" +
-                                                        response[index].image,
-                                                    width: 97.3,
-                                                    height: 120)),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                left: 20.0,
-                                              ),
-                                              child: Center(
-                                                child: Text(
-                                                  response[index].name,
-                                                  maxLines: 2,
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                ),
-                                              ),
-                                            ),
-                                            Text(
-                                              "Add to cart",
-                                              style: TextStyle(
-                                                  fontWeight:
-                                                      FontWeight.bold),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    )),
-                          );
-                        } else {
-                          return Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        }
-                      }),
-                ),
-              ),
-              SizedBox(height: 20)
+              
             ],
           ),
         ),

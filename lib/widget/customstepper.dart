@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../core.dart';
 
+// ignore: must_be_immutable
 class CustomStepper extends StatefulWidget {
   CustomStepper({
      this.lowerLimit,

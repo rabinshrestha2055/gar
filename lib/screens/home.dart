@@ -206,8 +206,8 @@ class _HomeState extends State<Home> {
         actions: [
           Stack(children: [
             Positioned(
-              top: 22,
-              left: 2,
+              top: 5,
+              left: 5,
               child: CircleAvatar(
                 radius: 7,
                 backgroundColor: Colors.red,
@@ -217,24 +217,11 @@ class _HomeState extends State<Home> {
                 ),
               ),
             ),
-            IconButton(icon: Icon(Icons.chat_bubble_outline), onPressed: () {}),
+            IconButton(icon: Icon(Icons.shopping_cart,color: orange,), onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (_)=>Cart()));
+            }),
           ]),
-          Stack(children: [
-            Positioned(
-              top: 24,
-              left: 8,
-              child: CircleAvatar(
-                radius: 7,
-                backgroundColor: Colors.red,
-                child: Text(
-                  '10',
-                  style: TextStyle(fontSize: 10, color: Colors.white),
-                ),
-              ),
-            ),
-            IconButton(
-                icon: Icon(Icons.notifications_outlined), onPressed: () {}),
-          ]),
+        
         ],
       ),
       body: ListView(
@@ -272,7 +259,9 @@ class _HomeState extends State<Home> {
             //Featured Product
             FeaturedProduct(),
 
-            SizedBox(height: 25),
+             ClassifiedAds(),
+
+            SizedBox(height: 15),
           ]),
         ],
       ),

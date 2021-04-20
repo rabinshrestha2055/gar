@@ -28,7 +28,7 @@ class FeaturedCategory extends StatelessWidget {
               future: value.getFCategory(),
              builder: (context, snapshot) {
                if(snapshot.hasError){
-                 return Center(child:CircularProgressIndicator());
+                 return Container();
                }
                else if(snapshot.connectionState==ConnectionState.done){
                  var response=snapshot.data as List<FeaturedCatModel>;
@@ -82,7 +82,7 @@ class FeaturedCategory extends StatelessWidget {
             );
                }
                else{
-                return Center(child: CircularProgressIndicator(),);
+                return Container();
                }
              },
                       
