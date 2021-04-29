@@ -6,16 +6,17 @@ class DiscountModel{
   final int discount;
   final String image;
   final String title;
-  final String subtitle;
-  final int rating;
+  final String slug;
+  final String rating;
   final int price;
+
 
   DiscountModel({
      this.discount,
       this.image,
        this.title,
       this.price,
-       this.subtitle,
+       this.slug,
         this.rating});
 
 
@@ -24,7 +25,8 @@ factory DiscountModel.fromJson(Map<String, dynamic>json)=>DiscountModel(
   title: json['title'],
   price: json['price'],
   discount: json['discount'],
-  rating: json['rate']
+  rating: json['rate'].toString(),
+  slug: json['slug'],
 
 );
 

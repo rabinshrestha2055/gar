@@ -21,4 +21,9 @@ export 'newArrival/descriptionna.dart';
 export 'newArrival/reviewna.dart';
 export 'quicklink/quicklinks.dart';
 export 'newArrival/visitstore.dart';
+export 'quicklink/quickLinkArrival.dart';
+export 'quicklink/quickLinkDetail.dart';
+export 'quicklink/quicklinks.dart';
+
+
 

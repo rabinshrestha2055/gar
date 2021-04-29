@@ -5,6 +5,7 @@ class DataModel {
   final String image;
   final int price;
   final String slug;
+  
 
   DataModel({this.name, this.image, this.price, this.slug});
 

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:garjoo/core.dart';
 import 'package:provider/provider.dart';
@@ -11,6 +10,8 @@ class ViewDiscount extends StatefulWidget {
 }
 
 class _ViewDiscountState extends State<ViewDiscount> {
+  double discountPrice;
+  double finalPrice;
   bool loading;
   @override
   Widget build(BuildContext context) {
@@ -47,7 +48,7 @@ class _ViewDiscountState extends State<ViewDiscount> {
       ),
       body: ListView(
         children: [
-         Carousel1(),
+          Carousel1(),
           ChangeNotifierProvider<UserDetailsProvider>(
             create: (context) => UserDetailsProvider(),
             child: Consumer<UserDetailsProvider>(
@@ -60,119 +61,188 @@ class _ViewDiscountState extends State<ViewDiscount> {
                           ConnectionState.done) {
                         var response = snapshot.data as List<DiscountModel>;
                         return ListView.builder(
-                          shrinkWrap: true,
-                          physics: ScrollPhysics(
-                              parent: NeverScrollableScrollPhysics()),
-                          itemCount: response.length,
-                          itemBuilder: (context, index) => Card(
-                            elevation: 0.4,
-                            child: Stack(
-                              children: [
-                                Container(
-                                    child: Stack(children: [
-                                      Image.network(
-                                          "https://api.garjoo.com" +
-                                              response[index].image,
-                                          width: 99,
-                                          height: 120),
-                                      Positioned(
-                                          top: 2,
-                                          right: 30,
-                                          child: Card(
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          20)),
-                                              color: Colors.red,
-                                              child: Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 3, right: 3),
-                                                child: Text(
-                                                  "Save " +
-                                                      response[index]
-                                                          .discount
-                                                          .toString(),
-                                                  style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 11),
-                                                ),
-                                              )))
-                                    ])),
-                                SizedBox(width: 10),
-                                Stack(
-                                  children: [
-                                    Container(
-                                      padding: EdgeInsets.only(right: 28),
-                                      margin: EdgeInsets.only(right:20),
-                                      child: Padding(
-                                         padding:EdgeInsets.fromLTRB(110, 10, 20, 20),
-                                        child: Column(
-                                          
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                             
-                                              response[index].title,
-                                              style: TextStyle(fontSize: 12),
-                                              overflow: TextOverflow.ellipsis,
-                                              maxLines: 1,
-                                              
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.only(left: 10.0),
-                                              child: Row(
+                            shrinkWrap: true,
+                            physics: ScrollPhysics(
+                                parent: NeverScrollableScrollPhysics()),
+                            itemCount: response.length,
+                            itemBuilder: (context, index) {
+                              discountPrice = response[index].price *
+                                  int.parse(response[index].rating) /
+                                  100;
+
+                              finalPrice =
+                                  response[index].price - discountPrice;
+                              print(finalPrice.toString());
+                              return InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (_) => Navigate(
+                                                title: response[index].title,
+                                                image: response[index].image,
+                                                slug: response[index].slug,
+                                                price: response[index].price,
+                                                rating: response[index].rating,
+                                                storetitle:
+                                                    'Discount And Offers',
+                                              )));
+                                },
+                                child: Card(
+                                  elevation: 0.4,
+                                  child: Stack(
+                                    children: [
+                                      Container(
+                                          child: Stack(children: [
+                                        Image.network(
+                                            "https://api.garjoo.com" +
+                                                response[index].image,
+                                            width: 99,
+                                            height: 140),
+                                        Positioned(
+                                            top: 2,
+                                            right: 30,
+                                            child: Card(
+                                                shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20)),
+                                                color: Colors.red,
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 3, right: 3),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceEvenly,
+                                                    children: [
+                                                      Text(
+                                                        'Save ',
+                                                        style: TextStyle(
+                                                            color: Colors.white,
+                                                            fontSize: 12),
+                                                      ),
+                                                      Text(
+                                                        response[index]
+                                                                .rating
+                                                                .toString() +
+                                                            '%',
+                                                        style: TextStyle(
+                                                            color: Colors.white,
+                                                            fontSize: 11),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                )))
+                                      ])),
+                                      SizedBox(width: 10),
+                                      Stack(
+                                        children: [
+                                          Container(
+                                            padding: EdgeInsets.only(right: 28),
+                                            margin: EdgeInsets.only(right: 20),
+                                            child: Padding(
+                                              padding: EdgeInsets.fromLTRB(
+                                                  110, 10, 20, 20),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
                                                 children: [
                                                   Text(
-                                                    'Add to Cart',
+                                                    response[index].title,
                                                     style: TextStyle(
                                                         fontSize: 12,
-                                                        fontWeight: FontWeight.bold),
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    maxLines: 1,
                                                   ),
-                                                  Card(
-                                                      shape: RoundedRectangleBorder(
-                                                          borderRadius:
-                                                              BorderRadius.circular(
-                                                                  20)),
-                                                      color: Colors.red,
-                                                      child: Padding(
-                                                        padding: const EdgeInsets.only(
-                                                            left: 3, right: 3),
+                                                  SizedBox(height: 8),
+                                                  SizedBox(height: 8),
+                                                  Row(
+                                                    children: [
+                                                      Text(
+                                                        'Rs ' +
+                                                            response[index]
+                                                                .price
+                                                                .toString(),
+                                                        style: TextStyle(
+                                                            decoration:
+                                                                TextDecoration
+                                                                    .lineThrough,
+                                                            color: Colors.grey),
+                                                      ),
+                                                      SizedBox(
+                                                        width: 10,
+                                                      ),
+                                                      Text(
+                                                        'Rs ' +
+                                                            finalPrice
+                                                                .toString(),
+                                                        style: TextStyle(
+                                                            color: Colors.red),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  SizedBox(height: 8),
+                                                  Row(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Container(
+                                                        height: 22,
+                                                        width: 88,
+                                                        decoration: BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        5),
+                                                            border: Border.all(
+                                                                color: Colors
+                                                                    .amber)),
                                                         child: Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment.start,
                                                           children: [
+                                                            SizedBox(width: 5),
                                                             Icon(
-                                                              Icons.star,
-                                                              size: 10,
-                                                              color: Colors.white,
-                                                            ),
-                                                            Text(
-                                                              response[index]
-                                                                  .rating
-                                                                  .toString(),
-                                                              style: TextStyle(
-                                                                  color: Colors.white,
-                                                                  fontSize: 11),
+                                                                Icons
+                                                                    .shopping_cart,
+                                                                size: 13,
+                                                                color: orange),
+                                                            SizedBox(width: 5),
+                                                            Center(
+                                                              child: Text(
+                                                                "Add to cart",
+                                                                style: TextStyle(
+                                                                    color:
+                                                                        orange,
+                                                                    fontSize:
+                                                                        11,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold),
+                                                              ),
                                                             ),
                                                           ],
                                                         ),
-                                                      ))
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ],
                                               ),
                                             ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
-                        );
+                                          ),
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              );
+                            });
                       } else {
-                        return Center(child: CircularProgressIndicator());
+                        return Container();
                       }
                     })),
           ),
@@ -180,7 +250,12 @@ class _ViewDiscountState extends State<ViewDiscount> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.orange,
-        onPressed: () {},
+        onPressed: () {
+          return showDialog(
+            context: context,
+            builder: (ctx) => Filter(),
+          );
+        },
         child: Icon(
           Icons.search,
           color: Colors.white,

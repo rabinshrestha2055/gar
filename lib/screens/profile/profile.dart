@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:garjoo/widget/storetopbanner.dart';
 
 import '../../core.dart';
 
@@ -93,7 +94,8 @@ class _ProfileState extends State<Profile> {
                       Divider(),
                       InkWell(
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (_)=>ViewAds()));
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (_) => ViewAds()));
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -103,7 +105,8 @@ class _ProfileState extends State<Profile> {
                       Divider(),
                       InkWell(
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (_)=>PostNewAds()));
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (_) => PostNewAds()));
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -122,7 +125,8 @@ class _ProfileState extends State<Profile> {
                       Divider(),
                       InkWell(
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (_)=>HotelBook()));
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (_) => HotelBook()));
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -132,7 +136,10 @@ class _ProfileState extends State<Profile> {
                       Divider(),
                       InkWell(
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (_)=>ProductsOrder()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => ProductsOrder()));
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -142,24 +149,24 @@ class _ProfileState extends State<Profile> {
                     ],
                   ),
                   // Divider(),
-                  ExpansionTile(
-                    title: Text(
-                      'Two Factor Authentication',
-                      style: TextStyle(color: black),
-                    ),
-                    children: [
-                      Divider(),
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (_)=>Enable()));
-                        },
-                                              child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text('Enable 2FA'),
-                        ),
-                      ),
-                    ],
-                  ),
+                  // ExpansionTile(
+                  //   title: Text(
+                  //     'Two Factor Authentication',
+                  //     style: TextStyle(color: black),
+                  //   ),
+                  //   children: [
+                  //     Divider(),
+                  //     InkWell(
+                  //       onTap: () {
+                  //         Navigator.push(context, MaterialPageRoute(builder: (_)=>Enable()));
+                  //       },
+                  //                             child: Padding(
+                  //         padding: const EdgeInsets.all(8.0),
+                  //         child: Text('Enable 2FA'),
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
                 ],
               ),
             ),
@@ -176,8 +183,8 @@ class _ProfileState extends State<Profile> {
                   style: TextStyle(color: white),
                 ),
                 onPressed: () {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (_) => LoginScreen()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => LoginScreen()));
                 }),
           )
         ],

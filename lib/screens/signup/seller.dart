@@ -369,6 +369,7 @@ class _SellerState extends State<Seller> {
                                             borderRadius:
                                                 BorderRadius.circular(20)),
                                         color: Colors.red[300],
+                                        
                                         child: Text(
                                           'Register',
                                           style: TextStyle(

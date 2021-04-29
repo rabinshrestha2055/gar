@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:garjoo/core.dart';
+import 'package:garjoo/screens/homepage/quicklink/quickLinkDetail.dart';
 import 'package:provider/provider.dart';
 
 
@@ -50,8 +51,11 @@ class Category extends StatelessWidget {
                   child: InkWell(
                     onTap: () {
                       
-                      //Navigator.push(context, MaterialPageRoute(builder: (_)=>Home(title: value.getCat[index].name,)));
-                      Scaffold.of(context).openDrawer();
+                      Navigator.push(context, MaterialPageRoute(builder: (_)=>QuickLinkDetail(
+                        slug: value.getCat[index].slug,
+                        storetitle: value.getCat[index].name,
+
+                      )));
                       
                     },
                     child: Card(
@@ -68,7 +72,7 @@ class Category extends StatelessWidget {
                             child: Icon(
                           value.getCat[index].icon,
                           color: Colors.white,
-                          size: 30,
+                          size: 20,
                         )),
                       ),
                     ),

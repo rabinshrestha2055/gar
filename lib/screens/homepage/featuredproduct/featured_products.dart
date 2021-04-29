@@ -8,34 +8,7 @@ class FeaturedProduct extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Padding(
-        padding: const EdgeInsets.only(left: 15),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              'Featured Products',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-         
-            InkWell(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (_) => ViewFeature()),
-                );
-              },
-              child: Padding(
-                padding: const EdgeInsets.only(right:8.0),
-                child: Text(
-                  'View More',
-                  style: TextStyle(color: Colors.red),
-                ),
-              ),
-            )
-          ],
-        ),
-      ),
+    
       SizedBox(height: 10),
       ChangeNotifierProvider<UserDetailsProvider>(
         create: (context) => UserDetailsProvider(),
@@ -47,63 +20,114 @@ class FeaturedProduct extends StatelessWidget {
                 return Container();
               } else if (snapshot.connectionState == ConnectionState.done) {
                 var response = snapshot.data as List<FeaturedProductModel>;
-                return Container(
-                    margin: EdgeInsets.only(left: 10, right: 10),
-                    width: MediaQuery.of(context).size.width,
-                    height: 188,
-                    child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: response.length,
-                        itemBuilder: (context, index) => Container(
-                            child: Card(
-                                elevation: 2,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10)),
-                                child: Column(
-                                  children: [
-                                    Container(
-                                        padding:
-                                            EdgeInsets.only(left: 8, right: 8),
-                                        child: Image.network(
-                                            "https://api.garjoo.com" +
-                                                response[index].image,
-                                            width: 110,
-                                            height: 120)),
-                                    Text(response[index].title,style: TextStyle(fontSize: 13),),
-                                    Text(
-                                      response[index].subtitle,
-                                      style: TextStyle(fontSize: 13,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                      Container(
-                                      height: 22,
-                                      width: 88,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                          border:
-                                              Border.all(color: Colors.amber)),
-                                      child: Row(
-                                        children: [
-                                          SizedBox(width: 5),
-                                          Icon(Icons.shopping_cart,
-                                              size: 13, color: orange),
-                                          SizedBox(width: 5),
-                                          Center(
-                                            child: Text(
-                                              "Add to cart",
-                                              style: TextStyle(
-                                                  color: orange,
-                                                  fontSize: 13,
-                                                  fontWeight:
-                                                      FontWeight.bold),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                )))));
+                return Column(
+                  children: [
+                      Padding(
+        padding: const EdgeInsets.only(left: 15),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'Featured Products',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => ViewFeature()),
+                );
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(right: 8.0),
+                child: Text(
+                  'View More',
+                  style: TextStyle(color: Colors.red),
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+                    Container(
+                        margin: EdgeInsets.only(left: 10, right: 10),
+                        width: MediaQuery.of(context).size.width,
+                        height: 188,
+                        child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: response.length,
+                            itemBuilder: (context, index) => InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (_) => Navigate(
+                                                title: response[index].title,
+                                                image: response[index].image,
+                                                slug: response[index].slug,
+                                                price: response[index].price,
+                                                rating: response[index].rating,
+                                                storetitle: 'Featured Product',
+                                              )),
+                                    );
+                                  },
+                                  child: Container(
+                                      child: Card(
+                                          elevation: 2,
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10)),
+                                          child: Column(
+                                            children: [
+                                              Container(
+                                                  padding: EdgeInsets.only(
+                                                      left: 8, right: 8),
+                                                  child: Image.network(
+                                                      "https://api.garjoo.com" +
+                                                          response[index].image,
+                                                      width: 110,
+                                                      height: 120)),
+                                              Container(
+                                                width: 50,
+                                                child: Text(
+                                                  response[index].title,
+                                                  style: TextStyle(fontSize: 13),
+                                                  overflow: TextOverflow.ellipsis,
+                                                  maxLines: 1,
+                                                ),
+                                              ),
+                                              Container(
+                                                height: 22,
+                                                width: 88,
+                                                decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(5),
+                                                    border: Border.all(
+                                                        color: Colors.amber)),
+                                                child: Row(
+                                                  children: [
+                                                    SizedBox(width: 5),
+                                                    Icon(Icons.shopping_cart,
+                                                        size: 13, color: orange),
+                                                    SizedBox(width: 5),
+                                                    Center(
+                                                      child: Text(
+                                                        "Add to cart",
+                                                        style: TextStyle(
+                                                            color: orange,
+                                                            fontSize: 11,
+                                                            fontWeight:
+                                                                FontWeight.bold),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ))),
+                                ))),
+                  ],
+                );
               } else {
                 return Container();
               }
@@ -135,9 +159,9 @@ class FeaturedProduct extends StatelessWidget {
                     left: 120,
                     child: Container(
                       decoration: BoxDecoration(),
-                      child:
-                          Container(
-                          child: Text('Mens Fashion', style: TextStyle(color:white,fontSize: 20))),
+                      child: Container(
+                          child: Text('Mens Fashion',
+                              style: TextStyle(color: white, fontSize: 20))),
                     ))
               ]),
             ),
@@ -157,7 +181,6 @@ class FeaturedProduct extends StatelessWidget {
             child: Card(
               elevation: 9,
               margin: EdgeInsets.only(left: 12, right: 8),
-
               child: Stack(children: [
                 Center(
                     child: Image.asset(
@@ -172,7 +195,7 @@ class FeaturedProduct extends StatelessWidget {
                     child: Container(
                       decoration: BoxDecoration(),
                       child: Text('Womens Fashion',
-                          style: TextStyle(color:white,fontSize: 20)),
+                          style: TextStyle(color: white, fontSize: 20)),
                     ))
               ]),
             ),

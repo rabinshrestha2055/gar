@@ -21,7 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
           Padding(
             padding: const EdgeInsets.only(
               left: 20,
-              top: 38.0,
+              top: 58.0,
             ),
             child: Text(
               "Login",
@@ -34,12 +34,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   ]),
             ),
           ),
+          SizedBox(height:20),
           Padding(
             padding: const EdgeInsets.only(
               left: 15.0,
               right: 15,
             ),
             child: Card(
+              
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20)),
               elevation: 3,
@@ -48,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.all(18.0),
+                      padding: const EdgeInsets.all(2.0),
                       child: TextFormField(
                           validator: (value) {
                             if (value.isEmpty) {
@@ -68,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       thickness: 1,
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(2.0),
                       child: TextFormField(
                           validator: (value) {
                             if (value.isEmpty) {
@@ -110,8 +112,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: ChangeNotifierProvider<UserDetailsProvider>(
                   create: (context) => UserDetailsProvider(),
                   child: Consumer<UserDetailsProvider>(
-                    // ignore: deprecated_member_use
-                    builder: (context, value, child) => RaisedButton(
+                  
+                    builder: (context, value, child) => MaterialButton(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20)),
                         color: Colors.red[300],

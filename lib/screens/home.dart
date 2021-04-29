@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:garjoo/core.dart';
+import 'package:garjoo/screens/homepage/visitStoreTop.dart';
 import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
@@ -12,27 +13,27 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  bool showContainer = false;
-   bool showContainer1 = false;
+  // bool showContainer = false;
+  //  bool showContainer1 = false;
   @override
-  void initState() {
-    super.initState();
-    showContainer = false;
-  }
+  // void initState() {
+  //   super.initState();
+  //   showContainer = false;
+  // }
 
-  void show(int id) {
-    setState(() {
-      id == 7 ? showContainer = !showContainer : null;
-    });
-  }
+  // void show(int id) {
+  //   setState(() {
+  //     id == 7 ? showContainer = !showContainer : null;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: Container(
-        width: showContainer == false
-            ? MediaQuery.of(context).size.width * 0.467
-            : MediaQuery.of(context).size.width * 0.95,
+        // width: showContainer == false
+        //     ? MediaQuery.of(context).size.width * 0.467
+        //     : MediaQuery.of(context).size.width * 0.95,
         child: ClipRRect(
           borderRadius: BorderRadius.only(
               topRight: Radius.circular(20), topLeft: Radius.circular(1)),
@@ -58,8 +59,7 @@ class _HomeState extends State<Home> {
                             children: [
                               
                               Row(
-                                // mainAxisAlignment:
-                                //     MainAxisAlignment.spaceEvenly,
+                                
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Padding(
@@ -71,16 +71,11 @@ class _HomeState extends State<Home> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        InkWell(
-                                          onTap: () {
-                                            // show(response[index].id);
-                                          },
-                                          child: CircleAvatar(
-                                            radius: 25,
-                                            backgroundColor: Colors.orange,
-                                            child: Icon(Icons.shopping_bag,
-                                                color: Colors.white),
-                                          ),
+                                        CircleAvatar(
+                                          radius: 25,
+                                          backgroundColor: Colors.orange,
+                                          child: Icon(Icons.shopping_bag,
+                                              color: Colors.white),
                                         ),
                                         Text(
                                           response[index].label,
@@ -90,86 +85,80 @@ class _HomeState extends State<Home> {
                                     ),
                                   ),
                                   SizedBox(width: 30),
-                                  Visibility(
-                                      visible: showContainer1,
-                                      child: Card(
-                                          elevation: 2,
-                                          child: Container(
-                                            width: 200,
-                                            // height: 89,
-                                            child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
+                                  // Visibility(
+                                  //     visible: showContainer1,
+                                  //     child: Card(
+                                  //         elevation: 2,
+                                  //         child: Container(
+                                  //           width: 200,
+                                  //           // height: 89,
+                                  //           child: Column(
+                                  //               crossAxisAlignment:
+                                  //                   CrossAxisAlignment.start,
 
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            8.0),
-                                                    child: Text("Mens Fashion"),
-                                                  ),
-                                                  ExpansionTile(
-                                                    childrenPadding:
-                                                        EdgeInsets.only(
-                                                            right: 140),
-                                                    title: Text('Shirts'),
-                                                    children: [
-                                                      Container(
-                                                        height:100,
+                                  //               children: [
+                                  //                 Padding(
+                                  //                   padding:
+                                  //                       const EdgeInsets.all(
+                                  //                           8.0),
+                                  //                   child: Text("Mens Fashion"),
+                                  //                 ),
+                                  //                 ExpansionTile(
+                                  //                   childrenPadding:
+                                  //                       EdgeInsets.only(
+                                  //                           right: 140),
+                                  //                   title: Text('Shirts'),
+                                  //                   children: [
+                                  //                     Container(
+                                  //                       height:100,
 
-                                                        child: ListView(
-                                                          shrinkWrap: true,
-                                                          children: [
+                                  //                       child: ListView(
+                                  //                         shrinkWrap: true,
+                                  //                         children: [
                                                             
-                                                            Text('rabin'),
+                                  //                           Text('rabin'),
                                                          
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  Divider(height: 1),
-                                                  ExpansionTile(
-                                                    childrenPadding:
-                                                        EdgeInsets.only(
-                                                            right: 140),
-                                                    title: Text('Jacket'),
-                                                    children: [
-                                                      Text('rabin'),
-                                                      Text('rabin'),
-                                                      Text('rabin'),
-                                                      Text('rabin'),
-                                                    ],
-                                                  ),
-                                                  Divider(height: 1),
-                                                  ExpansionTile(
-                                                    childrenPadding:
-                                                        EdgeInsets.only(
-                                                            right: 140),
-                                                    title: Text('Pants'),
-                                                    children: [
-                                                      Text('rabin'),
-                                                      Text('rabin'),
-                                                      Text('rabin'),
-                                                      Text('rabin'),
-                                                    ],
-                                                  ),
-                                                  Divider(height: 1),
-                                                  ExpansionTile(
-                                                    childrenPadding:
-                                                        EdgeInsets.only(
-                                                            right: 140),
-                                                    title: Text('Jeans'),
-                                                    children: [
-                                                      Text('rabin'),
-                                                      Text('rabin'),
-                                                      Text('rabin'),
-                                                      Text('rabin'),
-                                                    ],
-                                                  ),
-                                                  Divider(height: 1),
-                                                ]),
-                                          )))
+                                  //                         ],
+                                  //                       ),
+                                  //                     ),
+                                  //                   ],
+                                  //                 ),
+                                  //                 Divider(height: 1),
+                                  //                 ExpansionTile(
+                                  //                   childrenPadding:
+                                  //                       EdgeInsets.only(
+                                  //                           right: 140),
+                                  //                   title: Text('Jacket'),
+                                  //                   children: [
+                                  //                     Text('rabin'),
+                                                     
+                                  //                   ],
+                                  //                 ),
+                                  //                 Divider(height: 1),
+                                  //                 ExpansionTile(
+                                  //                   childrenPadding:
+                                  //                       EdgeInsets.only(
+                                  //                           right: 140),
+                                  //                   title: Text('Pants'),
+                                  //                   children: [
+                                  //                     Text('rabin'),
+                                                    
+                                  //                   ],
+                                  //                 ),
+                                  //                 Divider(height: 1),
+                                  //                 ExpansionTile(
+                                  //                   childrenPadding:
+                                  //                       EdgeInsets.only(
+                                  //                           right: 140),
+                                  //                   title: Text('Jeans'),
+                                  //                   children: [
+                                  //                     Text('rabin'),
+                                                    
+                                  //                   ],
+                                  //                 ),
+                                  //                 Divider(height: 1),
+                                  //               ]),
+                                  //         )))
                                 ],
                               ),
                               SizedBox(
@@ -204,12 +193,18 @@ class _HomeState extends State<Home> {
           ),
         ),
         actions: [
+           Padding(
+             padding: const EdgeInsets.only(bottom:6.0),
+             child: IconButton(icon: Icon(Icons.store,color: orange,size: 25,), onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (_)=>Store()));
+              }),
+           ),
           Stack(children: [
             Positioned(
               top: 5,
-              left: 5,
+              
               child: CircleAvatar(
-                radius: 7,
+                radius: 8,
                 backgroundColor: Colors.red,
                 child: Text(
                   '5',
@@ -225,6 +220,7 @@ class _HomeState extends State<Home> {
         ],
       ),
       body: ListView(
+        shrinkWrap: true,
         children: [
           Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Category(),
@@ -250,11 +246,11 @@ class _HomeState extends State<Home> {
 
             //Ads
             ClassifiedAds(),
-
+               SizedBox(height: 5),
             //Featured Categories
             FeaturedCategory(),
 
-            SizedBox(height: 10),
+            SizedBox(height: 5),
 
             //Featured Product
             FeaturedProduct(),

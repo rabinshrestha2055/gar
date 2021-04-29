@@ -4,9 +4,10 @@ class StoreModel{
   final String name;
   final String image;
   final String slug;
+  final String address;
   
 
-  StoreModel({this.name, this.image, this.slug});
+  StoreModel({this.name,this.address, this.image, this.slug});
 
 
  factory StoreModel.fromJson(Map<String, dynamic>json)=>StoreModel(
@@ -15,6 +16,7 @@ class StoreModel{
     image: json['store']['profile'],
     name: json['store']['name'],
     slug: json['store']['slug'],
+    address: json['store']['address']
 
     
    

@@ -1,20 +1,21 @@
-
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:garjoo/core.dart';
 import 'package:garjoo/models/datamodel.dart';
 import 'package:garjoo/models/detailsmodel.dart';
+import 'package:garjoo/models/limitedProduct.dart';
+import 'package:garjoo/models/storeBanner.dart';
+import 'package:garjoo/models/storeTop.dart';
+
 import 'package:garjoo/models/visitstoremodel.dart';
 import 'package:http/http.dart' as http;
 
-
 class UserDetailsProvider with ChangeNotifier {
- //  Alice alice=Alice(showNotification: true,darkTheme: true,navigatorKey: navigator );
   Future<List<ArrivalModel>> getArrivals() async {
     try {
       final response = await http.get(
-        AppURl.arrival,
+        AppURl.arrival ,
         headers: {
           "Accept": "application/json",
         },
@@ -63,7 +64,7 @@ class UserDetailsProvider with ChangeNotifier {
           "Accept": "application/json",
         },
       );
-   
+
       return featuredProductModelFromJson(response.body);
     } catch (e) {
       print(e.toString());
@@ -71,111 +72,149 @@ class UserDetailsProvider with ChangeNotifier {
   }
 
   Future<List<MenFashionModel>> getMenProduct() async {
-    final response = await http.get(
-      AppURl.menfashion,
-      headers: {
-        "Accept": "application/json",
-      },
-    );
+    try {
+      final response = await http.get(
+        AppURl.menfashion,
+        headers: {
+          "Accept": "application/json",
+        },
+      );
 
-    return menFashionModelFromJson(response.body);
+      return menFashionModelFromJson(response.body);
+    } catch (e) {}
   }
 
   Future<List<WomenFashionModel>> getWomenProduct() async {
-    final response = await http.get(
-      AppURl.womenfashion,
-      headers: {
-        "Accept": "application/json",
-      },
-    );
+    try {
+      final response = await http.get(
+        AppURl.womenfashion,
+        headers: {
+          "Accept": "application/json",
+        },
+      );
 
-    return womenFashionModelFromJson(response.body);
+      return womenFashionModelFromJson(response.body);
+    } catch (e) {}
   }
 
   Future<List<RelatedProModel>> getRelatedProduct({String slug}) async {
-    final response = await http.get(
-      AppURl.relatedproduct + slug,
-      headers: {
-        "Accept": "application/json",
-      },
-    );
-  
-    return relatedProductModelFromJson(response.body);
-  }
-    Future<StoreModel> getStoreProduct({String slug}) async {
-    final response = await http.get(
-      AppURl.storeproduct + slug,
-      headers: {
-        "Accept": "application/json",
-      },
-    );
-    print(response.body);
-    return storeModelFromJson(response.body);
-  }
-   Future<DetailsModel> getDetails({String slug}) async {
-    final response = await http.get(
-      AppURl.relatedproduct + slug,
-      headers: {
-        "Accept": "application/json",
-      },
-    );
-     
-    return detailsProductModelFromJson(response.body);
+    try {
+      final response = await http.get(
+        AppURl.relatedproduct + slug,
+        headers: {
+          "Accept": "application/json",
+        },
+      );
+
+      return relatedProductModelFromJson(response.body);
+    } catch (e) {}
   }
 
-  
+  Future<StoreModel> getStoreProduct({String slug}) async {
+    try {
+      final response = await http.get(
+        AppURl.storeproduct + slug,
+        headers: {
+          "Accept": "application/json",
+        },
+      );
+
+      return storeModelFromJson(response.body);
+    } catch (e) {}
+  }
+
+  Future<DetailsModel> getDetails({String slug}) async {
+    try {
+      final response = await http.get(
+        AppURl.relatedproduct + slug,
+        headers: {
+          "Accept": "application/json",
+        },
+      );
+
+      return detailsProductModelFromJson(response.body);
+    } catch (e) {}
+  }
 
 //data
 
+  Future<List<DataModel>> getData({String slug}) async {
+    try {
+      final response = await http.get(
+        AppURl.storeproduct + slug,
+        headers: {
+          "Accept": "application/json",
+        },
+      );
 
-Future<List<DataModel>> getData({String slug}) async {
-    final response = await http.get(
-      AppURl.storeproduct + slug,
-      headers: {
-        "Accept": "application/json",
-      },
-    );
-    print(response.body);
-    return  dataModelFromJson(response.body);
+      return dataModelFromJson(response.body);
+    } catch (e) {}
   }
 
-
-
   Future<List<MarketModel>> getMarket() async {
-    final response = await http.get(
-      AppURl.market,
-      headers: {
-        "Accept": "application/json",
-      },
-    );
-  
-    return marketModelFromJson(response.body);
+    try {
+      final response = await http.get(
+        AppURl.market,
+        headers: {
+          "Accept": "application/json",
+        },
+      );
+
+      return marketModelFromJson(response.body);
+    } catch (e) {}
   }
 
   Future<List<ServiceModel>> getService() async {
-    final response = await http.get(
-      AppURl.service,
-      headers: {
-        "Accept": "application/json",
-      },
-    );
-    
-    return servicesModelFromJson(response.body);
+    try {
+      final response = await http.get(
+        AppURl.service,
+        headers: {
+          "Accept": "application/json",
+        },
+      );
+
+      return servicesModelFromJson(response.body);
+    } catch (e) {}
   }
-   Future<http.Response> upadteUser(String id) async {
+   Future<List<StoreTopModel>> getStoreTop() async {
+    try {
+      final response = await http.get(
+        AppURl.storetop ,
+        headers: {
+          "Accept": "application/json",
+        },
+      );
+      
+      return storeTopModelFromJson(response.body);
+    } catch (e) {}
+  }
+  Future<List<LimitedProductModel>> getStoreLimitedProduct() async {
+    try {
+      final response = await http.get(
+        AppURl.storetop,
+        headers: {
+          "Accept": "application/json",
+        },
+      );
+  
+      return limitedFromJson(response.body);
+    } catch (e) {}
+  }
+   
+
+
+  Future<http.Response> upteUser(String id) async {
     try {
       final headers = {
         'content-type': 'application/json',
       };
-      final response = await http.put(
-        AppURl.updateuser + '/' +id,
-        headers: headers
-      
-      );
+      final response =
+          await http.put(AppURl.updateuser + '/' + id, headers: headers);
       return response;
     } catch (e) {}
   }
-    Future<List<NewPropertiesModel>> getnewProperties() async {
+
+  Future<List<NewPropertiesModel>> getnewProperties() async {
     try {
       final response = await http.get(
         AppURl.newproperties,
@@ -189,7 +228,28 @@ Future<List<DataModel>> getData({String slug}) async {
       print(e.toString());
     }
   }
-     Future<List<TopListingModel>> gettopListing() async {
+
+    Future<List<QuickLinkModel>> getQuickLink({String slug}) async {
+    try {
+      final response = await http.get(
+        AppURl.quicklink + slug,
+        headers: {
+          "Accept": "application/json",
+        },
+      );
+       
+      return quicklinkFromJson(response.body);
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+
+
+
+
+
+  Future<List<TopListingModel>> gettopListing() async {
     try {
       final response = await http.get(
         AppURl.toplisting,
@@ -197,8 +257,23 @@ Future<List<DataModel>> getData({String slug}) async {
           "Accept": "application/json",
         },
       );
-      print(response.body);
+      
       return toplistingFromJson(response.body);
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+   
+   Future<List<StoreBannerModel>> getBanner() async {
+    try {
+      final response = await http.get(
+        AppURl.storebanner,
+        headers: {
+          "Accept": "application/json",
+        },
+      );
+    
+      return storeBannerModelFromJson(response.body);
     } catch (e) {
       print(e.toString());
     }
@@ -214,7 +289,7 @@ Future<List<DataModel>> getData({String slug}) async {
         headers: headers,
         body: userModelToJson(loginModel),
       );
-      print(response.body);
+   
       return response;
     } catch (e) {}
   }
@@ -231,6 +306,7 @@ Future<List<DataModel>> getData({String slug}) async {
       return slidecarouselModelFromJson(response.body);
     } catch (e) {}
   }
+
   Future<List<AdsModel>> classifiedCarousel() async {
     try {
       final headers = {
@@ -254,15 +330,15 @@ Future<List<DataModel>> getData({String slug}) async {
         headers: headers,
         body: userModelToJson(registerModel),
       );
-      print(response.body);
+    
       return response;
     } catch (e) {}
   }
 
   Future<http.StreamedResponse> sellerRegister({
     String filename,
-    UserModel registerModel,}
-  ) async {
+    UserModel registerModel,
+  }) async {
     try {
       final request = http.MultipartRequest('POST', Uri.parse(AppURl.register));
       var data = registerModel.tojson();

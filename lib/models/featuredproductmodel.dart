@@ -6,15 +6,18 @@ class FeaturedProductModel{
  
   final String image;
   final String title;
-  final String subtitle;
+  final String rating;
   final int price;
+  final String slug;
  
 
   FeaturedProductModel({
+    this.slug,
       this.price,
       this.image,
     this.title,
-       this.subtitle,
+    this.rating,
+      
         });
 
 
@@ -22,7 +25,8 @@ factory FeaturedProductModel.fromJson(Map<String, dynamic>json)=>FeaturedProduct
     image: json['thumbnail'],
      title: json['title'], 
         price: json['price'],
-        subtitle: json['slug']
+        slug: json['slug'],
+        rating: json['rating'].toString(),
 );
 
 }

@@ -8,7 +8,6 @@ class Cart extends StatefulWidget {
 }
 
 class _CartState extends State<Cart> {
-
   var value1 = 49.99;
   var value2 = 20.58;
   var value3 = 11.00;
@@ -38,15 +37,15 @@ class _CartState extends State<Cart> {
             child: SizedBox(
               height: 200,
               child: Padding(
-                padding: const EdgeInsets.only(left:0.0),
+                padding: const EdgeInsets.only(left: 0.0),
                 child: ListView(
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(left: 18.0, top: 12),
                       child: Text(
                         'Cart',
-                        style:
-                            TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontSize: 30, fontWeight: FontWeight.bold),
                       ),
                     ),
                     SizedBox(height: 15),
@@ -243,26 +242,26 @@ class _CartState extends State<Cart> {
                     ],
                   ),
                   InkWell(
-                        onTap: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (_) => Checkout()));
-                        },
-                        child: Container(
-                          height: 40,
-                          width: 150,
-                            decoration: BoxDecoration(
-                                color: red,
-                                borderRadius: BorderRadius.circular(18)),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Center(
-                                child: Text(
-                                  'Proceed to checkout',
-                                  style: TextStyle(color: white,fontSize: 12),
-                                ),
-                              ),
-                            )),
-                      )
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (_) => Checkout()));
+                    },
+                    child: Container(
+                        height: 40,
+                        width: 150,
+                        decoration: BoxDecoration(
+                            color: red,
+                            borderRadius: BorderRadius.circular(18)),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Center(
+                            child: Text(
+                              'Proceed to checkout',
+                              style: TextStyle(color: white, fontSize: 12),
+                            ),
+                          ),
+                        )),
+                  )
                 ],
               ),
             ),

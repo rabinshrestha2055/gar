@@ -66,51 +66,95 @@ class _ViewFeatureState extends State<ViewFeature> {
                           physics: ScrollPhysics(
                               parent: NeverScrollableScrollPhysics()),
                           itemCount: response.length,
-                          itemBuilder: (context, index) => Card(
-                            elevation: 0.4,
-                            child: Row(
-                              children: [
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.only(top: 2, bottom: 8),
-                                  child: Image.network(
-                                    "https://api.garjoo.com" + response[index].image,
-                                    height: 120,
-                                    width: 140,
+                          itemBuilder: (context, index) => InkWell(
+                             onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (_) => Navigate(
+                                                title: response[index].title,
+                                                image: response[index].image,
+                                                slug: response[index].slug,
+                                                price: response[index].price,
+                                                rating: response[index].rating,
+                                                storetitle: 'Featured Products',
+                                              )),
+                                    );
+                                  },
+                                                      child: Card(
+                              elevation: 0.4,
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.only(top: 2, bottom: 8),
+                                    child: Image.network(
+                                      "https://api.garjoo.com" + response[index].image,
+                                      height: 120,
+                                      width: 140,
+                                    ),
                                   ),
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                 
-                                    SizedBox(height: 10),
-                                    Text(
-                                      response[index].title,
-                                      style: TextStyle(fontSize: 10),
-                                    ),
-                                    SizedBox(height: 10),
-                                    Text(
-                                      response[index].price.toString(),
-                                      style: TextStyle(color: Colors.red),
-                                    ),
-                                    SizedBox(height: 10),
-                                    Container(
-                                      width: 40,
-                                      height: 20,
-                                      decoration: BoxDecoration(
-                                          color: Colors.amber,
-                                          borderRadius:
-                                              BorderRadius.circular(20)),
-                                      child: Row(children: [
-                                        Icon(Icons.star, size: 15),
-                                        // Text(response[index].subtitle)
-                                      ]),
-                                    )
-                                  ],
-                                ),
-                              ],
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                   
+                                      SizedBox(height: 5),
+                                      Text(
+                                        response[index].title,
+                                        style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold),
+                                      ),
+                                      SizedBox(height: 5),
+                                      Text(
+                                        'Rs '+response[index].price.toString(),
+                                        style: TextStyle(color: Colors.red),
+                                      ),
+                                      SizedBox(height: 5),
+                                      Container(
+                                        width: 40,
+                                        height: 20,
+                                        decoration: BoxDecoration(
+                                            color: Colors.red,
+                                            borderRadius:
+                                                BorderRadius.circular(20)),
+                                        child: Row(children: [
+                                          Icon(Icons.star, size: 12,color: white,),
+                                          Text(response[index].rating,style: TextStyle(color: white),)
+                                        ]),
+                                      ),
+                                       SizedBox(height: 5,),
+                                           Container(
+                                            height: 22,
+                                            width: 88,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                border: Border.all(
+                                                    color: Colors.amber)),
+                                            child: Row(
+                                              children: [
+                                                SizedBox(width: 5),
+                                                Icon(Icons.shopping_cart,
+                                                    size: 13, color: orange),
+                                                SizedBox(width: 5),
+                                                Center(
+                                                  child: Text(
+                                                    "Add to cart",
+                                                    style: TextStyle(
+                                                        color: orange,
+                                                        fontSize: 11,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         );
@@ -121,11 +165,19 @@ class _ViewFeatureState extends State<ViewFeature> {
           ),
         ],
       ),
-         floatingActionButton: FloatingActionButton(
+               floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.orange,
         onPressed: () {
-          },
-        child: Icon(Icons.search,color: Colors.white,),
+          return showDialog(
+            context: context,
+            builder: (ctx) =>Filter(),
+          );
+        
+        },
+        child: Icon(
+          Icons.search,
+          color: Colors.white,
+        ),
       ),
     );
   }

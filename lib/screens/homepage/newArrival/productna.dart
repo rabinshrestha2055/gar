@@ -9,10 +9,17 @@ class ProductNA extends StatelessWidget {
   final String sAddress;
   final String location;
   final String storeslug;
+  final int view;
+  final String time;
+  final int count;
+  final String storeName;
+  final String storeImage;
+  final String rating;
+  final storetitle;
   
 
 
-  const ProductNA({Key key, this.slug, this.pAddress, this.sAddress, this.location, this.storeslug}) : super(key: key);
+  const ProductNA({Key key, this.slug,this.rating,this.count, this.pAddress, this.sAddress, this.location, this.storeslug, this.view, this.time, this.storeName, this.storeImage, this.storetitle}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,7 +75,7 @@ class ProductNA extends StatelessWidget {
                    Container(
                      
                     width: 130,
-                    child: Text(pAddress),
+                    child: Text(sAddress),
                   ),
                 ],
               )
@@ -286,7 +293,7 @@ class ProductNA extends StatelessWidget {
                   'Products',
                   style: TextStyle(color: Colors.grey),
                 ),
-                Text('25'),
+                Text(count.toString()),
               ],
             ),
             SizedBox(width: 50),
@@ -305,7 +312,7 @@ class ProductNA extends StatelessWidget {
                   'Views',
                   style: TextStyle(color: Colors.grey),
                 ),
-                Text('9'),
+                Text(view.toString()),
               ],
             ),
             SizedBox(width: 30),
@@ -322,7 +329,7 @@ class ProductNA extends StatelessWidget {
               'On Garjoo',
               style: TextStyle(color: Colors.grey),
             ),
-            Text('3 months ago')
+            Text(time)
           ],
                     ),
                   ]),
@@ -334,7 +341,13 @@ class ProductNA extends StatelessWidget {
                   Navigator.push(context,
           MaterialPageRoute(builder: (_) => VisitStore(
             slug: storeslug,
-             
+            storeName:storeName,
+            storeImage:storeImage,
+            rating:rating,
+            storetitle: storetitle,
+            
+            
+            
           )));
                 },
               ),

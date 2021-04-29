@@ -55,10 +55,10 @@ class _CheckoutState extends State<Checkout> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text('SHIPPING ADDRESS',
-                                  style: TextStyle(color: grey,fontSize: 15)),
+                                  style: TextStyle(color: grey, fontSize: 15)),
                               SizedBox(width: 50),
                               Text('Edit Address',
-                                  style: TextStyle(fontSize:15,color: red)),
+                                  style: TextStyle(fontSize: 15, color: red)),
                             ],
                           ),
                         ),
@@ -72,14 +72,20 @@ class _CheckoutState extends State<Checkout> {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 10.0),
-                          child: Text('No 123,Sub Street,',style: TextStyle(fontSize: 15),),
+                          child: Text(
+                            'No 123,Sub Street,',
+                            style: TextStyle(fontSize: 15),
+                          ),
                         ),
                         Row(
                           children: [
                             Padding(
                               padding:
                                   const EdgeInsets.only(left: 10.0, bottom: 2),
-                              child: Text('Main Street,',style: TextStyle(fontSize: 15),),
+                              child: Text(
+                                'Main Street,',
+                                style: TextStyle(fontSize: 15),
+                              ),
                             ),
                             SizedBox(width: 190),
                             Padding(
@@ -98,13 +104,15 @@ class _CheckoutState extends State<Checkout> {
                         Padding(
                           padding: const EdgeInsets.only(left: 10.0, bottom: 2),
                           child: Text(
-                            'City Name, Provice',style: TextStyle(fontSize: 15),
+                            'City Name, Provice',
+                            style: TextStyle(fontSize: 15),
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 10.0, bottom: 2),
                           child: Text(
-                            'Country',style: TextStyle(fontSize: 15),
+                            'Country',
+                            style: TextStyle(fontSize: 15),
                           ),
                         ),
                         SizedBox(height: 12)
@@ -118,13 +126,17 @@ class _CheckoutState extends State<Checkout> {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Delivery Area',style: TextStyle(fontSize: 15),),
+                      Text(
+                        'Delivery Area',
+                        style: TextStyle(fontSize: 15),
+                      ),
                       SizedBox(width: 50),
                       Column(
                         children: [
                           Text('Inside Kathmandu Valley'),
                           SizedBox(height: 3),
-                          Text('Edit Address', style: TextStyle(fontSize:15,color: red)),
+                          Text('Edit Address',
+                              style: TextStyle(fontSize: 15, color: red)),
                         ],
                       ),
                     ],
@@ -172,7 +184,8 @@ class _CheckoutState extends State<Checkout> {
                                   color: red,
                                   borderRadius: BorderRadius.circular(18)),
                               child: Padding(
-                                padding: const EdgeInsets.only(top:8.0,bottom: 8,left: 12,right: 12),
+                                padding: const EdgeInsets.only(
+                                    top: 8.0, bottom: 8, left: 12, right: 12),
                                 child: Center(
                                   child: Text(
                                     'Verify Email',
@@ -208,7 +221,7 @@ class _CheckoutState extends State<Checkout> {
                           ),
                         ],
                       ),
-                      SizedBox(height:10),
+                      SizedBox(height: 10),
                       Padding(
                         padding:
                             const EdgeInsets.only(left: 2.0, right: 2, top: 8),
@@ -302,8 +315,8 @@ class _CheckoutState extends State<Checkout> {
                               MaterialPageRoute(builder: (_) => Order()));
                         },
                         child: Container(
-                          height: 40,
-                          width: 150,
+                            height: 40,
+                            width: 150,
                             decoration: BoxDecoration(
                                 color: red,
                                 borderRadius: BorderRadius.circular(18)),
@@ -312,7 +325,7 @@ class _CheckoutState extends State<Checkout> {
                               child: Center(
                                 child: Text(
                                   'Proceed to checkout',
-                                  style: TextStyle(color: white,fontSize: 12),
+                                  style: TextStyle(color: white, fontSize: 12),
                                 ),
                               ),
                             )),

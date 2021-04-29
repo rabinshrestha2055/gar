@@ -8,6 +8,9 @@ class Navigate extends StatefulWidget {
   final price;
   final image;
   final slug;
+  final rating;
+  final storetitle;
+  final description;
 
   Navigate({
     Key key,
@@ -15,6 +18,8 @@ class Navigate extends StatefulWidget {
     this.price,
     this.title,
     this.slug,
+     this.rating,
+     this.storetitle, this.description
   }) : super(key: key);
 
   @override
@@ -75,7 +80,7 @@ class _NavigateState extends State<Navigate> {
               } else if (snapshot.connectionState == ConnectionState.done) {
                 var response = snapshot.data as DetailsModel;
                 // var data=jsonDecode(response.data);
-                //  print(response.data);
+              print(response);
                 return ListView(
                       scrollDirection: Axis.vertical,
                       shrinkWrap: true,
@@ -91,7 +96,7 @@ class _NavigateState extends State<Navigate> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              widget.price.toString(),
+                             'Rs ' + widget.price.toString(),
                               style: TextStyle(
                                   fontSize: 15, fontWeight: FontWeight.bold),
                             ),
@@ -112,7 +117,7 @@ class _NavigateState extends State<Navigate> {
                                         color: Colors.white,
                                       ),
                                       Text(
-                                        widget.title,
+                                        widget.rating,
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 11),
@@ -191,9 +196,17 @@ class _NavigateState extends State<Navigate> {
                                           sAddress: response.sAddress,
                                           location: response.location,
                                           storeslug: response.storeslug,
-                                          
+                                          view: response.views,
+                                          time: response.time,
+                                          count:response.count,
+                                          storeImage: response.storeImage,
+                                          storeName: response.storeName,
+                                          rating: widget.rating,
+                                          storetitle: widget.storetitle,
                                         ),
-                                        DescriptionNA(),
+                                        DescriptionNA(
+                                          description: response.description,
+                                        ),
                                         ReviewNA(),
                                       ]))
                                 ],
@@ -205,7 +218,7 @@ class _NavigateState extends State<Navigate> {
                     );
                     
               } else {
-                return Container();
+                return LinearProgressIndicator(minHeight: 2,);
               }
             }),
       ),

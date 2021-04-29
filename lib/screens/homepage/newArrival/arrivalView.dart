@@ -64,52 +64,93 @@ class _ViewArrivalState extends State<ViewArrival> {
                           physics: ScrollPhysics(
                               parent: NeverScrollableScrollPhysics()),
                           itemCount: response.length,
-                          itemBuilder: (context, index) => Card(
-                            elevation: 0.4,
-                            child: Stack(
-                              children: [
-                                Container(
-                                    child: Stack(children: [
-                                      Image.network(
-                                          "https://api.garjoo.com" +
-                                              response[index].image,
-                                          width: 99,
-                                          height: 120),
-                                   
-                                SizedBox(width: 10),
-                                Stack(
-                                  children: [
-                                    Container(
-                                      padding: EdgeInsets.only(right: 28),
-                                      margin: EdgeInsets.only(right:20),
-                                      child: Padding(
-                                         padding:EdgeInsets.fromLTRB(110, 10, 20, 20),
-                                        child: Column(
-                                          
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                             
-                                              response[index].title,
-                                              style: TextStyle(fontSize: 12),
-                                              overflow: TextOverflow.ellipsis,
-                                              maxLines: 1,
-                                              
+                          itemBuilder: (context, index) => InkWell(
+                            onTap: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (_)=>Navigate(
+                                slug: response[index].slug,
+                                title: response[index].title,
+                                image: response[index].image,
+                                price: response[index].price,
+                                rating: response[index].rating,
+                                storetitle: 'New Arrivals',
+                              )));
+                            },
+                                                      child: Card(
+                              elevation: 0.4,
+                              child: Stack(
+                                children: [
+                                  Container(
+                                      child: Stack(children: [
+                                        Image.network(
+                                            "https://api.garjoo.com" +
+                                                response[index].image,
+                                            width: 99,
+                                            height: 120),
+                                     
+                                  SizedBox(width: 10),
+                                  Stack(
+                                    children: [
+                                      Container(
+                                        padding: EdgeInsets.only(right: 28),
+                                        margin: EdgeInsets.only(right:20),
+                                        child: Padding(
+                                           padding:EdgeInsets.fromLTRB(110, 10, 20, 20),
+                                          child: Column(
+                                            
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                               
+                                                response[index].title,
+                                                style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold),
+                                                overflow: TextOverflow.ellipsis,
+                                                maxLines: 1,
+                                                
+                                              ),
+                                               SizedBox(height: 5),
+                                                 Text(
+                                        'Rs ' + response[index].price.toString(),
+                                        style: TextStyle(color: Colors.red),
+                                      ),
+                                      SizedBox(height: 5,),
+                                           Container(
+                                            height: 22,
+                                            width: 88,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                border: Border.all(
+                                                    color: Colors.amber)),
+                                            child: Row(
+                                              children: [
+                                                SizedBox(width: 5),
+                                                Icon(Icons.shopping_cart,
+                                                    size: 13, color: orange),
+                                                SizedBox(width: 5),
+                                                Center(
+                                                  child: Text(
+                                                    "Add to cart",
+                                                    style: TextStyle(
+                                                        color: orange,
+                                                        fontSize: 11,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                ),
+                                              ],
                                             ),
-                                               Text(
-                                      response[index].price.toString(),
-                                      style: TextStyle(color: Colors.red),
-                                    ),
-                                          ],
+                                          ),
+                                            ],
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),
-                          
-                        )])));
+                                    ],
+                                  )
+                                ],
+                              ),
+                            
+                        )])),
+                          ));
                       } else {
                         return Container();
                       }
@@ -117,9 +158,15 @@ class _ViewArrivalState extends State<ViewArrival> {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
+          floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.orange,
-        onPressed: () {},
+        onPressed: () {
+          return showDialog(
+            context: context,
+            builder: (ctx) =>Filter(),
+          );
+        
+        },
         child: Icon(
           Icons.search,
           color: Colors.white,

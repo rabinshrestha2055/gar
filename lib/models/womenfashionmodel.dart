@@ -4,15 +4,19 @@ class WomenFashionModel{
   final String title;
   final String image;
   final int price;
+  final String slug;
+  final String rating;
 
-  WomenFashionModel({this.price,this.title, this.image});
+  WomenFashionModel({this.rating,this.slug,this.price,this.title, this.image});
 
 
  factory WomenFashionModel.fromJson(Map<String, dynamic>json)=>WomenFashionModel(
 
     title: json['title'],
     image: json['thumbnail'],
-    price: json['price']
+    price: json['price'],
+    slug: json['slug'] ,
+    rating: json['rating'].toString()
   );
 }
 

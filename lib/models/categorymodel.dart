@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 class CategoryModel {
   final String name;
   final IconData icon;
+  final String slug;
 
   CategoryModel({
-    @required this.name,
-    @required this.icon,
+     this.name,
+     this.icon,
+     this.slug
   });
 
 

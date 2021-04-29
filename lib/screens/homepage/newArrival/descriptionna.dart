@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:garjoo/core.dart';
+import 'package:flutter_html/flutter_html.dart';
+
 
 class DescriptionNA extends StatelessWidget {
+ final String description;
+
+  const DescriptionNA({Key key, this.description}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,13 +28,8 @@ class DescriptionNA extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('- Length: 73cm(size medium)'),
-                        Text('- Medium fit'),
-                        Text('- Pure cotton denim construction; lightweight'),
-                        Text('- Light wash'),
-                        Text('- Pointed collar'),
-                        Text('- Twin press-stud flap pockets to chest'),
-                        Text('- Short sleeve'),
+                       
+                        Html(data: description ),
                       ],
                     ),
                   ),
@@ -37,246 +37,7 @@ class DescriptionNA extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 10),
-              Card(
-                  elevation: 1.0,
-                  margin: EdgeInsets.only(left: 10, right: 10),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "Delivery Method",
-                              style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.bold),
-                            ),
-                            Text(
-                              "Home Delivery",
-                              style: TextStyle(fontSize: 14),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 12),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "Total Days",
-                              style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.bold),
-                            ),
-                            Text(
-                              "4-6 days  ",
-                              style: TextStyle(fontSize: 14),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 12),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "Payment Method",
-                              style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.bold),
-                            ),
-                            Text(
-                              "Cash on  Delivery",
-                              style: TextStyle(fontSize: 14),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 10),
-                        Text(
-                            'Enjoy Free Shipping promotion with minimum 2 times'),
-                      ],
-                    ),
-                  )),
-              SizedBox(height: 10),
-              Card(
-                  elevation: 1.0,
-                  margin: EdgeInsets.only(left: 10, right: 10),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "Return & Warranty",
-                              style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.bold),
-                            ),
-                            Text(
-                              "7 Days Return",
-                              style: TextStyle(fontSize: 14),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 10),
-                        Text(
-                            'Enjoy Free Shipping promotion with minimum 2 times'),
-                      ],
-                    ),
-                  )),
-              SizedBox(height: 10),
-                Padding(
-                padding: const EdgeInsets.only(right:2.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left:8.0,top: 8,bottom: 8),
-                      child: Container(
-                        height: 48,
-                        width: 155,
-                        child: Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20)),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              SizedBox(width: 18),
-                              Text('Buy Now'),
-                              SizedBox(width: 8),
-                              CircleAvatar(
-                                radius: 17,
-                                backgroundColor: Colors.grey,
-                                child: Icon(
-                                  Icons.arrow_upward_outlined,
-                                  color: Colors.white,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(right:8.0),
-                      child: Container(
-                        height: 48,
-                        width: 151,
-                        child: Card(
-                          color: Colors.red[300],
-                          shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              SizedBox(width: 10),
-                              Text(
-                                'ADD TO CART',
-                                style: TextStyle(
-                                    fontSize: 13, color: Colors.white),
-                              ),
-                              CircleAvatar(
-                                  radius: 17,
-                                  child: Icon(
-                                    Icons.arrow_forward_ios,
-                                    size: 18,
-                                    color: Colors.red[300],
-                                  ))
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Card(
-                  elevation: 0.18,
-                  margin: EdgeInsets.only(left: 10, right: 10),
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          CircleAvatar(
-                              radius: 15.0,
-                              backgroundColor: Colors.purpleAccent,
-                              child: Icon(
-                                Icons.shopping_bag_outlined,
-                                size: 18.0,
-                              )),
-                          SizedBox(width: 5),
-                          Text(
-                            "The Next Trends",
-                            style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 10),
-                      Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Row(
-                              children: [
-                                Column(
-                                  children: [
-                                    Text(
-                                      'Products',
-                                      style: TextStyle(color: Colors.grey),
-                                    ),
-                                    Text('25'),
-                                  ],
-                                ),
-                                SizedBox(width: 50),
-                                Container(
-                                  height: 35,
-                                  width: 1,
-                                  color: Colors.black,
-                                )
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Column(
-                                  children: [
-                                    Text(
-                                      'Views',
-                                      style: TextStyle(color: Colors.grey),
-                                    ),
-                                    Text('9'),
-                                  ],
-                                ),
-                                SizedBox(width: 30),
-                                Container(
-                                  height: 35,
-                                  width: 1,
-                                  color: Colors.black,
-                                )
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                Text(
-                                  'On Garjoo',
-                                  style: TextStyle(color: Colors.grey),
-                                ),
-                                Text('3 months ago')
-                              ],
-                            ),
-                          ]),
-                      SizedBox(height: 10),
-                       InkWell(
-                        child: Text('Visit Store',
-                            style: TextStyle(color: Colors.red)),
-                        onTap: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (_) => VisitStore()));
-                        },
-                      ),
-                      SizedBox(height: 10),
-                    ],
-                  )),
-              SizedBox(height: 10),
+           
               
             ],
           ),
