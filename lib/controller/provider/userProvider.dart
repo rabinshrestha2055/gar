@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:garjoo/core.dart';
@@ -15,7 +14,7 @@ class UserDetailsProvider with ChangeNotifier {
   Future<List<ArrivalModel>> getArrivals() async {
     try {
       final response = await http.get(
-        AppURl.arrival ,
+        AppURl.arrival,
         headers: {
           "Accept": "application/json",
         },
@@ -176,18 +175,20 @@ class UserDetailsProvider with ChangeNotifier {
       return servicesModelFromJson(response.body);
     } catch (e) {}
   }
-   Future<List<StoreTopModel>> getStoreTop() async {
+
+  Future<List<StoreTopModel>> getStoreTop() async {
     try {
       final response = await http.get(
-        AppURl.storetop ,
+        AppURl.storetop,
         headers: {
           "Accept": "application/json",
         },
       );
-      
+
       return storeTopModelFromJson(response.body);
     } catch (e) {}
   }
+
   Future<List<LimitedProductModel>> getStoreLimitedProduct() async {
     try {
       final response = await http.get(
@@ -196,12 +197,10 @@ class UserDetailsProvider with ChangeNotifier {
           "Accept": "application/json",
         },
       );
-  
+
       return limitedFromJson(response.body);
     } catch (e) {}
   }
-   
-
 
   Future<http.Response> upteUser(String id) async {
     try {
@@ -229,7 +228,7 @@ class UserDetailsProvider with ChangeNotifier {
     }
   }
 
-    Future<List<QuickLinkModel>> getQuickLink({String slug}) async {
+  Future<List<QuickLinkModel>> getQuickLink({String slug}) async {
     try {
       final response = await http.get(
         AppURl.quicklink + slug,
@@ -237,17 +236,12 @@ class UserDetailsProvider with ChangeNotifier {
           "Accept": "application/json",
         },
       );
-       
+
       return quicklinkFromJson(response.body);
     } catch (e) {
       print(e.toString());
     }
   }
-
-
-
-
-
 
   Future<List<TopListingModel>> gettopListing() async {
     try {
@@ -257,14 +251,14 @@ class UserDetailsProvider with ChangeNotifier {
           "Accept": "application/json",
         },
       );
-      
+
       return toplistingFromJson(response.body);
     } catch (e) {
       print(e.toString());
     }
   }
-   
-   Future<List<StoreBannerModel>> getBanner() async {
+
+  Future<List<StoreBannerModel>> getBanner() async {
     try {
       final response = await http.get(
         AppURl.storebanner,
@@ -272,11 +266,24 @@ class UserDetailsProvider with ChangeNotifier {
           "Accept": "application/json",
         },
       );
-    
+
       return storeBannerModelFromJson(response.body);
     } catch (e) {
       print(e.toString());
     }
+  }
+
+  Future<String> getParent() async {
+    try {
+      final response = await http.get(
+        AppURl.navigationParent,
+        headers: {
+          "Accept": "application/json",
+        },
+      );
+
+      return response.body;
+    } catch (e) {}
   }
 
   Future<http.Response> login(UserModel loginModel) async {
@@ -289,7 +296,7 @@ class UserDetailsProvider with ChangeNotifier {
         headers: headers,
         body: userModelToJson(loginModel),
       );
-   
+      print(response.body);
       return response;
     } catch (e) {}
   }
@@ -330,7 +337,7 @@ class UserDetailsProvider with ChangeNotifier {
         headers: headers,
         body: userModelToJson(registerModel),
       );
-    
+
       return response;
     } catch (e) {}
   }

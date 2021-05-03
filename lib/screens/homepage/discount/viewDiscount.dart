@@ -3,7 +3,11 @@ import 'package:garjoo/core.dart';
 import 'package:provider/provider.dart';
 
 class ViewDiscount extends StatefulWidget {
-  ViewDiscount({Key key}) : super(key: key);
+  final ValueSetter<dynamic> valueSetter;
+  var cart;
+  int sum;
+  ViewDiscount({Key key, this.valueSetter, this.cart, this.sum})
+      : super(key: key);
 
   @override
   _ViewDiscountState createState() => _ViewDiscountState();

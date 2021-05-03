@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:garjoo/controller/provider/userProvider.dart';
 import 'package:garjoo/models/storeTop.dart';
-import 'package:garjoo/widget/myArrival.dart';
 import 'package:garjoo/widget/storetopbanner.dart';
 import 'package:provider/provider.dart';
 
@@ -31,8 +30,7 @@ class _StoreState extends State<Store> {
                       children: [
                         Expanded(
                           child: SizedBox(
-                              height: 200, width: 100, 
-                              child: StoreBanner()),
+                              height: 200, width: 100, child: StoreBanner()),
                         ),
                         SizedBox(height: 20),
                         Card(

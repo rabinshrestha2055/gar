@@ -4,8 +4,17 @@ import 'package:garjoo/core.dart';
 import 'package:garjoo/screens/homepage/newArrival/arrivalView.dart';
 import 'package:provider/provider.dart';
 
-class Arrival extends StatelessWidget {
-  Arrival({Key key}) : super(key: key);
+class Arrival extends StatefulWidget {
+  final ValueSetter<dynamic> valueSetter;
+  var cart;
+  int sum;
+  Arrival({Key key, this.valueSetter, this.cart, this.sum}) : super(key: key);
+
+  @override
+  _ArrivalState createState() => _ArrivalState();
+}
+
+class _ArrivalState extends State<Arrival> {
   final ArrivalModel arrivalModel = ArrivalModel();
 
   @override
@@ -37,11 +46,24 @@ class Arrival extends StatelessWidget {
                           ),
                           InkWell(
                             onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ViewArrival()),
-                              );
+                              Navigator.push(context, MaterialPageRoute(
+                                builder: (context) {
+                                  return ViewArrival(
+                                    valueSetter: (selectedProduct) {
+                                      setState(() {
+                                        widget.cart.add(selectedProduct);
+                                        widget.cart.forEach((element) {
+                                          print(element.price);
+                                          widget.sum =
+                                              widget.sum + element.price;
+                                        });
+                                      });
+                                    },
+                                    cart: widget.cart,
+                                    sum: widget.sum,
+                                  );
+                                },
+                              ));
                             },
                             child: Padding(
                               padding: const EdgeInsets.only(right: 10.0),
@@ -137,19 +159,7 @@ class Arrival extends StatelessWidget {
                                       SizedBox(height: 5),
                                       InkWell(
                                         onTap: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (_) => Cart(
-                                                      // image:
-                                                      //     response[index].image,
-                                                      // title:
-                                                      //     response[index].title,
-                                                      // slug:
-                                                      //     response[index].slug,
-                                                      // price: response[index]
-                                                      //     .price
-                                                      )));
+                                          widget.valueSetter(response[index]);
                                         },
                                         child: Container(
                                           height: 22,

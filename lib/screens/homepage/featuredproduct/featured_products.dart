@@ -2,13 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:garjoo/core.dart';
 import 'package:provider/provider.dart';
 
-class FeaturedProduct extends StatelessWidget {
-  const FeaturedProduct({Key key}) : super(key: key);
+class FeaturedProduct extends StatefulWidget {
+  final ValueSetter<dynamic> valueSetter;
+  var cart;
+  int sum;
+  FeaturedProduct({Key key, this.valueSetter, this.cart, this.sum})
+      : super(key: key);
 
+  @override
+  _FeaturedProductState createState() => _FeaturedProductState();
+}
+
+class _FeaturedProductState extends State<FeaturedProduct> {
   @override
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-    
       SizedBox(height: 10),
       ChangeNotifierProvider<UserDetailsProvider>(
         create: (context) => UserDetailsProvider(),
@@ -22,33 +30,35 @@ class FeaturedProduct extends StatelessWidget {
                 var response = snapshot.data as List<FeaturedProductModel>;
                 return Column(
                   children: [
-                      Padding(
-        padding: const EdgeInsets.only(left: 15),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              'Featured Products',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            InkWell(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (_) => ViewFeature()),
-                );
-              },
-              child: Padding(
-                padding: const EdgeInsets.only(right: 8.0),
-                child: Text(
-                  'View More',
-                  style: TextStyle(color: Colors.red),
-                ),
-              ),
-            )
-          ],
-        ),
-      ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Featured Products',
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => ViewFeature()),
+                              );
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 8.0),
+                              child: Text(
+                                'View More',
+                                style: TextStyle(color: Colors.red),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
                     Container(
                         margin: EdgeInsets.only(left: 10, right: 10),
                         width: MediaQuery.of(context).size.width,
@@ -91,36 +101,47 @@ class FeaturedProduct extends StatelessWidget {
                                                 width: 50,
                                                 child: Text(
                                                   response[index].title,
-                                                  style: TextStyle(fontSize: 13),
-                                                  overflow: TextOverflow.ellipsis,
+                                                  style:
+                                                      TextStyle(fontSize: 13),
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
                                                   maxLines: 1,
                                                 ),
                                               ),
-                                              Container(
-                                                height: 22,
-                                                width: 88,
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(5),
-                                                    border: Border.all(
-                                                        color: Colors.amber)),
-                                                child: Row(
-                                                  children: [
-                                                    SizedBox(width: 5),
-                                                    Icon(Icons.shopping_cart,
-                                                        size: 13, color: orange),
-                                                    SizedBox(width: 5),
-                                                    Center(
-                                                      child: Text(
-                                                        "Add to cart",
-                                                        style: TextStyle(
-                                                            color: orange,
-                                                            fontSize: 11,
-                                                            fontWeight:
-                                                                FontWeight.bold),
+                                              InkWell(
+                                                onTap: () {
+                                                  widget.valueSetter(
+                                                      response[index]);
+                                                },
+                                                child: Container(
+                                                  height: 22,
+                                                  width: 88,
+                                                  decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5),
+                                                      border: Border.all(
+                                                          color: Colors.amber)),
+                                                  child: Row(
+                                                    children: [
+                                                      SizedBox(width: 5),
+                                                      Icon(Icons.shopping_cart,
+                                                          size: 13,
+                                                          color: orange),
+                                                      SizedBox(width: 5),
+                                                      Center(
+                                                        child: Text(
+                                                          "Add to cart",
+                                                          style: TextStyle(
+                                                              color: orange,
+                                                              fontSize: 11,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
                                                       ),
-                                                    ),
-                                                  ],
+                                                    ],
+                                                  ),
                                                 ),
                                               ),
                                             ],

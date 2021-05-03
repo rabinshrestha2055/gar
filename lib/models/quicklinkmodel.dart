@@ -28,7 +28,7 @@ class QuickLinkModel {
 List<QuickLinkModel> quicklinkFromJson(String strJson) {
   final str = json.decode(strJson);
   final jsonData = str['data']['data'];
-
+  // print(jsonData);
   return List<QuickLinkModel>.from(jsonData.map((item) {
     return QuickLinkModel.fromJson(item);
   }));

@@ -17,7 +17,8 @@ class AppURl {
   static const toplisting = baseurl + "top-items/real-estate";
   static const newproperties = baseurl + "new-arrivals/real-estate";
   static const homecarousel = baseurl + "category-image-ads/get-by-type/home";
-  static const classifiedcarousel =baseurl + "general-image-ads/get/classified";
+  static const classifiedcarousel =
+      baseurl + "general-image-ads/get/classified";
   static const quicklink = baseurl + "filter-result/";
   static const hotjobs = baseurl + "new-arrivals/jobs";
   static const bikearrival = baseurl + "new-arrivals/bike";
@@ -26,4 +27,5 @@ class AppURl {
   static const mobilearrival = baseurl + "mobile-accessories";
   static const storetop = baseurl + "store/all";
   static const storebanner = baseurl + "general-image-ads/get/store";
+  static const navigationParent = baseurl + "navigation-parent";
 }

@@ -1,5 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../core.dart';
 
 class Review extends StatefulWidget {
@@ -8,9 +12,30 @@ class Review extends StatefulWidget {
 }
 
 class _ReviewState extends State<Review> {
+  SharedPreferences data;
+
+  String email;
+
+  @override
+  void initState() {
+    super.initState();
+    initial();
+  }
+
+  void initial() async {
+    data = await SharedPreferences.getInstance();
+    setState(() {
+      email = data.getString('email');
+    });
+  }
+
   String _chosenValue;
+  String _category;
+  String _subCategory;
   bool _checkbox = false;
   double rating;
+  List category;
+  List subCategory;
   final _formkey = GlobalKey<FormState>();
   final fnameController = TextEditingController();
   final lnameController = TextEditingController();
@@ -20,7 +45,7 @@ class _ReviewState extends State<Review> {
   final phoneController = TextEditingController();
   final pnameController = TextEditingController();
 
-  var fname, lname, email, pname;
+  var fname, lname, emaill, pname;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +65,44 @@ class _ReviewState extends State<Review> {
         ),
         body: Form(
           key: _formkey,
-          child: ListView(
+          child:
+              // email == null
+              //     ? Container(
+              //         child: Center(
+              //             child: Column(
+              //         mainAxisAlignment: MainAxisAlignment.center,
+              //         children: [
+              //           Text(
+              //             "You need to login for review",
+              //             style: TextStyle(
+              //               fontSize: 18,
+              //             ),
+              //           ),
+              //           Container(
+              //             margin: EdgeInsets.only(left: 70, right: 70),
+              //             child: MaterialButton(
+              //                 disabledColor: Colors.red[200],
+              //                 shape: RoundedRectangleBorder(
+              //                     borderRadius: BorderRadius.circular(20)),
+              //                 color: Colors.red[300],
+              //                 child: Text(
+              //                   'Login',
+              //                   style: TextStyle(
+              //                       fontSize: 18,
+              //                       color: Colors.white,
+              //                       fontWeight: FontWeight.bold),
+              //                 ),
+              //                 onPressed: () {
+              //                   Navigator.push(
+              //                       context,
+              //                       MaterialPageRoute(
+              //                           builder: (_) => LoginScreen()));
+              //                 }),
+              //           ),
+              //         ],
+              //       )))
+              //     :
+              ListView(
             shrinkWrap: true,
             children: [
               Padding(
@@ -53,51 +115,65 @@ class _ReviewState extends State<Review> {
                   ),
                 ),
               ),
-              Center(
-                child: Container(
-                  height: 65,
-                  width: 340,
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)),
-                    elevation: 2.0,
-                    child: DropdownButtonHideUnderline(
-                      child: ButtonTheme(
-                        alignedDropdown: true,
-                        child: DropdownButton<String>(
-                          value: _chosenValue,
-                          style: TextStyle(color: Colors.black),
-                          items: <String>[
-                            'Market',
-                            'Jobs',
-                            'Service',
-                            'Real Estate',
-                            'Motor',
-                            'Accomodation',
-                          ].map<DropdownMenuItem<String>>((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(value),
-                            );
-                          }).toList(),
-                          hint: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              "Select Category for Review",
-                              style: TextStyle(
-                                fontSize: 16,
+              ChangeNotifierProvider(
+                create: (context) => UserDetailsProvider(),
+                child: Consumer<UserDetailsProvider>(
+                  builder: (context, value1, child) {
+                    return FutureBuilder(
+                        future: value1.getParent(),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasError) {
+                            return Container();
+                          } else if (snapshot.hasData) {
+                            var response = snapshot.data;
+                            var jsonData = json.decode(response);
+                            category = jsonData;
+                            return Container(
+                              height: 65,
+                              width: 340,
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12)),
+                                margin: EdgeInsets.only(left: 15, right: 15),
+                                elevation: 2.0,
+                                child: DropdownButtonHideUnderline(
+                                  child: ButtonTheme(
+                                    alignedDropdown: true,
+                                    child: DropdownButton<String>(
+                                      isExpanded: true,
+                                      value: _category,
+                                      style: TextStyle(color: Colors.black),
+                                      items: category?.map((item) {
+                                            return DropdownMenuItem<String>(
+                                              value: item['id'].toString(),
+                                              child: Text(item['label']),
+                                            );
+                                          })?.toList() ??
+                                          [],
+                                      hint: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                          "Select Category for Review",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      onChanged: (String value) {
+                                        setState(() {
+                                          _category = value;
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
-                          onChanged: (String value) {
-                            setState(() {
-                              _chosenValue = value;
-                            });
-                          },
-                        ),
-                      ),
-                    ),
-                  ),
+                            );
+                          } else {
+                            return Container();
+                          }
+                        });
+                  },
                 ),
               ),
               SizedBox(height: 10),
@@ -219,51 +295,67 @@ class _ReviewState extends State<Review> {
                 ),
               ),
               SizedBox(height: 10),
-              Center(
-                child: Container(
-                  height: 65,
-                  width: 340,
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)),
-                    elevation: 2.0,
-                    child: DropdownButtonHideUnderline(
-                      child: ButtonTheme(
-                        alignedDropdown: true,
-                        child: DropdownButton<String>(
-                          value: _chosenValue,
-                          style: TextStyle(color: Colors.black),
-                          items: <String>[
-                            'Market',
-                            'Jobs',
-                            'Service',
-                            'Real Estate',
-                            'Motor',
-                            'Accomodation',
-                          ].map<DropdownMenuItem<String>>((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(value),
-                            );
-                          }).toList(),
-                          hint: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              "Select Sub-Category for Review",
-                              style: TextStyle(
-                                fontSize: 16,
+              ChangeNotifierProvider(
+                create: (context) => UserDetailsProvider(),
+                child: Consumer<UserDetailsProvider>(
+                  builder: (context, value, child) {
+                    return FutureBuilder(
+                        future: value.getParent(),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasError) {
+                            return Container();
+                          } else if (snapshot.connectionState ==
+                              ConnectionState.done) {
+                            var response = snapshot.data;
+                            var jsonData = json.decode(response);
+                            subCategory = jsonData[0]['childs'];
+                            return Container(
+                              height: 65,
+                              width: 340,
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12)),
+                                margin: EdgeInsets.only(left: 15, right: 15),
+                                elevation: 2.0,
+                                child: DropdownButtonHideUnderline(
+                                  child: ButtonTheme(
+                                    alignedDropdown: true,
+                                    child: DropdownButton<String>(
+                                      isExpanded: true,
+                                      value: _subCategory,
+                                      style: TextStyle(color: Colors.black),
+                                      items: subCategory?.map((item) {
+                                            return DropdownMenuItem<String>(
+                                              value: item['id'].toString(),
+                                              child: Text(
+                                                  item['label'].toString()),
+                                            );
+                                          })?.toList() ??
+                                          [],
+                                      hint: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                          "Select Sub-Category for Review",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      onChanged: (String value) {
+                                        setState(() {
+                                          _subCategory = value;
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
-                          onChanged: (String value) {
-                            setState(() {
-                              _chosenValue = value;
-                            });
-                          },
-                        ),
-                      ),
-                    ),
-                  ),
+                            );
+                          } else {
+                            return Container();
+                          }
+                        });
+                  },
                 ),
               ),
               SizedBox(height: 10),
@@ -296,52 +388,80 @@ class _ReviewState extends State<Review> {
                 ),
               ),
               SizedBox(height: 10),
-              Center(
-                child: Container(
-                  width: 340,
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)),
-                    elevation: 2.0,
-                    child: DropdownButtonHideUnderline(
-                      child: ButtonTheme(
-                        alignedDropdown: true,
-                        child: DropdownButton<String>(
-                          value: _chosenValue,
-                          style: TextStyle(color: Colors.black),
-                          items: <String>[
-                            'Market',
-                            'Jobs',
-                            'Service',
-                            'Real Estate',
-                            'Motor',
-                            'Accomodation',
-                          ].map<DropdownMenuItem<String>>((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(value),
-                            );
-                          }).toList(),
-                          hint: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              "Select Sub-  Category for Review",
-                              style: TextStyle(
-                                fontSize: 16,
-                              ),
-                            ),
-                          ),
-                          onChanged: (String value) {
-                            setState(() {
-                              _chosenValue = value;
-                            });
-                          },
-                        ),
-                      ),
-                    ),
+              Container(
+                height: 56,
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  margin: EdgeInsets.only(left: 15, right: 15),
+                  elevation: 3,
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 12.0, bottom: 6),
+                    child: TextFormField(
+                        controller: pnameController,
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return 'Please enter Product Brand';
+                          }
+                        },
+                        onChanged: (value) {
+                          pname = value;
+                        },
+                        style: TextStyle(color: Colors.black),
+                        decoration: InputDecoration(
+                            focusedBorder: InputBorder.none,
+                            enabledBorder: InputBorder.none,
+                            labelText: 'Product Brand')),
                   ),
                 ),
               ),
+              // Container(
+              //   width: 340,
+              //   child: Card(
+              //     shape: RoundedRectangleBorder(
+              //         borderRadius: BorderRadius.circular(12)),
+              //     margin: EdgeInsets.only(left: 15, right: 15),
+              //     elevation: 2.0,
+              //     child: DropdownButtonHideUnderline(
+              //       child: ButtonTheme(
+              //         alignedDropdown: true,
+              //         child: DropdownButton<String>(
+              //           isExpanded: true,
+              //           value: _chosenValue,
+              //           style: TextStyle(color: Colors.black),
+              //           items: <String>[
+              //             'Market',
+              //             'Jobs',
+              //             'Service',
+              //             'Real Estate',
+              //             'Motor',
+              //             'Accomodation',
+              //           ].map<DropdownMenuItem<String>>((String value) {
+              //             return DropdownMenuItem<String>(
+              //               value: value,
+              //               child: Text(value),
+              //             );
+              //           }).toList(),
+              //           hint: Padding(
+              //             padding: const EdgeInsets.all(8.0),
+              //             child: Text(
+              //               "Select Sub-  Category for Review",
+              //               style: TextStyle(
+              //                 fontSize: 16,
+              //               ),
+              //             ),
+              //           ),
+              //           onChanged: (String value) {
+              //             setState(() {
+              //               _chosenValue = value;
+              //             });
+              //           },
+              //         ),
+              //       ),
+              //     ),
+              //   ),
+              // ),
               SizedBox(height: 10),
               Container(
                 height: 56,
@@ -401,6 +521,36 @@ class _ReviewState extends State<Review> {
                 ),
               ),
               SizedBox(height: 10),
+              Container(
+                height: 56,
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  margin: EdgeInsets.only(left: 15, right: 15),
+                  elevation: 3,
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 12.0, bottom: 6),
+                    child: TextFormField(
+                        controller: pnameController,
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return 'Please enter Duration of use';
+                          } else {
+                            return null;
+                          }
+                        },
+                        onChanged: (value) {
+                          pname = value;
+                        },
+                        style: TextStyle(color: Colors.black),
+                        decoration: InputDecoration(
+                            focusedBorder: InputBorder.none,
+                            enabledBorder: InputBorder.none,
+                            labelText: 'Duration of use')),
+                  ),
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Card(
@@ -455,176 +605,171 @@ class _ReviewState extends State<Review> {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  height: MediaQuery.of(context).size.height * 0.30,
-                  child: Card(
-                      elevation: 2,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding:
-                                const EdgeInsets.only(left: 138.0, top: 10),
-                            child:
-                                Text('Rating', style: TextStyle(fontSize: 20)),
+              Container(
+                padding: EdgeInsets.all(8),
+                // color: blue,
+                height: 230,
+                child: Card(
+                    elevation: 2,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 138.0, top: 10),
+                          child: Text('Rating', style: TextStyle(fontSize: 20)),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Text(
+                                    'Design',
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 5, bottom: 8.0, top: 5),
+                                    child: RatingBar.builder(
+                                      initialRating: 3,
+                                      minRating: 1,
+                                      direction: Axis.horizontal,
+                                      allowHalfRating: true,
+                                      itemCount: 5,
+                                      itemSize: 18,
+                                      itemPadding:
+                                          EdgeInsets.symmetric(horizontal: 4.0),
+                                      itemBuilder: (context, _) => Icon(
+                                        Icons.star,
+                                        color: Colors.red,
+                                        size: 2,
+                                      ),
+                                      onRatingUpdate: (rating) {
+                                        print(rating);
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 5),
+                              Row(
+                                children: [
+                                  Text(
+                                    'Price',
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 5, bottom: 8.0, top: 5),
+                                    child: RatingBar.builder(
+                                      initialRating: 3,
+                                      minRating: 1,
+                                      direction: Axis.horizontal,
+                                      allowHalfRating: true,
+                                      itemCount: 5,
+                                      itemSize: 18,
+                                      itemPadding:
+                                          EdgeInsets.symmetric(horizontal: 4.0),
+                                      itemBuilder: (context, _) => Icon(
+                                        Icons.star,
+                                        color: Colors.red,
+                                        size: 2,
+                                      ),
+                                      onRatingUpdate: (rating) {
+                                        print(rating);
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 5),
+                              Row(
+                                children: [
+                                  Text(
+                                    'Quality',
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 5, bottom: 8.0, top: 5),
+                                    child: RatingBar.builder(
+                                      initialRating: 3,
+                                      minRating: 1,
+                                      direction: Axis.horizontal,
+                                      allowHalfRating: true,
+                                      itemCount: 5,
+                                      itemSize: 18,
+                                      itemPadding:
+                                          EdgeInsets.symmetric(horizontal: 4.0),
+                                      itemBuilder: (context, _) => Icon(
+                                        Icons.star,
+                                        color: Colors.red,
+                                        size: 2,
+                                      ),
+                                      onRatingUpdate: (rating) {
+                                        print(rating);
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 5),
+                              Row(
+                                children: [
+                                  Text(
+                                    'Service',
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 5, bottom: 8.0, top: 5),
+                                    child: RatingBar.builder(
+                                      initialRating: 3,
+                                      minRating: 1,
+                                      direction: Axis.horizontal,
+                                      allowHalfRating: true,
+                                      itemCount: 5,
+                                      itemSize: 18,
+                                      itemPadding:
+                                          EdgeInsets.symmetric(horizontal: 4.0),
+                                      itemBuilder: (context, _) => Icon(
+                                        Icons.star,
+                                        color: Colors.red,
+                                        size: 2,
+                                      ),
+                                      onRatingUpdate: (rating) {
+                                        print(rating);
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              children: [
-                                Row(
-                                  children: [
-                                    Text(
-                                      'Design',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 5, bottom: 8.0, top: 5),
-                                      child: RatingBar.builder(
-                                        initialRating: 3,
-                                        minRating: 1,
-                                        direction: Axis.horizontal,
-                                        allowHalfRating: true,
-                                        itemCount: 5,
-                                        itemSize: 18,
-                                        itemPadding: EdgeInsets.symmetric(
-                                            horizontal: 4.0),
-                                        itemBuilder: (context, _) => Icon(
-                                          Icons.star,
-                                          color: Colors.red,
-                                          size: 2,
-                                        ),
-                                        onRatingUpdate: (rating) {
-                                          print(rating);
-                                        },
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(height: 5),
-                                Row(
-                                  children: [
-                                    Text(
-                                      'Price',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 5, bottom: 8.0, top: 5),
-                                      child: RatingBar.builder(
-                                        initialRating: 3,
-                                        minRating: 1,
-                                        direction: Axis.horizontal,
-                                        allowHalfRating: true,
-                                        itemCount: 5,
-                                        itemSize: 18,
-                                        itemPadding: EdgeInsets.symmetric(
-                                            horizontal: 4.0),
-                                        itemBuilder: (context, _) => Icon(
-                                          Icons.star,
-                                          color: Colors.red,
-                                          size: 2,
-                                        ),
-                                        onRatingUpdate: (rating) {
-                                          print(rating);
-                                        },
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(height: 5),
-                                Row(
-                                  children: [
-                                    Text(
-                                      'Quality',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 5, bottom: 8.0, top: 5),
-                                      child: RatingBar.builder(
-                                        initialRating: 3,
-                                        minRating: 1,
-                                        direction: Axis.horizontal,
-                                        allowHalfRating: true,
-                                        itemCount: 5,
-                                        itemSize: 18,
-                                        itemPadding: EdgeInsets.symmetric(
-                                            horizontal: 4.0),
-                                        itemBuilder: (context, _) => Icon(
-                                          Icons.star,
-                                          color: Colors.red,
-                                          size: 2,
-                                        ),
-                                        onRatingUpdate: (rating) {
-                                          print(rating);
-                                        },
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(height: 5),
-                                Row(
-                                  children: [
-                                    Text(
-                                      'Service',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 5, bottom: 8.0, top: 5),
-                                      child: RatingBar.builder(
-                                        initialRating: 3,
-                                        minRating: 1,
-                                        direction: Axis.horizontal,
-                                        allowHalfRating: true,
-                                        itemCount: 5,
-                                        itemSize: 18,
-                                        itemPadding: EdgeInsets.symmetric(
-                                            horizontal: 4.0),
-                                        itemBuilder: (context, _) => Icon(
-                                          Icons.star,
-                                          color: Colors.red,
-                                          size: 2,
-                                        ),
-                                        onRatingUpdate: (rating) {
-                                          print(rating);
-                                        },
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      )),
-                ),
+                        ),
+                      ],
+                    )),
               ),
-              Expanded(
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Checkbox(
-                      value: _checkbox,
-                      onChanged: (bool value) {
-                        setState(() {
-                          _checkbox = !_checkbox;
-                        });
-                      },
-                    ),
-                    Padding(
-                        padding: const EdgeInsets.only(top: 14.0),
-                        child: text()),
-                  ],
-                ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Checkbox(
+                    value: _checkbox,
+                    onChanged: (bool value) {
+                      setState(() {
+                        _checkbox = !_checkbox;
+                      });
+                    },
+                  ),
+                  Padding(
+                      padding: const EdgeInsets.only(top: 14.0), child: text()),
+                ],
               ),
               SizedBox(height: 10),
               Container(
@@ -647,12 +792,6 @@ class _ReviewState extends State<Review> {
                               ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(content: Text('Processing Data')));
                             }
-                            // if (_checkbox) {
-                            //   Navigator.push(context,
-                            //       MaterialPageRoute(builder: (_) => Profile()));
-                            // } else {
-                            //   print('click the checkbox');
-                            // }
                           }
                         : null),
               ),

@@ -3,14 +3,16 @@ import 'package:garjoo/core.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
 class Checkout extends StatefulWidget {
+  var sum;
+  Checkout({Key key, this.sum}) : super(key: key);
   @override
-  _CheckoutState createState() => _CheckoutState();
+  CheckoutState createState() => CheckoutState();
 }
 
-class _CheckoutState extends State<Checkout> {
-  var value = 22;
+class CheckoutState extends State<Checkout> {
   var email, confirmpassword, cname, cemail, cphone, fname, lname, ctycode;
   TextEditingController _controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -299,7 +301,7 @@ class _CheckoutState extends State<Checkout> {
                             style: TextStyle(color: Colors.grey, fontSize: 13),
                           ),
                           Text(
-                            '\$$value',
+                            '\$${widget.sum}',
                             style: TextStyle(
                                 fontSize: 24, fontWeight: FontWeight.bold),
                           ),

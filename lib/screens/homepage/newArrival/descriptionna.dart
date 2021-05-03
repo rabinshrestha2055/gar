@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:garjoo/core.dart';
 import 'package:flutter_html/flutter_html.dart';
 
-
 class DescriptionNA extends StatelessWidget {
- final String description;
+  final String description;
 
   const DescriptionNA({Key key, this.description}) : super(key: key);
   @override
@@ -28,8 +26,7 @@ class DescriptionNA extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                       
-                        Html(data: description ),
+                        Html(data: description),
                       ],
                     ),
                   ),
@@ -37,8 +34,6 @@ class DescriptionNA extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 10),
-           
-              
             ],
           ),
         ),

@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
+
 import 'package:garjoo/core.dart';
 import 'package:garjoo/screens/homepage/discount/viewDiscount.dart';
 import 'package:provider/provider.dart';
 
 class DiscountOffers extends StatefulWidget {
+  final ValueSetter<dynamic> valueSetter;
+  var cart;
+  int sum;
+  DiscountOffers({Key key, this.valueSetter, this.cart, this.sum})
+      : super(key: key);
   @override
-  _DiscountOffersState createState() => _DiscountOffersState();
+  DiscountOffersState createState() => DiscountOffersState();
 }
 
-class _DiscountOffersState extends State<DiscountOffers> {
+class DiscountOffersState extends State<DiscountOffers> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<UserDetailsProvider>(
@@ -21,7 +27,7 @@ class _DiscountOffersState extends State<DiscountOffers> {
                   return Center(child: CircularProgressIndicator());
                 } else if (snapshot.connectionState == ConnectionState.done) {
                   var response = snapshot.data as List<DiscountModel>;
-                  print(response.length);
+
                   return Column(
                     children: [
                       Padding(
@@ -40,8 +46,20 @@ class _DiscountOffersState extends State<DiscountOffers> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (_) => ViewDiscount(
-                                        
-                                      )),
+                                            valueSetter: (selectedProduct) {
+                                              setState(() {
+                                                widget.cart
+                                                    .add(selectedProduct);
+                                                widget.cart.forEach((element) {
+                                                  print(element.price);
+                                                  widget.sum = widget.sum +
+                                                      element.price;
+                                                });
+                                              });
+                                            },
+                                            cart: widget.cart,
+                                            sum: widget.sum,
+                                          )),
                                 );
                               },
                               child: Padding(
@@ -56,160 +74,175 @@ class _DiscountOffersState extends State<DiscountOffers> {
                         ),
                       ),
                       SizedBox(height: 10),
-                    
+                      Container(
+                        margin: EdgeInsets.only(left: 5, right: 5),
+                        child: GridView.builder(
+                            shrinkWrap: true,
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                              mainAxisSpacing: 0,
+                              crossAxisSpacing: 0,
+                              crossAxisCount: 3,
+                              childAspectRatio: 3 / 4.45,
+                            ),
+                            itemCount: 6,
+                            physics: ScrollPhysics(
+                                parent: NeverScrollableScrollPhysics()),
+                            itemBuilder: (context, index) => InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (_) => Navigate(
+                                                  title: response[index].title,
+                                                  image: response[index].image,
+                                                  slug: response[index].slug,
+                                                  price: response[index].price,
+                                                  rating:
+                                                      response[index].rating,
+                                                  storetitle:
+                                                      'Discount And Offers',
+                                                )));
+                                  },
+                                  child: Container(
+                                      width: 126,
+                                      child: Card(
+                                          elevation: 2,
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10)),
+                                          child: Column(
+                                            children: [
                                               Container(
-                          margin: EdgeInsets.only(left: 5, right: 5),
-                          child: GridView.builder(
-                              shrinkWrap: true,
-                              gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                mainAxisSpacing: 0,
-                                crossAxisSpacing: 0,
-                                crossAxisCount: 3,
-                                childAspectRatio: 3 / 4.4,
-                              ),
-                              itemCount: 6,
-                              physics: ScrollPhysics(
-                                  parent: NeverScrollableScrollPhysics()),
-                              itemBuilder: (context, index) => InkWell(
-                                
-                        onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (_)=>Navigate(
-                             title:             response[index].title,
-                                                image: response[index].image,
-                                                slug: response[index].slug,
-                                                price: response[index].price,
-                                                rating: response[index].rating,
-                                                storetitle: 'Discount And Offers',
-                          )));
-                        },
-                                                              child: Container(
-                                    width: 126,
-                                    child: Card(
-                                        elevation: 2,
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10)),
-                                        child: Column(
-                                          children: [
-                                            Container(
-                                                padding: EdgeInsets.only(left: 8),
-                                                child: Stack(children: [
-                                                  Image.network(
-                                                      AppURl.path +
-                                                          response[index].image,
-                                                      width: 99,
-                                                      height: 120),
-                                                  Positioned(
-                                                      top: 3,
-                                                      left: 30,
-                                                      child: Card(
-                                                          shape: RoundedRectangleBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          20)),
-                                                          color: Colors.red,
-                                                          child: Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                        .only(
-                                                                    left: 3,
-                                                                    right: 3),
-                                                            child: Text(
-                                                              "Save " +
-                                                                  response[index]
-                                                                      .discount
-                                                                      .toString(),
-                                                              style: TextStyle(
-                                                                  color: Colors
-                                                                      .white,
-                                                                  fontSize: 10),
-                                                            ),
-                                                          )))
-                                                ])),
-                                            Text(
-                                              response[index].title,
-                                              style: TextStyle(fontSize: 9),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 10.0),
-                                              child: Row(
-                                                children: [
-                                                  Container(
-                                                    height: 20,
-                                                    width: 60,
-                                                    decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                                5),
-                                                        border: Border.all(
-                                                            color: Colors.amber)),
-                                                    child: Row(
-                                                      children: [
-                                                        SizedBox(width: 1),
-                                                        Icon(Icons.shopping_cart,
-                                                            size: 10,
-                                                            color: orange),
-                                                        Center(
-                                                          child: Text(
-                                                            "Add to cart",
-                                                            style: TextStyle(
-                                                                color: orange,
-                                                                fontSize: 9,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
-                                                          ),
-                                                        ),
-                                                        SizedBox(width: 1),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  Card(
-                                                      shape:
-                                                          RoundedRectangleBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          20)),
-                                                      color: Colors.red,
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsets.only(
-                                                                left: 3,
-                                                                right: 3),
+                                                  padding:
+                                                      EdgeInsets.only(left: 8),
+                                                  child: Stack(children: [
+                                                    Image.network(
+                                                        AppURl.path +
+                                                            response[index]
+                                                                .image,
+                                                        width: 99,
+                                                        height: 120),
+                                                    Positioned(
+                                                        top: 3,
+                                                        left: 30,
+                                                        child: Card(
+                                                            shape: RoundedRectangleBorder(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            20)),
+                                                            color: Colors.red,
+                                                            child: Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                          .only(
+                                                                      left: 3,
+                                                                      right: 3),
+                                                              child: Text(
+                                                                "Save " +
+                                                                    response[
+                                                                            index]
+                                                                        .discount
+                                                                        .toString(),
+                                                                style: TextStyle(
+                                                                    color: Colors
+                                                                        .white,
+                                                                    fontSize:
+                                                                        10),
+                                                              ),
+                                                            )))
+                                                  ])),
+                                              Text(
+                                                response[index].title,
+                                                style: TextStyle(fontSize: 10),
+                                              ),
+                                              SizedBox(height: 2),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 10.0),
+                                                child: Row(
+                                                  children: [
+                                                    InkWell(
+                                                      onTap: () {
+                                                        widget.valueSetter(
+                                                            response[index]);
+                                                      },
+                                                      child: Container(
+                                                        height: 20,
+                                                        width: 60,
+                                                        decoration: BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        5),
+                                                            border: Border.all(
+                                                                color: Colors
+                                                                    .amber)),
                                                         child: Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .start,
                                                           children: [
+                                                            SizedBox(width: 1),
                                                             Icon(
-                                                              Icons.star,
-                                                              size: 8,
-                                                              color: Colors.white,
+                                                                Icons
+                                                                    .shopping_cart,
+                                                                size: 10,
+                                                                color: orange),
+                                                            Center(
+                                                              child: Text(
+                                                                "Add to cart",
+                                                                style: TextStyle(
+                                                                    color:
+                                                                        orange,
+                                                                    fontSize: 9,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold),
+                                                              ),
                                                             ),
-                                                            Text(
-                                                              response[index]
-                                                                  .rating
-                                                                  .toString(),
-                                                              style: TextStyle(
-                                                                  color: Colors
-                                                                      .white,
-                                                                  fontSize: 8),
-                                                            ),
+                                                            SizedBox(width: 1),
                                                           ],
                                                         ),
-                                                      ))
-                                                ],
+                                                      ),
+                                                    ),
+                                                    Card(
+                                                        shape: RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        20)),
+                                                        color: Colors.red,
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .only(
+                                                                  left: 3,
+                                                                  right: 3),
+                                                          child: Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Text(
+                                                                response[index]
+                                                                        .rating
+                                                                        .toString() +
+                                                                    '%',
+                                                                style: TextStyle(
+                                                                    color: Colors
+                                                                        .white,
+                                                                    fontSize:
+                                                                        8),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ))
+                                                  ],
+                                                ),
                                               ),
-                                            ),
-                                          ],
-                                        ))),
-                              )),
-                        ),
-                      
+                                            ],
+                                          ))),
+                                )),
+                      ),
                     ],
                   );
                 } else {

@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 import '../../core.dart';
 
@@ -23,6 +26,10 @@ class _PostNewAdsState extends State<PostNewAds> {
   String _choosenValue1;
   String _choosenValue2;
   String _choosenValue3;
+  String _choosenValue4;
+
+  List category;
+  List subCategory;
 
   final _formkey = GlobalKey<FormState>();
   final titleController = TextEditingController();
@@ -84,6 +91,7 @@ class _PostNewAdsState extends State<PostNewAds> {
         padding: const EdgeInsets.only(left: 12.0, top: 8),
         child: ListView(
           shrinkWrap: true,
+          scrollDirection: Axis.vertical,
           children: [
             sizedBox(),
             Container(
@@ -100,97 +108,132 @@ class _PostNewAdsState extends State<PostNewAds> {
               ),
             ),
             sizedBox(),
-            Center(
-              child: Container(
-                padding: EdgeInsets.only(right: 10),
-                height: 65,
-                width: 360,
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12)),
-                  elevation: 2.0,
-                  child: DropdownButtonHideUnderline(
-                    child: ButtonTheme(
-                      alignedDropdown: true,
-                      child: DropdownButton<String>(
-                        value: _chosenValue,
-                        style: TextStyle(color: Colors.black),
-                        items: <String>[
-                          'Market',
-                          'Jobs',
-                          'Service',
-                          'Real Estate',
-                          'Motor & Vehicles',
-                          'Accomodation',
-                        ].map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value),
-                          );
-                        }).toList(),
-                        hint: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            "Select Category *",
-                            style: TextStyle(
-                              fontSize: 16,
+            ChangeNotifierProvider(
+              create: (context) => UserDetailsProvider(),
+              child: Consumer<UserDetailsProvider>(
+                builder: (context, value1, child) {
+                  return FutureBuilder(
+                      future: value1.getParent(),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasError) {
+                          return Container();
+                        } else if (snapshot.hasData) {
+                          var response = snapshot.data;
+                          var jsonData = json.decode(response);
+                          category = jsonData;
+                          return Container(
+                            height: 55,
+                            width: 340,
+                            child: Card(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12)),
+                              margin: EdgeInsets.only(left: 8, right: 15),
+                              elevation: 2.0,
+                              child: DropdownButtonHideUnderline(
+                                child: ButtonTheme(
+                                  alignedDropdown: true,
+                                  child: DropdownButton<String>(
+                                    isExpanded: true,
+                                    value: _choosenValue1,
+                                    style: TextStyle(color: Colors.black),
+                                    items: category?.map((item) {
+                                          return DropdownMenuItem<String>(
+                                            value: item['id'].toString(),
+                                            child: Text(item['label']),
+                                          );
+                                        })?.toList() ??
+                                        [],
+                                    hint: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                        "Select Category*",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                    onChanged: (String value) {
+                                      setState(() {
+                                        _choosenValue1 = value;
+                                      });
+                                    },
+                                  ),
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
-                        onChanged: (String value) {
-                          setState(() {
-                            _chosenValue = value;
-                          });
-                        },
-                      ),
-                    ),
-                  ),
-                ),
+                          );
+                        } else {
+                          return Container();
+                        }
+                      });
+                },
               ),
             ),
-            Center(
-              child: Container(
-                padding: EdgeInsets.only(right: 10),
-                height: 65,
-                width: 360,
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12)),
-                  elevation: 2.0,
-                  child: DropdownButtonHideUnderline(
-                    child: ButtonTheme(
-                      alignedDropdown: true,
-                      child: DropdownButton<String>(
-                        value: _choosenValue1,
-                        style: TextStyle(color: Colors.black),
-                        items: <String>[
-                          'Arts and Craft',
-                        ].map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value),
-                          );
-                        }).toList(),
-                        hint: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            "Select Sub Category *",
-                            style: TextStyle(
-                              fontSize: 16,
+            sizedBox(),
+            ChangeNotifierProvider(
+              create: (context) => UserDetailsProvider(),
+              child: Consumer<UserDetailsProvider>(
+                builder: (context, value, child) {
+                  return FutureBuilder(
+                      future: value.getParent(),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasError) {
+                          return Container();
+                        } else if (snapshot.connectionState ==
+                            ConnectionState.done) {
+                          var response = snapshot.data;
+                          var jsonData = json.decode(response);
+                          subCategory = jsonData[0]['childs'];
+                          return Container(
+                            height: 55,
+                            width: 340,
+                            child: Card(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12)),
+                              margin: EdgeInsets.only(left: 8, right: 15),
+                              elevation: 2.0,
+                              child: DropdownButtonHideUnderline(
+                                child: ButtonTheme(
+                                  alignedDropdown: true,
+                                  child: DropdownButton<String>(
+                                    isExpanded: true,
+                                    value: _choosenValue4,
+                                    style: TextStyle(color: Colors.black),
+                                    items: subCategory?.map((item) {
+                                          return DropdownMenuItem<String>(
+                                            value: item['id'].toString(),
+                                            child:
+                                                Text(item['label'].toString()),
+                                          );
+                                        })?.toList() ??
+                                        [],
+                                    hint: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                        "Select Sub-Category*",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                    onChanged: (String value) {
+                                      setState(() {
+                                        _choosenValue4 = value;
+                                      });
+                                    },
+                                  ),
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
-                        onChanged: (String value1) {
-                          setState(() {
-                            _choosenValue1 = value1;
-                          });
-                        },
-                      ),
-                    ),
-                  ),
-                ),
+                          );
+                        } else {
+                          return Container();
+                        }
+                      });
+                },
               ),
             ),
+            sizedBox(),
             Container(
               height: 56,
               child: Card(
@@ -254,49 +297,48 @@ class _PostNewAdsState extends State<PostNewAds> {
                   ),
                 )),
             sizedBox(),
-            Center(
-              child: Container(
-                padding: EdgeInsets.only(right: 10),
-                height: 65,
-                width: 360,
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12)),
-                  elevation: 2.0,
-                  child: DropdownButtonHideUnderline(
-                    child: ButtonTheme(
-                      alignedDropdown: true,
-                      child: DropdownButton<String>(
-                        value: _choosenValue2,
-                        style: TextStyle(color: Colors.black),
-                        items: <String>[
-                          'Kathmandu',
-                          'Lalitpur',
-                          'Bhaktapur',
-                          'Gorkha',
-                          'Chitwan',
-                          'Agrakhachi',
-                        ].map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value),
-                          );
-                        }).toList(),
-                        hint: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            "Please Select District",
-                            style: TextStyle(
-                              fontSize: 16,
-                            ),
+            Container(
+              padding: EdgeInsets.only(right: 10),
+              height: 65,
+              width: 360,
+              child: Card(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12)),
+                elevation: 2.0,
+                child: DropdownButtonHideUnderline(
+                  child: ButtonTheme(
+                    alignedDropdown: true,
+                    child: DropdownButton<String>(
+                      isExpanded: true,
+                      value: _choosenValue2,
+                      style: TextStyle(color: Colors.black),
+                      items: <String>[
+                        'Kathmandu',
+                        'Lalitpur',
+                        'Bhaktapur',
+                        'Gorkha',
+                        'Chitwan',
+                        'Agrakhachi',
+                      ].map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                      hint: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          "Please Select District",
+                          style: TextStyle(
+                            fontSize: 16,
                           ),
                         ),
-                        onChanged: (String value) {
-                          setState(() {
-                            _choosenValue2 = value;
-                          });
-                        },
                       ),
+                      onChanged: (String value) {
+                        setState(() {
+                          _choosenValue2 = value;
+                        });
+                      },
                     ),
                   ),
                 ),
@@ -346,50 +388,49 @@ class _PostNewAdsState extends State<PostNewAds> {
               ),
             ),
             sizedBox(),
-            Center(
-              child: Container(
-                padding: EdgeInsets.only(right: 10),
-                height: 65,
-                width: 360,
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12)),
-                  elevation: 2.0,
-                  child: DropdownButtonHideUnderline(
-                    child: ButtonTheme(
-                      alignedDropdown: true,
-                      child: DropdownButton<String>(
-                        value: _choosenValue3,
-                        style: TextStyle(color: Colors.black),
-                        items: <String>[
-                          'art',
-                          'house',
-                          'land',
-                          'real-estate',
-                          'fashion',
-                          'rent',
-                          'sale'
-                        ].map<DropdownMenuItem<String>>((String value2) {
-                          return DropdownMenuItem<String>(
-                            value: value2,
-                            child: Text(value2),
-                          );
-                        }).toList(),
-                        hint: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            "Choose Tag",
-                            style: TextStyle(
-                              fontSize: 16,
-                            ),
+            Container(
+              padding: EdgeInsets.only(right: 10),
+              height: 65,
+              width: 360,
+              child: Card(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12)),
+                elevation: 2.0,
+                child: DropdownButtonHideUnderline(
+                  child: ButtonTheme(
+                    alignedDropdown: true,
+                    child: DropdownButton<String>(
+                      isExpanded: true,
+                      value: _choosenValue3,
+                      style: TextStyle(color: Colors.black),
+                      items: <String>[
+                        'art',
+                        'house',
+                        'land',
+                        'real-estate',
+                        'fashion',
+                        'rent',
+                        'sale'
+                      ].map<DropdownMenuItem<String>>((String value2) {
+                        return DropdownMenuItem<String>(
+                          value: value2,
+                          child: Text(value2),
+                        );
+                      }).toList(),
+                      hint: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          "Choose Tag",
+                          style: TextStyle(
+                            fontSize: 16,
                           ),
                         ),
-                        onChanged: (String value2) {
-                          setState(() {
-                            _choosenValue3 = value2;
-                          });
-                        },
                       ),
+                      onChanged: (String value2) {
+                        setState(() {
+                          _choosenValue3 = value2;
+                        });
+                      },
                     ),
                   ),
                 ),
