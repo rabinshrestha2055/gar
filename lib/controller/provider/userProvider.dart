@@ -9,6 +9,7 @@ import 'package:garjoo/models/storeTop.dart';
 
 import 'package:garjoo/models/visitstoremodel.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class UserDetailsProvider with ChangeNotifier {
   Future<List<ArrivalModel>> getArrivals() async {
@@ -362,4 +363,9 @@ class UserDetailsProvider with ChangeNotifier {
       return res;
     } catch (e) {}
   }
+}
+
+saveToken(String token) async {
+  SharedPreferences tokenData = await SharedPreferences.getInstance();
+  tokenData.setString('token', token);
 }
