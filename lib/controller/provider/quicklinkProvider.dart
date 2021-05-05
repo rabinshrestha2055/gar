@@ -1,0 +1,19 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:garjoo/models/homequicklink.dart';
+
+
+class QuickLinkProvider extends ChangeNotifier {
+  List<HomeQuickLink> _getQuickLink = [
+    HomeQuickLink('Market', 'asset/market.svg','market?'),
+    HomeQuickLink('Service', 'asset/service.svg','services?'),
+    HomeQuickLink('Urgent Jobs', 'asset/urgent.svg','jobs?'),
+   HomeQuickLink('Cars', 'asset/cars.svg','car?'),
+    HomeQuickLink('Motorbikes', 'asset/bike.svg','bike?'),
+    HomeQuickLink('Real Estate  ', 'asset/realState.svg','real-estate?'),
+    HomeQuickLink('Hotels', 'asset/hotel.svg','hotels?'),
+    HomeQuickLink('SmartPhone', 'asset/smartphone.svg','mobile-accessories?'),
+  ];
+
+  List<HomeQuickLink> get getQuick => [..._getQuickLink];
+}
