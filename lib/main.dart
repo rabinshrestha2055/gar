@@ -4,8 +4,6 @@ import 'package:garjoo/startPage.dart';
 void main() => runApp(Garjoo());
 
 class Garjoo extends StatelessWidget {
-  GlobalKey<NavigatorState> navigator = GlobalKey<NavigatorState>();
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,7 +17,6 @@ class Garjoo extends StatelessWidget {
               subtitle2: TextStyle(color: Colors.orange),
             )),
         debugShowCheckedModeBanner: false,
-        navigatorKey: navigator,
         home: StartPage());
   }
 }

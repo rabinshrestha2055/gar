@@ -5,7 +5,6 @@ import 'package:garjoo/screens/homepage/visitStoreTop.dart';
 
 Widget customAppBar(
     {BuildContext context, var cart, var sum, var email, var userName}) {
-  print("appbar" + sum.toString());
   return AppBar(
     automaticallyImplyLeading: false,
     elevation: 0.0,

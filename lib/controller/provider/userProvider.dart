@@ -1,6 +1,8 @@
 import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:garjoo/core.dart';
+
 import 'package:garjoo/models/datamodel.dart';
 import 'package:garjoo/models/detailsmodel.dart';
 import 'package:garjoo/models/limitedProduct.dart';
@@ -298,7 +300,6 @@ class UserDetailsProvider with ChangeNotifier {
         headers: headers,
         body: userModelToJson(loginModel),
       );
-      print(response.body);
       return response;
     } catch (e) {}
   }
@@ -403,7 +404,6 @@ class UserDetailsProvider with ChangeNotifier {
   Future<bool> saveUser(UserModel user) async {
     final SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.setString("token", user.token);
-
     return true;
   }
 

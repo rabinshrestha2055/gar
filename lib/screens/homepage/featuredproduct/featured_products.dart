@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:garjoo/core.dart';
-import 'package:provider/provider.dart';
 
 class FeaturedProduct extends StatefulWidget {
   final ValueSetter<dynamic> valueSetter;
   var cart;
   int sum;
-  FeaturedProduct({Key key, this.valueSetter, this.cart, this.sum})
+  var email;
+  var userName;
+  FeaturedProduct(
+      {Key key,
+      this.valueSetter,
+      this.cart,
+      this.sum,
+      this.email,
+      this.userName})
       : super(key: key);
 
   @override
@@ -48,7 +55,13 @@ class _FeaturedProductState extends State<FeaturedProduct> {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (_) => ViewFeature()),
+                            MaterialPageRoute(
+                                builder: (_) => ViewFeature(
+                                      cart: widget.cart,
+                                      sum: widget.sum,
+                                      email: widget.email,
+                                      userName: widget.userName,
+                                    )),
                           );
                         },
                         child: Padding(
@@ -159,7 +172,13 @@ class _FeaturedProductState extends State<FeaturedProduct> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (_) => MenFashion()),
+                MaterialPageRoute(
+                    builder: (_) => MenFashion(
+                          sum: widget.sum,
+                          cart: widget.cart,
+                          email: widget.email,
+                          username: widget.userName,
+                        )),
               );
             },
             child: Container(
@@ -192,7 +211,13 @@ class _FeaturedProductState extends State<FeaturedProduct> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (_) => WomenFashion()),
+                MaterialPageRoute(
+                    builder: (_) => WomenFashion(
+                          cart: widget.cart,
+                          sum: widget.sum,
+                          email: widget.email,
+                          userName: widget.userName,
+                        )),
               );
             },
             child: Card(

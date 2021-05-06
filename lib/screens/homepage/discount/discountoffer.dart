@@ -2,16 +2,22 @@ import 'package:flutter/material.dart';
 
 import 'package:garjoo/core.dart';
 import 'package:garjoo/screens/homepage/discount/viewDiscount.dart';
-import 'package:provider/provider.dart';
 
-import '../../../core.dart';
 import '../../../core.dart';
 
 class DiscountOffers extends StatefulWidget {
   final ValueSetter<dynamic> valueSetter;
   var cart;
   int sum;
-  DiscountOffers({Key key, this.valueSetter, this.cart, this.sum})
+  var email;
+  var userName;
+  DiscountOffers(
+      {Key key,
+      this.valueSetter,
+      this.cart,
+      this.sum,
+      this.email,
+      this.userName})
       : super(key: key);
   @override
   DiscountOffersState createState() => DiscountOffersState();
@@ -53,18 +59,10 @@ class DiscountOffersState extends State<DiscountOffers> {
                             context,
                             MaterialPageRoute(
                                 builder: (_) => ViewDiscount(
-                                      valueSetter: (selectedProduct) {
-                                        setState(() {
-                                          widget.cart.add(selectedProduct);
-                                          widget.cart.forEach((element) {
-                                            print(element.price);
-                                            widget.sum =
-                                                widget.sum + element.price;
-                                          });
-                                        });
-                                      },
                                       cart: widget.cart,
                                       sum: widget.sum,
+                                      userName: widget.userName,
+                                      email: widget.email,
                                     )),
                           );
                         },

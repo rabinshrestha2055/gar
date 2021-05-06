@@ -115,6 +115,7 @@ class _HomeState extends State<Home> {
             ),
             Arrival(
               email: widget.email,
+              userName: widget.userName,
               valueSetter: (selectedProduct) {
                 setState(() {
                   widget.cart.add(selectedProduct);
@@ -141,6 +142,10 @@ class _HomeState extends State<Home> {
                   });
                 });
               },
+              cart: widget.cart,
+              sum: widget.sum,
+              email: widget.email,
+              userName: widget.userName,
             ),
 
             SizedBox(height: 20),
@@ -164,6 +169,10 @@ class _HomeState extends State<Home> {
                   });
                 });
               },
+              cart: widget.cart,
+              sum: widget.sum,
+              email: widget.email,
+              userName: widget.userName,
             ),
 
             ClassifiedAds(),

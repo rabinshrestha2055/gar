@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:garjoo/core.dart';
 import 'package:garjoo/screens/homepage/newArrival/arrivalView.dart';
-import 'package:provider/provider.dart';
 
 import '../../../core.dart';
 import '../../../core.dart';
@@ -12,7 +11,14 @@ class Arrival extends StatefulWidget {
   var cart;
   int sum;
   String email;
-  Arrival({Key key, this.valueSetter, this.cart, this.sum, this.email})
+  var userName;
+  Arrival(
+      {Key key,
+      this.valueSetter,
+      this.cart,
+      this.sum,
+      this.email,
+      this.userName})
       : super(key: key);
 
   @override
@@ -56,17 +62,10 @@ class _ArrivalState extends State<Arrival> {
                           Navigator.push(context, MaterialPageRoute(
                             builder: (context) {
                               return ViewArrival(
-                                valueSetter: (selectedProduct) {
-                                  setState(() {
-                                    widget.cart.add(selectedProduct);
-                                    widget.cart.forEach((element) {
-                                      print(element.price);
-                                      widget.sum = widget.sum + element.price;
-                                    });
-                                  });
-                                },
                                 cart: widget.cart,
                                 sum: widget.sum,
+                                email: widget.email,
+                                userName: widget.userName,
                               );
                             },
                           ));
