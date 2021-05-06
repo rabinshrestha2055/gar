@@ -38,8 +38,10 @@ class QuickLink extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                             builder: (_) => QuickLinkDetail(
-                                slug: value.getQuick[index].slug,
-                                storetitle: value.getQuick[index].name)));
+                                  slug: value.getQuick[index].slug,
+                                  storetitle: value.getQuick[index].name,
+                                  buttontitle: value.getQuick[index].buttonText,
+                                )));
                   },
                   child: Container(
                       height: 90,
