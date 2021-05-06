@@ -12,6 +12,7 @@ class QuickLinkDetail extends StatelessWidget {
   final String name;
   final String rating;
   final String storetitle;
+  final String buttontitle;
 
   const QuickLinkDetail(
       {Key key,
@@ -21,6 +22,7 @@ class QuickLinkDetail extends StatelessWidget {
       this.storeImage,
       this.rating,
       this.storeName,
+      this.buttontitle,
       this.storetitle})
       : super(key: key);
 
@@ -62,7 +64,10 @@ class QuickLinkDetail extends StatelessWidget {
         scrollDirection: Axis.vertical,
         children: [
           storetitle == 'Market' ? Carousel1() : Container(),
-          QuickLinkArrival(slug:slug),
+          QuickLinkArrival(
+            slug: slug,
+            buttonTitle: buttontitle,
+          ),
           // storetitle == 'Market' ? QuickLinkArrival() : Container(),
           // storetitle == 'Urgent Jobs' ? QuickLinkArrival() : Container(),
           storetitle != 'Market' ? ClassifiedAds() : Container(),
@@ -70,7 +75,7 @@ class QuickLinkDetail extends StatelessWidget {
           // storetitle == 'Hotels' ? HotelArrival() : Container(),
           // storetitle == 'Real Estate' ? RealEstateArrival(slug: slug,) : Container(),
           // storetitle == 'SmartPhone' ? MobileArrival(slug: slug) : Container(),
-       
+
           SizedBox(height: 5),
           ChangeNotifierProvider(
               create: (context) => UserDetailsProvider(),
@@ -209,7 +214,7 @@ class QuickLinkDetail extends StatelessWidget {
                                                                         orange),
                                                                 Center(
                                                                   child: Text(
-                                                                    "Add to cart",
+                                                                    buttontitle,
                                                                     style: TextStyle(
                                                                         color:
                                                                             orange,
@@ -223,7 +228,7 @@ class QuickLinkDetail extends StatelessWidget {
                                                                     width: 1),
                                                               ],
                                                             ),
-                                                          ),
+                                                          )
                                                         ],
                                                       ),
                                                     ),
