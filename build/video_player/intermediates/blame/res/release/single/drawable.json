@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/home/codeish/Documents/office-work/gar/build/video_player/intermediates/res/merged/release/drawable/notification_bg_low.xml",
+        "source": "/home/codeish/.gradle/caches/transforms-2/files-2.1/ce1635782ed616d72db5bb7f69df3596/core-1.1.0/res/drawable/notification_bg_low.xml"
+    },
+    {
+        "merged": "/home/codeish/Documents/office-work/gar/build/video_player/intermediates/res/merged/release/drawable/notification_tile_bg.xml",
+        "source": "/home/codeish/.gradle/caches/transforms-2/files-2.1/ce1635782ed616d72db5bb7f69df3596/core-1.1.0/res/drawable/notification_tile_bg.xml"
+    },
+    {
+        "merged": "/home/codeish/Documents/office-work/gar/build/video_player/intermediates/res/merged/release/drawable/notification_icon_background.xml",
+        "source": "/home/codeish/.gradle/caches/transforms-2/files-2.1/ce1635782ed616d72db5bb7f69df3596/core-1.1.0/res/drawable/notification_icon_background.xml"
+    },
+    {
+        "merged": "/home/codeish/Documents/office-work/gar/build/video_player/intermediates/res/merged/release/drawable/notification_bg.xml",
+        "source": "/home/codeish/.gradle/caches/transforms-2/files-2.1/ce1635782ed616d72db5bb7f69df3596/core-1.1.0/res/drawable/notification_bg.xml"
+    }
+]

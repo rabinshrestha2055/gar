@@ -1,0 +1,381 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:1:1-61:12
+INJECTED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:1:1-61:12
+INJECTED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:1:1-61:12
+INJECTED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:1:1-61:12
+MERGED from [:file_picker] /home/codeish/Documents/office-work/gar/build/file_picker/intermediates/library_manifest/release/AndroidManifest.xml:2:1-17:12
+MERGED from [:video_player] /home/codeish/Documents/office-work/gar/build/video_player/intermediates/library_manifest/release/AndroidManifest.xml:2:1-7:12
+MERGED from [:sensors] /home/codeish/Documents/office-work/gar/build/sensors/intermediates/library_manifest/release/AndroidManifest.xml:2:1-7:12
+MERGED from [:package_info] /home/codeish/Documents/office-work/gar/build/package_info/intermediates/library_manifest/release/AndroidManifest.xml:2:1-7:12
+MERGED from [:better_player] /home/codeish/Documents/office-work/gar/build/better_player/intermediates/library_manifest/release/AndroidManifest.xml:2:1-7:12
+MERGED from [:wakelock] /home/codeish/Documents/office-work/gar/build/wakelock/intermediates/library_manifest/release/AndroidManifest.xml:2:1-7:12
+MERGED from [:flutter_plugin_android_lifecycle] /home/codeish/Documents/office-work/gar/build/flutter_plugin_android_lifecycle/intermediates/library_manifest/release/AndroidManifest.xml:2:1-7:12
+MERGED from [:open_file] /home/codeish/Documents/office-work/gar/build/open_file/intermediates/library_manifest/release/AndroidManifest.xml:2:1-24:12
+MERGED from [:url_launcher] /home/codeish/Documents/office-work/gar/build/url_launcher/intermediates/library_manifest/release/AndroidManifest.xml:2:1-14:12
+MERGED from [:webview_flutter] /home/codeish/Documents/office-work/gar/build/webview_flutter/intermediates/library_manifest/release/AndroidManifest.xml:2:1-7:12
+MERGED from [:path_provider] /home/codeish/Documents/office-work/gar/build/path_provider/intermediates/library_manifest/release/AndroidManifest.xml:2:1-7:12
+MERGED from [:flutter_local_notifications] /home/codeish/Documents/office-work/gar/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:2:1-23:12
+MERGED from [:permission_handler] /home/codeish/Documents/office-work/gar/build/permission_handler/intermediates/library_manifest/release/AndroidManifest.xml:2:1-7:12
+MERGED from [:shared_preferences] /home/codeish/Documents/office-work/gar/build/shared_preferences/intermediates/library_manifest/release/AndroidManifest.xml:2:1-7:12
+MERGED from [:share] /home/codeish/Documents/office-work/gar/build/share/intermediates/library_manifest/release/AndroidManifest.xml:2:1-19:12
+MERGED from [androidx.multidex:multidex:2.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/92e3b243ecb0f0770afa98d86b3df319/multidex-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/aa857fcef5067fac0eb60c78ba34c63d/legacy-support-v4-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.webkit:webkit:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/7c4af7dfc8d9cf19a2fc4baf31b2f88d/webkit-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.fragment:fragment:1.1.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/ff38e10a9511bb9262b36410a294db95/fragment-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/62b42771574550f7c60fb8090211772d/legacy-support-core-ui-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/6a9ba58fa3bc7f62d1378a3eb93d4017/legacy-support-core-utils-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.android.exoplayer:exoplayer-ui:2.13.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/2bb341bcb0883f183f2e79e7da3cef1c/jetified-exoplayer-ui-2.13.1/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:extension-mediasession:2.13.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/300dbc10503a1659ee537a80c54ae4ba/jetified-extension-mediasession-2.13.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.media:media:1.2.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/1984715a1c71ad7f32a00aaa628a1751/media-1.2.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/8fc3cd600507b20201b148bbb14631e3/recyclerview-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/6c8d19400b7f90767a40bf848d545c16/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/8dbb9132b1fb53fd4fbb93eaf077875c/loader-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.activity:activity:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/c3dea5666a6bf4ec85e7958faa8721cd/jetified-activity-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/3b340202e6e96084fa364bee26a8acfe/coordinatorlayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/1d758cb9ab12ad6092399d559f7f5aba/drawerlayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/12ff3bf4931c6ee0e182bbcefc5a1cfe/slidingpanelayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.customview:customview:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/e43a985b08a652886ef802cf14a111c7/customview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/8092df27876235e212dfd26626ab1ebc/swiperefreshlayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/754722de293e99795dfef034937daf8d/asynclayoutinflater-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core:1.3.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/927c034b9dd49f5174e8cb8e412b1c82/core-1.3.1/AndroidManifest.xml:17:1-26:12
+MERGED from [com.google.android.exoplayer:exoplayer-hls:2.13.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/09268e0ed589edad46f3fb27b206e96a/jetified-exoplayer-hls-2.13.1/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-dash:2.13.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/6f96508ae630e9ef6a5b8e60b72929a9/jetified-exoplayer-dash-2.13.1/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-smoothstreaming:2.13.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/1a02019bf92ad53865c6fc3f6d0e473d/jetified-exoplayer-smoothstreaming-2.13.1/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-core:2.13.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/f927724b56c093e8c8c7e1008908ab2b/jetified-exoplayer-core-2.13.1/AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/a6cdbfefa023edab71d0e17a210a04ea/lifecycle-runtime-2.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.savedstate:savedstate:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/54b0365c12e9e963d0a6847a964a4644/jetified-savedstate-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/f814c49c4e6d427ba2071c2724ae0c93/lifecycle-livedata-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/fdf32433e1a6a6a1a59c5f19e6604e1d/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.android.exoplayer:exoplayer-extractor:2.13.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/4fed979c83c4e0998c5585b9a7ad55c8/jetified-exoplayer-extractor-2.13.1/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-common:2.13.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/ca43aa877fc094c71f763f0c74131be3/jetified-exoplayer-common-2.13.1/AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/bc4f4858855e039c57c15500877bf525/versionedparcelable-1.1.0/AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/a8796c967b3c0d3b92f93a3b9f68bb69/core-runtime-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/d3a0c526675defaec83a58f88616d673/documentfile-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/83186ecf5c8ddeae84db330840a1a96d/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/86c784bf68d2d55319264b405834eb0f/print-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/1b095822d1b8a91797ad223c378ae9e6/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/63375a8602e663a8c50b61d57bebad9d/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/5c0c439dd771074d966cf4cb84a1b1ef/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.jakewharton.threetenabp:threetenabp:1.2.3] /home/codeish/.gradle/caches/transforms-2/files-2.1/b16f3e733d0b78832e9b4cd98c2ed1f1/jetified-threetenabp-1.2.3/AndroidManifest.xml:2:1-9:12
+INJECTED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:1:1-61:12
+INJECTED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:1:1-61:12
+INJECTED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:1:1-61:12
+	package
+		ADDED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:3:4-32
+		INJECTED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml
+		INJECTED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml
+		ADDED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:1:1-61:12
+		INJECTED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml
+		ADDED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:1:1-61:12
+		INJECTED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:1:11-69
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:4:6-81
+MERGED from [:file_picker] /home/codeish/Documents/office-work/gar/build/file_picker/intermediates/library_manifest/release/AndroidManifest.xml:7:5-80
+MERGED from [:file_picker] /home/codeish/Documents/office-work/gar/build/file_picker/intermediates/library_manifest/release/AndroidManifest.xml:7:5-80
+MERGED from [:open_file] /home/codeish/Documents/office-work/gar/build/open_file/intermediates/library_manifest/release/AndroidManifest.xml:9:5-80
+MERGED from [:open_file] /home/codeish/Documents/office-work/gar/build/open_file/intermediates/library_manifest/release/AndroidManifest.xml:9:5-80
+	android:name
+		ADDED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:4:23-78
+queries
+ADDED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:5:7-10:17
+MERGED from [:file_picker] /home/codeish/Documents/office-work/gar/build/file_picker/intermediates/library_manifest/release/AndroidManifest.xml:9:5-15:15
+MERGED from [:file_picker] /home/codeish/Documents/office-work/gar/build/file_picker/intermediates/library_manifest/release/AndroidManifest.xml:9:5-15:15
+intent
+ADDED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:6:8-9:17
+action#android.intent.action.GET_CONTENT
+ADDED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:7:9-68
+	android:name
+		ADDED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:7:17-65
+data
+ADDED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:8:9-39
+	android:mimeType
+		ADDED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:8:15-37
+uses-permission#android.permission.INTERNET
+ADDED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:19:5-66
+	android:name
+		ADDED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:19:22-64
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:20:5-80
+	android:name
+		ADDED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:20:22-78
+application
+ADDED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:21:5-59:19
+MERGED from [:open_file] /home/codeish/Documents/office-work/gar/build/open_file/intermediates/library_manifest/release/AndroidManifest.xml:11:5-22:19
+MERGED from [:open_file] /home/codeish/Documents/office-work/gar/build/open_file/intermediates/library_manifest/release/AndroidManifest.xml:11:5-22:19
+MERGED from [:url_launcher] /home/codeish/Documents/office-work/gar/build/url_launcher/intermediates/library_manifest/release/AndroidManifest.xml:7:5-12:19
+MERGED from [:url_launcher] /home/codeish/Documents/office-work/gar/build/url_launcher/intermediates/library_manifest/release/AndroidManifest.xml:7:5-12:19
+MERGED from [:flutter_local_notifications] /home/codeish/Documents/office-work/gar/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:11:5-21:19
+MERGED from [:flutter_local_notifications] /home/codeish/Documents/office-work/gar/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:11:5-21:19
+MERGED from [:share] /home/codeish/Documents/office-work/gar/build/share/intermediates/library_manifest/release/AndroidManifest.xml:7:5-17:19
+MERGED from [:share] /home/codeish/Documents/office-work/gar/build/share/intermediates/library_manifest/release/AndroidManifest.xml:7:5-17:19
+MERGED from [androidx.core:core:1.3.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/927c034b9dd49f5174e8cb8e412b1c82/core-1.3.1/AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.3.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/927c034b9dd49f5174e8cb8e412b1c82/core-1.3.1/AndroidManifest.xml:24:5-89
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/bc4f4858855e039c57c15500877bf525/versionedparcelable-1.1.0/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/bc4f4858855e039c57c15500877bf525/versionedparcelable-1.1.0/AndroidManifest.xml:24:5-25:19
+MERGED from [com.jakewharton.threetenabp:threetenabp:1.2.3] /home/codeish/.gradle/caches/transforms-2/files-2.1/b16f3e733d0b78832e9b4cd98c2ed1f1/jetified-threetenabp-1.2.3/AndroidManifest.xml:7:5-20
+MERGED from [com.jakewharton.threetenabp:threetenabp:1.2.3] /home/codeish/.gradle/caches/transforms-2/files-2.1/b16f3e733d0b78832e9b4cd98c2ed1f1/jetified-threetenabp-1.2.3/AndroidManifest.xml:7:5-20
+	android:requestLegacyExternalStorage
+		ADDED from [:open_file] /home/codeish/Documents/office-work/gar/build/open_file/intermediates/library_manifest/release/AndroidManifest.xml:11:18-61
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.3.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/927c034b9dd49f5174e8cb8e412b1c82/core-1.3.1/AndroidManifest.xml:24:18-86
+	android:label
+		ADDED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:23:9-31
+	android:icon
+		ADDED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:24:9-43
+	android:name
+		ADDED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:22:9-57
+activity#com.example.garjoo.MainActivity
+ADDED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:25:9-53:20
+	android:launchMode
+		ADDED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:27:13-43
+	android:hardwareAccelerated
+		ADDED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:30:13-47
+	android:windowSoftInputMode
+		ADDED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:31:13-55
+	android:configChanges
+		ADDED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:29:13-163
+	android:theme
+		ADDED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:28:13-47
+	android:name
+		ADDED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:26:13-41
+meta-data#io.flutter.embedding.android.NormalTheme
+ADDED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:36:13-39:17
+	android:resource
+		ADDED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:38:15-52
+	android:name
+		ADDED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:37:15-70
+meta-data#io.flutter.embedding.android.SplashScreenDrawable
+ADDED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:45:13-48:17
+	android:resource
+		ADDED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:47:15-61
+	android:name
+		ADDED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:46:15-79
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:49:13-52:29
+action#android.intent.action.MAIN
+ADDED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:50:17-68
+	android:name
+		ADDED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:50:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:51:17-76
+	android:name
+		ADDED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:51:27-74
+meta-data#flutterEmbedding
+ADDED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:56:9-58:33
+	android:value
+		ADDED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:58:13-30
+	android:name
+		ADDED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:57:13-44
+uses-sdk
+INJECTED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml
+INJECTED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml
+MERGED from [:file_picker] /home/codeish/Documents/office-work/gar/build/file_picker/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
+MERGED from [:file_picker] /home/codeish/Documents/office-work/gar/build/file_picker/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
+MERGED from [:video_player] /home/codeish/Documents/office-work/gar/build/video_player/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
+MERGED from [:video_player] /home/codeish/Documents/office-work/gar/build/video_player/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
+MERGED from [:sensors] /home/codeish/Documents/office-work/gar/build/sensors/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
+MERGED from [:sensors] /home/codeish/Documents/office-work/gar/build/sensors/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
+MERGED from [:package_info] /home/codeish/Documents/office-work/gar/build/package_info/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
+MERGED from [:package_info] /home/codeish/Documents/office-work/gar/build/package_info/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
+MERGED from [:better_player] /home/codeish/Documents/office-work/gar/build/better_player/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
+MERGED from [:better_player] /home/codeish/Documents/office-work/gar/build/better_player/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
+MERGED from [:wakelock] /home/codeish/Documents/office-work/gar/build/wakelock/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
+MERGED from [:wakelock] /home/codeish/Documents/office-work/gar/build/wakelock/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
+MERGED from [:flutter_plugin_android_lifecycle] /home/codeish/Documents/office-work/gar/build/flutter_plugin_android_lifecycle/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
+MERGED from [:flutter_plugin_android_lifecycle] /home/codeish/Documents/office-work/gar/build/flutter_plugin_android_lifecycle/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
+MERGED from [:open_file] /home/codeish/Documents/office-work/gar/build/open_file/intermediates/library_manifest/release/AndroidManifest.xml:6:5-44
+MERGED from [:open_file] /home/codeish/Documents/office-work/gar/build/open_file/intermediates/library_manifest/release/AndroidManifest.xml:6:5-44
+MERGED from [:url_launcher] /home/codeish/Documents/office-work/gar/build/url_launcher/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
+MERGED from [:url_launcher] /home/codeish/Documents/office-work/gar/build/url_launcher/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
+MERGED from [:webview_flutter] /home/codeish/Documents/office-work/gar/build/webview_flutter/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
+MERGED from [:webview_flutter] /home/codeish/Documents/office-work/gar/build/webview_flutter/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
+MERGED from [:path_provider] /home/codeish/Documents/office-work/gar/build/path_provider/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
+MERGED from [:path_provider] /home/codeish/Documents/office-work/gar/build/path_provider/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
+MERGED from [:flutter_local_notifications] /home/codeish/Documents/office-work/gar/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
+MERGED from [:flutter_local_notifications] /home/codeish/Documents/office-work/gar/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
+MERGED from [:permission_handler] /home/codeish/Documents/office-work/gar/build/permission_handler/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
+MERGED from [:permission_handler] /home/codeish/Documents/office-work/gar/build/permission_handler/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
+MERGED from [:shared_preferences] /home/codeish/Documents/office-work/gar/build/shared_preferences/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
+MERGED from [:shared_preferences] /home/codeish/Documents/office-work/gar/build/shared_preferences/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
+MERGED from [:share] /home/codeish/Documents/office-work/gar/build/share/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
+MERGED from [:share] /home/codeish/Documents/office-work/gar/build/share/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.multidex:multidex:2.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/92e3b243ecb0f0770afa98d86b3df319/multidex-2.0.0/AndroidManifest.xml:20:5-43
+MERGED from [androidx.multidex:multidex:2.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/92e3b243ecb0f0770afa98d86b3df319/multidex-2.0.0/AndroidManifest.xml:20:5-43
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/aa857fcef5067fac0eb60c78ba34c63d/legacy-support-v4-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/aa857fcef5067fac0eb60c78ba34c63d/legacy-support-v4-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.webkit:webkit:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/7c4af7dfc8d9cf19a2fc4baf31b2f88d/webkit-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.webkit:webkit:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/7c4af7dfc8d9cf19a2fc4baf31b2f88d/webkit-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment:1.1.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/ff38e10a9511bb9262b36410a294db95/fragment-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.1.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/ff38e10a9511bb9262b36410a294db95/fragment-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/62b42771574550f7c60fb8090211772d/legacy-support-core-ui-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/62b42771574550f7c60fb8090211772d/legacy-support-core-ui-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/6a9ba58fa3bc7f62d1378a3eb93d4017/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/6a9ba58fa3bc7f62d1378a3eb93d4017/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.exoplayer:exoplayer-ui:2.13.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/2bb341bcb0883f183f2e79e7da3cef1c/jetified-exoplayer-ui-2.13.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-ui:2.13.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/2bb341bcb0883f183f2e79e7da3cef1c/jetified-exoplayer-ui-2.13.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:extension-mediasession:2.13.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/300dbc10503a1659ee537a80c54ae4ba/jetified-extension-mediasession-2.13.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:extension-mediasession:2.13.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/300dbc10503a1659ee537a80c54ae4ba/jetified-extension-mediasession-2.13.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.media:media:1.2.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/1984715a1c71ad7f32a00aaa628a1751/media-1.2.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.media:media:1.2.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/1984715a1c71ad7f32a00aaa628a1751/media-1.2.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/8fc3cd600507b20201b148bbb14631e3/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/8fc3cd600507b20201b148bbb14631e3/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager:viewpager:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/6c8d19400b7f90767a40bf848d545c16/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/6c8d19400b7f90767a40bf848d545c16/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/8dbb9132b1fb53fd4fbb93eaf077875c/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/8dbb9132b1fb53fd4fbb93eaf077875c/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/c3dea5666a6bf4ec85e7958faa8721cd/jetified-activity-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/c3dea5666a6bf4ec85e7958faa8721cd/jetified-activity-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/3b340202e6e96084fa364bee26a8acfe/coordinatorlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/3b340202e6e96084fa364bee26a8acfe/coordinatorlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/1d758cb9ab12ad6092399d559f7f5aba/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/1d758cb9ab12ad6092399d559f7f5aba/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/12ff3bf4931c6ee0e182bbcefc5a1cfe/slidingpanelayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/12ff3bf4931c6ee0e182bbcefc5a1cfe/slidingpanelayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/e43a985b08a652886ef802cf14a111c7/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/e43a985b08a652886ef802cf14a111c7/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/8092df27876235e212dfd26626ab1ebc/swiperefreshlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/8092df27876235e212dfd26626ab1ebc/swiperefreshlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/754722de293e99795dfef034937daf8d/asynclayoutinflater-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/754722de293e99795dfef034937daf8d/asynclayoutinflater-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.3.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/927c034b9dd49f5174e8cb8e412b1c82/core-1.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.3.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/927c034b9dd49f5174e8cb8e412b1c82/core-1.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-hls:2.13.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/09268e0ed589edad46f3fb27b206e96a/jetified-exoplayer-hls-2.13.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-hls:2.13.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/09268e0ed589edad46f3fb27b206e96a/jetified-exoplayer-hls-2.13.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-dash:2.13.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/6f96508ae630e9ef6a5b8e60b72929a9/jetified-exoplayer-dash-2.13.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-dash:2.13.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/6f96508ae630e9ef6a5b8e60b72929a9/jetified-exoplayer-dash-2.13.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-smoothstreaming:2.13.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/1a02019bf92ad53865c6fc3f6d0e473d/jetified-exoplayer-smoothstreaming-2.13.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-smoothstreaming:2.13.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/1a02019bf92ad53865c6fc3f6d0e473d/jetified-exoplayer-smoothstreaming-2.13.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-core:2.13.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/f927724b56c093e8c8c7e1008908ab2b/jetified-exoplayer-core-2.13.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-core:2.13.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/f927724b56c093e8c8c7e1008908ab2b/jetified-exoplayer-core-2.13.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/a6cdbfefa023edab71d0e17a210a04ea/lifecycle-runtime-2.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/a6cdbfefa023edab71d0e17a210a04ea/lifecycle-runtime-2.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/54b0365c12e9e963d0a6847a964a4644/jetified-savedstate-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/54b0365c12e9e963d0a6847a964a4644/jetified-savedstate-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/f814c49c4e6d427ba2071c2724ae0c93/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/f814c49c4e6d427ba2071c2724ae0c93/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/fdf32433e1a6a6a1a59c5f19e6604e1d/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/fdf32433e1a6a6a1a59c5f19e6604e1d/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.exoplayer:exoplayer-extractor:2.13.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/4fed979c83c4e0998c5585b9a7ad55c8/jetified-exoplayer-extractor-2.13.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-extractor:2.13.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/4fed979c83c4e0998c5585b9a7ad55c8/jetified-exoplayer-extractor-2.13.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-common:2.13.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/ca43aa877fc094c71f763f0c74131be3/jetified-exoplayer-common-2.13.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-common:2.13.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/ca43aa877fc094c71f763f0c74131be3/jetified-exoplayer-common-2.13.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/bc4f4858855e039c57c15500877bf525/versionedparcelable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/bc4f4858855e039c57c15500877bf525/versionedparcelable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/a8796c967b3c0d3b92f93a3b9f68bb69/core-runtime-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/a8796c967b3c0d3b92f93a3b9f68bb69/core-runtime-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/d3a0c526675defaec83a58f88616d673/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/d3a0c526675defaec83a58f88616d673/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/83186ecf5c8ddeae84db330840a1a96d/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/83186ecf5c8ddeae84db330840a1a96d/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/86c784bf68d2d55319264b405834eb0f/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/86c784bf68d2d55319264b405834eb0f/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/1b095822d1b8a91797ad223c378ae9e6/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/1b095822d1b8a91797ad223c378ae9e6/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/63375a8602e663a8c50b61d57bebad9d/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/63375a8602e663a8c50b61d57bebad9d/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/5c0c439dd771074d966cf4cb84a1b1ef/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /home/codeish/.gradle/caches/transforms-2/files-2.1/5c0c439dd771074d966cf4cb84a1b1ef/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:20:5-44
+MERGED from [com.jakewharton.threetenabp:threetenabp:1.2.3] /home/codeish/.gradle/caches/transforms-2/files-2.1/b16f3e733d0b78832e9b4cd98c2ed1f1/jetified-threetenabp-1.2.3/AndroidManifest.xml:5:5-44
+MERGED from [com.jakewharton.threetenabp:threetenabp:1.2.3] /home/codeish/.gradle/caches/transforms-2/files-2.1/b16f3e733d0b78832e9b4cd98c2ed1f1/jetified-threetenabp-1.2.3/AndroidManifest.xml:5:5-44
+INJECTED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml
+INJECTED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml
+		ADDED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml
+		INJECTED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml
+		ADDED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml
+		INJECTED from /home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml
+uses-permission#android.permission.REQUEST_INSTALL_PACKAGES
+ADDED from [:open_file] /home/codeish/Documents/office-work/gar/build/open_file/intermediates/library_manifest/release/AndroidManifest.xml:8:5-83
+	android:name
+		ADDED from [:open_file] /home/codeish/Documents/office-work/gar/build/open_file/intermediates/library_manifest/release/AndroidManifest.xml:8:22-80
+provider#com.crazecoder.openfile.FileProvider
+ADDED from [:open_file] /home/codeish/Documents/office-work/gar/build/open_file/intermediates/library_manifest/release/AndroidManifest.xml:12:9-21:20
+	android:grantUriPermissions
+		ADDED from [:open_file] /home/codeish/Documents/office-work/gar/build/open_file/intermediates/library_manifest/release/AndroidManifest.xml:16:13-47
+	android:authorities
+		ADDED from [:open_file] /home/codeish/Documents/office-work/gar/build/open_file/intermediates/library_manifest/release/AndroidManifest.xml:14:13-88
+	android:exported
+		ADDED from [:open_file] /home/codeish/Documents/office-work/gar/build/open_file/intermediates/library_manifest/release/AndroidManifest.xml:15:13-37
+	tools:replace
+		ADDED from [:open_file] /home/codeish/Documents/office-work/gar/build/open_file/intermediates/library_manifest/release/AndroidManifest.xml:17:13-48
+	android:name
+		ADDED from [:open_file] /home/codeish/Documents/office-work/gar/build/open_file/intermediates/library_manifest/release/AndroidManifest.xml:13:13-64
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from [:open_file] /home/codeish/Documents/office-work/gar/build/open_file/intermediates/library_manifest/release/AndroidManifest.xml:18:13-20:53
+	android:resource
+		ADDED from [:open_file] /home/codeish/Documents/office-work/gar/build/open_file/intermediates/library_manifest/release/AndroidManifest.xml:20:17-50
+	android:name
+		ADDED from [:open_file] /home/codeish/Documents/office-work/gar/build/open_file/intermediates/library_manifest/release/AndroidManifest.xml:19:17-67
+activity#io.flutter.plugins.urllauncher.WebViewActivity
+ADDED from [:url_launcher] /home/codeish/Documents/office-work/gar/build/url_launcher/intermediates/library_manifest/release/AndroidManifest.xml:8:9-11:74
+	android:exported
+		ADDED from [:url_launcher] /home/codeish/Documents/office-work/gar/build/url_launcher/intermediates/library_manifest/release/AndroidManifest.xml:10:13-37
+	android:theme
+		ADDED from [:url_launcher] /home/codeish/Documents/office-work/gar/build/url_launcher/intermediates/library_manifest/release/AndroidManifest.xml:11:13-71
+	android:name
+		ADDED from [:url_launcher] /home/codeish/Documents/office-work/gar/build/url_launcher/intermediates/library_manifest/release/AndroidManifest.xml:9:13-74
+uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
+ADDED from [:flutter_local_notifications] /home/codeish/Documents/office-work/gar/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:7:5-81
+	android:name
+		ADDED from [:flutter_local_notifications] /home/codeish/Documents/office-work/gar/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:7:22-78
+uses-permission#android.permission.VIBRATE
+ADDED from [:flutter_local_notifications] /home/codeish/Documents/office-work/gar/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:8:5-66
+	android:name
+		ADDED from [:flutter_local_notifications] /home/codeish/Documents/office-work/gar/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:8:22-63
+uses-permission#android.permission.USE_FULL_SCREEN_INTENT
+ADDED from [:flutter_local_notifications] /home/codeish/Documents/office-work/gar/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:9:5-81
+	android:name
+		ADDED from [:flutter_local_notifications] /home/codeish/Documents/office-work/gar/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:9:22-78
+receiver#com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver
+ADDED from [:flutter_local_notifications] /home/codeish/Documents/office-work/gar/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:12:9-106
+	android:name
+		ADDED from [:flutter_local_notifications] /home/codeish/Documents/office-work/gar/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:12:19-103
+receiver#com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver
+ADDED from [:flutter_local_notifications] /home/codeish/Documents/office-work/gar/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:13:9-20:20
+	android:name
+		ADDED from [:flutter_local_notifications] /home/codeish/Documents/office-work/gar/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:13:19-107
+intent-filter#action:name:android.intent.action.BOOT_COMPLETED+action:name:android.intent.action.MY_PACKAGE_REPLACED+action:name:android.intent.action.QUICKBOOT_POWERON+action:name:com.htc.intent.action.QUICKBOOT_POWERON
+ADDED from [:flutter_local_notifications] /home/codeish/Documents/office-work/gar/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:14:13-19:29
+action#android.intent.action.BOOT_COMPLETED
+ADDED from [:flutter_local_notifications] /home/codeish/Documents/office-work/gar/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:15:17-79
+	android:name
+		ADDED from [:flutter_local_notifications] /home/codeish/Documents/office-work/gar/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:15:25-76
+action#android.intent.action.MY_PACKAGE_REPLACED
+ADDED from [:flutter_local_notifications] /home/codeish/Documents/office-work/gar/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:16:17-84
+	android:name
+		ADDED from [:flutter_local_notifications] /home/codeish/Documents/office-work/gar/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:16:25-81
+action#android.intent.action.QUICKBOOT_POWERON
+ADDED from [:flutter_local_notifications] /home/codeish/Documents/office-work/gar/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:17:17-82
+	android:name
+		ADDED from [:flutter_local_notifications] /home/codeish/Documents/office-work/gar/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:17:25-79
+action#com.htc.intent.action.QUICKBOOT_POWERON
+ADDED from [:flutter_local_notifications] /home/codeish/Documents/office-work/gar/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:18:17-82
+	android:name
+		ADDED from [:flutter_local_notifications] /home/codeish/Documents/office-work/gar/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:18:25-79
+provider#io.flutter.plugins.share.ShareFileProvider
+ADDED from [:share] /home/codeish/Documents/office-work/gar/build/share/intermediates/library_manifest/release/AndroidManifest.xml:8:9-16:20
+	android:grantUriPermissions
+		ADDED from [:share] /home/codeish/Documents/office-work/gar/build/share/intermediates/library_manifest/release/AndroidManifest.xml:12:13-47
+	android:authorities
+		ADDED from [:share] /home/codeish/Documents/office-work/gar/build/share/intermediates/library_manifest/release/AndroidManifest.xml:10:13-74
+	android:exported
+		ADDED from [:share] /home/codeish/Documents/office-work/gar/build/share/intermediates/library_manifest/release/AndroidManifest.xml:11:13-37
+	android:name
+		ADDED from [:share] /home/codeish/Documents/office-work/gar/build/share/intermediates/library_manifest/release/AndroidManifest.xml:9:13-70
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from [com.google.android.exoplayer:exoplayer-core:2.13.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/f927724b56c093e8c8c7e1008908ab2b/jetified-exoplayer-core-2.13.1/AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.exoplayer:exoplayer-common:2.13.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/ca43aa877fc094c71f763f0c74131be3/jetified-exoplayer-common-2.13.1/AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.exoplayer:exoplayer-common:2.13.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/ca43aa877fc094c71f763f0c74131be3/jetified-exoplayer-common-2.13.1/AndroidManifest.xml:24:5-79
+	android:name
+		ADDED from [com.google.android.exoplayer:exoplayer-core:2.13.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/f927724b56c093e8c8c7e1008908ab2b/jetified-exoplayer-core-2.13.1/AndroidManifest.xml:24:22-76

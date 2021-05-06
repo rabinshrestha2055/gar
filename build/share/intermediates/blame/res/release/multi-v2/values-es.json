@@ -1,0 +1,34 @@
+{
+    "logs": [
+        {
+            "outputFile": "/home/codeish/Documents/office-work/gar/build/share/intermediates/res/merged/release/values-es/values-es.xml",
+            "map": [
+                {
+                    "source": "/home/codeish/.gradle/caches/transforms-2/files-2.1/927c034b9dd49f5174e8cb8e412b1c82/core-1.3.1/res/values-es/values-es.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/home/codeish/Documents/office-work/gar/build/share/intermediates/incremental/mergeReleaseResources/merged.dir/values-es/values-es.xml",
+            "map": [
+                {
+                    "source": "/home/codeish/.gradle/caches/transforms-2/files-2.1/927c034b9dd49f5174e8cb8e412b1c82/core-1.3.1/res/values-es/values-es.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        }
+    ]
+}

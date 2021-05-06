@@ -22,9 +22,13 @@ class _HomePageState extends State<HomePage> {
         email: widget.email,
         userName: widget.userName,
       ),
-      Review(),
-      Cart(),
-      Profile(),
+      widget.email == null ? LoginScreen() : Review(),
+      widget.email == null ? LoginScreen() : Cart(),
+      widget.email == null
+          ? LoginScreen()
+          : Profile(
+              email: widget.email,
+            ),
     ];
 
     return ChangeNotifierProvider(

@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import '../../core.dart';
+import '../../main.dart';
 
 class Profile extends StatefulWidget {
+  final String email;
+
+  const Profile({Key key, this.email}) : super(key: key);
   @override
   _ProfileState createState() => _ProfileState();
 }
 
 class _ProfileState extends State<Profile> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   UserDetailsProvider user = UserDetailsProvider();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         automaticallyImplyLeading: false,
         elevation: 0.0,
@@ -32,6 +36,10 @@ class _ProfileState extends State<Profile> {
                 setState(() {
                   user.logoutUser();
                 });
+                final snackbar = SnackBar(content: Text('Logout Sucessfull!'));
+                ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (_) => Garjoo()));
               },
               child: Padding(
                 padding: const EdgeInsets.only(
@@ -191,21 +199,23 @@ class _ProfileState extends State<Profile> {
             ),
           ),
           SizedBox(height: 12),
-          Container(
-            margin: EdgeInsets.only(left: 70, right: 70),
-            child: MaterialButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20)),
-                color: Colors.red,
-                child: Text(
-                  'Login',
-                  style: TextStyle(color: white),
-                ),
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => LoginScreen()));
-                }),
-          )
+          widget.email == null
+              ? Container(
+                  margin: EdgeInsets.only(left: 70, right: 70),
+                  child: MaterialButton(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                      color: Colors.red,
+                      child: Text(
+                        'Login',
+                        style: TextStyle(color: white),
+                      ),
+                      onPressed: () {
+                        Navigator.pushReplacement(context,
+                            MaterialPageRoute(builder: (_) => LoginScreen()));
+                      }),
+                )
+              : Container()
         ],
       ),
     );

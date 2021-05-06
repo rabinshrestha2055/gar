@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:garjoo/models/loginUser.dart';
-import 'package:garjoo/screens/homePage.dart';
 import 'package:garjoo/startPage.dart';
-
-import 'core.dart';
 
 void main() => runApp(Garjoo());
 

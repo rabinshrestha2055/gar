@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:garjoo/core.dart';
-import 'package:garjoo/models/loginUser.dart';
 import 'package:garjoo/screens/cart/checkoutListView.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
 
 class Checkout extends StatefulWidget {
   final sum;

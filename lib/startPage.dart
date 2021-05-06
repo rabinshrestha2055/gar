@@ -28,11 +28,6 @@ class _StartPageState extends State<StartPage> {
         builder: (context, value, child) => FutureBuilder(
             future: userDetails,
             builder: (context, snapshot) {
-              // if (snapshot.hasError) {
-              //   return Center(
-              //     child: CircularProgressIndicator(),
-              //   );
-              // }
               if (snapshot.connectionState == ConnectionState.done) {
                 var response = snapshot.data as LoginUserModel;
                 return response == null

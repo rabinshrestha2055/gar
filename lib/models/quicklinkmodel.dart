@@ -28,8 +28,16 @@ class QuickLinkModel {
 List<QuickLinkModel> quicklinkFromJson(String strJson) {
   final str = json.decode(strJson);
   final jsonData = str['data']['data'];
-  // print(jsonData);
-  return List<QuickLinkModel>.from(jsonData.map((item) {
-    return QuickLinkModel.fromJson(item);
-  }));
+  if (jsonData.isEmpty) {
+    return List<QuickLinkModel>.filled(
+        1,
+        QuickLinkModel(
+            slug: 'garjoo not available',
+            title:
+                'Preview not available at the moment. Please come back later.'));
+  } else {
+    return List<QuickLinkModel>.from(jsonData.map((item) {
+      return QuickLinkModel.fromJson(item);
+    }));
+  }
 }

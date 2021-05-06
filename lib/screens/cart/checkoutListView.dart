@@ -311,26 +311,49 @@ class CheckOutListView extends StatelessWidget {
                     ),
                   ],
                 ),
-                InkWell(
-                  onTap: () {
-                    Navigator.push(
-                        context, MaterialPageRoute(builder: (_) => Order()));
-                  },
-                  child: Container(
-                      height: 40,
-                      width: 150,
-                      decoration: BoxDecoration(
-                          color: red, borderRadius: BorderRadius.circular(18)),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Center(
-                          child: Text(
-                            'Proceed to checkout',
-                            style: TextStyle(color: white, fontSize: 12),
-                          ),
-                        ),
-                      )),
-                )
+                email != null
+                    ? InkWell(
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (_) => Order()));
+                        },
+                        child: Container(
+                            height: 40,
+                            width: 150,
+                            decoration: BoxDecoration(
+                                color: red,
+                                borderRadius: BorderRadius.circular(18)),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Center(
+                                child: Text(
+                                  'Proceed to checkout',
+                                  style: TextStyle(color: white, fontSize: 12),
+                                ),
+                              ),
+                            )),
+                      )
+                    : InkWell(
+                        onTap: () {
+                          Navigator.pushReplacement(context,
+                              MaterialPageRoute(builder: (_) => LoginScreen()));
+                        },
+                        child: Container(
+                            height: 40,
+                            width: 150,
+                            decoration: BoxDecoration(
+                                color: red,
+                                borderRadius: BorderRadius.circular(18)),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Center(
+                                child: Text(
+                                  'Login',
+                                  style: TextStyle(color: white, fontSize: 12),
+                                ),
+                              ),
+                            )),
+                      )
               ],
             ),
           ),

@@ -12,11 +12,13 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   var email, password;
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: titleBar,
       body: ListView(
         children: [
@@ -130,8 +132,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                 if (response.statusCode == 200) {
                                   var res = userModelFromJson(response.body);
                                   value.saveUser(res);
+
                                   final snackbar = SnackBar(
-                                      content: Text('Login Sucessfull!'));
+                                      content: Text('Login' +
+                                          res.success.toString() +
+                                          'full!'));
                                   Navigator.of(context).pushReplacement(
                                       MaterialPageRoute(
                                           builder: (_) => Garjoo()));
