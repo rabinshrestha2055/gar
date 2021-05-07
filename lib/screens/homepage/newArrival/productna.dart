@@ -36,82 +36,75 @@ class ProductNA extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: Container(
-        height: MediaQuery.of(context).size.height * 1.5,
+      body: Padding(
+        padding: const EdgeInsets.only(left: 8.0, right: 8),
         child: ListView(
-          scrollDirection: Axis.vertical,
-          shrinkWrap: true,
-          physics: ScrollPhysics(parent: NeverScrollableScrollPhysics()),
+          // physics: ScrollPhysics(parent: NeverScrollableScrollPhysics()),
           children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Card(
-                    elevation: 1.0,
-                    margin: EdgeInsets.only(left: 10, right: 10),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                left: 8.0, right: 8, top: 8),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Primary Address',
-                                      style: TextStyle(color: Colors.grey),
-                                    ),
-                                    Container(
-                                      width: 130,
-                                      child: Text(pAddress),
-                                    ),
-                                  ],
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Secondary Address',
-                                      style: TextStyle(color: Colors.grey),
-                                    ),
-                                    Container(
-                                      width: 130,
-                                      child: Text(sAddress),
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
-                          SizedBox(height: 20),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                left: 8.0, right: 8, bottom: 8),
-                            child: Column(
+            Card(
+                elevation: 1.0,
+                margin: EdgeInsets.only(left: 10, right: 10),
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(left: 8.0, right: 8, top: 8),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 40.0),
-                                  child: Text(
-                                    'Location',
-                                    style: TextStyle(color: Colors.grey),
-                                  ),
+                                Text(
+                                  'Primary Address',
+                                  style: TextStyle(color: Colors.grey),
                                 ),
-                                Text(location),
+                                Container(
+                                  width: 130,
+                                  child: Text(pAddress),
+                                ),
                               ],
                             ),
-                          ),
-                        ],
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Secondary Address',
+                                  style: TextStyle(color: Colors.grey),
+                                ),
+                                Container(
+                                  width: 130,
+                                  child: Text(sAddress),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
                       ),
-                    )),
-              ],
-            ),
+                      SizedBox(height: 20),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            left: 8.0, right: 8, bottom: 8),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right: 40.0),
+                              child: Text(
+                                'Location',
+                                style: TextStyle(color: Colors.grey),
+                              ),
+                            ),
+                            Text(location),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                )),
             SizedBox(height: 10),
             Card(
                 elevation: 1.0,
@@ -381,62 +374,57 @@ class ProductNA extends StatelessWidget {
                           ConnectionState.done) {
                         var response = snapshot.data as List<RelatedProModel>;
 
-                        return Container(
-                          height: MediaQuery.of(context).size.height,
-
-                          // margin: EdgeInsets.only(left: 5, right: 5),
-                          child: GridView.builder(
-                              scrollDirection: Axis.vertical,
-                              shrinkWrap: true,
-                              gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                mainAxisSpacing: 0,
-                                crossAxisSpacing: 0,
-                                crossAxisCount: 2,
-                                childAspectRatio: 4 / 4.5,
-                              ),
-                              physics: ScrollPhysics(
-                                  parent: NeverScrollableScrollPhysics()),
-                              itemCount: response.length,
-                              itemBuilder: (context, index) => InkWell(
-                                    onTap: () {},
-                                    child: Card(
-                                      elevation: 2,
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10)),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          Container(
-                                              child: Image.network(
-                                                  "https://api.garjoo.com" +
-                                                      response[index].image,
-                                                  width: 97.3,
-                                                  height: 120)),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                              left: 20.0,
-                                            ),
-                                            child: Center(
-                                              child: Text(
-                                                response[index].name,
-                                                maxLines: 2,
-                                                overflow: TextOverflow.ellipsis,
-                                              ),
+                        return GridView.builder(
+                            scrollDirection: Axis.vertical,
+                            shrinkWrap: true,
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                              mainAxisSpacing: 0,
+                              crossAxisSpacing: 0,
+                              crossAxisCount: 2,
+                              childAspectRatio: 4 / 4.5,
+                            ),
+                            physics: ScrollPhysics(
+                                parent: NeverScrollableScrollPhysics()),
+                            itemCount: response.length,
+                            itemBuilder: (context, index) => InkWell(
+                                  onTap: () {},
+                                  child: Card(
+                                    elevation: 2,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                            child: Image.network(
+                                                "https://api.garjoo.com" +
+                                                    response[index].image,
+                                                width: 97.3,
+                                                height: 120)),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                            left: 20.0,
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              response[index].name,
+                                              maxLines: 2,
+                                              overflow: TextOverflow.ellipsis,
                                             ),
                                           ),
-                                          Text(
-                                            "Add to cart",
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ],
-                                      ),
+                                        ),
+                                        Text(
+                                          "Add to cart",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
                                     ),
-                                  )),
-                        );
+                                  ),
+                                ));
                       } else {
                         return Center(
                           child: Container(),

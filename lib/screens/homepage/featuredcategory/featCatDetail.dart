@@ -241,7 +241,6 @@ class FeatureCatDetail extends StatelessWidget {
                                                         ],
                                                       ))),
                                             );
-                                            
                                           })),
                                 ],
                               )
@@ -249,7 +248,6 @@ class FeatureCatDetail extends StatelessWidget {
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(response[0].title),
                               );
-                        ;
                       } else {
                         return Container();
                       }

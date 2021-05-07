@@ -75,6 +75,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Padding(
                       padding: const EdgeInsets.all(2.0),
                       child: TextFormField(
+                          obscureText: true,
                           validator: (value) {
                             if (value.isEmpty) {
                               return 'Please enter valid password';

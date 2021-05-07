@@ -220,9 +220,7 @@ class _FeaturedProductState extends State<FeaturedProduct> {
                         )),
               );
             },
-            child: Card(
-              elevation: 9,
-              margin: EdgeInsets.only(left: 12, right: 8),
+            child: Container(
               child: Stack(children: [
                 Center(
                     child: Image.asset(

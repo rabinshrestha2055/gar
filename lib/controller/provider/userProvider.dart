@@ -1,12 +1,13 @@
 import 'dart:io';
-
 import 'package:flutter/foundation.dart';
 import 'package:garjoo/core.dart';
-
 import 'package:garjoo/models/datamodel.dart';
 import 'package:garjoo/models/detailsmodel.dart';
 import 'package:garjoo/models/limitedProduct.dart';
 import 'package:garjoo/models/loginUser.dart';
+import 'package:garjoo/models/reviewSpecific.dart';
+import 'package:garjoo/models/reviewpost.dart';
+import 'package:garjoo/models/specificReview.dart';
 import 'package:garjoo/models/storeBanner.dart';
 import 'package:garjoo/models/storeTop.dart';
 
@@ -23,6 +24,7 @@ class UserDetailsProvider with ChangeNotifier {
           "Accept": "application/json",
         },
       );
+      // print(response.body);
       return arrivalModelFromJson(response.body);
     } catch (e) {
       print(e.toString());
@@ -300,6 +302,7 @@ class UserDetailsProvider with ChangeNotifier {
         headers: headers,
         body: userModelToJson(loginModel),
       );
+      print(response.body);
       return response;
     } catch (e) {}
   }
@@ -317,41 +320,6 @@ class UserDetailsProvider with ChangeNotifier {
     } catch (e) {}
   }
 
-  Future<LoginUserModel> loginUser() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final token = prefs.getString("token");
-
-    try {
-      final headers = {
-        'content-type': 'application/json',
-        'Authorization': 'Bearer ' + token
-      };
-      final response = await http.get(
-        AppURl.loginUser,
-        headers: headers,
-      );
-      return loginUserModelFromJson(response.body);
-    } catch (e) {}
-  }
-
-  Future<http.Response> verifyEmail({LoginUserModel email}) async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final token = prefs.getString("token");
-
-    try {
-      final headers = {
-        'content-type': 'application/json',
-        'Authorization': 'Bearer ' + token
-      };
-      final response = await http.post(
-        AppURl.verifyEmail,
-        headers: headers,
-        body: loginUserModelToJson(email),
-      );
-      return response;
-    } catch (e) {}
-  }
-
   Future<List<AdsModel>> classifiedCarousel() async {
     try {
       final headers = {
@@ -362,6 +330,52 @@ class UserDetailsProvider with ChangeNotifier {
         headers: headers,
       );
       return adsModelFromJson(response.body);
+    } catch (e) {}
+  }
+
+  Future<http.Response> reviewPost(ReviewPost reviewpost) async {
+    try {
+      final headers = {
+        'content-type': 'application/json',
+      };
+      final response = await http.post(
+        AppURl.reviewPost,
+        headers: headers,
+        body: reviewPostToJson(reviewpost),
+      );
+
+      return response;
+    } catch (e) {}
+  }
+
+  Future<http.Response> reviewSpecificPost(ReviewSpecific review) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString("token");
+    try {
+      final headers = {
+        'content-type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      };
+      final response = await http.post(AppURl.specificReviewPost,
+          headers: headers, body: reviewSpecificToJson(review));
+      return response;
+    } catch (e) {}
+  }
+
+  Future<List<SpecificReview1>> getSpecificReview(String id) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString("token");
+    try {
+      final headers = {
+        'content-type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      };
+      final response = await http.get(
+        AppURl.specificReviewGet + id,
+        headers: headers,
+      );
+      print(response.body);
+      return sReviewModelFromJson(response.body);
     } catch (e) {}
   }
 
@@ -412,5 +426,41 @@ class UserDetailsProvider with ChangeNotifier {
     preferences.remove("token");
 
     return true;
+  }
+
+  Future<LoginUserModel> loginUser() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString("token");
+
+    try {
+      final headers = {
+        'content-type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      };
+      final response = await http.get(
+        AppURl.loginUser,
+        headers: headers,
+      );
+      print(response.body);
+      return loginUserModelFromJson(response.body);
+    } catch (e) {}
+  }
+
+  Future<http.Response> verifyEmail({LoginUserModel email}) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString("token");
+
+    try {
+      final headers = {
+        'content-type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      };
+      final response = await http.post(
+        AppURl.verifyEmail,
+        headers: headers,
+        body: loginUserModelToJson(email),
+      );
+      return response;
+    } catch (e) {}
   }
 }

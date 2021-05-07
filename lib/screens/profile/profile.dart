@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:garjoo/widget/logoutDailog.dart';
 import '../../core.dart';
 import '../../main.dart';
 
@@ -12,7 +13,6 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-  UserDetailsProvider user = UserDetailsProvider();
 
   @override
   Widget build(BuildContext context) {
@@ -33,13 +33,10 @@ class _ProfileState extends State<Profile> {
         actions: [
           InkWell(
               onTap: () {
-                setState(() {
-                  user.logoutUser();
-                });
-                final snackbar = SnackBar(content: Text('Logout Sucessfull!'));
-                ScaffoldMessenger.of(context).showSnackBar(snackbar);
-                Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (_) => Garjoo()));
+                return showDialog(
+                  context: context,
+                  builder: (ctx) => LogoutDailog(),
+                );
               },
               child: Padding(
                 padding: const EdgeInsets.only(

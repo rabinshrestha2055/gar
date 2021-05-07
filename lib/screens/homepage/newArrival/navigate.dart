@@ -5,6 +5,8 @@ import 'package:provider/provider.dart';
 
 class Navigate extends StatefulWidget {
   final title;
+  final int id;
+  final int productId;
   final price;
   final image;
   final slug;
@@ -15,9 +17,11 @@ class Navigate extends StatefulWidget {
 
   Navigate(
       {Key key,
+      this.productId,
       this.image,
-      this.email,
+      this.id,
       this.price,
+      this.email,
       this.title,
       this.slug,
       this.rating,
@@ -32,9 +36,12 @@ class Navigate extends StatefulWidget {
 class _NavigateState extends State<Navigate> {
   TabController _tabController;
 
+  // double discountPrice(double price, double percentage) {
+  //   var disprice = (price * percentage) / 100;
+  // }
+
   @override
   Widget build(BuildContext context) {
-    print(widget.email);
     return Scaffold(
         appBar: AppBar(
           elevation: 0.0,
@@ -75,13 +82,10 @@ class _NavigateState extends State<Navigate> {
                 future: value.getDetails(slug: widget.slug),
                 builder: (context, snapshot) {
                   if (snapshot.hasError) {
-                    return Center(
-                      child: Container(
-                        child: Text('No Data Available'),
-                      ),
-                    );
+                    return Container();
                   } else if (snapshot.connectionState == ConnectionState.done) {
                     var response = snapshot.data as DetailsModel;
+
                     return ListView(
                       scrollDirection: Axis.vertical,
                       shrinkWrap: true,
@@ -138,79 +142,72 @@ class _NavigateState extends State<Navigate> {
                               fit: BoxFit.contain,
                             )),
                         Container(
-                          height: MediaQuery.of(context).size.height * 1.475,
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                                top: 10, right: 10, left: 10),
-                            child: DefaultTabController(
-                              initialIndex: 0,
-                              length: 3,
-                              child: Column(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 16.0, right: 16),
-                                    child: Container(
-                                      padding:
-                                          EdgeInsets.only(left: 15, right: 1),
-                                      height: 35,
-                                      child: TabBar(
-                                        indicator: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(25.0),
-                                          color: Colors.red[400],
-                                        ),
-                                        indicatorSize: TabBarIndicatorSize.tab,
-                                        labelPadding: EdgeInsets.all(0),
-                                        labelColor: Colors.white,
-                                        unselectedLabelColor: Colors.black,
-                                        controller: _tabController,
-                                        tabs: [
-                                          Tab(
-                                            child: Text('Product',
-                                                style: TextStyle(fontSize: 14)),
-                                          ),
-                                          Tab(
-                                              child: Text('Description',
-                                                  style:
-                                                      TextStyle(fontSize: 14))),
-                                          Tab(
-                                              child: Text('Reviews',
-                                                  style:
-                                                      TextStyle(fontSize: 14))),
-                                        ],
-                                      ),
+                          height: MediaQuery.of(context).size.height * 0.57,
+                          // padding: const EdgeInsets.only(
+                          //     top: 10, right: 10, left: 10),
+                          child: DefaultTabController(
+                            initialIndex: 0,
+                            length: 3,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.only(left: 15, right: 1),
+                                  height: 35,
+                                  child: TabBar(
+                                    indicator: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(25.0),
+                                      color: Colors.red[400],
                                     ),
+                                    indicatorSize: TabBarIndicatorSize.tab,
+                                    labelPadding: EdgeInsets.all(0),
+                                    labelColor: Colors.white,
+                                    unselectedLabelColor: Colors.black,
+                                    controller: _tabController,
+                                    tabs: [
+                                      Tab(
+                                        child: Text('Product',
+                                            style: TextStyle(fontSize: 14)),
+                                      ),
+                                      Tab(
+                                          child: Text('Description',
+                                              style: TextStyle(fontSize: 14))),
+                                      Tab(
+                                          child: Text('Reviews',
+                                              style: TextStyle(fontSize: 14))),
+                                    ],
                                   ),
-                                  SizedBox(height: 8),
-                                  Expanded(
-                                    child: TabBarView(
-                                        controller: _tabController,
-                                        children: [
-                                          ProductNA(
-                                            slug: widget.slug,
-                                            pAddress: response.pAddress,
-                                            sAddress: response.sAddress,
-                                            location: response.location,
-                                            storeslug: response.storeslug,
-                                            view: response.views,
-                                            time: response.time,
-                                            count: response.count,
-                                            storeImage: response.storeImage,
-                                            storeName: response.storeName,
-                                            rating: widget.rating,
-                                            storetitle: widget.storetitle,
-                                          ),
-                                          DescriptionNA(
-                                            description: response.description,
-                                          ),
-                                          ReviewNA(
-                                            email: widget.email,
-                                          ),
-                                        ]),
-                                  )
-                                ],
-                              ),
+                                ),
+                                SizedBox(height: 8),
+                                Flexible(
+                                  child: TabBarView(
+                                      controller: _tabController,
+                                      children: [
+                                        ProductNA(
+                                          slug: widget.slug,
+                                          pAddress: response.pAddress,
+                                          sAddress: response.sAddress,
+                                          location: response.location,
+                                          storeslug: response.storeslug,
+                                          view: response.views,
+                                          time: response.time,
+                                          count: response.count,
+                                          storeImage: response.storeImage,
+                                          storeName: response.storeName,
+                                          rating: widget.rating,
+                                          storetitle: widget.storetitle,
+                                        ),
+                                        DescriptionNA(
+                                          description: response.description,
+                                        ),
+                                        ReviewNA(
+                                          productId: widget.productId,
+                                          id: widget.id,
+                                          email: widget.email,
+                                        ),
+                                      ]),
+                                )
+                              ],
                             ),
                           ),
                         ),

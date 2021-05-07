@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:garjoo/core.dart';
+import 'package:garjoo/widget/loginFirst.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   final String email;
+  final int id;
   final String userName;
   var cart;
   var sum;
 
-  HomePage({Key key, this.email, this.userName, this.sum, this.cart})
+  HomePage({Key key, this.email, this.userName, this.sum, this.cart, this.id})
       : super(key: key);
   @override
   _HomePageState createState() => _HomePageState();
@@ -19,13 +21,14 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     List<Widget> tabItems = [
       Home(
+        id: widget.id,
         email: widget.email,
         userName: widget.userName,
       ),
-      widget.email == null ? LoginScreen() : Review(),
-      widget.email == null ? LoginScreen() : Cart(),
+      widget.email == null ? LoginFirst() : Review(),
+      widget.email == null ? LoginFirst() : Cart(),
       widget.email == null
-          ? LoginScreen()
+          ? LoginFirst()
           : Profile(
               email: widget.email,
             ),

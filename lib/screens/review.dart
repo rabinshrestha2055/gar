@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:garjoo/models/reviewpost.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../core.dart';
@@ -12,15 +13,33 @@ class Review extends StatefulWidget {
 }
 
 class _ReviewState extends State<Review> {
+  SharedPreferences data;
+
+  String email;
+
+  @override
+  void initState() {
+    super.initState();
+    initial();
+  }
+
+  void initial() async {
+    data = await SharedPreferences.getInstance();
+    setState(() {
+      email = data.getString('email');
+    });
+  }
+
   String _chosenValue;
   String _category;
   String _subCategory;
-  String _childCategory;
   bool _checkbox = false;
-  double rating;
+  int rating1;
+  int rating2;
+  int rating3;
+  int rating4;
   List category;
   List subCategory;
-  List childCategory;
   final _formkey = GlobalKey<FormState>();
   final fnameController = TextEditingController();
   final lnameController = TextEditingController();
@@ -29,14 +48,10 @@ class _ReviewState extends State<Review> {
   final emailController = TextEditingController();
   final phoneController = TextEditingController();
   final pnameController = TextEditingController();
+  final pbrandController = TextEditingController();
+  final durationController = TextEditingController();
 
-  var fname, lname, emaill, pname;
-  Future getParent;
-  UserDetailsProvider user = UserDetailsProvider();
-  @override
-  void initState() {
-    getParent = user.getParent();
-  }
+  var fname, lname, emaill, pname, phone, pbrand, duration, date, place;
 
   @override
   Widget build(BuildContext context) {
@@ -111,7 +126,7 @@ class _ReviewState extends State<Review> {
                 child: Consumer<UserDetailsProvider>(
                   builder: (context, value1, child) {
                     return FutureBuilder(
-                        future: getParent,
+                        future: value1.getParent(),
                         builder: (context, snapshot) {
                           if (snapshot.hasError) {
                             return Container();
@@ -245,7 +260,7 @@ class _ReviewState extends State<Review> {
                           }
                         },
                         onChanged: (value) {
-                          pname = value;
+                          emaill = value;
                         },
                         style: TextStyle(color: Colors.black),
                         decoration: InputDecoration(
@@ -275,7 +290,7 @@ class _ReviewState extends State<Review> {
                           }
                         },
                         onChanged: (value) {
-                          pname = value;
+                          phone = value;
                         },
                         style: TextStyle(color: Colors.black),
                         decoration: InputDecoration(
@@ -291,7 +306,7 @@ class _ReviewState extends State<Review> {
                 child: Consumer<UserDetailsProvider>(
                   builder: (context, value, child) {
                     return FutureBuilder(
-                        future: getParent,
+                        future: value.getParent(),
                         builder: (context, snapshot) {
                           if (snapshot.hasError) {
                             return Container();
@@ -299,9 +314,7 @@ class _ReviewState extends State<Review> {
                               ConnectionState.done) {
                             var response = snapshot.data;
                             var jsonData = json.decode(response);
-                            subCategory = _category == null
-                                ? jsonData[0]['childs']
-                                : jsonData[int.parse(_category) - 1]['childs'];
+                            subCategory = jsonData[0]['childs'];
                             return Container(
                               height: 65,
                               width: 340,
@@ -392,14 +405,14 @@ class _ReviewState extends State<Review> {
                   child: Padding(
                     padding: EdgeInsets.only(left: 12.0, bottom: 6),
                     child: TextFormField(
-                        controller: pnameController,
+                        controller: pbrandController,
                         validator: (value) {
                           if (value.isEmpty) {
                             return 'Please enter Product Brand';
                           }
                         },
                         onChanged: (value) {
-                          pname = value;
+                          pbrand = value;
                         },
                         style: TextStyle(color: Colors.black),
                         decoration: InputDecoration(
@@ -409,71 +422,52 @@ class _ReviewState extends State<Review> {
                   ),
                 ),
               ),
-              ChangeNotifierProvider(
-                create: (context) => UserDetailsProvider(),
-                child: Consumer<UserDetailsProvider>(
-                  builder: (context, value, child) {
-                    return FutureBuilder(
-                        future: getParent,
-                        builder: (context, snapshot) {
-                          if (snapshot.hasError) {
-                            return Container();
-                          } else if (snapshot.connectionState ==
-                              ConnectionState.done) {
-                            var response = snapshot.data;
-                            var jsonData = json.decode(response);
-                            childCategory = jsonData[0]['childs'][0]['childs'];
-                            print(childCategory);
-
-                            return Container(
-                              height: 65,
-                              width: 340,
-                              child: Card(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(12)),
-                                margin: EdgeInsets.only(left: 15, right: 15),
-                                elevation: 2.0,
-                                child: DropdownButtonHideUnderline(
-                                  child: ButtonTheme(
-                                    alignedDropdown: true,
-                                    child: DropdownButton<String>(
-                                      isExpanded: true,
-                                      value: _childCategory,
-                                      style: TextStyle(color: Colors.black),
-                                      items: childCategory?.map((item) {
-                                            return DropdownMenuItem<String>(
-                                              value: item['id'].toString(),
-                                              child: Text(
-                                                  item['label'].toString()),
-                                            );
-                                          })?.toList() ??
-                                          [],
-                                      hint: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(
-                                          "Select child-Category for Review",
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                          ),
-                                        ),
-                                      ),
-                                      onChanged: (String value) {
-                                        setState(() {
-                                          _childCategory = value;
-                                        });
-                                      },
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            );
-                          } else {
-                            return Container();
-                          }
-                        });
-                  },
-                ),
-              ),
+              // Container(
+              //   width: 340,
+              //   child: Card(
+              //     shape: RoundedRectangleBorder(
+              //         borderRadius: BorderRadius.circular(12)),
+              //     margin: EdgeInsets.only(left: 15, right: 15),
+              //     elevation: 2.0,
+              //     child: DropdownButtonHideUnderline(
+              //       child: ButtonTheme(
+              //         alignedDropdown: true,
+              //         child: DropdownButton<String>(
+              //           isExpanded: true,
+              //           value: _chosenValue,
+              //           style: TextStyle(color: Colors.black),
+              //           items: <String>[
+              //             'Market',
+              //             'Jobs',
+              //             'Service',
+              //             'Real Estate',
+              //             'Motor',
+              //             'Accomodation',
+              //           ].map<DropdownMenuItem<String>>((String value) {
+              //             return DropdownMenuItem<String>(
+              //               value: value,
+              //               child: Text(value),
+              //             );
+              //           }).toList(),
+              //           hint: Padding(
+              //             padding: const EdgeInsets.all(8.0),
+              //             child: Text(
+              //               "Select Sub-  Category for Review",
+              //               style: TextStyle(
+              //                 fontSize: 16,
+              //               ),
+              //             ),
+              //           ),
+              //           onChanged: (String value) {
+              //             setState(() {
+              //               _chosenValue = value;
+              //             });
+              //           },
+              //         ),
+              //       ),
+              //     ),
+              //   ),
+              // ),
               SizedBox(height: 10),
               Container(
                 height: 56,
@@ -493,7 +487,7 @@ class _ReviewState extends State<Review> {
                           }
                         },
                         onChanged: (value) {
-                          pname = value;
+                          date = value;
                         },
                         style: TextStyle(color: Colors.black),
                         decoration: InputDecoration(
@@ -515,14 +509,14 @@ class _ReviewState extends State<Review> {
                   child: Padding(
                     padding: EdgeInsets.only(left: 12.0, bottom: 6),
                     child: TextFormField(
-                        controller: placeController,
+                        controller: durationController,
                         validator: (value) {
                           if (value.isEmpty) {
                             return 'Please enter Place of Purchaseds';
                           }
                         },
                         onChanged: (value) {
-                          pname = value;
+                          place = value;
                         },
                         style: TextStyle(color: Colors.black),
                         decoration: InputDecoration(
@@ -544,7 +538,7 @@ class _ReviewState extends State<Review> {
                   child: Padding(
                     padding: EdgeInsets.only(left: 12.0, bottom: 6),
                     child: TextFormField(
-                        controller: pnameController,
+                        controller: durationController,
                         validator: (value) {
                           if (value.isEmpty) {
                             return 'Please enter Duration of use';
@@ -553,7 +547,7 @@ class _ReviewState extends State<Review> {
                           }
                         },
                         onChanged: (value) {
-                          pname = value;
+                          duration = value;
                         },
                         style: TextStyle(color: Colors.black),
                         decoration: InputDecoration(
@@ -649,7 +643,7 @@ class _ReviewState extends State<Review> {
                                       initialRating: 3,
                                       minRating: 1,
                                       direction: Axis.horizontal,
-                                      allowHalfRating: true,
+                                      allowHalfRating: false,
                                       itemCount: 5,
                                       itemSize: 18,
                                       itemPadding:
@@ -659,9 +653,7 @@ class _ReviewState extends State<Review> {
                                         color: Colors.red,
                                         size: 2,
                                       ),
-                                      onRatingUpdate: (rating) {
-                                        print(rating);
-                                      },
+                                      onRatingUpdate: (rating1) {},
                                     ),
                                   ),
                                 ],
@@ -681,7 +673,7 @@ class _ReviewState extends State<Review> {
                                       initialRating: 3,
                                       minRating: 1,
                                       direction: Axis.horizontal,
-                                      allowHalfRating: true,
+                                      allowHalfRating: false,
                                       itemCount: 5,
                                       itemSize: 18,
                                       itemPadding:
@@ -691,9 +683,7 @@ class _ReviewState extends State<Review> {
                                         color: Colors.red,
                                         size: 2,
                                       ),
-                                      onRatingUpdate: (rating) {
-                                        print(rating);
-                                      },
+                                      onRatingUpdate: (rating2) {},
                                     ),
                                   ),
                                 ],
@@ -713,7 +703,7 @@ class _ReviewState extends State<Review> {
                                       initialRating: 3,
                                       minRating: 1,
                                       direction: Axis.horizontal,
-                                      allowHalfRating: true,
+                                      allowHalfRating: false,
                                       itemCount: 5,
                                       itemSize: 18,
                                       itemPadding:
@@ -723,9 +713,7 @@ class _ReviewState extends State<Review> {
                                         color: Colors.red,
                                         size: 2,
                                       ),
-                                      onRatingUpdate: (rating) {
-                                        print(rating);
-                                      },
+                                      onRatingUpdate: (rating3) {},
                                     ),
                                   ),
                                 ],
@@ -734,7 +722,7 @@ class _ReviewState extends State<Review> {
                               Row(
                                 children: [
                                   Text(
-                                    'Service',
+                                    'Delivery',
                                     style:
                                         TextStyle(fontWeight: FontWeight.bold),
                                   ),
@@ -745,7 +733,7 @@ class _ReviewState extends State<Review> {
                                       initialRating: 3,
                                       minRating: 1,
                                       direction: Axis.horizontal,
-                                      allowHalfRating: true,
+                                      allowHalfRating: false,
                                       itemCount: 5,
                                       itemSize: 18,
                                       itemPadding:
@@ -755,9 +743,7 @@ class _ReviewState extends State<Review> {
                                         color: Colors.red,
                                         size: 2,
                                       ),
-                                      onRatingUpdate: (rating) {
-                                        print(rating);
-                                      },
+                                      onRatingUpdate: (rating4) {},
                                     ),
                                   ),
                                 ],
@@ -784,34 +770,113 @@ class _ReviewState extends State<Review> {
                 ],
               ),
               SizedBox(height: 10),
-              Container(
-                margin: EdgeInsets.only(left: 70, right: 70),
-                child: MaterialButton(
-                    disabledColor: Colors.red[200],
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)),
-                    color: Colors.red[300],
-                    child: Text(
-                      'Submit',
-                      style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    onPressed: _checkbox
-                        ? () {
-                            if (_formkey.currentState.validate()) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(content: Text('Processing Data')));
-                            }
-                          }
-                        : null),
-              ),
+              ChangeNotifierProvider<UserDetailsProvider>(
+                  create: (context) => UserDetailsProvider(),
+                  child: Consumer<UserDetailsProvider>(
+                    builder: (context, value, child) => Container(
+                        margin: EdgeInsets.only(left: 70, right: 70),
+                        child: MaterialButton(
+                            disabledColor: Colors.red[200],
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20)),
+                            color: Colors.red[300],
+                            child: Text(
+                              'Submit',
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            onPressed: _checkbox
+                                ? () {
+                                    if (_formkey.currentState.validate()) {
+                                      setState(() {
+                                        String category = _category.toString();
+                                        String firstname = fnameController.text
+                                            .toString()
+                                            .trim();
+                                        ;
+                                        String lastname = lnameController.text
+                                            .toString()
+                                            .trim();
+                                        ;
+                                        //    String email = emailController.text.toString().trim();;
+                                        // int phone =
+                                        //     int.parse(phoneController.text.toString());
+                                        String subcategory =
+                                            _subCategory.toString();
+                                        String productname = pnameController
+                                            .text
+                                            .toString()
+                                            .trim();
+                                        String productbrand = pbrandController
+                                            .text
+                                            .toString()
+                                            .trim();
+                                        int date = int.parse(
+                                            dateController.text.toString());
+                                        String place = placeController.text
+                                            .toString()
+                                            .trim();
+
+                                        int duration = int.parse(
+                                            durationController.text.toString());
+                                        int design =
+                                            int.parse(rating1.toString());
+                                        int price =
+                                            int.parse(rating2.toString());
+                                        int quality =
+                                            int.parse(rating3.toString());
+                                        int delivery =
+                                            int.parse(rating4.toString());
+
+                                        var reviewPost = ReviewPost(
+                                            quality: quality,
+                                            design: design,
+                                            productname: productname,
+                                            productbrand: productbrand,
+                                            place: place,
+                                            duration: duration,
+                                            price: price,
+                                            delivery: delivery,
+                                            date: date,
+                                            category: category,
+                                            subCategory: subcategory);
+
+                                        value
+                                            .reviewPost(reviewPost)
+                                            .then((response) {
+                                          if (response.statusCode == 200) {
+                                            var snackBar = SnackBar(
+                                                content:
+                                                    Text('Review Sucessful!'));
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(snackBar);
+                                          } else {
+                                            final snackbar = SnackBar(
+                                              content:
+                                                  Text('Review Unsucessfull!'),
+                                            );
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(snackbar);
+                                          }
+                                        });
+                                      });
+                                    }
+                                  }
+                                : null)),
+                  )),
               SizedBox(height: 10),
             ],
           ),
         ));
   }
+
+  // @override
+  // void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  //   super.debugFillProperties(properties);
+  //   properties.add(DiagnosticsProperty('email', email));
+  // }
 }
 
 Widget text() {

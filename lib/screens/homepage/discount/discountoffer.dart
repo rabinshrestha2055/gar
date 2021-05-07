@@ -120,7 +120,7 @@ class DiscountOffersState extends State<DiscountOffers> {
                                               Image.network(
                                                   AppURl.path +
                                                       response[index].image,
-                                                  width: 99,
+                                                  width: 103,
                                                   height: 120),
                                               Positioned(
                                                   top: 3,
@@ -160,6 +160,8 @@ class DiscountOffersState extends State<DiscountOffers> {
                                           padding:
                                               const EdgeInsets.only(left: 10.0),
                                           child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
                                             children: [
                                               InkWell(
                                                 onTap: () {
@@ -168,7 +170,7 @@ class DiscountOffersState extends State<DiscountOffers> {
                                                 },
                                                 child: Container(
                                                   height: 20,
-                                                  width: 60,
+                                                  width: 65,
                                                   decoration: BoxDecoration(
                                                       borderRadius:
                                                           BorderRadius.circular(
@@ -176,6 +178,8 @@ class DiscountOffersState extends State<DiscountOffers> {
                                                       border: Border.all(
                                                           color: Colors.amber)),
                                                   child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
                                                     children: [
                                                       SizedBox(width: 1),
                                                       Icon(Icons.shopping_cart,
@@ -197,6 +201,7 @@ class DiscountOffersState extends State<DiscountOffers> {
                                                   ),
                                                 ),
                                               ),
+                                              SizedBox(width: 2),
                                               Card(
                                                   shape: RoundedRectangleBorder(
                                                       borderRadius:

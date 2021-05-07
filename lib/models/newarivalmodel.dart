@@ -5,11 +5,15 @@ class ArrivalModel {
   final String title;
   final double discount;
   final int price;
+  final int id;
+  final int userId;
   final String slug;
   final String rating;
 
   ArrivalModel({
     this.price,
+    this.id,
+    this.userId,
     this.image,
     this.title,
     this.discount,
@@ -22,6 +26,8 @@ class ArrivalModel {
       title: json['title'],
       price: json['price'],
       slug: json['slug'],
+      id: json['id'],
+      userId: json['user_id'],
       rating: json['rating'].toString());
 }
 

@@ -33,17 +33,20 @@ Widget customAppBar(
       ),
       Stack(children: [
         Positioned(
-          top: 5,
-          left: 5,
-          child: CircleAvatar(
-            radius: 7,
-            backgroundColor: Colors.red,
-            child: Text(
-              cart.length.toString(),
-              style: TextStyle(fontSize: 10, color: Colors.white),
-            ),
-          ),
-        ),
+            top: 5,
+            left: 5,
+            child: cart.length == 0
+                ? CircleAvatar(
+                    backgroundColor: white,
+                  )
+                : CircleAvatar(
+                    radius: 7,
+                    backgroundColor: Colors.red,
+                    child: Text(
+                      cart.length.toString(),
+                      style: TextStyle(fontSize: 10, color: Colors.white),
+                    ),
+                  )),
         IconButton(
             icon: Icon(
               Icons.shopping_cart,
