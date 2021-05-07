@@ -509,7 +509,7 @@ class _ReviewState extends State<Review> {
                   child: Padding(
                     padding: EdgeInsets.only(left: 12.0, bottom: 6),
                     child: TextFormField(
-                        controller: durationController,
+                        controller: placeController,
                         validator: (value) {
                           if (value.isEmpty) {
                             return 'Please enter Place of Purchaseds';

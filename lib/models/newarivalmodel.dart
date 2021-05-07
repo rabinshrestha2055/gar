@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 class ArrivalModel {
+  final int id;
   final String image;
   final String title;
   final double discount;
@@ -10,6 +11,7 @@ class ArrivalModel {
 
   ArrivalModel({
     this.price,
+    this.id,
     this.image,
     this.title,
     this.discount,
@@ -22,6 +24,7 @@ class ArrivalModel {
       title: json['title'],
       price: json['price'],
       slug: json['slug'],
+      id: json['id'],
       rating: json['rating'].toString());
 }
 

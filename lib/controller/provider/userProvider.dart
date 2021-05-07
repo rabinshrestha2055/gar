@@ -4,9 +4,12 @@ import 'package:garjoo/core.dart';
 import 'package:garjoo/models/datamodel.dart';
 import 'package:garjoo/models/detailsmodel.dart';
 import 'package:garjoo/models/limitedProduct.dart';
+import 'package:garjoo/models/location.dart';
 import 'package:garjoo/models/loginUser.dart';
+import 'package:garjoo/models/question.dart';
 import 'package:garjoo/models/reviewSpecific.dart';
 import 'package:garjoo/models/reviewpost.dart';
+import 'package:garjoo/models/specificReview.dart';
 import 'package:garjoo/models/storeBanner.dart';
 import 'package:garjoo/models/storeTop.dart';
 
@@ -331,6 +334,51 @@ class UserDetailsProvider with ChangeNotifier {
     } catch (e) {}
   }
 
+  Future<http.Response> reviewSpecificPost(ReviewSpecific review) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString("token");
+    try {
+      final headers = {
+        'content-type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      };
+      final response = await http.post(AppURl.specificReviewPost,
+          headers: headers, body: reviewSpecificToJson(review));
+      return response;
+    } catch (e) {}
+  }
+
+  Future<http.Response> questionPost(QuestionModel review) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString("token");
+    try {
+      final headers = {
+        'content-type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      };
+      final response = await http.post(AppURl.question,
+          headers: headers, body: questionToJson(review));
+      return response;
+    } catch (e) {}
+  }
+
+  Future<List<SpecificReview1>> getSpecificReview(String id) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString("token");
+    try {
+      final headers = {
+        'content-type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      };
+      final response = await http.get(
+        AppURl.specificReviewGet + id,
+        headers: headers,
+      );
+      print(response.body);
+      return sReviewModelFromJson(response.body);
+    } catch (e) {}
+  }
+
   Future<http.Response> reviewPost(ReviewPost reviewpost) async {
     try {
       final headers = {
@@ -346,16 +394,16 @@ class UserDetailsProvider with ChangeNotifier {
     } catch (e) {}
   }
 
-  Future<http.Response> reviewSpecific(ReviewSpecific reviewSpecific) async {
-    try {
-      final headers = {
-        'content-type': 'application/json',
-      };
-      final response = await http.post(AppURl.reviewSpecific,
-          headers: headers, body: reviewSpecificToJson(reviewSpecific));
-      return response;
-    } catch (e) {}
-  }
+  // Future<http.Response> reviewSpecific(ReviewSpecific reviewSpecific) async {
+  //   try {
+  //     final headers = {
+  //       'content-type': 'application/json',
+  //     };
+  //     final response = await http.post(AppURl.reviewSpecific,
+  //         headers: headers, body: reviewSpecificToJson(reviewSpecific));
+  //     return response;
+  //   } catch (e) {}
+  // }
 
   Future<http.Response> customerRegister(UserModel registerModel) async {
     try {
@@ -390,6 +438,19 @@ class UserDetailsProvider with ChangeNotifier {
       ));
       var res = await request.send();
       return res;
+    } catch (e) {}
+  }
+
+  Future<List<LocationModel>> getLocation() async {
+    try {
+      final response = await http.get(
+        AppURl.location,
+        headers: {
+          "Accept": "application/json",
+        },
+      );
+      print(response.body);
+      return locationModelFromJson(response.body);
     } catch (e) {}
   }
 

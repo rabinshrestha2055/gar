@@ -11,9 +11,11 @@ class Arrival extends StatefulWidget {
   var cart;
   int sum;
   String email;
+  final int id;
   var userName;
   Arrival(
       {Key key,
+      this.id,
       this.valueSetter,
       this.cart,
       this.sum,
@@ -101,6 +103,8 @@ class _ArrivalState extends State<Arrival> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (_) => Navigate(
+                                          productId: response[index].id,
+                                          id: widget.id,
                                           email: widget.email,
                                           title: response[index].title,
                                           image: response[index].image,

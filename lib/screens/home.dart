@@ -10,10 +10,12 @@ import '../core.dart';
 class Home extends StatefulWidget {
   List<dynamic> cart = [];
   int sum = 0;
+  final int id;
   final String title;
   final String email;
   final String userName;
-  Home({Key key, this.title, this.email, this.userName}) : super(key: key);
+  Home({Key key, this.title, this.email, this.userName, this.id})
+      : super(key: key);
   @override
   _HomeState createState() => _HomeState();
 }
@@ -114,6 +116,7 @@ class _HomeState extends State<Home> {
               height: 15,
             ),
             Arrival(
+              id: widget.id,
               email: widget.email,
               userName: widget.userName,
               valueSetter: (selectedProduct) {

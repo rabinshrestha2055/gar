@@ -31,5 +31,8 @@ class AppURl {
   static const storebanner = baseurl + "general-image-ads/get/store";
   static const navigationParent = baseurl + "navigation-parent";
   static const reviewPost = baseurl + "category-review/store";
-  static const reviewSpecific = baseurl + "review/store";
+  static const specificReviewGet = baseurl + "review/product/";
+  static const question = baseurl + "question/store";
+  static const location = baseurl + "get-location";
+  static const specificReviewPost = baseurl + "review/store";
 }

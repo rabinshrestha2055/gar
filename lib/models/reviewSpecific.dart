@@ -3,21 +3,25 @@ import 'dart:convert';
 class ReviewSpecific {
   final String review;
   final double rating;
+  final int reviewableId;
+  final String type;
+  final int userId;
 
   ReviewSpecific({
+    this.reviewableId,
+    this.type,
+    this.userId,
     this.review,
     this.rating,
   });
 
-  factory ReviewSpecific.fromJson(Map<String, dynamic> json) => ReviewSpecific(
-        review: json['review'],
-        rating: json['rating'],
-      );
-
-  Map<String, dynamic> tojson() =>
-      {'rating': rating.toString(), 'review': review};
+  Map<String, dynamic> tojson() => {
+        'rating': rating,
+        'review': review,
+        'reviewable_id': reviewableId,
+        'type': type,
+        'user_id': userId
+      };
 }
 
-ReviewSpecific reviewSpecificFromJson(String str) =>
-    ReviewSpecific.fromJson(json.decode(str));
 String reviewSpecificToJson(ReviewSpecific data) => json.encode(data.tojson());

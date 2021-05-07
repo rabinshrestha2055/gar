@@ -1,24 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:garjoo/core.dart';
+import 'package:garjoo/models/question.dart';
 import 'package:garjoo/models/reviewSpecific.dart';
+import 'package:garjoo/models/specificReview.dart';
 import 'package:garjoo/widget/loginFirst.dart';
 import 'package:provider/provider.dart';
 
+import '../../../controller/provider/providers.dart';
+import '../../../core.dart';
+
 class ReviewNA extends StatefulWidget {
+  final int id;
+  final int productId;
   final String email;
 
-  const ReviewNA({Key key, this.email}) : super(key: key);
+  const ReviewNA({Key key, this.email, this.id, this.productId})
+      : super(key: key);
   @override
   _ReviewNAState createState() => _ReviewNAState();
 }
 
 class _ReviewNAState extends State<ReviewNA> {
+  UserDetailsProvider user = UserDetailsProvider();
+
   double rating1;
-  var _question = TextEditingController();
-  var _review = TextEditingController();
+  var review;
+  var questions;
+  TextEditingController _question = TextEditingController();
+  TextEditingController _review = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    print(widget.id);
     return Scaffold(
         resizeToAvoidBottomInset: false,
         body: widget.email == null
@@ -55,6 +68,9 @@ class _ReviewNAState extends State<ReviewNA> {
                                 borderRadius: BorderRadius.circular(20)),
                             child: TextField(
                               controller: _question,
+                              onChanged: (value) {
+                                questions = value;
+                              },
                               maxLines: 2,
                               decoration: InputDecoration(
                                   errorBorder: InputBorder.none,
@@ -64,7 +80,52 @@ class _ReviewNAState extends State<ReviewNA> {
                                   hintText: 'Drop your question here',
                                   hintStyle: TextStyle(color: Colors.grey)),
                             )),
-                        SizedBox(height: 8),
+                        SizedBox(height: 4),
+                        ChangeNotifierProvider<UserDetailsProvider>(
+                          create: (context) => UserDetailsProvider(),
+                          child: Consumer<UserDetailsProvider>(
+                            builder: (context, value, child) => Container(
+                              margin: EdgeInsets.only(left: 5),
+                              height: 25,
+                              child: MaterialButton(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20)),
+                                  color: Colors.red,
+                                  child: Text(
+                                    'Submit',
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  onPressed: () {
+                                    var question = QuestionModel(
+                                      question: questions,
+                                      // answer: "",
+                                      // sellerID: 169,
+                                      productID: widget.productId,
+                                      customerId: widget.id,
+                                    );
+                                    value
+                                        .questionPost(question)
+                                        .then((response) {
+                                      if (response.statusCode == 201) {
+                                        var snackBar = SnackBar(
+                                            content: Text('Question Raised!'));
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(snackBar);
+                                      } else {
+                                        final snackbar = SnackBar(
+                                          content: Text('Question Not Raised!'),
+                                        );
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(snackbar);
+                                      }
+                                    });
+                                  }),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -94,8 +155,11 @@ class _ReviewNAState extends State<ReviewNA> {
                             decoration: BoxDecoration(
                                 color: Colors.grey[300],
                                 borderRadius: BorderRadius.circular(20)),
-                            child: TextField(
+                            child: TextFormField(
                               controller: _review,
+                              onChanged: (value) {
+                                review = value;
+                              },
                               maxLines: 2,
                               decoration: InputDecoration(
                                   errorBorder: InputBorder.none,
@@ -160,31 +224,27 @@ class _ReviewNAState extends State<ReviewNA> {
                                         fontWeight: FontWeight.bold),
                                   ),
                                   onPressed: () {
-                                    setState(() {
-                                      String review = _review.toString().trim();
-
-                                      var reviewSpecific = ReviewSpecific(
+                                    var reviewSpecific = ReviewSpecific(
                                         review: review,
                                         rating: rating1,
-                                      );
-                                      value
-                                          .reviewSpecific(reviewSpecific)
-                                          .then((response) {
-                                        if (response.statusCode == 200) {
-                                          var snackBar = SnackBar(
-                                              content:
-                                                  Text('Review Sucessful!'));
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(snackBar);
-                                        } else {
-                                          final snackbar = SnackBar(
-                                            content:
-                                                Text('Review Unsucessfull!'),
-                                          );
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(snackbar);
-                                        }
-                                      });
+                                        reviewableId: widget.productId,
+                                        userId: widget.id,
+                                        type: 'product');
+                                    value
+                                        .reviewSpecificPost(reviewSpecific)
+                                        .then((response) {
+                                      if (response.statusCode == 201) {
+                                        var snackBar = SnackBar(
+                                            content: Text('Review Sucessful!'));
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(snackBar);
+                                      } else {
+                                        final snackbar = SnackBar(
+                                          content: Text('Review Unsucessfull!'),
+                                        );
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(snackbar);
+                                      }
                                     });
                                   }),
                             ),
@@ -211,52 +271,101 @@ class _ReviewNAState extends State<ReviewNA> {
                           )
                         ]),
                   ),
-                  Card(
-                      child: Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            CircleAvatar(
-                                radius: 30,
-                                child: Image.asset('asset/person1.png')),
-                            SizedBox(width: 5),
-                            Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                      width: 250,
-                                      child: Text(
-                                        'Self managing a portfolio of both purchased debth and merchantile debt cases',
-                                        overflow: TextOverflow.ellipsis,
-                                        maxLines: 4,
-                                      )),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 5, bottom: 8.0, top: 5),
-                                    child: RatingBar.builder(
-                                      initialRating: 1,
-                                      minRating: 1,
-                                      direction: Axis.horizontal,
-                                      allowHalfRating: true,
-                                      itemCount: 5,
-                                      itemSize: 18,
-                                      itemPadding:
-                                          EdgeInsets.symmetric(horizontal: 4.0),
-                                      itemBuilder: (context, _) => Icon(
-                                        Icons.star,
-                                        color: Colors.red,
-                                        size: 2,
-                                      ),
-                                      onRatingUpdate: (rating) {},
-                                    ),
-                                  ),
-                                ])
-                          ]),
-                    ),
-                  ))
+                  FutureBuilder(
+                      future:
+                          user.getSpecificReview(widget.productId.toString()),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasError) {
+                          return CircularProgressIndicator();
+                        } else if (snapshot.connectionState ==
+                            ConnectionState.done) {
+                          var response = snapshot.data as List<SpecificReview1>;
+
+                          return ListView.builder(
+                            scrollDirection: Axis.vertical,
+                            shrinkWrap: true,
+                            physics: ScrollPhysics(
+                                parent: NeverScrollableScrollPhysics()),
+                            itemCount: response.length,
+                            itemBuilder: (context, index) => Card(
+                                child: Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      CircleAvatar(
+                                          radius: 30,
+                                          child:
+                                              Image.asset('asset/person1.png')),
+                                      SizedBox(width: 5),
+                                      Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Container(
+                                                width: 250,
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      'By ' +
+                                                          response[index].name,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      maxLines: 2,
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                    ),
+                                                    SizedBox(
+                                                      height: 5,
+                                                    ),
+                                                    Text(
+                                                      response[index].review,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      maxLines: 4,
+                                                    ),
+                                                  ],
+                                                )),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 5, bottom: 8.0, top: 5),
+                                              child: RatingBar.builder(
+                                                initialRating: response[index]
+                                                    .rating
+                                                    .toDouble(),
+                                                minRating: 1,
+                                                direction: Axis.horizontal,
+                                                allowHalfRating: true,
+                                                itemCount: 5,
+                                                itemSize: 18,
+                                                itemPadding:
+                                                    EdgeInsets.symmetric(
+                                                        horizontal: 4.0),
+                                                itemBuilder: (context, _) =>
+                                                    Icon(
+                                                  Icons.star,
+                                                  color: Colors.red,
+                                                  size: 2,
+                                                ),
+                                                onRatingUpdate: (rating) {},
+                                              ),
+                                            ),
+                                          ])
+                                    ]),
+                              ),
+                            )),
+                          );
+                        } else {
+                          return Container();
+                        }
+                      })
                 ],
               ));
   }

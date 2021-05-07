@@ -5,6 +5,8 @@ import 'package:provider/provider.dart';
 
 class Navigate extends StatefulWidget {
   final title;
+  final int id;
+  final int productId;
   final price;
   final image;
   final slug;
@@ -15,7 +17,9 @@ class Navigate extends StatefulWidget {
 
   Navigate(
       {Key key,
+      this.productId,
       this.image,
+      this.id,
       this.price,
       this.email,
       this.title,
@@ -197,6 +201,8 @@ class _NavigateState extends State<Navigate> {
                                           description: response.description,
                                         ),
                                         ReviewNA(
+                                          productId: widget.productId,
+                                          id: widget.id,
                                           email: widget.email,
                                         ),
                                       ]),
