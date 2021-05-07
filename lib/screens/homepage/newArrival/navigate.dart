@@ -88,6 +88,8 @@ class _NavigateState extends State<Navigate> {
 
                     return ListView(
                       scrollDirection: Axis.vertical,
+                      physics:
+                          ScrollPhysics(parent: NeverScrollableScrollPhysics()),
                       shrinkWrap: true,
                       children: [
                         Center(
@@ -179,8 +181,12 @@ class _NavigateState extends State<Navigate> {
                                   ),
                                 ),
                                 SizedBox(height: 8),
-                                Flexible(
+                                Expanded(
+                                  flex: 4,
                                   child: TabBarView(
+                                      physics: ScrollPhysics(
+                                          parent:
+                                              NeverScrollableScrollPhysics()),
                                       controller: _tabController,
                                       children: [
                                         ProductNA(
