@@ -4,6 +4,9 @@ import 'package:garjoo/core.dart';
 import 'package:garjoo/models/datamodel.dart';
 import 'package:garjoo/models/detailsmodel.dart';
 import 'package:garjoo/models/limitedProduct.dart';
+import 'package:garjoo/models/loginUser.dart';
+import 'package:garjoo/models/reviewSpecific.dart';
+import 'package:garjoo/models/reviewpost.dart';
 import 'package:garjoo/models/storeBanner.dart';
 import 'package:garjoo/models/storeTop.dart';
 
@@ -328,6 +331,32 @@ class UserDetailsProvider with ChangeNotifier {
     } catch (e) {}
   }
 
+  Future<http.Response> reviewPost(ReviewPost reviewpost) async {
+    try {
+      final headers = {
+        'content-type': 'application/json',
+      };
+      final response = await http.post(
+        AppURl.reviewPost,
+        headers: headers,
+        body: reviewPostToJson(reviewpost),
+      );
+
+      return response;
+    } catch (e) {}
+  }
+
+  Future<http.Response> reviewSpecific(ReviewSpecific reviewSpecific) async {
+    try {
+      final headers = {
+        'content-type': 'application/json',
+      };
+      final response = await http.post(AppURl.reviewSpecific,
+          headers: headers, body: reviewSpecificToJson(reviewSpecific));
+      return response;
+    } catch (e) {}
+  }
+
   Future<http.Response> customerRegister(UserModel registerModel) async {
     try {
       final headers = {
@@ -363,9 +392,57 @@ class UserDetailsProvider with ChangeNotifier {
       return res;
     } catch (e) {}
   }
-}
 
-saveToken(String token) async {
-  SharedPreferences tokenData = await SharedPreferences.getInstance();
-  tokenData.setString('token', token);
+  Future<bool> saveUser(UserModel user) async {
+    final SharedPreferences preferences = await SharedPreferences.getInstance();
+    preferences.setString("token", user.token);
+    return true;
+  }
+
+  Future<bool> logoutUser() async {
+    final SharedPreferences preferences = await SharedPreferences.getInstance();
+    preferences.remove("token");
+
+    return true;
+  }
+
+  Future<LoginUserModel> loginUser() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString("token");
+
+    try {
+      final headers = {
+        'content-type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      };
+      final response = await http.get(
+        AppURl.loginUser,
+        headers: headers,
+      );
+      return loginUserModelFromJson(response.body);
+    } catch (e) {}
+  }
+
+  Future<http.Response> verifyEmail({LoginUserModel email}) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString("token");
+
+    try {
+      final headers = {
+        'content-type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      };
+      final response = await http.post(
+        AppURl.verifyEmail,
+        headers: headers,
+        body: loginUserModelToJson(email),
+      );
+      return response;
+    } catch (e) {}
+  }
+
+  saveToken(String token) async {
+    SharedPreferences tokenData = await SharedPreferences.getInstance();
+    tokenData.setString('token', token);
+  }
 }

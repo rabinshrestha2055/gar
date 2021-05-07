@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 class UserModel {
+  final success;
   final String email;
   final String type;
   final String username;
@@ -13,6 +14,7 @@ class UserModel {
   final String token;
 
   UserModel({
+    this.success,
     this.confirmPassword,
     this.type,
     this.username,
@@ -26,6 +28,7 @@ class UserModel {
   });
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
       id: json["id"],
+      success: json['success'],
       email: json["email"],
       username: json["name"],
       password: json["password"],

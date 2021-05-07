@@ -1,40 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:garjoo/core.dart';
+import 'package:garjoo/widget/loginFirst.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
+  final String email;
+  final String userName;
+  var cart;
+  var sum;
+
+  HomePage({Key key, this.email, this.userName, this.sum, this.cart})
+      : super(key: key);
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  SharedPreferences data;
-
-  String email;
-
-  @override
-  void initState() {
-    super.initState();
-    initial();
-  }
-
-  void initial() async {
-    data = await SharedPreferences.getInstance();
-    setState(() {
-      email = data.getString('email');
-    });
-  }
-
-  List<Widget> tabItems = [
-    Home(),
-    Review(),
-    Cart(),
-    Profile(),
-  ];
-
   @override
   Widget build(BuildContext context) {
+    List<Widget> tabItems = [
+      Home(
+        email: widget.email,
+        userName: widget.userName,
+      ),
+      widget.email == null ? LoginFirst() : Review(),
+      widget.email == null ? LoginFirst() : Cart(),
+      widget.email == null
+          ? LoginFirst()
+          : Profile(
+              email: widget.email,
+            ),
+    ];
+
     return ChangeNotifierProvider(
       create: (context) => BottomNavProvider(),
       child: Consumer<BottomNavProvider>(

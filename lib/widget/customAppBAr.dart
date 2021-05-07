@@ -3,8 +3,8 @@ import 'package:garjoo/core.dart';
 import 'package:garjoo/screens/cart/checkoutScreen.dart';
 import 'package:garjoo/screens/homepage/visitStoreTop.dart';
 
-Widget customAppBar({BuildContext context, var cart, var sum}) {
-  print("appbar" + sum.toString());
+Widget customAppBar(
+    {BuildContext context, var cart, var sum, var email, var userName}) {
   return AppBar(
     automaticallyImplyLeading: false,
     elevation: 0.0,
@@ -33,17 +33,20 @@ Widget customAppBar({BuildContext context, var cart, var sum}) {
       ),
       Stack(children: [
         Positioned(
-          top: 5,
-          left: 5,
-          child: CircleAvatar(
-            radius: 7,
-            backgroundColor: Colors.red,
-            child: Text(
-              cart.length.toString(),
-              style: TextStyle(fontSize: 10, color: Colors.white),
-            ),
-          ),
-        ),
+            top: 5,
+            left: 5,
+            child: cart.length == 0
+                ? CircleAvatar(
+                    backgroundColor: white,
+                  )
+                : CircleAvatar(
+                    radius: 7,
+                    backgroundColor: Colors.red,
+                    child: Text(
+                      cart.length.toString(),
+                      style: TextStyle(fontSize: 10, color: Colors.white),
+                    ),
+                  )),
         IconButton(
             icon: Icon(
               Icons.shopping_cart,
@@ -56,6 +59,8 @@ Widget customAppBar({BuildContext context, var cart, var sum}) {
                       builder: (_) => CheckoutScreen(
                             cart: cart,
                             sum: sum,
+                            userName: userName,
+                            email: email,
                           )));
             }),
       ]),

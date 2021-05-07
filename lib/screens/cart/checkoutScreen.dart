@@ -4,10 +4,14 @@ import 'package:garjoo/core.dart';
 class CheckoutScreen extends StatefulWidget {
   var cart;
   var sum;
+  var email;
+  var userName;
 
   CheckoutScreen({
     Key key,
     this.cart,
+    this.userName,
+    this.email,
     this.sum,
   }) : super(key: key);
 
@@ -76,7 +80,11 @@ class CheckoutScreenState extends State<CheckoutScreen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (_) => Checkout(sum: widget.sum)));
+                              builder: (_) => Checkout(
+                                    sum: widget.sum,
+                                    email: widget.userName,
+                                    userName: widget.userName,
+                                  )));
                     },
                     child: Container(
                         height: 40,

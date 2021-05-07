@@ -26,6 +26,10 @@ class AppURl {
   static const hotelarrival = baseurl + "new-arrivals/hotels";
   static const mobilearrival = baseurl + "mobile-accessories";
   static const storetop = baseurl + "store/all";
+  static const loginUser = baseurl + "user";
+  static const verifyEmail = baseurl + "verify_email";
   static const storebanner = baseurl + "general-image-ads/get/store";
   static const navigationParent = baseurl + "navigation-parent";
+  static const reviewPost = baseurl + "category-review/store";
+  static const reviewSpecific = baseurl + "review/store";
 }

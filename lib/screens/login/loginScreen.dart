@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:garjoo/core.dart';
-import 'package:garjoo/screens/homePage.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../main.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({Key key}) : super(key: key);
@@ -12,39 +12,13 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   var email, password;
   final _formKey = GlobalKey<FormState>();
-  SharedPreferences data;
-  TextEditingController emailController = new TextEditingController();
-  TextEditingController pwdController = new TextEditingController();
-  bool newuser;
-
-  @override
-  void initState() {
-    super.initState();
-    check_if_already_login();
-  }
-
-  void check_if_already_login() async {
-    data = await SharedPreferences.getInstance();
-    newuser = (data.getBool('login') ?? true);
-    // print(newuser);
-    // if (newuser == false) {
-    //   Navigator.pushReplacement(
-    //       context, new MaterialPageRoute(builder: (context) => HomePage()));
-    // }
-  }
-
-  @override
-  void dispose() {
-    emailController.dispose();
-    pwdController.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: titleBar,
       body: ListView(
         children: [
@@ -81,7 +55,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     Padding(
                       padding: const EdgeInsets.all(2.0),
                       child: TextFormField(
-                          controller: emailController,
                           validator: (value) {
                             if (value.isEmpty) {
                               return 'Please enter valid name';
@@ -103,7 +76,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       padding: const EdgeInsets.all(2.0),
                       child: TextFormField(
                           obscureText: true,
-                          controller: pwdController,
                           validator: (value) {
                             if (value.isEmpty) {
                               return 'Please enter valid password';
@@ -151,9 +123,6 @@ class _LoginScreenState extends State<LoginScreen> {
                               color: Colors.white, fontWeight: FontWeight.bold),
                         ),
                         onPressed: () {
-                          String email = emailController.text;
-                          String password = pwdController.text;
-
                           if (_formKey.currentState.validate()) {
                             var loginModel = UserModel(
                               email: email,
@@ -161,16 +130,17 @@ class _LoginScreenState extends State<LoginScreen> {
                             );
                             try {
                               value.login(loginModel).then((response) {
-                                print("response.body" + response.body);
                                 if (response.statusCode == 200) {
-                                  data.setString('email', email);
-                                  data.setBool('login', false);
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (_) => HomePage()));
+                                  var res = userModelFromJson(response.body);
+                                  value.saveUser(res);
+
                                   final snackbar = SnackBar(
-                                      content: Text('Login Sucessfull!'));
+                                      content: Text('Login' +
+                                          res.success.toString() +
+                                          'full!'));
+                                  Navigator.of(context).pushReplacement(
+                                      MaterialPageRoute(
+                                          builder: (_) => Garjoo()));
 
                                   ScaffoldMessenger.of(context)
                                       .showSnackBar(snackbar);
@@ -207,6 +177,7 @@ class _LoginScreenState extends State<LoginScreen> {
             )),
             onTap: () {
               showAlertDialog(context);
+              // Navigator.push(context, MaterialPageRoute(builder: (_)=>DailogBox()));
             },
           ),
           SizedBox(height: 30),
@@ -234,21 +205,6 @@ class _LoginScreenState extends State<LoginScreen> {
               ],
             ),
           ),
-          Container(
-            height: 50,
-            child: TextButton(
-              child: const Text('Logout'),
-              onPressed: () {
-                data.clear();
-
-                ///ignore: deprecated_member_use
-                data.commit();
-                Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(builder: (_) => LoginScreen()),
-                    (Route<dynamic> route) => false);
-              },
-            ),
-          )
         ],
       ),
     );
@@ -256,14 +212,15 @@ class _LoginScreenState extends State<LoginScreen> {
 }
 
 showAlertDialog(BuildContext context) {
-  Widget cancelButton = MaterialButton(
+  // ignore: deprecated_member_use
+  Widget cancelButton = FlatButton(
     child: Text("Cancel"),
     onPressed: () {
       Navigator.of(context).pop();
     },
   );
-
-  Widget confirmButton = MaterialButton(
+  // ignore: deprecated_member_use
+  Widget confirmButton = FlatButton(
     child: Text("Confirm"),
     onPressed: () {},
   );

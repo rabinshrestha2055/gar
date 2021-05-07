@@ -3,235 +3,100 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:garjoo/core.dart';
 import 'package:garjoo/widget/customAppBAr.dart';
-import 'package:provider/provider.dart';
+
+import '../core.dart';
+import '../core.dart';
 
 class Home extends StatefulWidget {
   List<dynamic> cart = [];
   int sum = 0;
   final String title;
-  Home({Key key, this.title}) : super(key: key);
+  final String email;
+  final String userName;
+  Home({Key key, this.title, this.email, this.userName}) : super(key: key);
   @override
   _HomeState createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
-  // bool showContainer = false;
-  //  bool showContainer1 = false;
+  Future myMarket;
+  UserDetailsProvider user = UserDetailsProvider();
   @override
-  // void initState() {
-  //   super.initState();
-  //   showContainer = false;
-  // }
-
-  // void show(int id) {
-  //   setState(() {
-  //     id == 7 ? showContainer = !showContainer : null;
-  //   });
-  // }
+  void initState() {
+    myMarket = user.getMarket();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: Container(
-        // width: showContainer == false
-        //     ? MediaQuery.of(context).size.width * 0.467
-        //     : MediaQuery.of(context).size.width * 0.95,
         child: ClipRRect(
           borderRadius: BorderRadius.only(
               topRight: Radius.circular(20), topLeft: Radius.circular(1)),
           child: Drawer(
-            child: ChangeNotifierProvider<UserDetailsProvider>(
-              create: (context) => UserDetailsProvider(),
-              child: Consumer<UserDetailsProvider>(
-                builder: (context, value, child) => FutureBuilder(
-                    future: value.getMarket(),
-                    builder: (context, snapshot) {
-                      if (snapshot.hasError) {
-                        return Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      } else if (snapshot.connectionState ==
-                          ConnectionState.done) {
-                        var response = snapshot.data as List<MarketModel>;
+            child: FutureBuilder(
+                future: myMarket,
+                builder: (context, snapshot) {
+                  if (snapshot.hasError) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (snapshot.connectionState == ConnectionState.done) {
+                    var response = snapshot.data as List<MarketModel>;
 
-                        return ListView.builder(
-                          itemCount: response.length,
-                          scrollDirection: Axis.vertical,
-                          itemBuilder: (context, index) => Column(
+                    return ListView.builder(
+                      itemCount: response.length,
+                      scrollDirection: Axis.vertical,
+                      itemBuilder: (context, index) => Column(
+                        children: [
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.only(top: 8, left: 8),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        CircleAvatar(
-                                          radius: 25,
-                                          backgroundColor: Colors.orange,
-                                          child: Icon(Icons.shopping_bag,
-                                              color: Colors.white),
-                                        ),
-                                        Text(
-                                          response[index].label,
-                                          style: TextStyle(fontSize: 10),
-                                        ),
-                                      ],
+                              Padding(
+                                padding: const EdgeInsets.only(top: 8, left: 8),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    CircleAvatar(
+                                      radius: 25,
+                                      backgroundColor: Colors.orange,
+                                      child: Icon(Icons.shopping_bag,
+                                          color: Colors.white),
                                     ),
-                                  ),
-                                  SizedBox(width: 30),
-                                  // Visibility(
-                                  //     visible: showContainer1,
-                                  //     child: Card(
-                                  //         elevation: 2,
-                                  //         child: Container(
-                                  //           width: 200,
-                                  //           // height: 89,
-                                  //           child: Column(
-                                  //               crossAxisAlignment:
-                                  //                   CrossAxisAlignment.start,
-
-                                  //               children: [
-                                  //                 Padding(
-                                  //                   padding:
-                                  //                       const EdgeInsets.all(
-                                  //                           8.0),
-                                  //                   child: Text("Mens Fashion"),
-                                  //                 ),
-                                  //                 ExpansionTile(
-                                  //                   childrenPadding:
-                                  //                       EdgeInsets.only(
-                                  //                           right: 140),
-                                  //                   title: Text('Shirts'),
-                                  //                   children: [
-                                  //                     Container(
-                                  //                       height:100,
-
-                                  //                       child: ListView(
-                                  //                         shrinkWrap: true,
-                                  //                         children: [
-
-                                  //                           Text('rabin'),
-
-                                  //                         ],
-                                  //                       ),
-                                  //                     ),
-                                  //                   ],
-                                  //                 ),
-                                  //                 Divider(height: 1),
-                                  //                 ExpansionTile(
-                                  //                   childrenPadding:
-                                  //                       EdgeInsets.only(
-                                  //                           right: 140),
-                                  //                   title: Text('Jacket'),
-                                  //                   children: [
-                                  //                     Text('rabin'),
-
-                                  //                   ],
-                                  //                 ),
-                                  //                 Divider(height: 1),
-                                  //                 ExpansionTile(
-                                  //                   childrenPadding:
-                                  //                       EdgeInsets.only(
-                                  //                           right: 140),
-                                  //                   title: Text('Pants'),
-                                  //                   children: [
-                                  //                     Text('rabin'),
-
-                                  //                   ],
-                                  //                 ),
-                                  //                 Divider(height: 1),
-                                  //                 ExpansionTile(
-                                  //                   childrenPadding:
-                                  //                       EdgeInsets.only(
-                                  //                           right: 140),
-                                  //                   title: Text('Jeans'),
-                                  //                   children: [
-                                  //                     Text('rabin'),
-
-                                  //                   ],
-                                  //                 ),
-                                  //                 Divider(height: 1),
-                                  //               ]),
-                                  //         )))
-                                ],
+                                    Text(
+                                      response[index].label,
+                                      style: TextStyle(fontSize: 10),
+                                    ),
+                                  ],
+                                ),
                               ),
-                              SizedBox(
-                                height: 10,
-                              ),
+                              SizedBox(width: 30),
                             ],
                           ),
-                        );
-                      } else {
-                        return Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      }
-                    }),
-              ),
-            ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                        ],
+                      ),
+                    );
+                  } else {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                }),
           ),
         ),
       ),
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
-      appBar:
-          customAppBar(cart: widget.cart, sum: widget.sum, context: context),
-      //    AppBar(
-      //   automaticallyImplyLeading: false,
-      //   elevation: 0.0,
-      //   backgroundColor: Colors.white,
-      //   title: Padding(
-      //     padding: const EdgeInsets.only(top: 12.0),
-      //     child: Image.asset(
-      //       'asset/garjoologo.png',
-      //       height: 150,
-      //       width: 150,
-      //     ),
-      //   ),
-      //   actions: [
-      //     Padding(
-      //       padding: const EdgeInsets.only(bottom: 6.0),
-      //       child: IconButton(
-      //           icon: Icon(
-      //             Icons.store,
-      //             color: orange,
-      //             size: 25,
-      //           ),
-      //           onPressed: () {
-      //             Navigator.push(
-      //                 context, MaterialPageRoute(builder: (_) => Store()));
-      //           }),
-      //     ),
-      //     Stack(children: [
-      //       Positioned(
-      //         top: 5,
-      //         child: CircleAvatar(
-      //           radius: 8,
-      //           backgroundColor: Colors.red,
-      //           child: Text(
-      //             '5',
-      //             style: TextStyle(fontSize: 10, color: Colors.white),
-      //           ),
-      //         ),
-      //       ),
-      //       IconButton(
-      //           icon: Icon(
-      //             Icons.shopping_cart,
-      //             color: orange,
-      //           ),
-      //           onPressed: () {
-      //             Navigator.push(
-      //                 context, MaterialPageRoute(builder: (_) => Cart()));
-      //           }),
-      //     ]),
-      //   ],
-      // ),
+      appBar: customAppBar(
+          cart: widget.cart,
+          sum: widget.sum,
+          context: context,
+          email: widget.email,
+          userName: widget.userName),
       body: ListView(
         shrinkWrap: true,
         children: [
@@ -249,6 +114,8 @@ class _HomeState extends State<Home> {
               height: 15,
             ),
             Arrival(
+              email: widget.email,
+              userName: widget.userName,
               valueSetter: (selectedProduct) {
                 setState(() {
                   widget.cart.add(selectedProduct);
@@ -275,6 +142,10 @@ class _HomeState extends State<Home> {
                   });
                 });
               },
+              cart: widget.cart,
+              sum: widget.sum,
+              email: widget.email,
+              userName: widget.userName,
             ),
 
             SizedBox(height: 20),
@@ -298,6 +169,10 @@ class _HomeState extends State<Home> {
                   });
                 });
               },
+              cart: widget.cart,
+              sum: widget.sum,
+              email: widget.email,
+              userName: widget.userName,
             ),
 
             ClassifiedAds(),

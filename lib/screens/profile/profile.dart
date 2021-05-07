@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
-
+import 'package:garjoo/widget/logoutDailog.dart';
 import '../../core.dart';
+import '../../main.dart';
 
 class Profile extends StatefulWidget {
+  final String email;
+
+  const Profile({Key key, this.email}) : super(key: key);
   @override
   _ProfileState createState() => _ProfileState();
 }
 
 class _ProfileState extends State<Profile> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         automaticallyImplyLeading: false,
         elevation: 0.0,
@@ -23,6 +30,24 @@ class _ProfileState extends State<Profile> {
             width: 150,
           ),
         ),
+        actions: [
+          InkWell(
+              onTap: () {
+                return showDialog(
+                  context: context,
+                  builder: (ctx) => LogoutDailog(),
+                );
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  right: 12.0,
+                ),
+                child: Icon(
+                  Icons.logout,
+                  color: red,
+                ),
+              ))
+        ],
       ),
       body: ListView(
         children: [
@@ -171,21 +196,23 @@ class _ProfileState extends State<Profile> {
             ),
           ),
           SizedBox(height: 12),
-          Container(
-            margin: EdgeInsets.only(left: 70, right: 70),
-            child: MaterialButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20)),
-                color: Colors.red,
-                child: Text(
-                  'Login',
-                  style: TextStyle(color: white),
-                ),
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => LoginScreen()));
-                }),
-          )
+          widget.email == null
+              ? Container(
+                  margin: EdgeInsets.only(left: 70, right: 70),
+                  child: MaterialButton(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                      color: Colors.red,
+                      child: Text(
+                        'Login',
+                        style: TextStyle(color: white),
+                      ),
+                      onPressed: () {
+                        Navigator.pushReplacement(context,
+                            MaterialPageRoute(builder: (_) => LoginScreen()));
+                      }),
+                )
+              : Container()
         ],
       ),
     );
