@@ -1,21 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:garjoo/core.dart';
 import 'package:garjoo/screens/homepage/featuredproduct/viewFeatureList.dart';
-import 'package:garjoo/widget/customAppBAr.dart';
+import 'package:garjoo/widget/customAppBar.dart';
 
 class ViewFeature extends StatefulWidget {
   final ValueSetter<dynamic> valueSetter;
-  var cart;
-  int sum;
+
   var email;
   var userName;
-  ViewFeature(
-      {Key key,
-      this.cart,
-      this.sum,
-      this.email,
-      this.userName,
-      this.valueSetter})
+  ViewFeature({Key key, this.email, this.userName, this.valueSetter})
       : super(key: key);
 
   @override
@@ -28,22 +21,11 @@ class _ViewFeatureState extends State<ViewFeature> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: customAppBar(
-          context: context,
-          cart: widget.cart,
-          email: widget.email,
-          userName: widget.userName,
-          sum: widget.sum),
-      body: ViewFeatureList(
-        valueSetter: (selectedProduct) {
-          setState(() {
-            widget.cart.add(selectedProduct);
-
-            widget.cart.forEach((element) {
-              widget.sum = widget.sum + element.price;
-            });
-          });
-        },
+        context: context,
+        email: widget.email,
+        userName: widget.userName,
       ),
+      body: ViewFeatureList(),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.orange,
         onPressed: () {

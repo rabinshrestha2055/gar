@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/home/codeish/Documents/office-work/gar/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-v24/values-v24.xml",
+            "outputFile": "/home/codeish/Documents/office-work/Testing/gar/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-v24/values-v24.xml",
             "map": [
                 {
                     "source": "/home/codeish/.gradle/caches/transforms-2/files-2.1/1984715a1c71ad7f32a00aaa628a1751/media-1.2.1/res/values-v24/values-v24.xml",

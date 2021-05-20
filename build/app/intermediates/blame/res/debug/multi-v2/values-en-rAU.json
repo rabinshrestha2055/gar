@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/home/codeish/Documents/office-work/gar/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-en-rAU/values-en-rAU.xml",
+            "outputFile": "/home/codeish/Documents/office-work/Testing/gar/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-en-rAU/values-en-rAU.xml",
             "map": [
                 {
                     "source": "/home/codeish/.gradle/caches/transforms-2/files-2.1/300dbc10503a1659ee537a80c54ae4ba/jetified-extension-mediasession-2.13.1/res/values-en-rAU/values-en-rAU.xml",

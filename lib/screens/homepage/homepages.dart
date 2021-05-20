@@ -1,11 +1,5 @@
 export 'carousel/carousel.dart';
 export 'category/category.dart';
-export 'category/realestate.dart';
-export 'category/jobs.dart';
-export 'category/accomodation.dart';
-export 'category/market.dart';
-export 'category/service.dart';
-export 'category/motors.dart';
 export 'classifiedads/classified_ads.dart';
 export 'discount/discountoffer.dart';
 export 'discount/viewDiscount.dart';

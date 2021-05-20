@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:garjoo/core.dart';
+import 'package:garjoo/models/similar.dart';
 import 'package:garjoo/screens/homepage/featuredcategory/featCatDetail.dart';
-import 'package:provider/provider.dart';
 
 class FeaturedCategory extends StatefulWidget {
   const FeaturedCategory({Key key}) : super(key: key);
@@ -85,8 +85,8 @@ class _FeaturedCategoryState extends State<FeaturedCategory> {
         if (snapshot.hasError) {
           return Container();
         } else if (snapshot.connectionState == ConnectionState.done) {
-          var response = snapshot.data as List<FeaturedCatModel>;
-
+          var response = snapshot.data as List<Item>;
+          ProductModel.items = response;
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -120,7 +120,7 @@ class _FeaturedCategoryState extends State<FeaturedCategory> {
                               MaterialPageRoute(
                                   builder: (_) => FeatureCatDetail(
                                         slug: response[index].slug,
-                                        storetitle: response[index].name,
+                                        storetitle: response[index].label,
                                       )));
                         },
                         child: Container(
@@ -142,7 +142,6 @@ class _FeaturedCategoryState extends State<FeaturedCategory> {
                                     width: 55,
                                     height: 55,
                                     child: Center(
-                                      //  child:Icon(getIconUsingPrefix(name: response[index].icon))
                                       child: Icon(
                                           getIconForName(
                                               iconName: response[index].icon),
@@ -155,7 +154,7 @@ class _FeaturedCategoryState extends State<FeaturedCategory> {
                               Padding(
                                 padding: const EdgeInsets.only(left: 10),
                                 child: Text(
-                                  response[index].name,
+                                  response[index].label,
                                   style: TextStyle(fontSize: 11),
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,

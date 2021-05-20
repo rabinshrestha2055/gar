@@ -1,10 +1,5 @@
 export 'appurl.dart';
 export 'btnProvider.dart';
-export 'carouselProvider.dart';
 export 'categoryProvider.dart';
-export 'featuredproductProvider.dart';
-export 'menProvider.dart';
-export 'newarrivalProvider.dart';
 export 'quicklinkProvider.dart';
 export 'userProvider.dart';
-export 'viewarrivalProvider.dart';

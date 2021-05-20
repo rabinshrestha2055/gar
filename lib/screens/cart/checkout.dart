@@ -3,11 +3,12 @@ import 'package:garjoo/core.dart';
 import 'package:garjoo/screens/cart/checkoutListView.dart';
 
 class Checkout extends StatefulWidget {
+  final cart;
   final sum;
   final email;
   final userName;
 
-  const Checkout({Key key, this.sum, this.email, this.userName})
+  const Checkout({Key key, this.sum, this.email, this.cart, this.userName})
       : super(key: key);
   @override
   _CheckoutState createState() => _CheckoutState();
@@ -37,6 +38,7 @@ class _CheckoutState extends State<Checkout> {
         body: Container(
             height: MediaQuery.of(context).size.height,
             child: CheckOutListView(
+              cart: widget.cart,
               email: widget.email,
               sum: widget.sum,
               userName: widget.userName,

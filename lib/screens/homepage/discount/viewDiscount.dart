@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:garjoo/core.dart';
 import 'package:garjoo/screens/homepage/discount/viewDiscountList.dart';
-import 'package:garjoo/widget/customAppBAr.dart';
-import 'package:provider/provider.dart';
+import 'package:garjoo/widget/customAppBar.dart';
 
 class ViewDiscount extends StatefulWidget {
   var cart;
-  int sum;
+  double sum;
   var email;
   var userName;
   ViewDiscount({Key key, this.cart, this.sum, this.email, this.userName})
@@ -21,21 +20,8 @@ class _ViewDiscountState extends State<ViewDiscount> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: customAppBar(
-          cart: widget.cart,
-          sum: widget.sum,
-          context: context,
-          email: widget.email,
-          userName: widget.userName),
-      body: ViewDiscountList(
-        valueSetter: (selectedProduct) {
-          setState(() {
-            widget.cart.add(selectedProduct);
-            widget.cart.forEach((element) {
-              widget.sum = widget.sum + element.price;
-            });
-          });
-        },
-      ),
+          context: context, email: widget.email, userName: widget.userName),
+      body: ViewDiscountList(),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.orange,
         onPressed: () {

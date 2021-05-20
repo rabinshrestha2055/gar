@@ -1,0 +1,4 @@
+#Wed May 19 14:59:04 NPT 2021
+base.0=/home/codeish/Documents/office-work/Testing/gar/build/app/intermediates/dex/release/minifyReleaseWithR8/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

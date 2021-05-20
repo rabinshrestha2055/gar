@@ -1,6 +1,7 @@
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:garjoo/core.dart';
+import 'package:garjoo/models/similar.dart';
 import 'package:provider/provider.dart';
 
 class Carousel1 extends StatelessWidget {
@@ -23,7 +24,7 @@ class Carousel1 extends StatelessWidget {
                         return Center(child: CircularProgressIndicator());
                       } else if (snapshot.connectionState ==
                           ConnectionState.done) {
-                        var response = snapshot.data as List<SlideCarousel>;
+                        var response = snapshot.data as List<Item>;
                         return Container(
                           color: Colors.transparent,
                           height: MediaQuery.of(context).size.height * 0.3,

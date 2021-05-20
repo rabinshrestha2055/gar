@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:garjoo/models/similar.dart';
+import 'package:garjoo/widget/addToCart.dart';
 import 'package:provider/provider.dart';
 
 import '../../../colors.dart';
@@ -35,8 +37,8 @@ class _ViewFeatureListState extends State<ViewFeatureList> {
                       return Container();
                     } else if (snapshot.connectionState ==
                         ConnectionState.done) {
-                      var response =
-                          snapshot.data as List<FeaturedProductModel>;
+                      var response = snapshot.data as List<Item>;
+                      ProductModel.items = response;
                       return ListView.builder(
                         shrinkWrap: true,
                         physics: ScrollPhysics(
@@ -56,7 +58,8 @@ class _ViewFeatureListState extends State<ViewFeatureList> {
                                       MaterialPageRoute(
                                           builder: (_) => Navigate(
                                                 title: response[index].title,
-                                                image: response[index].image,
+                                                image:
+                                                    response[index].thumbnail,
                                                 slug: response[index].slug,
                                                 price: response[index].price,
                                                 rating: response[index].rating,
@@ -66,7 +69,7 @@ class _ViewFeatureListState extends State<ViewFeatureList> {
                                   },
                                   child: Image.network(
                                     "https://api.garjoo.com" +
-                                        response[index].image,
+                                        response[index].thumbnail,
                                     height: 120,
                                     width: 140,
                                   ),
@@ -104,7 +107,9 @@ class _ViewFeatureListState extends State<ViewFeatureList> {
                                         color: white,
                                       ),
                                       Text(
-                                        response[index].rating,
+                                        response[index].rating == null
+                                            ? "N/A"
+                                            : response[index].rating.toString(),
                                         style: TextStyle(color: white),
                                       )
                                     ]),
@@ -112,37 +117,9 @@ class _ViewFeatureListState extends State<ViewFeatureList> {
                                   SizedBox(
                                     height: 5,
                                   ),
-                                  InkWell(
-                                    onTap: () {
-                                      widget.valueSetter(response[index]);
-                                    },
-                                    child: Container(
-                                      height: 22,
-                                      width: 88,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                          border:
-                                              Border.all(color: Colors.amber)),
-                                      child: Row(
-                                        children: [
-                                          SizedBox(width: 5),
-                                          Icon(Icons.shopping_cart,
-                                              size: 13, color: orange),
-                                          SizedBox(width: 5),
-                                          Center(
-                                            child: Text(
-                                              "Add to cart",
-                                              style: TextStyle(
-                                                  color: orange,
-                                                  fontSize: 11,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
+                                  AddToCart(
+                                    product: ProductModel.items[index],
+                                  )
                                 ],
                               ),
                             ],

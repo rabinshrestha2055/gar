@@ -1,6 +1,7 @@
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:garjoo/core.dart';
+import 'package:garjoo/models/similar.dart';
 import 'package:provider/provider.dart';
 
 class ClassifiedAds extends StatelessWidget {
@@ -20,7 +21,7 @@ class ClassifiedAds extends StatelessWidget {
                   if (snapshot.hasError) {
                     return Center(child: CircularProgressIndicator());
                   } else if (snapshot.connectionState == ConnectionState.done) {
-                    var response = snapshot.data as List<AdsModel>;
+                    var response = snapshot.data as List<Item>;
 
                     return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,

@@ -9,8 +9,7 @@ class StoreTopModel {
   final String website;
 
   StoreTopModel(
-      {
-      this.name,
+      {this.name,
       this.slug,
       this.address,
       this.profile,
@@ -29,7 +28,7 @@ class StoreTopModel {
 
 List<StoreTopModel> storeTopModelFromJson(String strJson) {
   final str = json.decode(strJson);
-  
+
   return List<StoreTopModel>.from(str.map((item) {
     return StoreTopModel.fromJson(item);
   }));

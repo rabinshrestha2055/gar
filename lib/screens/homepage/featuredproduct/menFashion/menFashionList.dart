@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:garjoo/models/similar.dart';
+import 'package:garjoo/widget/addToCart.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../core.dart';
@@ -35,7 +37,8 @@ class _MenFashionListState extends State<MenFashionList> {
                       return Container();
                     } else if (snapshot.connectionState ==
                         ConnectionState.done) {
-                      var response = snapshot.data as List<MenFashionModel>;
+                      ProductModel.items = snapshot.data as List<Item>;
+                      var response = ProductModel.items;
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -67,7 +70,7 @@ class _MenFashionListState extends State<MenFashionList> {
                                                           title: response[index]
                                                               .title,
                                                           image: response[index]
-                                                              .image,
+                                                              .thumbnail,
                                                           slug: response[index]
                                                               .slug,
                                                           price: response[index]
@@ -82,7 +85,7 @@ class _MenFashionListState extends State<MenFashionList> {
                                             },
                                             child: Image.network(
                                                 "https://api.garjoo.com" +
-                                                    response[index].image,
+                                                    response[index].thumbnail,
                                                 width: 99,
                                                 height: 120),
                                           ),
@@ -140,7 +143,8 @@ class _MenFashionListState extends State<MenFashionList> {
                                                           ),
                                                           Text(
                                                             response[index]
-                                                                .rating,
+                                                                .rating
+                                                                .toString(),
                                                             style: TextStyle(
                                                                 color: white),
                                                           )
@@ -149,51 +153,10 @@ class _MenFashionListState extends State<MenFashionList> {
                                                       SizedBox(
                                                         height: 5,
                                                       ),
-                                                      InkWell(
-                                                        onTap: () {
-                                                          widget.valueSetter(
-                                                              response[index]);
-                                                        },
-                                                        child: Container(
-                                                          height: 22,
-                                                          width: 92,
-                                                          decoration: BoxDecoration(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          5),
-                                                              border: Border.all(
-                                                                  color: Colors
-                                                                      .amber)),
-                                                          child: Row(
-                                                            children: [
-                                                              SizedBox(
-                                                                  width: 5),
-                                                              Icon(
-                                                                  Icons
-                                                                      .shopping_cart,
-                                                                  size: 13,
-                                                                  color:
-                                                                      orange),
-                                                              SizedBox(
-                                                                  width: 5),
-                                                              Center(
-                                                                child: Text(
-                                                                  "Add to cart",
-                                                                  style: TextStyle(
-                                                                      color:
-                                                                          orange,
-                                                                      fontSize:
-                                                                          13,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold),
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ),
+                                                      AddToCart(
+                                                        product: ProductModel
+                                                            .items[index],
+                                                      )
                                                     ],
                                                   ),
                                                 ),

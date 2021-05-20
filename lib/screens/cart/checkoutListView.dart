@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:garjoo/models/loginUser.dart';
+import 'package:garjoo/screens/cart/payment.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
 import '../../core.dart';
@@ -7,12 +8,13 @@ import '../../core.dart';
 class CheckOutListView extends StatelessWidget {
   final userName;
   final email;
+  final cart;
   final sum;
   UserDetailsProvider user = UserDetailsProvider();
   TextEditingController _controller = TextEditingController();
 
   var confirmpassword, cname, cemail, cphone, fname, lname, ctycode;
-  CheckOutListView({Key key, this.userName, this.email, this.sum})
+  CheckOutListView({Key key, this.userName, this.email, this.sum, this.cart})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -314,8 +316,13 @@ class CheckOutListView extends StatelessWidget {
                 email != null
                     ? InkWell(
                         onTap: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (_) => Order()));
+                          return showDialog(
+                            context: context,
+                            builder: (ctx) => PaymentGateway(
+                              cart: cart,
+                              sum: sum,
+                            ),
+                          );
                         },
                         child: Container(
                             height: 40,

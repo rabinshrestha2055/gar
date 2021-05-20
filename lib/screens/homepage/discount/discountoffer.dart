@@ -1,24 +1,16 @@
 import 'package:flutter/material.dart';
 
 import 'package:garjoo/core.dart';
+import 'package:garjoo/models/similar.dart';
 import 'package:garjoo/screens/homepage/discount/viewDiscount.dart';
+import 'package:garjoo/widget/addToCart.dart';
 
 import '../../../core.dart';
 
 class DiscountOffers extends StatefulWidget {
-  final ValueSetter<dynamic> valueSetter;
-  var cart;
-  int sum;
   var email;
   var userName;
-  DiscountOffers(
-      {Key key,
-      this.valueSetter,
-      this.cart,
-      this.sum,
-      this.email,
-      this.userName})
-      : super(key: key);
+  DiscountOffers({Key key, this.email, this.userName}) : super(key: key);
   @override
   DiscountOffersState createState() => DiscountOffersState();
 }
@@ -39,8 +31,8 @@ class DiscountOffersState extends State<DiscountOffers> {
           if (snapshot.hasError) {
             return Center(child: CircularProgressIndicator());
           } else if (snapshot.connectionState == ConnectionState.done) {
-            var response = snapshot.data as List<DiscountModel>;
-
+            ProductModel.items = snapshot.data as List<Item>;
+            var response = ProductModel.items;
             return Column(
               children: [
                 Padding(
@@ -59,8 +51,6 @@ class DiscountOffersState extends State<DiscountOffers> {
                             context,
                             MaterialPageRoute(
                                 builder: (_) => ViewDiscount(
-                                      cart: widget.cart,
-                                      sum: widget.sum,
                                       userName: widget.userName,
                                       email: widget.email,
                                     )),
@@ -98,10 +88,10 @@ class DiscountOffersState extends State<DiscountOffers> {
                                   MaterialPageRoute(
                                       builder: (_) => Navigate(
                                             title: response[index].title,
-                                            image: response[index].image,
+                                            image: response[index].thumbnail,
                                             slug: response[index].slug,
                                             price: response[index].price,
-                                            rating: response[index].rating,
+                                            rating: response[index].rate,
                                             storetitle: 'Discount And Offers',
                                           )));
                             },
@@ -119,7 +109,7 @@ class DiscountOffersState extends State<DiscountOffers> {
                                             child: Stack(children: [
                                               Image.network(
                                                   AppURl.path +
-                                                      response[index].image,
+                                                      response[index].thumbnail,
                                                   width: 103,
                                                   height: 120),
                                               Positioned(
@@ -142,8 +132,9 @@ class DiscountOffersState extends State<DiscountOffers> {
                                                         child: Text(
                                                           "Save " +
                                                               response[index]
-                                                                  .discount
-                                                                  .toString(),
+                                                                  .rate
+                                                                  .toString() +
+                                                              "%",
                                                           style: TextStyle(
                                                               color:
                                                                   Colors.white,
@@ -163,73 +154,11 @@ class DiscountOffersState extends State<DiscountOffers> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.start,
                                             children: [
-                                              InkWell(
-                                                onTap: () {
-                                                  widget.valueSetter(
-                                                      response[index]);
-                                                },
-                                                child: Container(
-                                                  height: 20,
-                                                  width: 65,
-                                                  decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              5),
-                                                      border: Border.all(
-                                                          color: Colors.amber)),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.start,
-                                                    children: [
-                                                      SizedBox(width: 1),
-                                                      Icon(Icons.shopping_cart,
-                                                          size: 10,
-                                                          color: orange),
-                                                      Center(
-                                                        child: Text(
-                                                          "Add to cart",
-                                                          style: TextStyle(
-                                                              color: orange,
-                                                              fontSize: 9,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold),
-                                                        ),
-                                                      ),
-                                                      SizedBox(width: 1),
-                                                    ],
-                                                  ),
-                                                ),
+                                              AddToCart(
+                                                product:
+                                                    ProductModel.items[index],
                                               ),
                                               SizedBox(width: 2),
-                                              Card(
-                                                  shape: RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              20)),
-                                                  color: Colors.red,
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 3, right: 3),
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Text(
-                                                          response[index]
-                                                                  .rating
-                                                                  .toString() +
-                                                              '%',
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.white,
-                                                              fontSize: 8),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ))
                                             ],
                                           ),
                                         ),

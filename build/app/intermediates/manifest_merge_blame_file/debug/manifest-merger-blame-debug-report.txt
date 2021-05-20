@@ -12,82 +12,82 @@
 12         to allow setting breakpoints, to provide hot reload, etc.
 13    -->
 14    <uses-permission android:name="android.permission.INTERNET" />
-14-->/home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:19:5-66
-14-->/home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:19:22-64
+14-->/home/codeish/Documents/office-work/Testing/gar/android/app/src/main/AndroidManifest.xml:19:5-66
+14-->/home/codeish/Documents/office-work/Testing/gar/android/app/src/main/AndroidManifest.xml:19:22-64
 15    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-15-->/home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:4:6-81
-15-->/home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:4:23-78
+15-->/home/codeish/Documents/office-work/Testing/gar/android/app/src/main/AndroidManifest.xml:4:6-81
+15-->/home/codeish/Documents/office-work/Testing/gar/android/app/src/main/AndroidManifest.xml:4:23-78
 16
 17    <queries>
-17-->/home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:5:7-10:17
+17-->/home/codeish/Documents/office-work/Testing/gar/android/app/src/main/AndroidManifest.xml:5:7-10:17
 18        <intent>
-18-->/home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:6:8-9:17
+18-->/home/codeish/Documents/office-work/Testing/gar/android/app/src/main/AndroidManifest.xml:6:8-9:17
 19            <action android:name="android.intent.action.GET_CONTENT" />
-19-->/home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:7:9-68
-19-->/home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:7:17-65
+19-->/home/codeish/Documents/office-work/Testing/gar/android/app/src/main/AndroidManifest.xml:7:9-68
+19-->/home/codeish/Documents/office-work/Testing/gar/android/app/src/main/AndroidManifest.xml:7:17-65
 20
 21            <data android:mimeType="*/*" />
-21-->/home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:8:9-39
-21-->/home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:8:15-37
+21-->/home/codeish/Documents/office-work/Testing/gar/android/app/src/main/AndroidManifest.xml:8:9-39
+21-->/home/codeish/Documents/office-work/Testing/gar/android/app/src/main/AndroidManifest.xml:8:15-37
 22        </intent>
 23        <intent>
-23-->/home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:6:8-9:17
+23-->/home/codeish/Documents/office-work/Testing/gar/android/app/src/main/AndroidManifest.xml:6:8-9:17
 24            <action android:name="android.intent.action.GET_CONTENT" />
-24-->/home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:7:9-68
-24-->/home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:7:17-65
+24-->/home/codeish/Documents/office-work/Testing/gar/android/app/src/main/AndroidManifest.xml:7:9-68
+24-->/home/codeish/Documents/office-work/Testing/gar/android/app/src/main/AndroidManifest.xml:7:17-65
 25
 26            <data android:mimeType="*/*" />
-26-->/home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:8:9-39
-26-->/home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:8:15-37
+26-->/home/codeish/Documents/office-work/Testing/gar/android/app/src/main/AndroidManifest.xml:8:9-39
+26-->/home/codeish/Documents/office-work/Testing/gar/android/app/src/main/AndroidManifest.xml:8:15-37
 27        </intent>
 28    </queries>
 29
 30    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-30-->/home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:20:5-80
-30-->/home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:20:22-78
+30-->/home/codeish/Documents/office-work/Testing/gar/android/app/src/main/AndroidManifest.xml:20:5-80
+30-->/home/codeish/Documents/office-work/Testing/gar/android/app/src/main/AndroidManifest.xml:20:22-78
 31    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
-31-->[:open_file] /home/codeish/Documents/office-work/gar/build/open_file/intermediates/library_manifest/debug/AndroidManifest.xml:8:5-83
-31-->[:open_file] /home/codeish/Documents/office-work/gar/build/open_file/intermediates/library_manifest/debug/AndroidManifest.xml:8:22-80
+31-->[:open_file] /home/codeish/Documents/office-work/Testing/gar/build/open_file/intermediates/library_manifest/debug/AndroidManifest.xml:8:5-83
+31-->[:open_file] /home/codeish/Documents/office-work/Testing/gar/build/open_file/intermediates/library_manifest/debug/AndroidManifest.xml:8:22-80
 32    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-32-->[:flutter_local_notifications] /home/codeish/Documents/office-work/gar/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-81
-32-->[:flutter_local_notifications] /home/codeish/Documents/office-work/gar/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:7:22-78
+32-->[:flutter_local_notifications] /home/codeish/Documents/office-work/Testing/gar/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-81
+32-->[:flutter_local_notifications] /home/codeish/Documents/office-work/Testing/gar/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:7:22-78
 33    <uses-permission android:name="android.permission.VIBRATE" />
-33-->[:flutter_local_notifications] /home/codeish/Documents/office-work/gar/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:8:5-66
-33-->[:flutter_local_notifications] /home/codeish/Documents/office-work/gar/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:8:22-63
+33-->[:flutter_local_notifications] /home/codeish/Documents/office-work/Testing/gar/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:8:5-66
+33-->[:flutter_local_notifications] /home/codeish/Documents/office-work/Testing/gar/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:8:22-63
 34    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
-34-->[:flutter_local_notifications] /home/codeish/Documents/office-work/gar/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:9:5-81
-34-->[:flutter_local_notifications] /home/codeish/Documents/office-work/gar/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:9:22-78
+34-->[:flutter_local_notifications] /home/codeish/Documents/office-work/Testing/gar/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:9:5-81
+34-->[:flutter_local_notifications] /home/codeish/Documents/office-work/Testing/gar/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:9:22-78
 35    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 35-->[com.google.android.exoplayer:exoplayer-core:2.13.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/f927724b56c093e8c8c7e1008908ab2b/jetified-exoplayer-core-2.13.1/AndroidManifest.xml:24:5-79
 35-->[com.google.android.exoplayer:exoplayer-core:2.13.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/f927724b56c093e8c8c7e1008908ab2b/jetified-exoplayer-core-2.13.1/AndroidManifest.xml:24:22-76
 36
 37    <application
-37-->/home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:21:5-59:19
+37-->/home/codeish/Documents/office-work/Testing/gar/android/app/src/main/AndroidManifest.xml:21:5-59:19
 38        android:name="io.flutter.app.FlutterApplication"
-38-->/home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:22:9-57
+38-->/home/codeish/Documents/office-work/Testing/gar/android/app/src/main/AndroidManifest.xml:22:9-57
 39        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 39-->[androidx.core:core:1.3.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/927c034b9dd49f5174e8cb8e412b1c82/core-1.3.1/AndroidManifest.xml:24:18-86
 40        android:debuggable="true"
 41        android:icon="@mipmap/ic_launcher"
-41-->/home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:24:9-43
+41-->/home/codeish/Documents/office-work/Testing/gar/android/app/src/main/AndroidManifest.xml:24:9-43
 42        android:label="garjoo"
-42-->/home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:23:9-31
+42-->/home/codeish/Documents/office-work/Testing/gar/android/app/src/main/AndroidManifest.xml:23:9-31
 43        android:requestLegacyExternalStorage="true" >
-43-->[:open_file] /home/codeish/Documents/office-work/gar/build/open_file/intermediates/library_manifest/debug/AndroidManifest.xml:11:18-61
+43-->[:open_file] /home/codeish/Documents/office-work/Testing/gar/build/open_file/intermediates/library_manifest/debug/AndroidManifest.xml:11:18-61
 44        <activity
-44-->/home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:25:9-53:20
+44-->/home/codeish/Documents/office-work/Testing/gar/android/app/src/main/AndroidManifest.xml:25:9-53:20
 45            android:name="com.example.garjoo.MainActivity"
-45-->/home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:26:13-41
+45-->/home/codeish/Documents/office-work/Testing/gar/android/app/src/main/AndroidManifest.xml:26:13-41
 46            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
-46-->/home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:29:13-163
+46-->/home/codeish/Documents/office-work/Testing/gar/android/app/src/main/AndroidManifest.xml:29:13-163
 47            android:hardwareAccelerated="true"
-47-->/home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:30:13-47
+47-->/home/codeish/Documents/office-work/Testing/gar/android/app/src/main/AndroidManifest.xml:30:13-47
 48            android:launchMode="singleTop"
-48-->/home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:27:13-43
+48-->/home/codeish/Documents/office-work/Testing/gar/android/app/src/main/AndroidManifest.xml:27:13-43
 49            android:theme="@style/LaunchTheme"
-49-->/home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:28:13-47
+49-->/home/codeish/Documents/office-work/Testing/gar/android/app/src/main/AndroidManifest.xml:28:13-47
 50            android:windowSoftInputMode="adjustResize" >
-50-->/home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:31:13-55
+50-->/home/codeish/Documents/office-work/Testing/gar/android/app/src/main/AndroidManifest.xml:31:13-55
 51
 52            <!--
 53                 Specifies an Android theme to apply to this Activity as soon as
@@ -96,11 +96,11 @@
 56                 to determine the Window background behind the Flutter UI.
 57            -->
 58            <meta-data
-58-->/home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:36:13-39:17
+58-->/home/codeish/Documents/office-work/Testing/gar/android/app/src/main/AndroidManifest.xml:36:13-39:17
 59                android:name="io.flutter.embedding.android.NormalTheme"
-59-->/home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:37:15-70
+59-->/home/codeish/Documents/office-work/Testing/gar/android/app/src/main/AndroidManifest.xml:37:15-70
 60                android:resource="@style/NormalTheme" />
-60-->/home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:38:15-52
+60-->/home/codeish/Documents/office-work/Testing/gar/android/app/src/main/AndroidManifest.xml:38:15-52
 61            <!--
 62                 Displays an Android View that continues showing the launch screen
 63                 Drawable until Flutter paints its first frame, then this splash
@@ -109,21 +109,21 @@
 66                 Flutter's first frame.
 67            -->
 68            <meta-data
-68-->/home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:45:13-48:17
+68-->/home/codeish/Documents/office-work/Testing/gar/android/app/src/main/AndroidManifest.xml:45:13-48:17
 69                android:name="io.flutter.embedding.android.SplashScreenDrawable"
-69-->/home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:46:15-79
+69-->/home/codeish/Documents/office-work/Testing/gar/android/app/src/main/AndroidManifest.xml:46:15-79
 70                android:resource="@drawable/launch_background" />
-70-->/home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:47:15-61
+70-->/home/codeish/Documents/office-work/Testing/gar/android/app/src/main/AndroidManifest.xml:47:15-61
 71
 72            <intent-filter>
-72-->/home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:49:13-52:29
+72-->/home/codeish/Documents/office-work/Testing/gar/android/app/src/main/AndroidManifest.xml:49:13-52:29
 73                <action android:name="android.intent.action.MAIN" />
-73-->/home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:50:17-68
-73-->/home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:50:25-66
+73-->/home/codeish/Documents/office-work/Testing/gar/android/app/src/main/AndroidManifest.xml:50:17-68
+73-->/home/codeish/Documents/office-work/Testing/gar/android/app/src/main/AndroidManifest.xml:50:25-66
 74
 75                <category android:name="android.intent.category.LAUNCHER" />
-75-->/home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:51:17-76
-75-->/home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:51:27-74
+75-->/home/codeish/Documents/office-work/Testing/gar/android/app/src/main/AndroidManifest.xml:51:17-76
+75-->/home/codeish/Documents/office-work/Testing/gar/android/app/src/main/AndroidManifest.xml:51:27-74
 76            </intent-filter>
 77        </activity>
 78        <!--
@@ -131,78 +131,78 @@
 80             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
 81        -->
 82        <meta-data
-82-->/home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:56:9-58:33
+82-->/home/codeish/Documents/office-work/Testing/gar/android/app/src/main/AndroidManifest.xml:56:9-58:33
 83            android:name="flutterEmbedding"
-83-->/home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:57:13-44
+83-->/home/codeish/Documents/office-work/Testing/gar/android/app/src/main/AndroidManifest.xml:57:13-44
 84            android:value="2" />
-84-->/home/codeish/Documents/office-work/gar/android/app/src/main/AndroidManifest.xml:58:13-30
+84-->/home/codeish/Documents/office-work/Testing/gar/android/app/src/main/AndroidManifest.xml:58:13-30
 85
 86        <provider
-86-->[:open_file] /home/codeish/Documents/office-work/gar/build/open_file/intermediates/library_manifest/debug/AndroidManifest.xml:12:9-21:20
+86-->[:open_file] /home/codeish/Documents/office-work/Testing/gar/build/open_file/intermediates/library_manifest/debug/AndroidManifest.xml:12:9-21:20
 87            android:name="com.crazecoder.openfile.FileProvider"
-87-->[:open_file] /home/codeish/Documents/office-work/gar/build/open_file/intermediates/library_manifest/debug/AndroidManifest.xml:13:13-64
+87-->[:open_file] /home/codeish/Documents/office-work/Testing/gar/build/open_file/intermediates/library_manifest/debug/AndroidManifest.xml:13:13-64
 88            android:authorities="com.example.garjoo.fileProvider.com.crazecoder.openfile"
-88-->[:open_file] /home/codeish/Documents/office-work/gar/build/open_file/intermediates/library_manifest/debug/AndroidManifest.xml:14:13-88
+88-->[:open_file] /home/codeish/Documents/office-work/Testing/gar/build/open_file/intermediates/library_manifest/debug/AndroidManifest.xml:14:13-88
 89            android:exported="false"
-89-->[:open_file] /home/codeish/Documents/office-work/gar/build/open_file/intermediates/library_manifest/debug/AndroidManifest.xml:15:13-37
+89-->[:open_file] /home/codeish/Documents/office-work/Testing/gar/build/open_file/intermediates/library_manifest/debug/AndroidManifest.xml:15:13-37
 90            android:grantUriPermissions="true" >
-90-->[:open_file] /home/codeish/Documents/office-work/gar/build/open_file/intermediates/library_manifest/debug/AndroidManifest.xml:16:13-47
+90-->[:open_file] /home/codeish/Documents/office-work/Testing/gar/build/open_file/intermediates/library_manifest/debug/AndroidManifest.xml:16:13-47
 91            <meta-data
-91-->[:open_file] /home/codeish/Documents/office-work/gar/build/open_file/intermediates/library_manifest/debug/AndroidManifest.xml:18:13-20:53
+91-->[:open_file] /home/codeish/Documents/office-work/Testing/gar/build/open_file/intermediates/library_manifest/debug/AndroidManifest.xml:18:13-20:53
 92                android:name="android.support.FILE_PROVIDER_PATHS"
-92-->[:open_file] /home/codeish/Documents/office-work/gar/build/open_file/intermediates/library_manifest/debug/AndroidManifest.xml:19:17-67
+92-->[:open_file] /home/codeish/Documents/office-work/Testing/gar/build/open_file/intermediates/library_manifest/debug/AndroidManifest.xml:19:17-67
 93                android:resource="@xml/filepaths" />
-93-->[:open_file] /home/codeish/Documents/office-work/gar/build/open_file/intermediates/library_manifest/debug/AndroidManifest.xml:20:17-50
+93-->[:open_file] /home/codeish/Documents/office-work/Testing/gar/build/open_file/intermediates/library_manifest/debug/AndroidManifest.xml:20:17-50
 94        </provider>
 95
 96        <activity
-96-->[:url_launcher] /home/codeish/Documents/office-work/gar/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:8:9-11:74
+96-->[:url_launcher] /home/codeish/Documents/office-work/Testing/gar/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:8:9-11:74
 97            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
-97-->[:url_launcher] /home/codeish/Documents/office-work/gar/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-74
+97-->[:url_launcher] /home/codeish/Documents/office-work/Testing/gar/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-74
 98            android:exported="false"
-98-->[:url_launcher] /home/codeish/Documents/office-work/gar/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:10:13-37
+98-->[:url_launcher] /home/codeish/Documents/office-work/Testing/gar/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:10:13-37
 99            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-99-->[:url_launcher] /home/codeish/Documents/office-work/gar/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:11:13-71
+99-->[:url_launcher] /home/codeish/Documents/office-work/Testing/gar/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:11:13-71
 100
 101        <receiver android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver" />
-101-->[:flutter_local_notifications] /home/codeish/Documents/office-work/gar/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:12:9-106
-101-->[:flutter_local_notifications] /home/codeish/Documents/office-work/gar/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:12:19-103
+101-->[:flutter_local_notifications] /home/codeish/Documents/office-work/Testing/gar/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:12:9-106
+101-->[:flutter_local_notifications] /home/codeish/Documents/office-work/Testing/gar/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:12:19-103
 102        <receiver android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver" >
-102-->[:flutter_local_notifications] /home/codeish/Documents/office-work/gar/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:13:9-20:20
-102-->[:flutter_local_notifications] /home/codeish/Documents/office-work/gar/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:13:19-107
+102-->[:flutter_local_notifications] /home/codeish/Documents/office-work/Testing/gar/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:13:9-20:20
+102-->[:flutter_local_notifications] /home/codeish/Documents/office-work/Testing/gar/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:13:19-107
 103            <intent-filter>
-103-->[:flutter_local_notifications] /home/codeish/Documents/office-work/gar/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:14:13-19:29
+103-->[:flutter_local_notifications] /home/codeish/Documents/office-work/Testing/gar/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:14:13-19:29
 104                <action android:name="android.intent.action.BOOT_COMPLETED" />
-104-->[:flutter_local_notifications] /home/codeish/Documents/office-work/gar/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:15:17-79
-104-->[:flutter_local_notifications] /home/codeish/Documents/office-work/gar/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:15:25-76
+104-->[:flutter_local_notifications] /home/codeish/Documents/office-work/Testing/gar/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:15:17-79
+104-->[:flutter_local_notifications] /home/codeish/Documents/office-work/Testing/gar/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:15:25-76
 105                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
-105-->[:flutter_local_notifications] /home/codeish/Documents/office-work/gar/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:16:17-84
-105-->[:flutter_local_notifications] /home/codeish/Documents/office-work/gar/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:16:25-81
+105-->[:flutter_local_notifications] /home/codeish/Documents/office-work/Testing/gar/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:16:17-84
+105-->[:flutter_local_notifications] /home/codeish/Documents/office-work/Testing/gar/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:16:25-81
 106                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
-106-->[:flutter_local_notifications] /home/codeish/Documents/office-work/gar/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:17:17-82
-106-->[:flutter_local_notifications] /home/codeish/Documents/office-work/gar/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:17:25-79
+106-->[:flutter_local_notifications] /home/codeish/Documents/office-work/Testing/gar/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:17:17-82
+106-->[:flutter_local_notifications] /home/codeish/Documents/office-work/Testing/gar/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:17:25-79
 107                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON" />
-107-->[:flutter_local_notifications] /home/codeish/Documents/office-work/gar/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:18:17-82
-107-->[:flutter_local_notifications] /home/codeish/Documents/office-work/gar/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:18:25-79
+107-->[:flutter_local_notifications] /home/codeish/Documents/office-work/Testing/gar/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:18:17-82
+107-->[:flutter_local_notifications] /home/codeish/Documents/office-work/Testing/gar/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:18:25-79
 108            </intent-filter>
 109        </receiver>
 110
 111        <provider
-111-->[:share] /home/codeish/Documents/office-work/gar/build/share/intermediates/library_manifest/debug/AndroidManifest.xml:8:9-16:20
+111-->[:share] /home/codeish/Documents/office-work/Testing/gar/build/share/intermediates/library_manifest/debug/AndroidManifest.xml:8:9-16:20
 112            android:name="io.flutter.plugins.share.ShareFileProvider"
-112-->[:share] /home/codeish/Documents/office-work/gar/build/share/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-70
+112-->[:share] /home/codeish/Documents/office-work/Testing/gar/build/share/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-70
 113            android:authorities="com.example.garjoo.flutter.share_provider"
-113-->[:share] /home/codeish/Documents/office-work/gar/build/share/intermediates/library_manifest/debug/AndroidManifest.xml:10:13-74
+113-->[:share] /home/codeish/Documents/office-work/Testing/gar/build/share/intermediates/library_manifest/debug/AndroidManifest.xml:10:13-74
 114            android:exported="false"
-114-->[:share] /home/codeish/Documents/office-work/gar/build/share/intermediates/library_manifest/debug/AndroidManifest.xml:11:13-37
+114-->[:share] /home/codeish/Documents/office-work/Testing/gar/build/share/intermediates/library_manifest/debug/AndroidManifest.xml:11:13-37
 115            android:grantUriPermissions="true" >
-115-->[:share] /home/codeish/Documents/office-work/gar/build/share/intermediates/library_manifest/debug/AndroidManifest.xml:12:13-47
+115-->[:share] /home/codeish/Documents/office-work/Testing/gar/build/share/intermediates/library_manifest/debug/AndroidManifest.xml:12:13-47
 116            <meta-data
-116-->[:open_file] /home/codeish/Documents/office-work/gar/build/open_file/intermediates/library_manifest/debug/AndroidManifest.xml:18:13-20:53
+116-->[:open_file] /home/codeish/Documents/office-work/Testing/gar/build/open_file/intermediates/library_manifest/debug/AndroidManifest.xml:18:13-20:53
 117                android:name="android.support.FILE_PROVIDER_PATHS"
-117-->[:open_file] /home/codeish/Documents/office-work/gar/build/open_file/intermediates/library_manifest/debug/AndroidManifest.xml:19:17-67
+117-->[:open_file] /home/codeish/Documents/office-work/Testing/gar/build/open_file/intermediates/library_manifest/debug/AndroidManifest.xml:19:17-67
 118                android:resource="@xml/flutter_share_file_paths" />
-118-->[:open_file] /home/codeish/Documents/office-work/gar/build/open_file/intermediates/library_manifest/debug/AndroidManifest.xml:20:17-50
+118-->[:open_file] /home/codeish/Documents/office-work/Testing/gar/build/open_file/intermediates/library_manifest/debug/AndroidManifest.xml:20:17-50
 119        </provider>
 120    </application>
 121

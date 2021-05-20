@@ -2,14 +2,12 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:garjoo/core.dart';
-import 'package:garjoo/widget/customAppBAr.dart';
+import 'package:garjoo/models/similar.dart';
+import 'package:garjoo/widget/customAppBar.dart';
 
-import '../core.dart';
 import '../core.dart';
 
 class Home extends StatefulWidget {
-  List<dynamic> cart = [];
-  int sum = 0;
   final int id;
   final String title;
   final String email;
@@ -22,6 +20,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   Future myMarket;
+
   UserDetailsProvider user = UserDetailsProvider();
   @override
   void initState() {
@@ -44,7 +43,7 @@ class _HomeState extends State<Home> {
                       child: CircularProgressIndicator(),
                     );
                   } else if (snapshot.connectionState == ConnectionState.done) {
-                    var response = snapshot.data as List<MarketModel>;
+                    var response = snapshot.data as List<Item>;
 
                     return ListView.builder(
                       itemCount: response.length,
@@ -94,11 +93,7 @@ class _HomeState extends State<Home> {
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       appBar: customAppBar(
-          cart: widget.cart,
-          sum: widget.sum,
-          context: context,
-          email: widget.email,
-          userName: widget.userName),
+          context: context, email: widget.email, userName: widget.userName),
       body: ListView(
         shrinkWrap: true,
         children: [
@@ -119,34 +114,12 @@ class _HomeState extends State<Home> {
               id: widget.id,
               email: widget.email,
               userName: widget.userName,
-              valueSetter: (selectedProduct) {
-                setState(() {
-                  widget.cart.add(selectedProduct);
-                  widget.sum = 0;
-                  widget.cart.forEach((element) {
-                    widget.sum = widget.sum + element.price;
-                  });
-                });
-              },
-              cart: widget.cart,
-              sum: widget.sum,
             ),
             SizedBox(height: 15),
 
             //Discount
 
             DiscountOffers(
-              valueSetter: (selectedProduct) {
-                setState(() {
-                  widget.cart.add(selectedProduct);
-                  widget.sum = 0;
-                  widget.cart.forEach((element) {
-                    widget.sum = widget.sum + element.price;
-                  });
-                });
-              },
-              cart: widget.cart,
-              sum: widget.sum,
               email: widget.email,
               userName: widget.userName,
             ),
@@ -163,17 +136,6 @@ class _HomeState extends State<Home> {
 
             //Featured Product
             FeaturedProduct(
-              valueSetter: (selectedProduct) {
-                setState(() {
-                  widget.cart.add(selectedProduct);
-                  widget.sum = 0;
-                  widget.cart.forEach((element) {
-                    widget.sum = widget.sum + element.price;
-                  });
-                });
-              },
-              cart: widget.cart,
-              sum: widget.sum,
               email: widget.email,
               userName: widget.userName,
             ),

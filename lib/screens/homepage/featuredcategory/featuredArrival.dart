@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:garjoo/core.dart';
+import 'package:garjoo/models/similar.dart';
 import 'package:provider/provider.dart';
 
 class FeaturedCatArrival extends StatelessWidget {
@@ -14,12 +15,12 @@ class FeaturedCatArrival extends StatelessWidget {
         create: (context) => UserDetailsProvider(),
         child: Consumer<UserDetailsProvider>(
           builder: (context, value, child) => FutureBuilder(
-            future: value.getQuickLink(slug: slug),
+            future: value.getQuickLink1(slug: slug),
             builder: (context, snapshot) {
               if (snapshot.hasError) {
                 return Container();
               } else if (snapshot.connectionState == ConnectionState.done) {
-                var response = snapshot.data as List<QuickLinkModel>;
+                var response = snapshot.data as List<Item>;
 
                 return response[0].slug != 'garjoo not available'
                     ? Column(
@@ -48,8 +49,8 @@ class FeaturedCatArrival extends StatelessWidget {
                                                 builder: (_) => Navigate(
                                                       title:
                                                           response[index].title,
-                                                      image:
-                                                          response[index].image,
+                                                      image: response[index]
+                                                          .thumbnail,
                                                       slug:
                                                           response[index].slug,
                                                       price:
@@ -76,7 +77,7 @@ class FeaturedCatArrival extends StatelessWidget {
                                                                 left: 8,
                                                                 right: 8),
                                                         child: response[index]
-                                                                    .image ==
+                                                                    .thumbnail ==
                                                                 null
                                                             ? Image.asset(
                                                                 'asset/garjoologo.png',
@@ -87,7 +88,7 @@ class FeaturedCatArrival extends StatelessWidget {
                                                                 "https://api.garjoo.com" +
                                                                     response[
                                                                             index]
-                                                                        .image,
+                                                                        .thumbnail,
                                                                 width: 110,
                                                                 height: 120)),
                                                     Container(

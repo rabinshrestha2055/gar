@@ -1,27 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:garjoo/core.dart';
+import 'package:garjoo/models/similar.dart';
 import 'package:garjoo/screens/homepage/newArrival/arrivalView.dart';
+import 'package:garjoo/widget/addToCart.dart';
 
-import '../../../core.dart';
 import '../../../core.dart';
 
 class Arrival extends StatefulWidget {
-  final ValueSetter<dynamic> valueSetter;
-  var cart;
-  int sum;
   String email;
   final int id;
   var userName;
-  Arrival(
-      {Key key,
-      this.id,
-      this.valueSetter,
-      this.cart,
-      this.sum,
-      this.email,
-      this.userName})
-      : super(key: key);
+  Arrival({Key key, this.id, this.email, this.userName}) : super(key: key);
 
   @override
   _ArrivalState createState() => _ArrivalState();
@@ -45,7 +35,8 @@ class _ArrivalState extends State<Arrival> {
               child: CircularProgressIndicator(),
             );
           } else if (snapshot.connectionState == ConnectionState.done) {
-            var response = snapshot.data as List<ArrivalModel>;
+            ProductModel.items = snapshot.data as List<Item>;
+            var response = ProductModel.items.cast();
 
             return Column(
               children: [
@@ -64,8 +55,6 @@ class _ArrivalState extends State<Arrival> {
                           Navigator.push(context, MaterialPageRoute(
                             builder: (context) {
                               return ViewArrival(
-                                cart: widget.cart,
-                                sum: widget.sum,
                                 email: widget.email,
                                 userName: widget.userName,
                               );
@@ -97,109 +86,79 @@ class _ArrivalState extends State<Arrival> {
                       physics:
                           ScrollPhysics(parent: NeverScrollableScrollPhysics()),
                       itemCount: 6,
-                      itemBuilder: (context, index) => InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (_) => Navigate(
-                                          productId: response[index].id,
-                                          id: widget.id,
-                                          email: widget.email,
-                                          title: response[index].title,
-                                          image: response[index].image,
-                                          slug: response[index].slug,
-                                          price: response[index].price,
-                                          rating: response[index].rating,
-                                          storetitle: 'New Arrivals',
-                                        )),
-                              );
-                            },
-                            child: Container(
-                                child: Card(
-                              elevation: 2,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10)),
-                              child: Column(
-                                children: [
-                                  Container(
-                                      padding:
-                                          EdgeInsets.only(left: 8, right: 4),
-                                      child: Image.network(
-                                          "https://api.garjoo.com" +
-                                              response[index].image,
-                                          width: 97.3,
-                                          height: 120)),
-                                  Center(
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(left: 5.0),
-                                      child: Text(
-                                        response[index].title,
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
+                      itemBuilder: (context, index) {
+                        return InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => Navigate(
+                                        productId: response[index].id,
+                                        id: widget.id,
+                                        email: widget.email,
+                                        title: response[index].title,
+                                        image: response[index].thumbnail,
+                                        slug: response[index].slug,
+                                        price: response[index].price,
+                                        rating: response[index].rating,
+                                        storetitle: 'New Arrivals',
+                                      )),
+                            );
+                          },
+                          child: Container(
+                              child: Card(
+                            elevation: 2,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Column(
+                              children: [
+                                Container(
+                                    padding: EdgeInsets.only(left: 8, right: 4),
+                                    child: Image.network(
+                                        "https://api.garjoo.com" +
+                                            response[index].thumbnail,
+                                        width: 97.3,
+                                        height: 120)),
+                                Center(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(left: 5.0),
+                                    child: Text(
+                                      response[index].title,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
                                     ),
                                   ),
-                                  SizedBox(height: 3),
-                                  RatingBar.builder(
-                                    ignoreGestures: true,
-                                    initialRating: response[index]
-                                                .rating
-                                                .toString() ==
-                                            'null'
-                                        ? 0.0
-                                        : double.parse(response[index].rating),
-                                    minRating: 1,
-                                    direction: Axis.horizontal,
-                                    allowHalfRating: true,
-                                    itemCount: 5,
-                                    itemSize: 10,
-                                    itemPadding:
-                                        EdgeInsets.symmetric(horizontal: 4.0),
-                                    itemBuilder: (context, _) => Icon(
-                                      Icons.star,
-                                      color: Colors.amber,
-                                    ),
-                                    onRatingUpdate: (rating) {
-                                      print(rating);
-                                    },
+                                ),
+                                SizedBox(height: 3),
+                                RatingBar.builder(
+                                  ignoreGestures: true,
+                                  initialRating:
+                                      response[index].rating.toString() ==
+                                              'null'
+                                          ? 0.0
+                                          : response[index].rating,
+                                  minRating: 1,
+                                  direction: Axis.horizontal,
+                                  allowHalfRating: true,
+                                  itemCount: 5,
+                                  itemSize: 10,
+                                  itemPadding:
+                                      EdgeInsets.symmetric(horizontal: 4.0),
+                                  itemBuilder: (context, _) => Icon(
+                                    Icons.star,
+                                    color: Colors.amber,
                                   ),
-                                  SizedBox(height: 5),
-                                  InkWell(
-                                    onTap: () {
-                                      widget.valueSetter(response[index]);
-                                    },
-                                    child: Container(
-                                      height: 22,
-                                      width: 88,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                          border:
-                                              Border.all(color: Colors.amber)),
-                                      child: Row(
-                                        children: [
-                                          SizedBox(width: 5),
-                                          Icon(Icons.shopping_cart,
-                                              size: 11, color: orange),
-                                          SizedBox(width: 5),
-                                          Center(
-                                            child: Text(
-                                              "Add to cart",
-                                              style: TextStyle(
-                                                  color: orange,
-                                                  fontSize: 11,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            )),
+                                  onRatingUpdate: (rating) {
+                                    print(rating);
+                                  },
+                                ),
+                                SizedBox(height: 5),
+                                AddToCart(product: response[index])
+                              ],
+                            ),
                           )),
+                        );
+                      }),
                 ),
               ],
             );

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/home/codeish/Documents/office-work/gar/build/url_launcher/intermediates/res/merged/debug/values-zh-rTW/values-zh-rTW.xml",
+            "outputFile": "/home/codeish/Documents/office-work/Testing/gar/build/url_launcher/intermediates/incremental/mergeDebugResources/merged.dir/values-zh-rTW/values-zh-rTW.xml",
             "map": [
                 {
                     "source": "/home/codeish/.gradle/caches/transforms-2/files-2.1/ce1635782ed616d72db5bb7f69df3596/core-1.1.0/res/values-zh-rTW/values-zh-rTW.xml",
@@ -16,7 +16,7 @@
             ]
         },
         {
-            "outputFile": "/home/codeish/Documents/office-work/gar/build/url_launcher/intermediates/incremental/mergeDebugResources/merged.dir/values-zh-rTW/values-zh-rTW.xml",
+            "outputFile": "/home/codeish/Documents/office-work/Testing/gar/build/url_launcher/intermediates/res/merged/debug/values-zh-rTW/values-zh-rTW.xml",
             "map": [
                 {
                     "source": "/home/codeish/.gradle/caches/transforms-2/files-2.1/ce1635782ed616d72db5bb7f69df3596/core-1.1.0/res/values-zh-rTW/values-zh-rTW.xml",

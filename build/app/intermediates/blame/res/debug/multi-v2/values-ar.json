@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/home/codeish/Documents/office-work/gar/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-ar/values-ar.xml",
+            "outputFile": "/home/codeish/Documents/office-work/Testing/gar/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-ar/values-ar.xml",
             "map": [
                 {
                     "source": "/home/codeish/.gradle/caches/transforms-2/files-2.1/2bb341bcb0883f183f2e79e7da3cef1c/jetified-exoplayer-ui-2.13.1/res/values-ar/values-ar.xml",

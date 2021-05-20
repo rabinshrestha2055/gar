@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:garjoo/models/similar.dart';
+import 'package:garjoo/widget/addToCart.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core.dart';
@@ -35,7 +37,8 @@ class _ArrivalViewListState extends State<ArrivalViewList> {
                       return Center(child: CircularProgressIndicator());
                     } else if (snapshot.connectionState ==
                         ConnectionState.done) {
-                      var response = snapshot.data as List<ArrivalModel>;
+                      var response = snapshot.data as List<Item>;
+                      ProductModel.items = response;
                       return ListView.builder(
                           shrinkWrap: true,
                           physics: ScrollPhysics(
@@ -58,7 +61,7 @@ class _ArrivalViewListState extends State<ArrivalViewList> {
                                                         title: response[index]
                                                             .title,
                                                         image: response[index]
-                                                            .image,
+                                                            .thumbnail,
                                                         price: response[index]
                                                             .price,
                                                         rating: response[index]
@@ -69,7 +72,7 @@ class _ArrivalViewListState extends State<ArrivalViewList> {
                                         },
                                         child: Image.network(
                                             "https://api.garjoo.com" +
-                                                response[index].image,
+                                                response[index].thumbnail,
                                             width: 99,
                                             height: 120),
                                       ),
@@ -108,49 +111,10 @@ class _ArrivalViewListState extends State<ArrivalViewList> {
                                                   SizedBox(
                                                     height: 5,
                                                   ),
-                                                  InkWell(
-                                                    onTap: () {
-                                                      setState(() {
-                                                        widget.valueSetter(
-                                                            response[index]);
-                                                      });
-                                                    },
-                                                    child: Container(
-                                                      margin: EdgeInsets.only(
-                                                          top: 10),
-                                                      height: 22,
-                                                      width: 88,
-                                                      decoration: BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(5),
-                                                          border: Border.all(
-                                                              color: Colors
-                                                                  .amber)),
-                                                      child: Row(
-                                                        children: [
-                                                          SizedBox(width: 5),
-                                                          Icon(
-                                                              Icons
-                                                                  .shopping_cart,
-                                                              size: 13,
-                                                              color: orange),
-                                                          SizedBox(width: 5),
-                                                          Center(
-                                                            child: Text(
-                                                              "Add to cart",
-                                                              style: TextStyle(
-                                                                  color: orange,
-                                                                  fontSize: 11,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ),
+                                                  AddToCart(
+                                                    product: ProductModel
+                                                        .items[index],
+                                                  )
                                                 ],
                                               ),
                                             ),

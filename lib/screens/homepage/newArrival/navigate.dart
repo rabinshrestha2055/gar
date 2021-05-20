@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:garjoo/core.dart';
-import 'package:garjoo/models/detailsmodel.dart';
+import 'package:garjoo/models/similar.dart';
+import 'package:garjoo/widget/customAppBar.dart';
 import 'package:provider/provider.dart';
 
 class Navigate extends StatefulWidget {
@@ -36,45 +37,10 @@ class Navigate extends StatefulWidget {
 class _NavigateState extends State<Navigate> {
   TabController _tabController;
 
-  // double discountPrice(double price, double percentage) {
-  //   var disprice = (price * percentage) / 100;
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          elevation: 0.0,
-          backgroundColor: Colors.white,
-          title: Padding(
-            padding: const EdgeInsets.only(top: 12.0),
-            child: Image.asset(
-              'asset/garjoologo.png',
-              height: 60,
-              width: 110,
-            ),
-          ),
-          actions: [
-            Stack(children: [
-              Positioned(
-                top: 5,
-                left: 8,
-                child: CircleAvatar(
-                  radius: 7,
-                  backgroundColor: Colors.red,
-                  child: Text(
-                    '10',
-                    style: TextStyle(fontSize: 10, color: Colors.white),
-                  ),
-                ),
-              ),
-              IconButton(
-                  icon: Icon(Icons.shopping_cart),
-                  color: orange,
-                  onPressed: () {}),
-            ]),
-          ],
-        ),
+        appBar: customAppBar(context: context),
         body: ChangeNotifierProvider(
           create: (context) => UserDetailsProvider(),
           child: Consumer<UserDetailsProvider>(
@@ -84,7 +50,7 @@ class _NavigateState extends State<Navigate> {
                   if (snapshot.hasError) {
                     return Container();
                   } else if (snapshot.connectionState == ConnectionState.done) {
-                    var response = snapshot.data as DetailsModel;
+                    var response = snapshot.data as Item;
 
                     return ListView(
                       scrollDirection: Axis.vertical,
@@ -123,7 +89,7 @@ class _NavigateState extends State<Navigate> {
                                         color: Colors.white,
                                       ),
                                       Text(
-                                        widget.rating,
+                                        widget.rating.toString(),
                                         style: TextStyle(
                                             color: Colors.white, fontSize: 11),
                                       ),
@@ -191,16 +157,16 @@ class _NavigateState extends State<Navigate> {
                                       children: [
                                         ProductNA(
                                           slug: widget.slug,
-                                          pAddress: response.pAddress,
-                                          sAddress: response.sAddress,
+                                          pAddress: response.address1,
+                                          sAddress: response.address2,
                                           location: response.location,
-                                          storeslug: response.storeslug,
+                                          storeslug: response.store['slug'],
                                           view: response.views,
                                           time: response.time,
                                           count: response.count,
-                                          storeImage: response.storeImage,
-                                          storeName: response.storeName,
-                                          rating: widget.rating,
+                                          storeImage: response.store['profile'],
+                                          storeName: response.store['name'],
+                                          rating: widget.rating.toString(),
                                           storetitle: widget.storetitle,
                                         ),
                                         DescriptionNA(

@@ -31,23 +31,21 @@ class _FilterState extends State<Filter> {
           children: <Widget>[
             Container(
               width: 230,
-              child: Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Refine',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                        fontSize: 19.0,
-                      ),
-                      textAlign: TextAlign.start,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Refine',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                      fontSize: 19.0,
                     ),
-                    // SizedBox(width: 110,),
-                    TextButton(onPressed: () {}, child: Text('Clear All'))
-                  ],
-                ),
+                    textAlign: TextAlign.start,
+                  ),
+                  // SizedBox(width: 110,),
+                  TextButton(onPressed: () {}, child: Text('Clear All'))
+                ],
               ),
             ),
             SizedBox(height: 8),
@@ -64,7 +62,7 @@ class _FilterState extends State<Filter> {
                         } else if (snapshot.hasData) {
                           var response = snapshot.data;
                           var jsonData = json.decode(response);
-                          category = jsonData;
+                          category = jsonData[0]['childs'];
                           return Container(
                             height: 55,
                             width: 340,

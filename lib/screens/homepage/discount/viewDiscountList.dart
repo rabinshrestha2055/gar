@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:garjoo/models/similar.dart';
+import 'package:garjoo/widget/addToCart.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core.dart';
@@ -37,7 +39,8 @@ class _ViewDiscountListState extends State<ViewDiscountList> {
                       return Center(child: CircularProgressIndicator());
                     } else if (snapshot.connectionState ==
                         ConnectionState.done) {
-                      var response = snapshot.data as List<DiscountModel>;
+                      var response = snapshot.data as List<Item>;
+                      ProductModel.items = response;
                       return ListView.builder(
                           shrinkWrap: true,
                           physics: ScrollPhysics(
@@ -45,7 +48,7 @@ class _ViewDiscountListState extends State<ViewDiscountList> {
                           itemCount: response.length,
                           itemBuilder: (context, index) {
                             discountPrice = response[index].price *
-                                int.parse(response[index].rating) /
+                                response[index].rate /
                                 100;
 
                             finalPrice = response[index].price - discountPrice;
@@ -64,8 +67,8 @@ class _ViewDiscountListState extends State<ViewDiscountList> {
                                                 builder: (_) => Navigate(
                                                       title:
                                                           response[index].title,
-                                                      image:
-                                                          response[index].image,
+                                                      image: response[index]
+                                                          .thumbnail,
                                                       slug:
                                                           response[index].slug,
                                                       price:
@@ -78,7 +81,7 @@ class _ViewDiscountListState extends State<ViewDiscountList> {
                                       },
                                       child: Image.network(
                                           "https://api.garjoo.com" +
-                                              response[index].image,
+                                              response[index].thumbnail,
                                           width: 99,
                                           height: 140),
                                     ),
@@ -106,7 +109,7 @@ class _ViewDiscountListState extends State<ViewDiscountList> {
                                                   ),
                                                   Text(
                                                     response[index]
-                                                            .rating
+                                                            .rate
                                                             .toString() +
                                                         '%',
                                                     style: TextStyle(
@@ -170,47 +173,10 @@ class _ViewDiscountListState extends State<ViewDiscountList> {
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
-                                                  InkWell(
-                                                    onTap: () {
-                                                      setState(() {
-                                                        widget.valueSetter(
-                                                            response[index]);
-                                                      });
-                                                    },
-                                                    child: Container(
-                                                      height: 22,
-                                                      width: 88,
-                                                      decoration: BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(5),
-                                                          border: Border.all(
-                                                              color: Colors
-                                                                  .amber)),
-                                                      child: Row(
-                                                        children: [
-                                                          SizedBox(width: 5),
-                                                          Icon(
-                                                              Icons
-                                                                  .shopping_cart,
-                                                              size: 13,
-                                                              color: orange),
-                                                          SizedBox(width: 5),
-                                                          Center(
-                                                            child: Text(
-                                                              "Add to cart",
-                                                              style: TextStyle(
-                                                                  color: orange,
-                                                                  fontSize: 11,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ),
+                                                  AddToCart(
+                                                    product: ProductModel
+                                                        .items[index],
+                                                  )
                                                 ],
                                               ),
                                             ],

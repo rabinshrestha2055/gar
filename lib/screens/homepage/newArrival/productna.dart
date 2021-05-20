@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:garjoo/core.dart';
+import 'package:garjoo/core/store.dart';
+import 'package:garjoo/models/cart_model.dart';
+import 'package:garjoo/models/similar.dart';
 import 'package:garjoo/screens/homepage/newArrival/visitstore.dart';
+import 'package:garjoo/widget/addToCart.dart';
 import 'package:provider/provider.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class ProductNA extends StatelessWidget {
   final String slug;
+  final Item product;
   final String pAddress;
   final String sAddress;
   final String location;
@@ -19,6 +25,7 @@ class ProductNA extends StatelessWidget {
 
   const ProductNA(
       {Key key,
+      this.product,
       this.slug,
       this.rating,
       this.count,
@@ -34,14 +41,11 @@ class ProductNA extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-    // return Scaffold(
-    //   resizeToAvoidBottomInset: false,
-    //   body: Padding(
-    //     padding: const EdgeInsets.only(left: 8.0, right: 8),
-    //     child:
+    VxState.watch(context, on: [AddMutation, RemoveMutation]);
+    final CartModel _cart = (VxState.store as MyStore).cart;
+    bool isInCart = _cart.items.contains(product) ?? false;
     return ListView(
       shrinkWrap: true,
-      // physics: ScrollPhysics(parent: NeverScrollableScrollPhysics()),
       children: [
         Card(
             elevation: 1.0,
@@ -65,7 +69,7 @@ class ProductNA extends StatelessWidget {
                             ),
                             Container(
                               width: 130,
-                              child: Text(pAddress),
+                              child: Text(pAddress == null ? "null" : pAddress),
                             ),
                           ],
                         ),
@@ -78,7 +82,7 @@ class ProductNA extends StatelessWidget {
                             ),
                             Container(
                               width: 130,
-                              child: Text(sAddress),
+                              child: Text(sAddress == null ? "null" : sAddress),
                             ),
                           ],
                         )
@@ -99,7 +103,7 @@ class ProductNA extends StatelessWidget {
                             style: TextStyle(color: Colors.grey),
                           ),
                         ),
-                        Text(location),
+                        Text(location + ""),
                       ],
                     ),
                   ),
@@ -227,29 +231,34 @@ class ProductNA extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(right: 8.0),
-                child: Container(
-                  height: 48,
-                  width: 151,
-                  child: Card(
-                    color: Colors.red[300],
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        SizedBox(width: 10),
-                        Text(
-                          'ADD TO CART',
-                          style: TextStyle(fontSize: 13, color: Colors.white),
-                        ),
-                        CircleAvatar(
-                            radius: 17,
-                            child: Icon(
-                              Icons.arrow_forward_ios,
-                              size: 18,
-                              color: Colors.red[300],
-                            ))
-                      ],
+                child: InkWell(
+                  onTap: () {
+                    if (!isInCart) AddMutation(product);
+                  },
+                  child: Container(
+                    height: 48,
+                    width: 151,
+                    child: Card(
+                      color: Colors.red[300],
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          SizedBox(width: 10),
+                          Text(
+                            'ADD TO CART',
+                            style: TextStyle(fontSize: 13, color: Colors.white),
+                          ),
+                          CircleAvatar(
+                              radius: 17,
+                              child: Icon(
+                                Icons.arrow_forward_ios,
+                                size: 18,
+                                color: Colors.red[300],
+                              ))
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -368,8 +377,8 @@ class ProductNA extends StatelessWidget {
                       child: Container(),
                     );
                   } else if (snapshot.connectionState == ConnectionState.done) {
-                    var response = snapshot.data as List<RelatedProModel>;
-
+                    var response = snapshot.data as List<Item>;
+                    ProductModel.items = response;
                     return GridView.builder(
                         scrollDirection: Axis.vertical,
                         shrinkWrap: true,
@@ -394,7 +403,7 @@ class ProductNA extends StatelessWidget {
                                     Container(
                                         child: Image.network(
                                             "https://api.garjoo.com" +
-                                                response[index].image,
+                                                response[index].thumbnail,
                                             width: 97.3,
                                             height: 120)),
                                     Padding(
@@ -409,11 +418,12 @@ class ProductNA extends StatelessWidget {
                                         ),
                                       ),
                                     ),
-                                    Text(
-                                      "Add to cart",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold),
+                                    SizedBox(
+                                      height: 20,
                                     ),
+                                    AddToCart(
+                                      product: ProductModel.items[index],
+                                    )
                                   ],
                                 ),
                               ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:garjoo/models/similar.dart';
 import 'package:garjoo/screens/homepage/featuredcategory/featuredArrival.dart';
 import 'package:provider/provider.dart';
 import '../../../core.dart';
@@ -69,14 +70,14 @@ class FeatureCatDetail extends StatelessWidget {
               create: (context) => UserDetailsProvider(),
               child: Consumer<UserDetailsProvider>(
                 builder: (context, value, child) => FutureBuilder(
-                    future: value.getQuickLink(slug: slug),
+                    future: value.getQuickLink1(slug: slug),
                     builder: (context, snapshot) {
                       if (snapshot.hasError) {
                         return Center(child: CircularProgressIndicator());
                       } else if (snapshot.connectionState ==
                           ConnectionState.done) {
-                        var response = snapshot.data as List<QuickLinkModel>;
-
+                        var response = snapshot.data as List<Item>;
+                        ProductModel.items = response;
                         return response[0].slug != 'garjoo not available'
                             ? Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -122,7 +123,7 @@ class FeatureCatDetail extends StatelessWidget {
                                                                   .title,
                                                               image: response[
                                                                       index]
-                                                                  .image,
+                                                                  .thumbnail,
                                                               slug: response[
                                                                       index]
                                                                   .slug,
@@ -152,7 +153,7 @@ class FeatureCatDetail extends StatelessWidget {
                                                                       left: 8),
                                                               child: Stack(
                                                                   children: [
-                                                                    response[index].image ==
+                                                                    response[index].thumbnail ==
                                                                             null
                                                                         ? Image
                                                                             .asset(
@@ -164,7 +165,7 @@ class FeatureCatDetail extends StatelessWidget {
                                                                           )
                                                                         : Image.network(
                                                                             AppURl.path +
-                                                                                response[index].image,
+                                                                                response[index].thumbnail,
                                                                             width: 99,
                                                                             height: 120),
                                                                   ])),

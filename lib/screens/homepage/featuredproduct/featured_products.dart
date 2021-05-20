@@ -1,20 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:garjoo/core.dart';
+import 'package:garjoo/models/similar.dart';
+import 'package:garjoo/widget/addToCart.dart';
 
 class FeaturedProduct extends StatefulWidget {
-  final ValueSetter<dynamic> valueSetter;
-  var cart;
-  int sum;
   var email;
   var userName;
-  FeaturedProduct(
-      {Key key,
-      this.valueSetter,
-      this.cart,
-      this.sum,
-      this.email,
-      this.userName})
-      : super(key: key);
+  FeaturedProduct({Key key, this.email, this.userName}) : super(key: key);
 
   @override
   _FeaturedProductState createState() => _FeaturedProductState();
@@ -38,7 +30,8 @@ class _FeaturedProductState extends State<FeaturedProduct> {
           if (snapshot.hasError) {
             return Container();
           } else if (snapshot.connectionState == ConnectionState.done) {
-            var response = snapshot.data as List<FeaturedProductModel>;
+            ProductModel.items = snapshot.data as List<Item>;
+            var response = ProductModel.items;
             return Column(
               children: [
                 Padding(
@@ -57,8 +50,6 @@ class _FeaturedProductState extends State<FeaturedProduct> {
                             context,
                             MaterialPageRoute(
                                 builder: (_) => ViewFeature(
-                                      cart: widget.cart,
-                                      sum: widget.sum,
                                       email: widget.email,
                                       userName: widget.userName,
                                     )),
@@ -78,7 +69,7 @@ class _FeaturedProductState extends State<FeaturedProduct> {
                 Container(
                     margin: EdgeInsets.only(left: 10, right: 10),
                     width: MediaQuery.of(context).size.width,
-                    height: 188,
+                    height: 170,
                     child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount: response.length,
@@ -89,7 +80,7 @@ class _FeaturedProductState extends State<FeaturedProduct> {
                                   MaterialPageRoute(
                                       builder: (_) => Navigate(
                                             title: response[index].title,
-                                            image: response[index].image,
+                                            image: response[index].thumbnail,
                                             slug: response[index].slug,
                                             price: response[index].price,
                                             rating: response[index].rating,
@@ -110,7 +101,7 @@ class _FeaturedProductState extends State<FeaturedProduct> {
                                                   left: 8, right: 8),
                                               child: Image.network(
                                                   "https://api.garjoo.com" +
-                                                      response[index].image,
+                                                      response[index].thumbnail,
                                                   width: 110,
                                                   height: 120)),
                                           Container(
@@ -122,39 +113,9 @@ class _FeaturedProductState extends State<FeaturedProduct> {
                                               maxLines: 1,
                                             ),
                                           ),
-                                          InkWell(
-                                            onTap: () {
-                                              widget
-                                                  .valueSetter(response[index]);
-                                            },
-                                            child: Container(
-                                              height: 22,
-                                              width: 88,
-                                              decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(5),
-                                                  border: Border.all(
-                                                      color: Colors.amber)),
-                                              child: Row(
-                                                children: [
-                                                  SizedBox(width: 5),
-                                                  Icon(Icons.shopping_cart,
-                                                      size: 13, color: orange),
-                                                  SizedBox(width: 5),
-                                                  Center(
-                                                    child: Text(
-                                                      "Add to cart",
-                                                      style: TextStyle(
-                                                          color: orange,
-                                                          fontSize: 11,
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
+                                          AddToCart(
+                                            product: ProductModel.items[index],
+                                          )
                                         ],
                                       ))),
                             ))),
@@ -174,8 +135,6 @@ class _FeaturedProductState extends State<FeaturedProduct> {
                 context,
                 MaterialPageRoute(
                     builder: (_) => MenFashion(
-                          sum: widget.sum,
-                          cart: widget.cart,
                           email: widget.email,
                           username: widget.userName,
                         )),
@@ -213,8 +172,6 @@ class _FeaturedProductState extends State<FeaturedProduct> {
                 context,
                 MaterialPageRoute(
                     builder: (_) => WomenFashion(
-                          cart: widget.cart,
-                          sum: widget.sum,
                           email: widget.email,
                           userName: widget.userName,
                         )),

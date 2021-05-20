@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:garjoo/core.dart';
 import 'package:garjoo/screens/homepage/featuredproduct/womenFashion/womenFashishList.dart';
-import 'package:garjoo/widget/customAppBAr.dart';
+import 'package:garjoo/widget/customAppBar.dart';
 
 class WomenFashion extends StatefulWidget {
   var cart;
-  int sum;
+  double sum;
   var email;
   var userName;
   WomenFashion({Key key, this.cart, this.sum, this.email, this.userName})
@@ -21,22 +21,8 @@ class _WomenFashionState extends State<WomenFashion> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: customAppBar(
-          cart: widget.cart,
-          sum: widget.sum,
-          email: widget.email,
-          userName: widget.userName,
-          context: context),
-      body: WomenFashionList(
-        valueSetter: (selectedProduct) {
-          setState(() {
-            widget.cart.add(selectedProduct);
-
-            widget.cart.forEach((element) {
-              widget.sum = widget.sum + element.price;
-            });
-          });
-        },
-      ),
+          email: widget.email, userName: widget.userName, context: context),
+      body: WomenFashionList(),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.orange,
         onPressed: () {

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:garjoo/core.dart';
+import 'package:garjoo/models/similar.dart';
+import 'package:garjoo/widget/addToCart.dart';
 import 'package:provider/provider.dart';
 
 class QuickLinkArrival extends StatelessWidget {
@@ -16,12 +18,13 @@ class QuickLinkArrival extends StatelessWidget {
         create: (context) => UserDetailsProvider(),
         child: Consumer<UserDetailsProvider>(
           builder: (context, value, child) => FutureBuilder(
-            future: value.getQuickLink(slug: slug),
+            future: value.getQuickLink1(slug: slug),
             builder: (context, snapshot) {
               if (snapshot.hasError) {
                 return Container();
               } else if (snapshot.connectionState == ConnectionState.done) {
-                var response = snapshot.data as List<QuickLinkModel>;
+                var response = snapshot.data as List<Item>;
+                ProductModel.items = response;
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -36,7 +39,7 @@ class QuickLinkArrival extends StatelessWidget {
                     Container(
                         margin: EdgeInsets.only(left: 10, right: 10),
                         width: MediaQuery.of(context).size.width,
-                        height: 188,
+                        height: 170,
                         child: ListView.builder(
                             scrollDirection: Axis.horizontal,
                             itemCount: response.length,
@@ -47,10 +50,13 @@ class QuickLinkArrival extends StatelessWidget {
                                       MaterialPageRoute(
                                           builder: (_) => Navigate(
                                                 title: response[index].title,
-                                                image: response[index].image,
+                                                image:
+                                                    response[index].thumbnail,
                                                 slug: response[index].slug,
                                                 price: response[index].price,
-                                                rating: response[index].rating,
+                                                rating: response[index]
+                                                    .rating
+                                                    .toString(),
                                                 storetitle: 'Featured Product',
                                               )),
                                     );
@@ -67,7 +73,7 @@ class QuickLinkArrival extends StatelessWidget {
                                                   padding: EdgeInsets.only(
                                                       left: 8, right: 8),
                                                   child: response[index]
-                                                              .image ==
+                                                              .thumbnail ==
                                                           null
                                                       ? Image.asset(
                                                           'asset/garjoologo.png',
@@ -77,7 +83,7 @@ class QuickLinkArrival extends StatelessWidget {
                                                       : Image.network(
                                                           "https://api.garjoo.com" +
                                                               response[index]
-                                                                  .image,
+                                                                  .thumbnail,
                                                           width: 110,
                                                           height: 120)),
                                               Container(
@@ -91,36 +97,11 @@ class QuickLinkArrival extends StatelessWidget {
                                                   maxLines: 1,
                                                 ),
                                               ),
-                                              Container(
-                                                height: 22,
-                                                width: 92,
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            5),
-                                                    border: Border.all(
-                                                        color: Colors.amber)),
-                                                child: Row(
-                                                  children: [
-                                                    SizedBox(width: 5),
-                                                    Icon(Icons.shopping_cart,
-                                                        size: 13,
-                                                        color: orange),
-                                                    SizedBox(width: 5),
-                                                    Center(
-                                                      child: Text(
-                                                        buttonTitle,
-                                                        style: TextStyle(
-                                                            color: orange,
-                                                            fontSize: 10,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              )
+                                              AddToCart(
+                                                product:
+                                                    ProductModel.items[index],
+                                                title: buttonTitle,
+                                              ),
                                             ],
                                           ))),
                                 ))),

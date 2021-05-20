@@ -1,22 +1,23 @@
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:garjoo/core.dart';
-import 'package:garjoo/models/datamodel.dart';
-import 'package:garjoo/models/detailsmodel.dart';
+import 'package:garjoo/models/cod.dart';
+
+import 'package:garjoo/models/imePay.dart';
+import 'package:garjoo/models/imePayWeb.dart';
 import 'package:garjoo/models/limitedProduct.dart';
 import 'package:garjoo/models/loginUser.dart';
 import 'package:garjoo/models/reviewSpecific.dart';
 import 'package:garjoo/models/reviewpost.dart';
+import 'package:garjoo/models/similar.dart';
 import 'package:garjoo/models/specificReview.dart';
 import 'package:garjoo/models/storeBanner.dart';
 import 'package:garjoo/models/storeTop.dart';
-
-import 'package:garjoo/models/visitstoremodel.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserDetailsProvider with ChangeNotifier {
-  Future<List<ArrivalModel>> getArrivals() async {
+  Future<List<Item>> getArrivals() async {
     try {
       final response = await http.get(
         AppURl.arrival,
@@ -24,14 +25,14 @@ class UserDetailsProvider with ChangeNotifier {
           "Accept": "application/json",
         },
       );
-      // print(response.body);
-      return arrivalModelFromJson(response.body);
+
+      return itemModelFromJson(response.body);
     } catch (e) {
       print(e.toString());
     }
   }
 
-  Future<List<DiscountModel>> getDiscount() async {
+  Future<List<Item>> getDiscount() async {
     try {
       final response = await http.get(
         AppURl.discount,
@@ -40,13 +41,13 @@ class UserDetailsProvider with ChangeNotifier {
         },
       );
       //print(response.body);
-      return discountModelFromJson(response.body);
+      return itemModelFromJson(response.body);
     } catch (e) {
       print(e.toString());
     }
   }
 
-  Future<List<FeaturedCatModel>> getFCategory() async {
+  Future<List<Item>> getFCategory() async {
     try {
       final response = await http.get(
         AppURl.fcategory,
@@ -55,13 +56,13 @@ class UserDetailsProvider with ChangeNotifier {
         },
       );
 
-      return featuredCategoryModelFromJson(response.body);
+      return itemModelFromJson(response.body);
     } catch (e) {
       print(e.toString());
     }
   }
 
-  Future<List<FeaturedProductModel>> getFProduct() async {
+  Future<List<Item>> getFProduct() async {
     try {
       final response = await http.get(
         AppURl.fproducts,
@@ -70,13 +71,13 @@ class UserDetailsProvider with ChangeNotifier {
         },
       );
 
-      return featuredProductModelFromJson(response.body);
+      return itemModelFromJson(response.body);
     } catch (e) {
       print(e.toString());
     }
   }
 
-  Future<List<MenFashionModel>> getMenProduct() async {
+  Future<List<Item>> getMenProduct() async {
     try {
       final response = await http.get(
         AppURl.menfashion,
@@ -85,11 +86,11 @@ class UserDetailsProvider with ChangeNotifier {
         },
       );
 
-      return menFashionModelFromJson(response.body);
+      return itemModelFromJson(response.body);
     } catch (e) {}
   }
 
-  Future<List<WomenFashionModel>> getWomenProduct() async {
+  Future<List<Item>> getWomenProduct() async {
     try {
       final response = await http.get(
         AppURl.womenfashion,
@@ -98,11 +99,11 @@ class UserDetailsProvider with ChangeNotifier {
         },
       );
 
-      return womenFashionModelFromJson(response.body);
+      return itemModelFromJson(response.body);
     } catch (e) {}
   }
 
-  Future<List<RelatedProModel>> getRelatedProduct({String slug}) async {
+  Future<List<Item>> getRelatedProduct({String slug}) async {
     try {
       final response = await http.get(
         AppURl.relatedproduct + slug,
@@ -115,20 +116,7 @@ class UserDetailsProvider with ChangeNotifier {
     } catch (e) {}
   }
 
-  Future<StoreModel> getStoreProduct({String slug}) async {
-    try {
-      final response = await http.get(
-        AppURl.storeproduct + slug,
-        headers: {
-          "Accept": "application/json",
-        },
-      );
-
-      return storeModelFromJson(response.body);
-    } catch (e) {}
-  }
-
-  Future<DetailsModel> getDetails({String slug}) async {
+  Future<Item> getDetails({String slug}) async {
     try {
       final response = await http.get(
         AppURl.relatedproduct + slug,
@@ -137,13 +125,13 @@ class UserDetailsProvider with ChangeNotifier {
         },
       );
 
-      return detailsProductModelFromJson(response.body);
+      return detailsModelFromJson(response.body);
     } catch (e) {}
   }
 
 //data
 
-  Future<List<DataModel>> getData({String slug}) async {
+  Future<List<Item>> getStoreData({String slug}) async {
     try {
       final response = await http.get(
         AppURl.storeproduct + slug,
@@ -152,11 +140,11 @@ class UserDetailsProvider with ChangeNotifier {
         },
       );
 
-      return dataModelFromJson(response.body);
+      return visitStoreModelFromJson(response.body);
     } catch (e) {}
   }
 
-  Future<List<MarketModel>> getMarket() async {
+  Future<List<Item>> getMarket() async {
     try {
       final response = await http.get(
         AppURl.market,
@@ -166,19 +154,6 @@ class UserDetailsProvider with ChangeNotifier {
       );
 
       return marketModelFromJson(response.body);
-    } catch (e) {}
-  }
-
-  Future<List<ServiceModel>> getService() async {
-    try {
-      final response = await http.get(
-        AppURl.service,
-        headers: {
-          "Accept": "application/json",
-        },
-      );
-
-      return servicesModelFromJson(response.body);
     } catch (e) {}
   }
 
@@ -219,22 +194,7 @@ class UserDetailsProvider with ChangeNotifier {
     } catch (e) {}
   }
 
-  Future<List<NewPropertiesModel>> getnewProperties() async {
-    try {
-      final response = await http.get(
-        AppURl.newproperties,
-        headers: {
-          "Accept": "application/json",
-        },
-      );
-
-      return newPropertiesFromJson(response.body);
-    } catch (e) {
-      print(e.toString());
-    }
-  }
-
-  Future<List<QuickLinkModel>> getQuickLink({String slug}) async {
+  Future<List<Item>> getQuickLink1({String slug}) async {
     try {
       final response = await http.get(
         AppURl.quicklink + slug,
@@ -243,22 +203,7 @@ class UserDetailsProvider with ChangeNotifier {
         },
       );
 
-      return quicklinkFromJson(response.body);
-    } catch (e) {
-      print(e.toString());
-    }
-  }
-
-  Future<List<TopListingModel>> gettopListing() async {
-    try {
-      final response = await http.get(
-        AppURl.toplisting,
-        headers: {
-          "Accept": "application/json",
-        },
-      );
-
-      return toplistingFromJson(response.body);
+      return categoryItemModelFromJson(response.body);
     } catch (e) {
       print(e.toString());
     }
@@ -307,7 +252,7 @@ class UserDetailsProvider with ChangeNotifier {
     } catch (e) {}
   }
 
-  Future<List<SlideCarousel>> homeCarousel() async {
+  Future<List<Item>> homeCarousel() async {
     try {
       final headers = {
         'content-type': 'application/json',
@@ -316,11 +261,11 @@ class UserDetailsProvider with ChangeNotifier {
         AppURl.homecarousel,
         headers: headers,
       );
-      return slidecarouselModelFromJson(response.body);
+      return itemModelFromJson(response.body);
     } catch (e) {}
   }
 
-  Future<List<AdsModel>> classifiedCarousel() async {
+  Future<List<Item>> classifiedCarousel() async {
     try {
       final headers = {
         'content-type': 'application/json',
@@ -329,7 +274,7 @@ class UserDetailsProvider with ChangeNotifier {
         AppURl.classifiedcarousel,
         headers: headers,
       );
-      return adsModelFromJson(response.body);
+      return itemModelFromJson(response.body);
     } catch (e) {}
   }
 
@@ -388,6 +333,59 @@ class UserDetailsProvider with ChangeNotifier {
         AppURl.register,
         headers: headers,
         body: userModelToJson(registerModel),
+      );
+
+      return response;
+    } catch (e) {}
+  }
+
+  Future<http.Response> imePay({IMEPAYRequestModel imepayRequestModel}) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString("token");
+    print(token);
+    try {
+      final headers = {
+        'content-type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      };
+      final response = await http.post(
+        AppURl.imePay,
+        headers: headers,
+        body: imePayRequestToJson(imepayRequestModel),
+      );
+
+      return response;
+    } catch (e) {}
+  }
+
+  Future<http.Response> cashOnDelivery({CashOnDelivery cashOnDelivery}) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString("token");
+    print(token);
+    try {
+      final headers = {
+        'content-type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      };
+      final response = await http.post(
+        AppURl.cod,
+        headers: headers,
+        body: codToJson(cashOnDelivery),
+      );
+
+      return response;
+    } catch (e) {}
+  }
+
+  Future<http.Response> imePayWeb({IMEPAYWEBModel imepayWebModel}) async {
+    try {
+      final headers = {
+        'content-type': 'application/json',
+      };
+      final response = await http.post(
+        AppURl.imePayWeb,
+        headers: headers,
+        body: imePayWebToJson(imepayWebModel),
       );
 
       return response;

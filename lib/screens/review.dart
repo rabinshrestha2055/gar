@@ -282,6 +282,35 @@ class _ReviewState extends State<Review> {
                   child: Padding(
                     padding: EdgeInsets.only(left: 12.0, bottom: 6),
                     child: TextFormField(
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return 'Please enter current address';
+                          }
+                        },
+                        onChanged: (value) {
+                          fname = value;
+                        },
+                        controller: fnameController,
+                        style: TextStyle(color: Colors.black),
+                        decoration: InputDecoration(
+                            focusedBorder: InputBorder.none,
+                            enabledBorder: InputBorder.none,
+                            labelText: 'Current Address')),
+                  ),
+                ),
+              ),
+              SizedBox(height: 10),
+              Container(
+                height: 56,
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  margin: EdgeInsets.only(left: 15, right: 15),
+                  elevation: 3,
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 12.0, bottom: 6),
+                    child: TextFormField(
                         keyboardType: TextInputType.number,
                         controller: phoneController,
                         validator: (value) {
@@ -341,7 +370,7 @@ class _ReviewState extends State<Review> {
                                       hint: Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Text(
-                                          "Select Sub-Category for Review",
+                                          "Market Category",
                                           style: TextStyle(
                                             fontSize: 16,
                                           ),
@@ -365,34 +394,64 @@ class _ReviewState extends State<Review> {
                 ),
               ),
               SizedBox(height: 10),
-              Container(
-                height: 56,
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  margin: EdgeInsets.only(left: 15, right: 15),
-                  elevation: 3,
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 12.0, bottom: 6),
-                    child: TextFormField(
-                        controller: pnameController,
-                        validator: (value) {
-                          if (value.isEmpty) {
-                            return 'Please enter Product Name';
-                          }
-                        },
-                        onChanged: (value) {
-                          pname = value;
-                        },
-                        style: TextStyle(color: Colors.black),
-                        decoration: InputDecoration(
-                            focusedBorder: InputBorder.none,
-                            enabledBorder: InputBorder.none,
-                            labelText: 'Product Name')),
-                  ),
-                ),
-              ),
+              _category != 2.toString()
+                  ? Container(
+                      height: 56,
+                      child: Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        margin: EdgeInsets.only(left: 15, right: 15),
+                        elevation: 3,
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 12.0, bottom: 6),
+                          child: TextFormField(
+                              controller: pnameController,
+                              validator: (value) {
+                                if (value.isEmpty) {
+                                  return 'Please enter Product Name';
+                                }
+                              },
+                              onChanged: (value) {
+                                pname = value;
+                              },
+                              style: TextStyle(color: Colors.black),
+                              decoration: InputDecoration(
+                                  focusedBorder: InputBorder.none,
+                                  enabledBorder: InputBorder.none,
+                                  labelText: 'Product Name')),
+                        ),
+                      ),
+                    )
+                  : Container(
+                      height: 56,
+                      child: Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        margin: EdgeInsets.only(left: 15, right: 15),
+                        elevation: 3,
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 12.0, bottom: 6),
+                          child: TextFormField(
+                              controller: pnameController,
+                              validator: (value) {
+                                if (value.isEmpty) {
+                                  return 'Please enter Product Name';
+                                }
+                              },
+                              onChanged: (value) {
+                                pname = value;
+                              },
+                              style: TextStyle(color: Colors.black),
+                              decoration: InputDecoration(
+                                  focusedBorder: InputBorder.none,
+                                  enabledBorder: InputBorder.none,
+                                  labelText: 'Name of service')),
+                        ),
+                      ),
+                    ),
+              SizedBox(height: 10),
               SizedBox(height: 10),
               Container(
                 height: 56,

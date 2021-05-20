@@ -33,4 +33,9 @@ class AppURl {
   static const reviewPost = baseurl + "category-review/store";
   static const specificReviewPost = baseurl + "review/store";
   static const specificReviewGet = baseurl + "review/product/";
+  static const imePay = baseurl + "imepay/paytest";
+  static const cod = baseurl + "/order/store";
+  static const imePayWeb =
+      "https://stg.imepay.com.np:7979/WebCheckout/Checkout";
+  static const filterResult = baseurl + "filter-result/";
 }

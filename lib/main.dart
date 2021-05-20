@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:garjoo/core/store.dart';
 import 'package:garjoo/startPage.dart';
+import 'package:velocity_x/velocity_x.dart';
 
-void main() => runApp(Garjoo());
+void main() => runApp(VxState(store: MyStore(), child: Garjoo()));
 
 class Garjoo extends StatelessWidget {
   @override

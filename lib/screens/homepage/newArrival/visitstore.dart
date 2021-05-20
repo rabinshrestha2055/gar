@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:garjoo/models/datamodel.dart';
+
+import 'package:garjoo/models/similar.dart';
+import 'package:garjoo/widget/addToCart.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core.dart';
@@ -20,7 +22,8 @@ class VisitStore extends StatelessWidget {
       this.name,
       this.storeImage,
       this.rating,
-      this.storeName, this.storetitle})
+      this.storeName,
+      this.storetitle})
       : super(key: key);
 
   @override
@@ -53,14 +56,14 @@ class VisitStore extends StatelessWidget {
                 create: (context) => UserDetailsProvider(),
                 child: Consumer<UserDetailsProvider>(
                   builder: (context, value, child) => FutureBuilder(
-                      future: value.getData(slug: slug),
+                      future: value.getStoreData(slug: slug),
                       builder: (context, snapshot) {
                         if (snapshot.hasError) {
                           return Center(child: CircularProgressIndicator());
                         } else if (snapshot.connectionState ==
                             ConnectionState.done) {
-                          var response = snapshot.data as List<DataModel>;
-
+                          var response = snapshot.data as List<Item>;
+                          ProductModel.items = response;
                           return Container(
                             margin: EdgeInsets.only(left: 5, right: 5),
                             child: GridView.builder(
@@ -76,94 +79,68 @@ class VisitStore extends StatelessWidget {
                                 physics: ScrollPhysics(
                                     parent: NeverScrollableScrollPhysics()),
                                 itemBuilder: (context, index) => InkWell(
-                                  
-                        onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (_)=>Navigate(
-                             title:             response[index].name,
-                                                image: response[index].image,
-                                                slug: response[index].slug,
-                                                price: response[index].price,
-                                                rating: rating,
-                          )));
-                        },
-                                                                  child: Container(
-                                      width: 126,
-                                      child: Card(
-                                          elevation: 2,
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10)),
-                                          child: Column(
-                                            children: [
-                                              Container(
-                                                  padding:
-                                                      EdgeInsets.only(left: 8),
-                                                  child: Stack(children: [
-                                                    Image.network(
-                                                        AppURl.path +
-                                                            response[index].image,
-                                                        width: 99,
-                                                        height: 120),
-                                                  ])),
-                                              Text(
-                                                response[index].name,
-                                                overflow: TextOverflow.ellipsis,
-                                                maxLines: 1,
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 10),
-                                              ),
-                                              Text(
-                                                  'Rs ' +
-                                                      response[index]
-                                                          .price
-                                                          .toString(),
-                                                  style: TextStyle(
-                                                    fontSize: 11,
-                                                  )),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 20.0),
-                                                child: Row(
-                                                  children: [
-                                                    Container(
-                                                      height: 25,
-                                                      width: 70,
-                                                      decoration: BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(5),
-                                                          border: Border.all(
-                                                              color:
-                                                                  Colors.amber)),
-                                                      child: Row(
-                                                        children: [
-                                                          SizedBox(width: 1),
-                                                          Icon(
-                                                              Icons.shopping_cart,
-                                                              size: 10,
-                                                              color: orange),
-                                                          Center(
-                                                            child: Text(
-                                                              "Add to cart",
-                                                              style: TextStyle(
-                                                                  color: orange,
-                                                                  fontSize: 10,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
-                                                            ),
-                                                          ),
-                                                          SizedBox(width: 1),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ))),
-                                )),
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (_) => Navigate(
+                                                      title:
+                                                          response[index].name,
+                                                      image: response[index]
+                                                          .thumbnail,
+                                                      slug:
+                                                          response[index].slug,
+                                                      price:
+                                                          response[index].price,
+                                                      rating: rating,
+                                                    )));
+                                      },
+                                      child: Container(
+                                          width: 126,
+                                          child: Card(
+                                              elevation: 2,
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10)),
+                                              child: Column(
+                                                children: [
+                                                  Container(
+                                                      padding: EdgeInsets.only(
+                                                          left: 8),
+                                                      child: Stack(children: [
+                                                        Image.network(
+                                                            AppURl.path +
+                                                                response[index]
+                                                                    .thumbnail,
+                                                            width: 99,
+                                                            height: 120),
+                                                      ])),
+                                                  Text(
+                                                    response[index].name,
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    maxLines: 1,
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 10),
+                                                  ),
+                                                  Text(
+                                                      'Rs ' +
+                                                          response[index]
+                                                              .price
+                                                              .toString(),
+                                                      style: TextStyle(
+                                                        fontSize: 11,
+                                                      )),
+                                                  AddToCart(
+                                                    product: ProductModel
+                                                        .items[index],
+                                                  )
+                                                ],
+                                              ))),
+                                    )),
                           );
                         } else {
                           return LinearProgressIndicator(
