@@ -1,8 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_html/flutter_html.dart';
+
 import 'package:webview_flutter/webview_flutter.dart';
 
 class ImePayWebView extends StatefulWidget {
@@ -20,11 +19,11 @@ class _ImePayWebViewState extends State<ImePayWebView> {
     return SafeArea(
       child: Scaffold(
           body: WebView(
-              initialUrl: '',
+              initialUrl: 'https://garjoonepal.com/',
               javascriptMode: JavascriptMode.unrestricted,
               onWebViewCreated: (WebViewController webViewController) {
                 _webViewController = webViewController;
-                _loadHtmlFromAssest();
+                //_loadHtmlFromAssest();
               })),
     );
   }

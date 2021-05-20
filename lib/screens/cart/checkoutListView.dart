@@ -1,23 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:garjoo/core/store.dart';
+import 'package:garjoo/models/cart_model.dart';
 import 'package:garjoo/models/loginUser.dart';
 import 'package:garjoo/screens/cart/payment.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 import '../../core.dart';
 
 class CheckOutListView extends StatelessWidget {
   final userName;
   final email;
-  final cart;
   final sum;
   UserDetailsProvider user = UserDetailsProvider();
   TextEditingController _controller = TextEditingController();
 
   var confirmpassword, cname, cemail, cphone, fname, lname, ctycode;
-  CheckOutListView({Key key, this.userName, this.email, this.sum, this.cart})
-      : super(key: key);
+  CheckOutListView({
+    Key key,
+    this.userName,
+    this.email,
+    this.sum,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final CartModel _cart = (VxState.store as MyStore).cart;
     return ListView(
       scrollDirection: Axis.vertical,
       shrinkWrap: true,
@@ -302,10 +309,16 @@ class CheckOutListView extends StatelessWidget {
                       'TOTAL',
                       style: TextStyle(color: Colors.grey, fontSize: 13),
                     ),
-                    Text(
-                      '\$$sum',
-                      style:
-                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    VxConsumer(
+                      mutations: {RemoveMutation},
+                      builder: (context, status) {
+                        return "\$${_cart.totalPrice}"
+                            .text
+                            .xl4
+                            .color(context.accentColor)
+                            .make();
+                      },
+                      notifications: {},
                     ),
                     Text(
                       'Shipping Charge -Rs.50',
@@ -319,7 +332,7 @@ class CheckOutListView extends StatelessWidget {
                           return showDialog(
                             context: context,
                             builder: (ctx) => PaymentGateway(
-                              cart: cart,
+                              //cart: cart,
                               sum: sum,
                             ),
                           );

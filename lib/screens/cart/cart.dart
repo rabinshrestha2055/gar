@@ -5,6 +5,10 @@ import 'package:garjoo/models/cart_model.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class Cart extends StatefulWidget {
+  final userName;
+  final email;
+
+  const Cart({Key key, this.userName, this.email}) : super(key: key);
   @override
   _CartState createState() => _CartState();
 }
@@ -120,8 +124,13 @@ class _CartState extends State<Cart> {
                         ),
                         InkWell(
                           onTap: () {
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (_) => Checkout()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => Checkout(
+                                          email: widget.email,
+                                          userName: widget.userName,
+                                        )));
                           },
                           child: Container(
                               height: 40,

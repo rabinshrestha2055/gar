@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:garjoo/core.dart';
 import 'package:garjoo/models/cod.dart';
+import 'package:garjoo/widget/imePayWebView.dart';
 
 class ConfirmationBox1 extends StatefulWidget {
   final cart;
@@ -68,6 +69,10 @@ class _ConfirmationBox1State extends State<ConfirmationBox1> {
                         print(response.body);
                         if (response.statusCode == 201) {
                           final snackbar = SnackBar(content: Text("Success"));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => ImePayWebView()));
 
                           ScaffoldMessenger.of(context).showSnackBar(snackbar);
                         } else {

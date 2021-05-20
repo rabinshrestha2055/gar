@@ -56,7 +56,12 @@ Widget customAppBar({BuildContext context, var email, var userName}) {
             ),
             onPressed: () {
               Navigator.push(
-                  context, MaterialPageRoute(builder: (_) => Cart()));
+                  context,
+                  MaterialPageRoute(
+                      builder: (_) => Cart(
+                            email: email,
+                            userName: userName,
+                          )));
             }),
       ]),
     ],

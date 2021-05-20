@@ -30,7 +30,10 @@ class _HomePageState extends State<HomePage> {
         userName: widget.userName,
       ),
       widget.email == null ? LoginFirst() : Review(),
-      Cart(),
+      Cart(
+        email: widget.email,
+        userName: widget.userName,
+      ),
       widget.email == null
           ? LoginFirst()
           : Profile(

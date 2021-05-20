@@ -237,6 +237,19 @@ class UserDetailsProvider with ChangeNotifier {
     } catch (e) {}
   }
 
+  Future<String> getFilterResult({category}) async {
+    try {
+      final response = await http.get(
+        AppURl.filterResult + category + "/",
+        headers: {
+          "Accept": "application/json",
+        },
+      );
+      print(response.body);
+      return response.body;
+    } catch (e) {}
+  }
+
   Future<http.Response> login(UserModel loginModel) async {
     try {
       final headers = {
@@ -439,7 +452,6 @@ class UserDetailsProvider with ChangeNotifier {
         AppURl.loginUser,
         headers: headers,
       );
-      print(response.body);
       return loginUserModelFromJson(response.body);
     } catch (e) {}
   }
