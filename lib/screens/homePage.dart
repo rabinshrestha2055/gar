@@ -19,6 +19,15 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  UserDetailsProvider user = UserDetailsProvider();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    user.loginUser();
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     final _cart = (VxState.store as MyStore).cart;
@@ -37,6 +46,8 @@ class _HomePageState extends State<HomePage> {
       widget.email == null
           ? LoginFirst()
           : Profile(
+              id: widget.id,
+              userName: widget.userName,
               email: widget.email,
             ),
     ];
@@ -58,8 +69,12 @@ class _HomePageState extends State<HomePage> {
               BottomNavigationBarItem(
                   icon: VxBuilder(
                     mutations: {AddMutation, RemoveMutation},
-                    builder: (context, _) => Icon(CupertinoIcons.cart).badge(
-                        color: Colors.red, size: 12, count: _cart.items.length),
+                    builder: (context, _) => _cart.items.length != 0
+                        ? Icon(CupertinoIcons.cart).badge(
+                            color: Colors.red,
+                            size: 12,
+                            count: _cart.items.length)
+                        : Icon(CupertinoIcons.cart),
                   ),
                   label: "Cart"),
               BottomNavigationBarItem(

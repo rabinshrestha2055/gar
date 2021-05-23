@@ -36,7 +36,7 @@ class _ArrivalState extends State<Arrival> {
             );
           } else if (snapshot.connectionState == ConnectionState.done) {
             ProductModel.items = snapshot.data as List<Item>;
-            var response = ProductModel.items.cast();
+            var response = ProductModel.items;
 
             return Column(
               children: [
@@ -132,11 +132,13 @@ class _ArrivalState extends State<Arrival> {
                                 SizedBox(height: 3),
                                 RatingBar.builder(
                                   ignoreGestures: true,
-                                  initialRating:
-                                      response[index].rating.toString() ==
-                                              'null'
-                                          ? 0.0
-                                          : response[index].rating,
+                                  initialRating: response[index]
+                                              .rating
+                                              .toString() ==
+                                          'null'
+                                      ? 0.0
+                                      : double.parse(
+                                          response[index].rating.toString()),
                                   minRating: 1,
                                   direction: Axis.horizontal,
                                   allowHalfRating: true,

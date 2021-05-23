@@ -1,20 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:garjoo/core.dart';
+import 'package:garjoo/core/store.dart';
+import 'package:garjoo/models/cart_model.dart';
 import 'package:garjoo/models/cod.dart';
-import 'package:garjoo/widget/imePayWebView.dart';
+import 'package:garjoo/screens/homePage.dart';
+import 'package:garjoo/startPage.dart';
+
+import 'package:velocity_x/velocity_x.dart';
 
 class ConfirmationBox1 extends StatefulWidget {
-  final cart;
-  ConfirmationBox1({Key key, this.cart}) : super(key: key);
+  final email;
+  final userName;
+  final fullName;
+  final address;
+  final phone;
+  ConfirmationBox1({
+    this.userName,
+    this.address,
+    this.phone,
+    this.fullName,
+    this.email,
+    Key key,
+  }) : super(key: key);
 
   @override
   _ConfirmationBox1State createState() => _ConfirmationBox1State();
 }
 
 class _ConfirmationBox1State extends State<ConfirmationBox1> {
+  final CartModel _cart = (VxState.store as MyStore).cart;
   UserDetailsProvider user = UserDetailsProvider();
+  List demo = [];
   @override
   Widget build(BuildContext context) {
+    print(_cart.items.toList());
     return AlertDialog(
       title: Image.asset(
         'asset/alert.png',
@@ -47,32 +66,24 @@ class _ConfirmationBox1State extends State<ConfirmationBox1> {
                     onTap: () {
                       var cod = CashOnDelivery(
                           userId: 76,
-                          receiverName: "Ashish Dahal",
-                          receiverNumber: "980-7150500",
-                          receiverEmail: "suvalaxmi@yopmail.com",
-                          shippingAddress: "Simara,Bara",
+                          receiverName: widget.fullName,
+                          receiverNumber: widget.phone,
+                          receiverEmail: widget.email,
+                          shippingAddress: widget.address,
                           shippingCharge: 0,
-                          subTotal: 5500,
-                          grandTotal: 5500,
-                          products: [
-                            {
-                              "id": 202,
-                              "name": "BANJO",
-                              "price": 5500,
-                              "slug": "banjo-202",
-                              "thumbnail":
-                                  "/image/pthumbnail/0a7a6c9985cf71ca26e88cab8d2f6c48.jpeg",
-                              "vendor_id": 169
-                            }
-                          ]);
+                          subTotal: _cart.totalPrice,
+                          grandTotal: _cart.totalPrice,
+                          products: _cart.items.sublist(1));
                       user.cashOnDelivery(cashOnDelivery: cod).then((response) {
-                        print(response.body);
                         if (response.statusCode == 201) {
                           final snackbar = SnackBar(content: Text("Success"));
+                          RemoveMutation(_cart.items.first);
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (_) => ImePayWebView()));
+                                  builder: (_) => HomePage(
+                                      email: widget.email,
+                                      userName: widget.userName)));
 
                           ScaffoldMessenger.of(context).showSnackBar(snackbar);
                         } else {

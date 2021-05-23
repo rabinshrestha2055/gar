@@ -17,6 +17,7 @@ MERGED from [:url_launcher] /home/codeish/Documents/office-work/Testing/gar/buil
 MERGED from [:webview_flutter] /home/codeish/Documents/office-work/Testing/gar/build/webview_flutter/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:path_provider] /home/codeish/Documents/office-work/Testing/gar/build/path_provider/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:flutter_local_notifications] /home/codeish/Documents/office-work/Testing/gar/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-23:12
+MERGED from [:connectivity] /home/codeish/Documents/office-work/Testing/gar/build/connectivity/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:permission_handler] /home/codeish/Documents/office-work/Testing/gar/build/permission_handler/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:shared_preferences] /home/codeish/Documents/office-work/Testing/gar/build/shared_preferences/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:share] /home/codeish/Documents/office-work/Testing/gar/build/share/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-19:12
@@ -206,6 +207,8 @@ MERGED from [:path_provider] /home/codeish/Documents/office-work/Testing/gar/bui
 MERGED from [:path_provider] /home/codeish/Documents/office-work/Testing/gar/build/path_provider/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:flutter_local_notifications] /home/codeish/Documents/office-work/Testing/gar/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:flutter_local_notifications] /home/codeish/Documents/office-work/Testing/gar/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:connectivity] /home/codeish/Documents/office-work/Testing/gar/build/connectivity/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:connectivity] /home/codeish/Documents/office-work/Testing/gar/build/connectivity/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:permission_handler] /home/codeish/Documents/office-work/Testing/gar/build/permission_handler/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:permission_handler] /home/codeish/Documents/office-work/Testing/gar/build/permission_handler/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:shared_preferences] /home/codeish/Documents/office-work/Testing/gar/build/shared_preferences/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
@@ -366,6 +369,14 @@ action#com.htc.intent.action.QUICKBOOT_POWERON
 ADDED from [:flutter_local_notifications] /home/codeish/Documents/office-work/Testing/gar/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:18:17-82
 	android:name
 		ADDED from [:flutter_local_notifications] /home/codeish/Documents/office-work/Testing/gar/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:18:25-79
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from [:connectivity] /home/codeish/Documents/office-work/Testing/gar/build/connectivity/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-79
+MERGED from [com.google.android.exoplayer:exoplayer-core:2.13.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/f927724b56c093e8c8c7e1008908ab2b/jetified-exoplayer-core-2.13.1/AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.exoplayer:exoplayer-core:2.13.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/f927724b56c093e8c8c7e1008908ab2b/jetified-exoplayer-core-2.13.1/AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.exoplayer:exoplayer-common:2.13.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/ca43aa877fc094c71f763f0c74131be3/jetified-exoplayer-common-2.13.1/AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.exoplayer:exoplayer-common:2.13.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/ca43aa877fc094c71f763f0c74131be3/jetified-exoplayer-common-2.13.1/AndroidManifest.xml:24:5-79
+	android:name
+		ADDED from [:connectivity] /home/codeish/Documents/office-work/Testing/gar/build/connectivity/intermediates/library_manifest/debug/AndroidManifest.xml:7:22-76
 provider#io.flutter.plugins.share.ShareFileProvider
 ADDED from [:share] /home/codeish/Documents/office-work/Testing/gar/build/share/intermediates/library_manifest/debug/AndroidManifest.xml:8:9-16:20
 	android:grantUriPermissions
@@ -376,9 +387,3 @@ ADDED from [:share] /home/codeish/Documents/office-work/Testing/gar/build/share/
 		ADDED from [:share] /home/codeish/Documents/office-work/Testing/gar/build/share/intermediates/library_manifest/debug/AndroidManifest.xml:11:13-37
 	android:name
 		ADDED from [:share] /home/codeish/Documents/office-work/Testing/gar/build/share/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-70
-uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from [com.google.android.exoplayer:exoplayer-core:2.13.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/f927724b56c093e8c8c7e1008908ab2b/jetified-exoplayer-core-2.13.1/AndroidManifest.xml:24:5-79
-MERGED from [com.google.android.exoplayer:exoplayer-common:2.13.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/ca43aa877fc094c71f763f0c74131be3/jetified-exoplayer-common-2.13.1/AndroidManifest.xml:24:5-79
-MERGED from [com.google.android.exoplayer:exoplayer-common:2.13.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/ca43aa877fc094c71f763f0c74131be3/jetified-exoplayer-common-2.13.1/AndroidManifest.xml:24:5-79
-	android:name
-		ADDED from [com.google.android.exoplayer:exoplayer-core:2.13.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/f927724b56c093e8c8c7e1008908ab2b/jetified-exoplayer-core-2.13.1/AndroidManifest.xml:24:22-76

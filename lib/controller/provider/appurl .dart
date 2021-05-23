@@ -1,0 +1,42 @@
+class AppURl {
+  static const path = "https://api.garjoo.com";
+  static const baseurl = "https://api.garjoo.com/api/";
+  static const register = "register";
+  static const login = "login";
+  static const pauseAccout = "pause/";
+  static const deleteAccout = "deactivate/";
+  static const arrival = "new-arrivals/market";
+  static const discount = "discounted-items";
+  static const fcategory = "featured-categories";
+  static const fproducts = "featured-items/market";
+  static const menfashion = "new-arrivals/mens-fashion";
+  static const womenfashion = "new-arrivals/womens-fashion";
+  static const relatedproduct = "product/view/";
+  static const storeproduct = "store/view/";
+  static const service = "filters/services";
+  static const market = "filters/market";
+  static const updateuser = "user-update";
+  static const toplisting = "top-items/real-estate";
+  static const newproperties = "new-arrivals/real-estate";
+  static const homecarousel = "category-image-ads/get-by-type/home";
+  static const classifiedcarousel = "general-image-ads/get/classified";
+  static const quicklink = "filter-result/";
+  static const hotjobs = "new-arrivals/jobs";
+  static const bikearrival = "new-arrivals/bike";
+  static const realestatearrival = "new-arrivals/real-estate";
+  static const hotelarrival = "new-arrivals/hotels";
+  static const mobilearrival = "mobile-accessories";
+  static const storetop = "store/all";
+  static const loginUser = "user";
+  static const verifyEmail = "verify_email";
+  static const storebanner = "general-image-ads/get/store";
+  static const navigationParent = "navigation-parent";
+  static const reviewPost = "category-review/store";
+  static const specificReviewPost = "review/store";
+  static const specificReviewGet = "review/product/";
+  static const imePay = "imepay/paytest";
+  static const cod = "order/store";
+  static const imePayWeb =
+      "https://stg.imepay.com.np:7979/WebCheckout/Checkout";
+  static const filterResult = "filter-result/";
+}

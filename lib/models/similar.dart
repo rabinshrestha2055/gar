@@ -4,13 +4,13 @@ class ProductModel {
   static List<Item> items;
 
   //Get Item by Id
+
   Item getById(int id) {
-    print(id);
     return items.firstWhere(
       (element) {
         return element.id == id;
       },
-      orElse: () => items[0],
+      orElse: () => items.first,
     );
   }
 }

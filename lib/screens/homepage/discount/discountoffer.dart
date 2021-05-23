@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:garjoo/controller/provider/appurl%20.dart';
 
 import 'package:garjoo/core.dart';
 import 'package:garjoo/models/similar.dart';

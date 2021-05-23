@@ -15,6 +15,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   var email, password;
   final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -132,6 +133,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               value.login(loginModel).then((response) {
                                 if (response.statusCode == 200) {
                                   var res = userModelFromJson(response.body);
+
                                   value.saveUser(res);
 
                                   final snackbar = SnackBar(

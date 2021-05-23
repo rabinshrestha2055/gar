@@ -67,8 +67,8 @@
 39-->[:flutter_local_notifications] /home/codeish/Documents/office-work/Testing/gar/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:9:5-81
 39-->[:flutter_local_notifications] /home/codeish/Documents/office-work/Testing/gar/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:9:22-78
 40    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-40-->[com.google.android.exoplayer:exoplayer-core:2.13.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/f927724b56c093e8c8c7e1008908ab2b/jetified-exoplayer-core-2.13.1/AndroidManifest.xml:24:5-79
-40-->[com.google.android.exoplayer:exoplayer-core:2.13.1] /home/codeish/.gradle/caches/transforms-2/files-2.1/f927724b56c093e8c8c7e1008908ab2b/jetified-exoplayer-core-2.13.1/AndroidManifest.xml:24:22-76
+40-->[:connectivity] /home/codeish/Documents/office-work/Testing/gar/build/connectivity/intermediates/library_manifest/release/AndroidManifest.xml:7:5-79
+40-->[:connectivity] /home/codeish/Documents/office-work/Testing/gar/build/connectivity/intermediates/library_manifest/release/AndroidManifest.xml:7:22-76
 41
 42    <application
 42-->/home/codeish/Documents/office-work/Testing/gar/android/app/src/main/AndroidManifest.xml:21:5-59:19

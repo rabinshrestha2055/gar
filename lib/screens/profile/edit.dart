@@ -3,8 +3,12 @@ import 'package:flutter/material.dart';
 import '../../core.dart';
 
 class Edit extends StatelessWidget {
+  final int id;
+
+  const Edit({Key key, this.id}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    UserDetailsProvider user = UserDetailsProvider();
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -23,8 +27,11 @@ class Edit extends StatelessWidget {
         children: [
           SizedBox(height: 10),
           Padding(
-            padding: const EdgeInsets.only(top:8.0,left: 18,bottom: 8),
-            child: Text('Edit Profile',style: TextStyle(fontSize: 20),),
+            padding: const EdgeInsets.only(top: 8.0, left: 18, bottom: 8),
+            child: Text(
+              'Edit Profile',
+              style: TextStyle(fontSize: 20),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.only(left: 12, right: 12),
@@ -90,63 +97,92 @@ class Edit extends StatelessWidget {
                 height: 40,
                 margin: EdgeInsets.only(left: 70, right: 70),
                 decoration: BoxDecoration(
-                    color: red,
-                    borderRadius: BorderRadius.circular(12),
+                  color: red,
+                  borderRadius: BorderRadius.circular(12),
                 ),
                 child: Center(
                     child: Text(
-                  'Update   Profile',
+                  'Update Profile',
                   style: TextStyle(
                     color: white,
                   ),
                 ))),
-          ), SizedBox(height: 20),
+          ),
+          SizedBox(height: 20),
           Container(
-            
             margin: EdgeInsets.all(20),
-            
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                 InkWell(
-                  onTap: () {
-                  
-                  },
-                  child: Container(
-                      height: 40,
-                     width: 100,
-                      decoration: BoxDecoration(
+                InkWell(
+                  onTap: () {},
+                  child: InkWell(
+                    onTap: () {
+                      user.deleteAccount(userId: id).then((response) {
+                        if (response.statusCode == 200) {
+                          final snackbar = SnackBar(
+                              content: Text("User account deactivated"));
+
+                          ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                        } else {
+                          final snackbar = SnackBar(content: Text("failed"));
+
+                          ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                        }
+                      });
+                    },
+                    child: Container(
+                        height: 40,
+                        width: 100,
+                        decoration: BoxDecoration(
                           color: red,
                           borderRadius: BorderRadius.circular(12),
                         ),
-                      child: Center(
-                          child: Text(
-                        'Deactivate',
-                        style: TextStyle(
-                          color: white,
-                        ),
-                      ))),
+                        child: Center(
+                            child: Text(
+                          'Deactivate',
+                          style: TextStyle(
+                            color: white,
+                          ),
+                        ))),
+                  ),
                 ),
                 InkWell(
                   onTap: () {
                     // Navigator.push(
                     //     context, MaterialPageRoute(builder: (_) => Edit()));
                   },
-                  child: Container(
-                      height: 40,
-                     width: 120,
-                      decoration: BoxDecoration(
+                  child: InkWell(
+                    onTap: () {
+                      user.pauseAccount(userId: id).then((response) {
+                        if (response.statusCode == 200) {
+                          final snackbar =
+                              SnackBar(content: Text("User account paused"));
+
+                          ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                        } else {
+                          final snackbar = SnackBar(content: Text("failed"));
+
+                          ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                        }
+                      });
+                    },
+                    child: Container(
+                        height: 40,
+                        width: 120,
+                        decoration: BoxDecoration(
                           color: red,
                           borderRadius: BorderRadius.circular(12),
-                         ),
-                      child: Center(
-                          child: Text(
-                        'Pause Account',
-                        style: TextStyle(
-                          color: white,
                         ),
-                      ))),
+                        child: Center(
+                            child: Text(
+                          'Pause Account',
+                          style: TextStyle(
+                            color: white,
+                          ),
+                        ))),
+                  ),
                 ),
               ],
             ),

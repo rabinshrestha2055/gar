@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:garjoo/colors.dart';
 import 'package:garjoo/core.dart';
+import 'package:garjoo/screens/homePage.dart';
+
 import 'package:provider/provider.dart';
 
 class MarketFilter extends StatefulWidget {
@@ -72,46 +74,49 @@ class _MarketFilterState extends State<MarketFilter> {
                             var response = snapshot.data;
                             var jsonData = json.decode(response);
                             category = jsonData[0]['childs'];
-                            return FutureBuilder(
-                              future:
-                                  user.getFilterResult(category: _chosenValue),
-                              builder: (context, snapshot) => Container(
-                                height: 45,
-                                width: 340,
-                                child: Card(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(12)),
-                                  margin: EdgeInsets.only(left: 0, right: 15),
-                                  elevation: 2.0,
-                                  child: DropdownButtonHideUnderline(
-                                    child: ButtonTheme(
-                                      alignedDropdown: true,
-                                      child: DropdownButton<String>(
-                                        isExpanded: true,
-                                        value: _chosenValue,
-                                        style: TextStyle(color: Colors.black),
-                                        items: category?.map((item) {
-                                              return DropdownMenuItem<String>(
-                                                value: item['id'].toString(),
-                                                child: Text(item['label']),
-                                              );
-                                            })?.toList() ??
-                                            [],
-                                        hint: Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Text(
-                                            "Select Category",
-                                            style: TextStyle(
-                                              fontSize: 16,
-                                            ),
+                            return Container(
+                              height: 45,
+                              width: 340,
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12)),
+                                margin: EdgeInsets.only(left: 0, right: 15),
+                                elevation: 2.0,
+                                child: DropdownButtonHideUnderline(
+                                  child: ButtonTheme(
+                                    alignedDropdown: true,
+                                    child: DropdownButton<String>(
+                                      isExpanded: true,
+                                      value: _chosenValue,
+                                      style: TextStyle(color: Colors.black),
+                                      items: category?.map((item) {
+                                            return DropdownMenuItem(
+                                              onTap: () {
+                                                Navigator.pushReplacement(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (_) =>
+                                                            HomePage()));
+                                              },
+                                              value: item['label'].toString(),
+                                              child: Text(item['label']),
+                                            );
+                                          })?.toList() ??
+                                          [],
+                                      hint: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                          "Select Category",
+                                          style: TextStyle(
+                                            fontSize: 16,
                                           ),
                                         ),
-                                        onChanged: (String value) {
-                                          setState(() {
-                                            _chosenValue = value;
-                                          });
-                                        },
                                       ),
+                                      onChanged: (String value) {
+                                        setState(() {
+                                          _chosenValue = value;
+                                        });
+                                      },
                                     ),
                                   ),
                                 ),

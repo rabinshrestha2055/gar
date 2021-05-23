@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:garjoo/controller/provider/appurl%20.dart';
 import 'package:garjoo/filter/marketFilter.dart';
 import 'package:garjoo/models/similar.dart';
 import 'package:garjoo/widget/addToCart.dart';
 import 'package:garjoo/widget/customAppBar.dart';
+import 'package:garjoo/widget/viewDetails.dart';
 
 import 'package:provider/provider.dart';
 
@@ -160,11 +162,16 @@ class QuickLinkDetail extends StatelessWidget {
                                                           style: TextStyle(
                                                             fontSize: 11,
                                                           )),
-                                                      AddToCart(
-                                                        product: ProductModel
-                                                            .items[index],
-                                                        title: buttontitle,
-                                                      )
+                                                      storetitle == "Market"
+                                                          ? AddToCart(
+                                                              product:
+                                                                  ProductModel
+                                                                          .items[
+                                                                      index],
+                                                            )
+                                                          : ViewDetails(
+                                                              title: storetitle,
+                                                            )
                                                     ],
                                                   ))),
                                         )),

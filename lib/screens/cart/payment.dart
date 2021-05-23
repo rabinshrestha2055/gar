@@ -4,9 +4,19 @@ import 'package:garjoo/widget/confirmationBox.dart';
 import 'package:garjoo/widget/confirmationBox1.dart';
 
 class PaymentGateway extends StatefulWidget {
-  final cart;
-  final sum;
-  PaymentGateway({Key key, this.sum, this.cart}) : super(key: key);
+  final email;
+  final userName;
+  final address;
+  final phone;
+  final fullName;
+  PaymentGateway({
+    this.email,
+    this.userName,
+    this.phone,
+    this.address,
+    this.fullName,
+    Key key,
+  }) : super(key: key);
 
   @override
   _PaymentGatewayState createState() => _PaymentGatewayState();
@@ -15,6 +25,9 @@ class PaymentGateway extends StatefulWidget {
 class _PaymentGatewayState extends State<PaymentGateway> {
   @override
   Widget build(BuildContext context) {
+    print(widget.address);
+    print(widget.fullName);
+    print(widget.phone);
     return AlertDialog(
       title: Column(
         children: [
@@ -42,9 +55,7 @@ class _PaymentGatewayState extends State<PaymentGateway> {
                     onTap: () {
                       return showDialog(
                         context: context,
-                        builder: (ctx) => ConfirmationBox(
-                          sum: widget.sum,
-                        ),
+                        builder: (ctx) => ConfirmationBox(),
                       );
                     },
                     child: Container(
@@ -71,7 +82,11 @@ class _PaymentGatewayState extends State<PaymentGateway> {
                       return showDialog(
                         context: context,
                         builder: (ctx) => ConfirmationBox1(
-                          cart: widget.cart,
+                          fullName: widget.fullName,
+                          phone: widget.phone,
+                          address: widget.address,
+                          email: widget.email,
+                          userName: widget.userName,
                         ),
                       );
                     },

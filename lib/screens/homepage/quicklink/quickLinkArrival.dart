@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:garjoo/core.dart';
 import 'package:garjoo/models/similar.dart';
 import 'package:garjoo/widget/addToCart.dart';
+import 'package:garjoo/widget/viewDetails.dart';
 import 'package:provider/provider.dart';
 
 class QuickLinkArrival extends StatelessWidget {
@@ -97,11 +98,14 @@ class QuickLinkArrival extends StatelessWidget {
                                                   maxLines: 1,
                                                 ),
                                               ),
-                                              AddToCart(
-                                                product:
-                                                    ProductModel.items[index],
-                                                title: buttonTitle,
-                                              ),
+                                              buttonTitle == "Market"
+                                                  ? AddToCart(
+                                                      product: ProductModel
+                                                          .items[index],
+                                                    )
+                                                  : ViewDetails(
+                                                      title: buttonTitle,
+                                                    ),
                                             ],
                                           ))),
                                 ))),

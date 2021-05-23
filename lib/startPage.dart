@@ -19,6 +19,7 @@ class _StartPageState extends State<StartPage> {
   @override
   void initState() {
     userDetails = user.loginUser();
+    setState(() {});
   }
 
   @override

@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:garjoo/models/similar.dart';
+
 class CashOnDelivery {
   final int userId;
   final String receiverName;
@@ -36,4 +38,4 @@ class CashOnDelivery {
       };
 }
 
-codToJson(CashOnDelivery data) => json.encode(data.toJson());
+String codToJson(CashOnDelivery data) => json.encode(data.toJson());

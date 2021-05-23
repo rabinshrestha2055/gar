@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:garjoo/widget/logoutDailog.dart';
 import '../../core.dart';
-import '../../main.dart';
 
 class Profile extends StatefulWidget {
+  final int id;
   final String email;
+  final String userName;
 
-  const Profile({Key key, this.email}) : super(key: key);
+  const Profile({Key key, this.email, this.userName, this.id})
+      : super(key: key);
   @override
   _ProfileState createState() => _ProfileState();
 }
@@ -16,6 +18,7 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
+    print(widget.id);
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
@@ -72,17 +75,21 @@ class _ProfileState extends State<Profile> {
                 Column(
                   children: [
                     Text(
-                      'Jane Doe',
+                      widget.userName == null ? 'Jane Doe' : widget.userName,
                       style: TextStyle(
                           color: red,
                           fontWeight: FontWeight.bold,
-                          fontSize: 30),
+                          fontSize: 15),
                     ),
                     SizedBox(height: 10),
                     InkWell(
                       onTap: () {
                         Navigator.push(
-                            context, MaterialPageRoute(builder: (_) => Edit()));
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => Edit(
+                                      id: widget.id,
+                                    )));
                       },
                       child: Container(
                           height: 30,

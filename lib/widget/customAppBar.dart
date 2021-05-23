@@ -42,12 +42,15 @@ Widget customAppBar({BuildContext context, var email, var userName}) {
               radius: 7,
               backgroundColor: Colors.red,
               child: VxBuilder(
-                mutations: {AddMutation, RemoveMutation},
-                builder: (context, _) => Text(
-                  _cart.items.length.toString(),
-                  style: TextStyle(fontSize: 10, color: Colors.white),
-                ),
-              ),
+                  mutations: {AddMutation, RemoveMutation},
+                  builder: (context, _) => _cart.items.length != 0
+                      ? Text(
+                          _cart.items.length.toString(),
+                          style: TextStyle(fontSize: 10, color: Colors.white),
+                        )
+                      : Container(
+                          color: Colors.white,
+                        )),
             )),
         IconButton(
             icon: Icon(
