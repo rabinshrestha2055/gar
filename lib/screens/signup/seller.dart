@@ -69,8 +69,8 @@ class _SellerState extends State<Seller> {
         child: ListView(
           children: [
             Form(
-              key:_formkey,
-                          child: Column(
+              key: _formkey,
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Card(
@@ -96,7 +96,6 @@ class _SellerState extends State<Seller> {
                               labelText: 'First Name')),
                     ),
                   ),
-                
                   SizedBox(
                     height: 5,
                   ),
@@ -191,8 +190,8 @@ class _SellerState extends State<Seller> {
                             child: Padding(
                                 padding: const EdgeInsets.only(top: 5, left: 8),
                                 child: Container(
-                                  padding:
-                                      const EdgeInsets.only(left: 8, bottom: 0.0),
+                                  padding: const EdgeInsets.only(
+                                      left: 8, bottom: 0.0),
                                   height:
                                       MediaQuery.of(context).size.height * 0.60,
                                   child: Padding(
@@ -369,7 +368,6 @@ class _SellerState extends State<Seller> {
                                             borderRadius:
                                                 BorderRadius.circular(20)),
                                         color: Colors.red[300],
-                                        
                                         child: Text(
                                           'Register',
                                           style: TextStyle(
@@ -379,48 +377,54 @@ class _SellerState extends State<Seller> {
                                         ),
                                         onPressed: _isChecked && _isChecked1
                                             ? () {
-                                              if(_formkey.currentState.validate()){
-                                                var userModel = UserModel(
-                                                  username: fname + lname,
-                                                  email: email,
-                                                  type: 'seller',
-                                                  password: password,
-                                                  confirmPassword:
-                                                      confirmpassword,
-                                                  companyName: cname,
-                                                  companyEmail: cemail,
-                                                  phoneNumber: ctycode + cphone,
-                                                );
-                                                value
-                                                    .sellerRegister(
-                                                        filename: fileName,
-                                                        registerModel: userModel)
-                                                    .then((response) {
-                                                  if (response.statusCode ==
-                                                      200) {
-                                                    var snackBar = SnackBar(
+                                                if (_formkey.currentState
+                                                    .validate()) {
+                                                  var userModel = UserModel(
+                                                    username: fname + lname,
+                                                    email: email,
+                                                    type: 'seller',
+                                                    password: password,
+                                                    confirmPassword:
+                                                        confirmpassword,
+                                                    companyName: cname,
+                                                    companyEmail: cemail,
+                                                    phoneNumber:
+                                                        ctycode + cphone,
+                                                  );
+                                                  value
+                                                      .sellerRegister(
+                                                          filename: fileName,
+                                                          registerModel:
+                                                              userModel)
+                                                      .then((response) {
+                                                    if (response.statusCode ==
+                                                        200) {
+                                                      var snackBar = SnackBar(
+                                                          content: Text(
+                                                              'Register Sucessful!'));
+                                                      Scaffold.of(context)
+                                                          .showSnackBar(
+                                                              snackBar);
+                                                    } else if (response
+                                                            .statusCode ==
+                                                        422) {
+                                                      var snackBar = SnackBar(
+                                                          content: Text(
+                                                              'The email has been already taken'));
+                                                      Scaffold.of(context)
+                                                          .showSnackBar(
+                                                              snackBar);
+                                                    } else {
+                                                      final snackbar = SnackBar(
                                                         content: Text(
-                                                            'Register Sucessful!'));
-                                                    ScaffoldMessenger.of(context)
-                                                        .showSnackBar(snackBar);
-                                                  } else if (response
-                                                          .statusCode ==
-                                                      422) {
-                                                    var snackBar = SnackBar(
-                                                        content: Text(
-                                                            'The email has been already taken'));
-                                                    ScaffoldMessenger.of(context)
-                                                        .showSnackBar(snackBar);
-                                                  } else {
-                                                    final snackbar = SnackBar(
-                                                      content: Text(
-                                                          'Register Unsucessfull!'),
-                                                    );
-                                                    ScaffoldMessenger.of(context)
-                                                        .showSnackBar(snackbar);
-                                                  }
-                                                });
-                                              }
+                                                            'Register Unsucessfull!'),
+                                                      );
+                                                      Scaffold.of(context)
+                                                          .showSnackBar(
+                                                              snackbar);
+                                                    }
+                                                  });
+                                                }
                                               }
                                             : null))),
                       ),

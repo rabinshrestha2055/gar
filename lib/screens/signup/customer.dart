@@ -5,7 +5,6 @@ import 'package:garjoo/widget/policy.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 
-
 class Customer extends StatefulWidget {
   @override
   _CustomerState createState() => _CustomerState();
@@ -164,16 +163,14 @@ class _CustomerState extends State<Customer> {
                           ),
                         ),
                       ),
-                        SizedBox(height: 20),
+                      SizedBox(height: 20),
                       Row(
                         children: [
                           Checkbox(
                               value: _isChecked,
                               onChanged: (bool value) {
                                 setState(() {
-                                  
                                   _isChecked = value;
-                                 
                                 });
                               }),
                           Padding(
@@ -188,9 +185,7 @@ class _CustomerState extends State<Customer> {
                               value: _isChecked1,
                               onChanged: (bool value) {
                                 setState(() {
-                                
                                   _isChecked1 = value;
-                                  
                                 });
                               }),
                           Padding(
@@ -237,9 +232,8 @@ class _CustomerState extends State<Customer> {
                                                       .validate()) {
                                                     var registerModel =
                                                         UserModel(
-                                                            username: fname + lname
-                                                                
-                                                                ,
+                                                            username:
+                                                                fname + lname,
                                                             email: email,
                                                             password: password,
                                                             confirmPassword:
@@ -249,8 +243,10 @@ class _CustomerState extends State<Customer> {
                                                         .customerRegister(
                                                             registerModel)
                                                         .then((response) {
-                                                          var jsonData = json.decode(response.body);
-                                                          print(jsonData['errors']);
+                                                      var jsonData =
+                                                          json.decode(
+                                                              response.body);
+                                                      print(jsonData['errors']);
                                                       if (response.statusCode ==
                                                           200) {
                                                         final snackbar =
@@ -258,8 +254,7 @@ class _CustomerState extends State<Customer> {
                                                           content: Text(
                                                               'Register Sucessfull and Please check your email'),
                                                         );
-                                                        ScaffoldMessenger.of(context)
-                                                            
+                                                        Scaffold.of(context)
                                                             .showSnackBar(
                                                                 snackbar);
                                                       } else if (response
@@ -270,8 +265,7 @@ class _CustomerState extends State<Customer> {
                                                           content: Text(
                                                               'The email has already been taken.'),
                                                         );
-                                                        ScaffoldMessenger.of(context)
-                                                            
+                                                        Scaffold.of(context)
                                                             .showSnackBar(
                                                                 snackbar);
                                                       } else {
@@ -280,8 +274,7 @@ class _CustomerState extends State<Customer> {
                                                           content: Text(
                                                               'Register Unsucessfull!'),
                                                         );
-                                                        ScaffoldMessenger.of(context)
-                                                            
+                                                        Scaffold.of(context)
                                                             .showSnackBar(
                                                                 snackbar);
                                                       }
@@ -293,7 +286,6 @@ class _CustomerState extends State<Customer> {
                               )),
                         ),
                       ),
-                    
                       SizedBox(height: 15),
                       SizedBox(height: 17),
                       Row(
@@ -335,76 +327,80 @@ class _CustomerState extends State<Customer> {
             )));
   }
 
-
-Widget firstText1() {
-  return Column(
-    children: [
-      Row(
-        children: [
-          Text(
-            'I have read and agreed to the ',
-            style: TextStyle(fontSize: 12.5, color: Colors.black),
-          ),
-           InkWell(
-              onTap:()=> Utils.openLink(url: 'https://garjoonepal.com/privacy-policy?redirect=2'),
-                          child: Text(
+  Widget firstText1() {
+    return Column(
+      children: [
+        Row(
+          children: [
+            Text(
+              'I have read and agreed to the ',
+              style: TextStyle(fontSize: 12.5, color: Colors.black),
+            ),
+            InkWell(
+              onTap: () => Utils.openLink(
+                  url: 'https://garjoonepal.com/privacy-policy?redirect=2'),
+              child: Text(
                 'User Agreement ',
                 style: TextStyle(fontSize: 12.5, color: Colors.red),
               ),
             ),
-          Text(
-            'and',
-            style: TextStyle(fontSize: 12.5, color: Colors.black),
+            Text(
+              'and',
+              style: TextStyle(fontSize: 12.5, color: Colors.black),
+            ),
+          ],
+        ),
+        Center(
+          child: InkWell(
+            onTap: () => Utils.openLink(
+                url: 'https://garjoonepal.com/privacy-policy?redirect=2'),
+            child: Text(
+              'Privacy Policy',
+              style: TextStyle(fontSize: 12.5, color: Colors.red),
+            ),
           ),
-        ],
-      ),
-      Center(
-          child:   InkWell(
-              onTap:()=> Utils.openLink(url: 'https://garjoonepal.com/privacy-policy?redirect=2'),
-                          child: Text(
-                'Privacy Policy',
-                style: TextStyle(fontSize: 12.5, color: Colors.red),
-              ),
-            ),)
-    ],
-  );
-}
+        )
+      ],
+    );
+  }
 
-Widget secondText1() {
-  return Column(
-    mainAxisAlignment: MainAxisAlignment.start,
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Row(
-        children: [
-          Text(
-            'I accept the ',
-            style: TextStyle(fontSize: 12, color: Colors.black),
-          ),
+  Widget secondText1() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Text(
+              'I accept the ',
+              style: TextStyle(fontSize: 12, color: Colors.black),
+            ),
             InkWell(
-              onTap:()=> Utils.openLink(url: 'https://garjoonepal.com/privacy-policy?redirect=2'),
-                          child: Text(
+              onTap: () => Utils.openLink(
+                  url: 'https://garjoonepal.com/privacy-policy?redirect=2'),
+              child: Text(
                 'Terms and Conditions',
                 style: TextStyle(fontSize: 12.5, color: Colors.red),
               ),
             ),
-          Text(
-            'and all informa-',
-            style: TextStyle(fontSize: 12.5, color: Colors.black),
-          ),
-        ],
-      ),
-      Text(
-        'tion provided by me is valid. If any misinformation',
-        style: TextStyle(fontSize: 12.5, color: Colors.black),
-      ),
-       Text(
-        "is provided then, I will be  liable .",
-        style: TextStyle(
-      fontSize: 12,
-      color: Colors.black,
+            Text(
+              'and all informa-',
+              style: TextStyle(fontSize: 12.5, color: Colors.black),
+            ),
+          ],
         ),
-      )
-    ],
-  );
-}}
+        Text(
+          'tion provided by me is valid. If any misinformation',
+          style: TextStyle(fontSize: 12.5, color: Colors.black),
+        ),
+        Text(
+          "is provided then, I will be  liable .",
+          style: TextStyle(
+            fontSize: 12,
+            color: Colors.black,
+          ),
+        )
+      ],
+    );
+  }
+}

@@ -10,7 +10,6 @@ class LocationModel {
 
 List<LocationModel> locationModelFromJson(String strJson) {
   final str = json.decode(strJson);
-  print(str);
   return List<LocationModel>.from(str.map((item) {
     return LocationModel.fromJson(item);
   }));

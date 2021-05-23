@@ -380,9 +380,12 @@ class UserDetailsProvider with ChangeNotifier {
   }
 
   Future<http.Response> reviewPost(ReviewPost reviewpost) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString("token");
     try {
       final headers = {
         'content-type': 'application/json',
+        'Authoriaztion': 'Bearer' + token
       };
       final response = await http.post(
         AppURl.reviewPost,
@@ -449,7 +452,7 @@ class UserDetailsProvider with ChangeNotifier {
           "Accept": "application/json",
         },
       );
-      print(response.body);
+
       return locationModelFromJson(response.body);
     } catch (e) {}
   }

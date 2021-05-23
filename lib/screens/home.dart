@@ -5,7 +5,6 @@ import 'package:garjoo/core.dart';
 import 'package:garjoo/widget/customAppBAr.dart';
 
 import '../core.dart';
-import '../core.dart';
 
 class Home extends StatefulWidget {
   List<dynamic> cart = [];

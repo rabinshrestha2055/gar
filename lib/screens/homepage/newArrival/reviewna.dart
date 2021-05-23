@@ -101,8 +101,6 @@ class _ReviewNAState extends State<ReviewNA> {
                                   onPressed: () {
                                     var question = QuestionModel(
                                       question: questions,
-                                      // answer: "",
-                                      // sellerID: 169,
                                       productID: widget.productId,
                                       customerId: widget.id,
                                     );
@@ -112,13 +110,13 @@ class _ReviewNAState extends State<ReviewNA> {
                                       if (response.statusCode == 201) {
                                         var snackBar = SnackBar(
                                             content: Text('Question Raised!'));
-                                        ScaffoldMessenger.of(context)
+                                        Scaffold.of(context)
                                             .showSnackBar(snackBar);
                                       } else {
                                         final snackbar = SnackBar(
                                           content: Text('Question Not Raised!'),
                                         );
-                                        ScaffoldMessenger.of(context)
+                                        Scaffold.of(context)
                                             .showSnackBar(snackbar);
                                       }
                                     });
@@ -236,13 +234,13 @@ class _ReviewNAState extends State<ReviewNA> {
                                       if (response.statusCode == 201) {
                                         var snackBar = SnackBar(
                                             content: Text('Review Sucessful!'));
-                                        ScaffoldMessenger.of(context)
+                                        Scaffold.of(context)
                                             .showSnackBar(snackBar);
                                       } else {
                                         final snackbar = SnackBar(
                                           content: Text('Review Unsucessfull!'),
                                         );
-                                        ScaffoldMessenger.of(context)
+                                        Scaffold.of(context)
                                             .showSnackBar(snackbar);
                                       }
                                     });

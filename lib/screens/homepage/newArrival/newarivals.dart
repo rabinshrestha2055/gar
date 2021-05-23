@@ -4,7 +4,6 @@ import 'package:garjoo/core.dart';
 import 'package:garjoo/screens/homepage/newArrival/arrivalView.dart';
 
 import '../../../core.dart';
-import '../../../core.dart';
 
 class Arrival extends StatefulWidget {
   final ValueSetter<dynamic> valueSetter;

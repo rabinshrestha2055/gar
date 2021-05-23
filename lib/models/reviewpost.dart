@@ -1,19 +1,19 @@
 import 'dart:convert';
 
 class ReviewPost {
-  final String category;
-  final String subCategory;
-  final int quality;
-  final int design;
-  final String productname;
-  final String productbrand;
-  final String place;
-  final int duration;
-  final int price;
-  final int delivery;
-  final String like;
-  final String dislike;
-  final int date;
+  var category;
+  var subCategory;
+  var quality;
+  var design;
+  var productname;
+  var productbrand;
+  var place;
+  var duration;
+  var price;
+  var delivery;
+  var like;
+  var dislike;
+  var date;
 
   ReviewPost(
       {this.category,
@@ -30,16 +30,6 @@ class ReviewPost {
       this.dislike,
       this.date});
 
-  factory ReviewPost.fromJson(Map<String, dynamic> json) => ReviewPost(
-      quality: json['quality'],
-      design: json['design'],
-      price: json['price'],
-      delivery: json['delivery'],
-      productname: json['product_name'],
-      productbrand: json['product_brand'],
-      place: json['place_of_purchase'],
-      date: json['date_of_purchase']);
-
   Map<String, dynamic> tojson() => {
         "quality": quality.toString(),
         "design": design.toString(),
@@ -52,6 +42,4 @@ class ReviewPost {
       };
 }
 
-ReviewPost reviewPostFromJson(String str) =>
-    ReviewPost.fromJson(json.decode(str));
 String reviewPostToJson(ReviewPost data) => json.encode(data.tojson());

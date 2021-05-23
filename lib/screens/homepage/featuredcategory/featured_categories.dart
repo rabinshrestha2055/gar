@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:garjoo/core.dart';
 import 'package:garjoo/screens/homepage/featuredcategory/featCatDetail.dart';
-import 'package:provider/provider.dart';
 
 class FeaturedCategory extends StatefulWidget {
   const FeaturedCategory({Key key}) : super(key: key);

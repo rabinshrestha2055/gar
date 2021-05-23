@@ -26,7 +26,7 @@ class _LogoutDailogState extends State<LogoutDailog> {
               user.logoutUser();
             });
             final snackbar = SnackBar(content: Text('Logout Sucessfull!'));
-            ScaffoldMessenger.of(context).showSnackBar(snackbar);
+            Scaffold.of(context).showSnackBar(snackbar);
             Navigator.of(context)
                 .pushReplacement(MaterialPageRoute(builder: (_) => Garjoo()));
           },

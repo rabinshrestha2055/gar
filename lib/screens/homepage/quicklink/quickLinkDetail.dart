@@ -245,6 +245,19 @@ class QuickLinkDetail extends StatelessWidget {
               ))
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.orange,
+        onPressed: () {
+          return showDialog(
+            context: context,
+            builder: (ctx) => Filter(),
+          );
+        },
+        child: Icon(
+          Icons.search,
+          color: Colors.white,
+        ),
+      ),
     );
   }
 }

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:garjoo/core.dart';
 import 'package:garjoo/screens/homepage/discount/viewDiscountList.dart';
 import 'package:garjoo/widget/customAppBAr.dart';
-import 'package:provider/provider.dart';
 
 class ViewDiscount extends StatefulWidget {
   var cart;

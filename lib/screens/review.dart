@@ -34,10 +34,10 @@ class _ReviewState extends State<Review> {
   String _category;
   String _subCategory;
   bool _checkbox = false;
-  int rating1;
-  int rating2;
-  int rating3;
-  int rating4;
+  var rating1;
+  var rating2;
+  var rating3;
+  var rating4;
   List category;
   List subCategory;
   final _formkey = GlobalKey<FormState>();
@@ -197,6 +197,8 @@ class _ReviewState extends State<Review> {
                         validator: (value) {
                           if (value.isEmpty) {
                             return 'Please enter First Name';
+                          } else {
+                            return null;
                           }
                         },
                         onChanged: (value) {
@@ -226,6 +228,8 @@ class _ReviewState extends State<Review> {
                         validator: (value) {
                           if (value.isEmpty) {
                             return 'Please enter Last Name';
+                          } else {
+                            return null;
                           }
                         },
                         onChanged: (value) {
@@ -257,6 +261,8 @@ class _ReviewState extends State<Review> {
                         validator: (value) {
                           if (value.isEmpty) {
                             return 'Please enter Email';
+                          } else {
+                            return null;
                           }
                         },
                         onChanged: (value) {
@@ -365,395 +371,2375 @@ class _ReviewState extends State<Review> {
                 ),
               ),
               SizedBox(height: 10),
-              Container(
-                height: 56,
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  margin: EdgeInsets.only(left: 15, right: 15),
-                  elevation: 3,
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 12.0, bottom: 6),
-                    child: TextFormField(
-                        controller: pnameController,
-                        validator: (value) {
-                          if (value.isEmpty) {
-                            return 'Please enter Product Name';
-                          }
-                        },
-                        onChanged: (value) {
-                          pname = value;
-                        },
-                        style: TextStyle(color: Colors.black),
-                        decoration: InputDecoration(
-                            focusedBorder: InputBorder.none,
-                            enabledBorder: InputBorder.none,
-                            labelText: 'Product Name')),
-                  ),
-                ),
-              ),
-              SizedBox(height: 10),
-              Container(
-                height: 56,
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  margin: EdgeInsets.only(left: 15, right: 15),
-                  elevation: 3,
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 12.0, bottom: 6),
-                    child: TextFormField(
-                        controller: pbrandController,
-                        validator: (value) {
-                          if (value.isEmpty) {
-                            return 'Please enter Product Brand';
-                          }
-                        },
-                        onChanged: (value) {
-                          pbrand = value;
-                        },
-                        style: TextStyle(color: Colors.black),
-                        decoration: InputDecoration(
-                            focusedBorder: InputBorder.none,
-                            enabledBorder: InputBorder.none,
-                            labelText: 'Product Brand')),
-                  ),
-                ),
-              ),
-              // Container(
-              //   width: 340,
-              //   child: Card(
-              //     shape: RoundedRectangleBorder(
-              //         borderRadius: BorderRadius.circular(12)),
-              //     margin: EdgeInsets.only(left: 15, right: 15),
-              //     elevation: 2.0,
-              //     child: DropdownButtonHideUnderline(
-              //       child: ButtonTheme(
-              //         alignedDropdown: true,
-              //         child: DropdownButton<String>(
-              //           isExpanded: true,
-              //           value: _chosenValue,
-              //           style: TextStyle(color: Colors.black),
-              //           items: <String>[
-              //             'Market',
-              //             'Jobs',
-              //             'Service',
-              //             'Real Estate',
-              //             'Motor',
-              //             'Accomodation',
-              //           ].map<DropdownMenuItem<String>>((String value) {
-              //             return DropdownMenuItem<String>(
-              //               value: value,
-              //               child: Text(value),
-              //             );
-              //           }).toList(),
-              //           hint: Padding(
-              //             padding: const EdgeInsets.all(8.0),
-              //             child: Text(
-              //               "Select Sub-  Category for Review",
-              //               style: TextStyle(
-              //                 fontSize: 16,
-              //               ),
-              //             ),
-              //           ),
-              //           onChanged: (String value) {
-              //             setState(() {
-              //               _chosenValue = value;
-              //             });
-              //           },
-              //         ),
-              //       ),
-              //     ),
-              //   ),
-              // ),
-              SizedBox(height: 10),
-              Container(
-                height: 56,
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  margin: EdgeInsets.only(left: 15, right: 15),
-                  elevation: 3,
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 12.0, bottom: 6),
-                    child: TextFormField(
-                        controller: dateController,
-                        validator: (value) {
-                          if (value.isEmpty) {
-                            return 'Please enter Date';
-                          }
-                        },
-                        onChanged: (value) {
-                          date = value;
-                        },
-                        style: TextStyle(color: Colors.black),
-                        decoration: InputDecoration(
-                            focusedBorder: InputBorder.none,
-                            enabledBorder: InputBorder.none,
-                            labelText: 'Date of product purchased')),
-                  ),
-                ),
-              ),
-              SizedBox(height: 10),
-              Container(
-                height: 56,
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  margin: EdgeInsets.only(left: 15, right: 15),
-                  elevation: 3,
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 12.0, bottom: 6),
-                    child: TextFormField(
-                        controller: placeController,
-                        validator: (value) {
-                          if (value.isEmpty) {
-                            return 'Please enter Place of Purchaseds';
-                          }
-                        },
-                        onChanged: (value) {
-                          place = value;
-                        },
-                        style: TextStyle(color: Colors.black),
-                        decoration: InputDecoration(
-                            focusedBorder: InputBorder.none,
-                            enabledBorder: InputBorder.none,
-                            labelText: 'Place of Purchaseds')),
-                  ),
-                ),
-              ),
-              SizedBox(height: 10),
-              Container(
-                height: 56,
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  margin: EdgeInsets.only(left: 15, right: 15),
-                  elevation: 3,
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 12.0, bottom: 6),
-                    child: TextFormField(
-                        controller: durationController,
-                        validator: (value) {
-                          if (value.isEmpty) {
-                            return 'Please enter Duration of use';
-                          } else {
-                            return null;
-                          }
-                        },
-                        onChanged: (value) {
-                          duration = value;
-                        },
-                        style: TextStyle(color: Colors.black),
-                        decoration: InputDecoration(
-                            focusedBorder: InputBorder.none,
-                            enabledBorder: InputBorder.none,
-                            labelText: 'Duration of use')),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Card(
-                  elevation: 2,
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          'Do You Like The Product?',
-                          style: TextStyle(fontSize: 20),
-                        ),
-                      ),
-                      SizedBox(height: 18),
-                      DefaultTabController(
-                        length: 2,
-                        child: TabBar(
-                            unselectedLabelColor: Colors.redAccent,
-                            indicatorSize: TabBarIndicatorSize.label,
-                            indicator: BoxDecoration(
-                                borderRadius: BorderRadius.circular(50),
-                                color: Colors.redAccent),
-                            tabs: [
-                              Tab(
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(50),
-                                      border: Border.all(
-                                          color: Colors.redAccent, width: 1)),
-                                  child: Align(
-                                    alignment: Alignment.center,
-                                    child: Text("Yes"),
-                                  ),
-                                ),
-                              ),
-                              Tab(
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(50),
-                                      border: Border.all(
-                                          color: Colors.redAccent, width: 1)),
-                                  child: Align(
-                                    alignment: Alignment.center,
-                                    child: Text("No"),
-                                  ),
-                                ),
-                              ),
-                            ]),
-                      ),
-                      SizedBox(height: 30)
-                    ],
-                  ),
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.all(8),
-                // color: blue,
-                height: 230,
-                child: Card(
-                    elevation: 2,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+              //accomodation
+              _category == '4'
+                  ? Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
+                        SizedBox(height: 10),
+                        Container(
+                          height: 56,
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            margin: EdgeInsets.only(left: 15, right: 15),
+                            elevation: 3,
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 12.0, bottom: 6),
+                              child: TextFormField(
+                                  controller: pnameController,
+                                  validator: (value) {
+                                    if (value.isEmpty) {
+                                      return 'Please enter Name of Job';
+                                    }
+                                  },
+                                  onChanged: (value) {
+                                    pname = value;
+                                  },
+                                  style: TextStyle(color: Colors.black),
+                                  decoration: InputDecoration(
+                                      focusedBorder: InputBorder.none,
+                                      enabledBorder: InputBorder.none,
+                                      labelText: 'Name of Accomodation ')),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 10),
                         Padding(
-                          padding: const EdgeInsets.only(left: 138.0, top: 10),
-                          child: Text('Rating', style: TextStyle(fontSize: 20)),
+                          padding: const EdgeInsets.all(8.0),
+                          child: Card(
+                            elevation: 2,
+                            child: Column(children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  'Is the accomodation child/pet friendly?',
+                                  style: TextStyle(fontSize: 17),
+                                ),
+                              ),
+                              SizedBox(height: 18),
+                              DefaultTabController(
+                                length: 2,
+                                child: TabBar(
+                                    unselectedLabelColor: Colors.redAccent,
+                                    indicatorSize: TabBarIndicatorSize.label,
+                                    indicator: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(50),
+                                        color: Colors.redAccent),
+                                    tabs: [
+                                      Tab(
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(50),
+                                              border: Border.all(
+                                                  color: Colors.redAccent,
+                                                  width: 1)),
+                                          child: Align(
+                                            alignment: Alignment.center,
+                                            child: Text("Yes"),
+                                          ),
+                                        ),
+                                      ),
+                                      Tab(
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(50),
+                                              border: Border.all(
+                                                  color: Colors.redAccent,
+                                                  width: 1)),
+                                          child: Align(
+                                            alignment: Alignment.center,
+                                            child: Text("No"),
+                                          ),
+                                        ),
+                                      ),
+                                    ]),
+                              ),
+                              SizedBox(height: 30),
+                            ]),
+                          ),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Text(
-                                    'Design',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
+                          child: Card(
+                            elevation: 2,
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'Did you notice anything  unusual in your stay?',
+                                    style: TextStyle(fontSize: 17),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 5, bottom: 8.0, top: 5),
-                                    child: RatingBar.builder(
-                                      initialRating: 3,
-                                      minRating: 1,
-                                      direction: Axis.horizontal,
-                                      allowHalfRating: false,
-                                      itemCount: 5,
-                                      itemSize: 18,
-                                      itemPadding:
-                                          EdgeInsets.symmetric(horizontal: 4.0),
-                                      itemBuilder: (context, _) => Icon(
-                                        Icons.star,
-                                        color: Colors.red,
-                                        size: 2,
-                                      ),
-                                      onRatingUpdate: (rating1) {},
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: 5),
-                              Row(
-                                children: [
-                                  Text(
-                                    'Price',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 5, bottom: 8.0, top: 5),
-                                    child: RatingBar.builder(
-                                      initialRating: 3,
-                                      minRating: 1,
-                                      direction: Axis.horizontal,
-                                      allowHalfRating: false,
-                                      itemCount: 5,
-                                      itemSize: 18,
-                                      itemPadding:
-                                          EdgeInsets.symmetric(horizontal: 4.0),
-                                      itemBuilder: (context, _) => Icon(
-                                        Icons.star,
-                                        color: Colors.red,
-                                        size: 2,
-                                      ),
-                                      onRatingUpdate: (rating2) {},
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: 5),
-                              Row(
-                                children: [
-                                  Text(
-                                    'Quality',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 5, bottom: 8.0, top: 5),
-                                    child: RatingBar.builder(
-                                      initialRating: 3,
-                                      minRating: 1,
-                                      direction: Axis.horizontal,
-                                      allowHalfRating: false,
-                                      itemCount: 5,
-                                      itemSize: 18,
-                                      itemPadding:
-                                          EdgeInsets.symmetric(horizontal: 4.0),
-                                      itemBuilder: (context, _) => Icon(
-                                        Icons.star,
-                                        color: Colors.red,
-                                        size: 2,
-                                      ),
-                                      onRatingUpdate: (rating3) {},
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: 5),
-                              Row(
-                                children: [
-                                  Text(
-                                    'Delivery',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 5, bottom: 8.0, top: 5),
-                                    child: RatingBar.builder(
-                                      initialRating: 3,
-                                      minRating: 1,
-                                      direction: Axis.horizontal,
-                                      allowHalfRating: false,
-                                      itemCount: 5,
-                                      itemSize: 18,
-                                      itemPadding:
-                                          EdgeInsets.symmetric(horizontal: 4.0),
-                                      itemBuilder: (context, _) => Icon(
-                                        Icons.star,
-                                        color: Colors.red,
-                                        size: 2,
-                                      ),
-                                      onRatingUpdate: (rating4) {},
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                ),
+                                SizedBox(height: 18),
+                                DefaultTabController(
+                                  length: 2,
+                                  child: TabBar(
+                                      unselectedLabelColor: Colors.redAccent,
+                                      indicatorSize: TabBarIndicatorSize.label,
+                                      indicator: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(50),
+                                          color: Colors.redAccent),
+                                      tabs: [
+                                        Tab(
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(50),
+                                                border: Border.all(
+                                                    color: Colors.redAccent,
+                                                    width: 1)),
+                                            child: Align(
+                                              alignment: Alignment.center,
+                                              child: Text("Yes/If yes"),
+                                            ),
+                                          ),
+                                        ),
+                                        Tab(
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(50),
+                                                border: Border.all(
+                                                    color: Colors.redAccent,
+                                                    width: 1)),
+                                            child: Align(
+                                              alignment: Alignment.center,
+                                              child: Text("No"),
+                                            ),
+                                          ),
+                                        ),
+                                      ]),
+                                ),
+                                SizedBox(height: 30)
+                              ],
+                            ),
                           ),
                         ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Card(
+                            elevation: 2,
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'Did you meet your expectations?',
+                                    style: TextStyle(fontSize: 17),
+                                  ),
+                                ),
+                                SizedBox(height: 18),
+                                DefaultTabController(
+                                  length: 2,
+                                  child: TabBar(
+                                      unselectedLabelColor: Colors.redAccent,
+                                      indicatorSize: TabBarIndicatorSize.label,
+                                      indicator: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(50),
+                                          color: Colors.redAccent),
+                                      tabs: [
+                                        Tab(
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(50),
+                                                border: Border.all(
+                                                    color: Colors.redAccent,
+                                                    width: 1)),
+                                            child: Align(
+                                              alignment: Alignment.center,
+                                              child: Text("Yes"),
+                                            ),
+                                          ),
+                                        ),
+                                        Tab(
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(50),
+                                                border: Border.all(
+                                                    color: Colors.redAccent,
+                                                    width: 1)),
+                                            child: Align(
+                                              alignment: Alignment.center,
+                                              child: Text("No"),
+                                            ),
+                                          ),
+                                        ),
+                                      ]),
+                                ),
+                                SizedBox(height: 30)
+                              ],
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Card(
+                            elevation: 2,
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'Did you face power outage or water problem?',
+                                    style: TextStyle(fontSize: 17),
+                                  ),
+                                ),
+                                SizedBox(height: 18),
+                                DefaultTabController(
+                                  length: 2,
+                                  child: TabBar(
+                                      unselectedLabelColor: Colors.redAccent,
+                                      indicatorSize: TabBarIndicatorSize.label,
+                                      indicator: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(50),
+                                          color: Colors.redAccent),
+                                      tabs: [
+                                        Tab(
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(50),
+                                                border: Border.all(
+                                                    color: Colors.redAccent,
+                                                    width: 1)),
+                                            child: Align(
+                                              alignment: Alignment.center,
+                                              child: Text("Yes/If yes"),
+                                            ),
+                                          ),
+                                        ),
+                                        Tab(
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(50),
+                                                border: Border.all(
+                                                    color: Colors.redAccent,
+                                                    width: 1)),
+                                            child: Align(
+                                              alignment: Alignment.center,
+                                              child: Text("No"),
+                                            ),
+                                          ),
+                                        ),
+                                      ]),
+                                ),
+                                SizedBox(height: 30)
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Container(
+                          height: 56,
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            margin: EdgeInsets.only(left: 15, right: 15),
+                            elevation: 3,
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 12.0, bottom: 6),
+                              child: TextFormField(
+                                  controller: pnameController,
+                                  validator: (value) {
+                                    if (value.isEmpty) {
+                                      return 'Any yoga or exercises provided?';
+                                    }
+                                  },
+                                  onChanged: (value) {
+                                    pname = value;
+                                  },
+                                  style: TextStyle(color: Colors.black),
+                                  decoration: InputDecoration(
+                                      focusedBorder: InputBorder.none,
+                                      enabledBorder: InputBorder.none,
+                                      labelText: 'Facilities Provided')),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(8),
+                          // color: blue,
+                          height: 230,
+                          child: Card(
+                              elevation: 2,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 138.0, top: 10),
+                                    child: Text('Rating',
+                                        style: TextStyle(fontSize: 20)),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Environment',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 5, bottom: 4.0, top: 5),
+                                              child: RatingBar.builder(
+                                                initialRating: 3,
+                                                minRating: 1,
+                                                direction: Axis.horizontal,
+                                                allowHalfRating: false,
+                                                itemCount: 5,
+                                                itemSize: 18,
+                                                itemPadding:
+                                                    EdgeInsets.symmetric(
+                                                        horizontal: 4.0),
+                                                itemBuilder: (context, _) =>
+                                                    Icon(
+                                                  Icons.star,
+                                                  color: Colors.red,
+                                                  size: 2,
+                                                ),
+                                                onRatingUpdate: (rating1) {},
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(height: 5),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Affordability',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 5, bottom: 4.0, top: 5),
+                                              child: RatingBar.builder(
+                                                initialRating: 3,
+                                                minRating: 1,
+                                                direction: Axis.horizontal,
+                                                allowHalfRating: false,
+                                                itemCount: 5,
+                                                itemSize: 18,
+                                                itemPadding:
+                                                    EdgeInsets.symmetric(
+                                                        horizontal: 4.0),
+                                                itemBuilder: (context, _) =>
+                                                    Icon(
+                                                  Icons.star,
+                                                  color: Colors.red,
+                                                  size: 2,
+                                                ),
+                                                onRatingUpdate: (rating2) {},
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(height: 5),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Infranstructure',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 5, bottom: 4.0, top: 5),
+                                              child: RatingBar.builder(
+                                                initialRating: 3,
+                                                minRating: 1,
+                                                direction: Axis.horizontal,
+                                                allowHalfRating: false,
+                                                itemCount: 5,
+                                                itemSize: 18,
+                                                itemPadding:
+                                                    EdgeInsets.symmetric(
+                                                        horizontal: 4.0),
+                                                itemBuilder: (context, _) =>
+                                                    Icon(
+                                                  Icons.star,
+                                                  color: Colors.red,
+                                                  size: 2,
+                                                ),
+                                                onRatingUpdate: (rating3) {},
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(height: 5),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Facilities',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 5, bottom: 4.0, top: 5),
+                                              child: RatingBar.builder(
+                                                initialRating: 3,
+                                                minRating: 1,
+                                                direction: Axis.horizontal,
+                                                allowHalfRating: false,
+                                                itemCount: 5,
+                                                itemSize: 18,
+                                                itemPadding:
+                                                    EdgeInsets.symmetric(
+                                                        horizontal: 4.0),
+                                                itemBuilder: (context, _) =>
+                                                    Icon(
+                                                  Icons.star,
+                                                  color: Colors.red,
+                                                  size: 2,
+                                                ),
+                                                onRatingUpdate: (rating4) {},
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(height: 5),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Location',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 5, bottom: 4.0, top: 5),
+                                              child: RatingBar.builder(
+                                                initialRating: 3,
+                                                minRating: 1,
+                                                direction: Axis.horizontal,
+                                                allowHalfRating: false,
+                                                itemCount: 5,
+                                                itemSize: 18,
+                                                itemPadding:
+                                                    EdgeInsets.symmetric(
+                                                        horizontal: 4.0),
+                                                itemBuilder: (context, _) =>
+                                                    Icon(
+                                                  Icons.star,
+                                                  color: Colors.red,
+                                                  size: 2,
+                                                ),
+                                                onRatingUpdate: (rating4) {},
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              )),
+                        ),
                       ],
-                    )),
-              ),
+                    )
+                  : SizedBox(width: 1),
+
+//vehicle
+              _category == '5'
+                  ? Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        SizedBox(height: 10),
+                        Container(
+                          height: 56,
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            margin: EdgeInsets.only(left: 15, right: 15),
+                            elevation: 3,
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 12.0, bottom: 6),
+                              child: TextFormField(
+                                  controller: pnameController,
+                                  validator: (value) {
+                                    if (value.isEmpty) {
+                                      return 'Please enter Auto Name';
+                                    }
+                                  },
+                                  onChanged: (value) {
+                                    pname = value;
+                                  },
+                                  style: TextStyle(color: Colors.black),
+                                  decoration: InputDecoration(
+                                      focusedBorder: InputBorder.none,
+                                      enabledBorder: InputBorder.none,
+                                      labelText: 'Name of auto')),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        SizedBox(height: 10),
+                        Container(
+                          height: 56,
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            margin: EdgeInsets.only(left: 15, right: 15),
+                            elevation: 3,
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 12.0, bottom: 6),
+                              child: TextFormField(
+                                  controller: dateController,
+                                  validator: (value) {
+                                    if (value.isEmpty) {
+                                      return 'Please enter Date';
+                                    }
+                                  },
+                                  onChanged: (value) {
+                                    date = value;
+                                  },
+                                  style: TextStyle(color: Colors.black),
+                                  decoration: InputDecoration(
+                                      focusedBorder: InputBorder.none,
+                                      enabledBorder: InputBorder.none,
+                                      labelText: 'Date of service used')),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Container(
+                          height: 56,
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            margin: EdgeInsets.only(left: 15, right: 15),
+                            elevation: 3,
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 12.0, bottom: 6),
+                              child: TextFormField(
+                                  controller: placeController,
+                                  validator: (value) {
+                                    if (value.isEmpty) {
+                                      return 'Please enter Place of Service Used';
+                                    }
+                                  },
+                                  onChanged: (value) {
+                                    place = value;
+                                  },
+                                  style: TextStyle(color: Colors.black),
+                                  decoration: InputDecoration(
+                                      focusedBorder: InputBorder.none,
+                                      enabledBorder: InputBorder.none,
+                                      labelText: 'Service Used')),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Container(
+                          height: 56,
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            margin: EdgeInsets.only(left: 15, right: 15),
+                            elevation: 3,
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 12.0, bottom: 6),
+                              child: TextFormField(
+                                  controller: placeController,
+                                  validator: (value) {
+                                    if (value.isEmpty) {
+                                      return 'Any recommendation?';
+                                    }
+                                  },
+                                  onChanged: (value) {
+                                    place = value;
+                                  },
+                                  style: TextStyle(color: Colors.black),
+                                  decoration: InputDecoration(
+                                      focusedBorder: InputBorder.none,
+                                      enabledBorder: InputBorder.none,
+                                      labelText: 'Recommendation')),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Card(
+                            elevation: 2,
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'How was the performance of vehicle?',
+                                    style: TextStyle(fontSize: 17),
+                                  ),
+                                ),
+                                SizedBox(height: 18),
+                                DefaultTabController(
+                                  length: 4,
+                                  child: TabBar(
+                                      unselectedLabelColor: Colors.redAccent,
+                                      indicatorSize: TabBarIndicatorSize.label,
+                                      indicator: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(50),
+                                          color: Colors.redAccent),
+                                      tabs: [
+                                        Tab(
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(50),
+                                                border: Border.all(
+                                                    color: Colors.redAccent,
+                                                    width: 1)),
+                                            child: Align(
+                                              alignment: Alignment.center,
+                                              child: Text("Good"),
+                                            ),
+                                          ),
+                                        ),
+                                        Tab(
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(50),
+                                                border: Border.all(
+                                                    color: Colors.redAccent,
+                                                    width: 1)),
+                                            child: Align(
+                                              alignment: Alignment.center,
+                                              child: Text("Average"),
+                                            ),
+                                          ),
+                                        ),
+                                        Tab(
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(50),
+                                                border: Border.all(
+                                                    color: Colors.redAccent,
+                                                    width: 1)),
+                                            child: Align(
+                                              alignment: Alignment.center,
+                                              child: Text("Bad"),
+                                            ),
+                                          ),
+                                        ),
+                                        Tab(
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(50),
+                                                border: Border.all(
+                                                    color: Colors.redAccent,
+                                                    width: 1)),
+                                            child: Align(
+                                              alignment: Alignment.center,
+                                              child: Text("Worse"),
+                                            ),
+                                          ),
+                                        ),
+                                      ]),
+                                ),
+                                SizedBox(height: 30)
+                              ],
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Card(
+                            elevation: 2,
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'Have you taken it to vehicle maintenanace?',
+                                    style: TextStyle(fontSize: 17),
+                                  ),
+                                ),
+                                SizedBox(height: 18),
+                                DefaultTabController(
+                                  length: 2,
+                                  child: TabBar(
+                                      unselectedLabelColor: Colors.redAccent,
+                                      indicatorSize: TabBarIndicatorSize.label,
+                                      indicator: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(50),
+                                          color: Colors.redAccent),
+                                      tabs: [
+                                        Tab(
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(50),
+                                                border: Border.all(
+                                                    color: Colors.redAccent,
+                                                    width: 1)),
+                                            child: Align(
+                                              alignment: Alignment.center,
+                                              child: Text("Yes"),
+                                            ),
+                                          ),
+                                        ),
+                                        Tab(
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(50),
+                                                border: Border.all(
+                                                    color: Colors.redAccent,
+                                                    width: 1)),
+                                            child: Align(
+                                              alignment: Alignment.center,
+                                              child: Text("No"),
+                                            ),
+                                          ),
+                                        ),
+                                      ]),
+                                ),
+                                SizedBox(height: 30)
+                              ],
+                            ),
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(8),
+                          // color: blue,
+                          height: 230,
+                          child: Card(
+                              elevation: 2,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 138.0, top: 10),
+                                    child: Text('Rating',
+                                        style: TextStyle(fontSize: 20)),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Design',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 5, bottom: 8.0, top: 5),
+                                              child: RatingBar.builder(
+                                                initialRating: 3,
+                                                minRating: 1,
+                                                direction: Axis.horizontal,
+                                                allowHalfRating: false,
+                                                itemCount: 5,
+                                                itemSize: 18,
+                                                itemPadding:
+                                                    EdgeInsets.symmetric(
+                                                        horizontal: 4.0),
+                                                itemBuilder: (context, _) =>
+                                                    Icon(
+                                                  Icons.star,
+                                                  color: Colors.red,
+                                                  size: 2,
+                                                ),
+                                                onRatingUpdate: (rating1) {},
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Quality',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 5, bottom: 5.0, top: 5),
+                                              child: RatingBar.builder(
+                                                initialRating: 3,
+                                                minRating: 1,
+                                                direction: Axis.horizontal,
+                                                allowHalfRating: false,
+                                                itemCount: 5,
+                                                itemSize: 18,
+                                                itemPadding:
+                                                    EdgeInsets.symmetric(
+                                                        horizontal: 4.0),
+                                                itemBuilder: (context, _) =>
+                                                    Icon(
+                                                  Icons.star,
+                                                  color: Colors.red,
+                                                  size: 2,
+                                                ),
+                                                onRatingUpdate: (rating1) {},
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(height: 5),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Delivery',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 5, bottom: 5.0, top: 5),
+                                              child: RatingBar.builder(
+                                                initialRating: 3,
+                                                minRating: 1,
+                                                direction: Axis.horizontal,
+                                                allowHalfRating: false,
+                                                itemCount: 5,
+                                                itemSize: 18,
+                                                itemPadding:
+                                                    EdgeInsets.symmetric(
+                                                        horizontal: 4.0),
+                                                itemBuilder: (context, _) =>
+                                                    Icon(
+                                                  Icons.star,
+                                                  color: Colors.red,
+                                                  size: 2,
+                                                ),
+                                                onRatingUpdate: (rating2) {},
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(height: 5),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Performance',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 5, bottom: 5.0, top: 5),
+                                              child: RatingBar.builder(
+                                                initialRating: 3,
+                                                minRating: 1,
+                                                direction: Axis.horizontal,
+                                                allowHalfRating: false,
+                                                itemCount: 5,
+                                                itemSize: 18,
+                                                itemPadding:
+                                                    EdgeInsets.symmetric(
+                                                        horizontal: 4.0),
+                                                itemBuilder: (context, _) =>
+                                                    Icon(
+                                                  Icons.star,
+                                                  color: Colors.red,
+                                                  size: 2,
+                                                ),
+                                                onRatingUpdate: (rating3) {},
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(height: 5),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Price',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 5, bottom: 5.0, top: 5),
+                                              child: RatingBar.builder(
+                                                initialRating: 3,
+                                                minRating: 1,
+                                                direction: Axis.horizontal,
+                                                allowHalfRating: false,
+                                                itemCount: 5,
+                                                itemSize: 18,
+                                                itemPadding:
+                                                    EdgeInsets.symmetric(
+                                                        horizontal: 4.0),
+                                                itemBuilder: (context, _) =>
+                                                    Icon(
+                                                  Icons.star,
+                                                  color: Colors.red,
+                                                  size: 2,
+                                                ),
+                                                onRatingUpdate: (rating4) {},
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              )),
+                        ),
+                      ],
+                    )
+                  : SizedBox(width: 1),
+              SizedBox(height: 10),
+              //jobs
+              _category == '3'
+                  ? Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        SizedBox(height: 10),
+                        Container(
+                          height: 56,
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            margin: EdgeInsets.only(left: 15, right: 15),
+                            elevation: 3,
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 12.0, bottom: 6),
+                              child: TextFormField(
+                                  controller: pnameController,
+                                  validator: (value) {
+                                    if (value.isEmpty) {
+                                      return 'Please enter Name of Job';
+                                    }
+                                  },
+                                  onChanged: (value) {
+                                    pname = value;
+                                  },
+                                  style: TextStyle(color: Colors.black),
+                                  decoration: InputDecoration(
+                                      focusedBorder: InputBorder.none,
+                                      enabledBorder: InputBorder.none,
+                                      labelText: 'Name of Job ')),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        SizedBox(height: 10),
+                        Container(
+                          height: 56,
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            margin: EdgeInsets.only(left: 15, right: 15),
+                            elevation: 3,
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 12.0, bottom: 6),
+                              child: TextFormField(
+                                  controller: dateController,
+                                  validator: (value) {
+                                    if (value.isEmpty) {
+                                      return 'Please enter Date';
+                                    }
+                                  },
+                                  onChanged: (value) {
+                                    date = value;
+                                  },
+                                  style: TextStyle(color: Colors.black),
+                                  decoration: InputDecoration(
+                                      focusedBorder: InputBorder.none,
+                                      enabledBorder: InputBorder.none,
+                                      labelText: 'Date of joining')),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Container(
+                          height: 56,
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            margin: EdgeInsets.only(left: 15, right: 15),
+                            elevation: 3,
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 12.0, bottom: 6),
+                              child: TextFormField(
+                                  controller: placeController,
+                                  validator: (value) {
+                                    if (value.isEmpty) {
+                                      return 'Please enter Position';
+                                    }
+                                  },
+                                  onChanged: (value) {
+                                    place = value;
+                                  },
+                                  style: TextStyle(color: Colors.black),
+                                  decoration: InputDecoration(
+                                      focusedBorder: InputBorder.none,
+                                      enabledBorder: InputBorder.none,
+                                      labelText: 'Your Position')),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Container(
+                          height: 56,
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            margin: EdgeInsets.only(left: 15, right: 15),
+                            elevation: 3,
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 12.0, bottom: 6),
+                              child: TextFormField(
+                                  controller: placeController,
+                                  validator: (value) {
+                                    if (value.isEmpty) {
+                                      return 'Please tell your experience';
+                                    }
+                                  },
+                                  onChanged: (value) {
+                                    place = value;
+                                  },
+                                  style: TextStyle(color: Colors.black),
+                                  decoration: InputDecoration(
+                                      focusedBorder: InputBorder.none,
+                                      enabledBorder: InputBorder.none,
+                                      labelText: 'Your Experience')),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Container(
+                          height: 56,
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            margin: EdgeInsets.only(left: 15, right: 15),
+                            elevation: 3,
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 12.0, bottom: 6),
+                              child: TextFormField(
+                                  controller: placeController,
+                                  validator: (value) {
+                                    if (value.isEmpty) {
+                                      return 'Please mention waiting duration';
+                                    }
+                                  },
+                                  onChanged: (value) {
+                                    place = value;
+                                  },
+                                  style: TextStyle(color: Colors.black),
+                                  decoration: InputDecoration(
+                                      focusedBorder: InputBorder.none,
+                                      enabledBorder: InputBorder.none,
+                                      labelText: 'Waiting Duration')),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Card(
+                            elevation: 2,
+                            child: Column(children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  'Were you trained for the job?',
+                                  style: TextStyle(fontSize: 20),
+                                ),
+                              ),
+                              SizedBox(height: 18),
+                              DefaultTabController(
+                                length: 2,
+                                child: TabBar(
+                                    unselectedLabelColor: Colors.redAccent,
+                                    indicatorSize: TabBarIndicatorSize.label,
+                                    indicator: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(50),
+                                        color: Colors.redAccent),
+                                    tabs: [
+                                      Tab(
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(50),
+                                              border: Border.all(
+                                                  color: Colors.redAccent,
+                                                  width: 1)),
+                                          child: Align(
+                                            alignment: Alignment.center,
+                                            child: Text("Yes"),
+                                          ),
+                                        ),
+                                      ),
+                                      Tab(
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(50),
+                                              border: Border.all(
+                                                  color: Colors.redAccent,
+                                                  width: 1)),
+                                          child: Align(
+                                            alignment: Alignment.center,
+                                            child: Text("No"),
+                                          ),
+                                        ),
+                                      ),
+                                    ]),
+                              ),
+                              SizedBox(height: 30),
+                            ]),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Card(
+                            elevation: 2,
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'Were you assigned your position related  duties?',
+                                    style: TextStyle(fontSize: 17),
+                                  ),
+                                ),
+                                SizedBox(height: 18),
+                                DefaultTabController(
+                                  length: 2,
+                                  child: TabBar(
+                                      unselectedLabelColor: Colors.redAccent,
+                                      indicatorSize: TabBarIndicatorSize.label,
+                                      indicator: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(50),
+                                          color: Colors.redAccent),
+                                      tabs: [
+                                        Tab(
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(50),
+                                                border: Border.all(
+                                                    color: Colors.redAccent,
+                                                    width: 1)),
+                                            child: Align(
+                                              alignment: Alignment.center,
+                                              child: Text("Yes"),
+                                            ),
+                                          ),
+                                        ),
+                                        Tab(
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(50),
+                                                border: Border.all(
+                                                    color: Colors.redAccent,
+                                                    width: 1)),
+                                            child: Align(
+                                              alignment: Alignment.center,
+                                              child: Text("No"),
+                                            ),
+                                          ),
+                                        ),
+                                      ]),
+                                ),
+                                SizedBox(height: 30)
+                              ],
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Card(
+                            elevation: 2,
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'Did you notice employee politics',
+                                    style: TextStyle(fontSize: 17),
+                                  ),
+                                ),
+                                SizedBox(height: 18),
+                                DefaultTabController(
+                                  length: 2,
+                                  child: TabBar(
+                                      unselectedLabelColor: Colors.redAccent,
+                                      indicatorSize: TabBarIndicatorSize.label,
+                                      indicator: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(50),
+                                          color: Colors.redAccent),
+                                      tabs: [
+                                        Tab(
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(50),
+                                                border: Border.all(
+                                                    color: Colors.redAccent,
+                                                    width: 1)),
+                                            child: Align(
+                                              alignment: Alignment.center,
+                                              child: Text("Yes"),
+                                            ),
+                                          ),
+                                        ),
+                                        Tab(
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(50),
+                                                border: Border.all(
+                                                    color: Colors.redAccent,
+                                                    width: 1)),
+                                            child: Align(
+                                              alignment: Alignment.center,
+                                              child: Text("No"),
+                                            ),
+                                          ),
+                                        ),
+                                      ]),
+                                ),
+                                SizedBox(height: 30)
+                              ],
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Card(
+                            elevation: 2,
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'Were you paid salary on time?',
+                                    style: TextStyle(fontSize: 17),
+                                  ),
+                                ),
+                                SizedBox(height: 18),
+                                DefaultTabController(
+                                  length: 2,
+                                  child: TabBar(
+                                      unselectedLabelColor: Colors.redAccent,
+                                      indicatorSize: TabBarIndicatorSize.label,
+                                      indicator: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(50),
+                                          color: Colors.redAccent),
+                                      tabs: [
+                                        Tab(
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(50),
+                                                border: Border.all(
+                                                    color: Colors.redAccent,
+                                                    width: 1)),
+                                            child: Align(
+                                              alignment: Alignment.center,
+                                              child: Text("Yes"),
+                                            ),
+                                          ),
+                                        ),
+                                        Tab(
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(50),
+                                                border: Border.all(
+                                                    color: Colors.redAccent,
+                                                    width: 1)),
+                                            child: Align(
+                                              alignment: Alignment.center,
+                                              child: Text("No"),
+                                            ),
+                                          ),
+                                        ),
+                                      ]),
+                                ),
+                                SizedBox(height: 30)
+                              ],
+                            ),
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(8),
+                          // color: blue,
+                          height: 230,
+                          child: Card(
+                              elevation: 2,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 138.0, top: 10),
+                                    child: Text('Rating',
+                                        style: TextStyle(fontSize: 20)),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Payroll',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 5, bottom: 4.0, top: 5),
+                                              child: RatingBar.builder(
+                                                initialRating: 3,
+                                                minRating: 1,
+                                                direction: Axis.horizontal,
+                                                allowHalfRating: false,
+                                                itemCount: 5,
+                                                itemSize: 18,
+                                                itemPadding:
+                                                    EdgeInsets.symmetric(
+                                                        horizontal: 4.0),
+                                                itemBuilder: (context, _) =>
+                                                    Icon(
+                                                  Icons.star,
+                                                  color: Colors.red,
+                                                  size: 2,
+                                                ),
+                                                onRatingUpdate: (rating1) {},
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(height: 5),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Ecology',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 5, bottom: 4.0, top: 5),
+                                              child: RatingBar.builder(
+                                                initialRating: 3,
+                                                minRating: 1,
+                                                direction: Axis.horizontal,
+                                                allowHalfRating: false,
+                                                itemCount: 5,
+                                                itemSize: 18,
+                                                itemPadding:
+                                                    EdgeInsets.symmetric(
+                                                        horizontal: 4.0),
+                                                itemBuilder: (context, _) =>
+                                                    Icon(
+                                                  Icons.star,
+                                                  color: Colors.red,
+                                                  size: 2,
+                                                ),
+                                                onRatingUpdate: (rating2) {},
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(height: 5),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Workload',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 5, bottom: 4.0, top: 5),
+                                              child: RatingBar.builder(
+                                                initialRating: 3,
+                                                minRating: 1,
+                                                direction: Axis.horizontal,
+                                                allowHalfRating: false,
+                                                itemCount: 5,
+                                                itemSize: 18,
+                                                itemPadding:
+                                                    EdgeInsets.symmetric(
+                                                        horizontal: 4.0),
+                                                itemBuilder: (context, _) =>
+                                                    Icon(
+                                                  Icons.star,
+                                                  color: Colors.red,
+                                                  size: 2,
+                                                ),
+                                                onRatingUpdate: (rating3) {},
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(height: 5),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Equality',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 5, bottom: 4.0, top: 5),
+                                              child: RatingBar.builder(
+                                                initialRating: 3,
+                                                minRating: 1,
+                                                direction: Axis.horizontal,
+                                                allowHalfRating: false,
+                                                itemCount: 5,
+                                                itemSize: 18,
+                                                itemPadding:
+                                                    EdgeInsets.symmetric(
+                                                        horizontal: 4.0),
+                                                itemBuilder: (context, _) =>
+                                                    Icon(
+                                                  Icons.star,
+                                                  color: Colors.red,
+                                                  size: 2,
+                                                ),
+                                                onRatingUpdate: (rating4) {},
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(height: 5),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Empolyee Politics',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 5, bottom: 4.0, top: 5),
+                                              child: RatingBar.builder(
+                                                initialRating: 3,
+                                                minRating: 1,
+                                                direction: Axis.horizontal,
+                                                allowHalfRating: false,
+                                                itemCount: 5,
+                                                itemSize: 18,
+                                                itemPadding:
+                                                    EdgeInsets.symmetric(
+                                                        horizontal: 4.0),
+                                                itemBuilder: (context, _) =>
+                                                    Icon(
+                                                  Icons.star,
+                                                  color: Colors.red,
+                                                  size: 2,
+                                                ),
+                                                onRatingUpdate: (rating4) {},
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              )),
+                        ),
+                      ],
+                    )
+                  : SizedBox(width: 1),
+
+              //service
+              _category == '2'
+                  ? Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        SizedBox(height: 10),
+                        Container(
+                          height: 56,
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            margin: EdgeInsets.only(left: 15, right: 15),
+                            elevation: 3,
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 12.0, bottom: 6),
+                              child: TextFormField(
+                                  controller: pnameController,
+                                  validator: (value) {
+                                    if (value.isEmpty) {
+                                      return 'Please enter Service Name';
+                                    }
+                                  },
+                                  onChanged: (value) {
+                                    pname = value;
+                                  },
+                                  style: TextStyle(color: Colors.black),
+                                  decoration: InputDecoration(
+                                      focusedBorder: InputBorder.none,
+                                      enabledBorder: InputBorder.none,
+                                      labelText: 'Service Name')),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        SizedBox(height: 10),
+                        Container(
+                          height: 56,
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            margin: EdgeInsets.only(left: 15, right: 15),
+                            elevation: 3,
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 12.0, bottom: 6),
+                              child: TextFormField(
+                                  controller: dateController,
+                                  validator: (value) {
+                                    if (value.isEmpty) {
+                                      return 'Please enter Date';
+                                    }
+                                  },
+                                  onChanged: (value) {
+                                    date = value;
+                                  },
+                                  style: TextStyle(color: Colors.black),
+                                  decoration: InputDecoration(
+                                      focusedBorder: InputBorder.none,
+                                      enabledBorder: InputBorder.none,
+                                      labelText: 'Date of service used')),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Container(
+                          height: 56,
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            margin: EdgeInsets.only(left: 15, right: 15),
+                            elevation: 3,
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 12.0, bottom: 6),
+                              child: TextFormField(
+                                  controller: placeController,
+                                  validator: (value) {
+                                    if (value.isEmpty) {
+                                      return 'Please enter Place of Service Used';
+                                    }
+                                  },
+                                  onChanged: (value) {
+                                    place = value;
+                                  },
+                                  style: TextStyle(color: Colors.black),
+                                  decoration: InputDecoration(
+                                      focusedBorder: InputBorder.none,
+                                      enabledBorder: InputBorder.none,
+                                      labelText: 'Service Used')),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Container(
+                          height: 56,
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            margin: EdgeInsets.only(left: 15, right: 15),
+                            elevation: 3,
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 12.0, bottom: 6),
+                              child: TextFormField(
+                                  controller: placeController,
+                                  validator: (value) {
+                                    if (value.isEmpty) {
+                                      return 'Is it a private or government owned?';
+                                    }
+                                  },
+                                  onChanged: (value) {
+                                    place = value;
+                                  },
+                                  style: TextStyle(color: Colors.black),
+                                  decoration: InputDecoration(
+                                      focusedBorder: InputBorder.none,
+                                      enabledBorder: InputBorder.none,
+                                      labelText: 'Ownership')),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Container(
+                          height: 56,
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            margin: EdgeInsets.only(left: 15, right: 15),
+                            elevation: 3,
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 12.0, bottom: 6),
+                              child: TextFormField(
+                                  controller: placeController,
+                                  validator: (value) {
+                                    if (value.isEmpty) {
+                                      return 'Please explain if you had  to wait- how long?';
+                                    }
+                                  },
+                                  onChanged: (value) {
+                                    place = value;
+                                  },
+                                  style: TextStyle(color: Colors.black),
+                                  decoration: InputDecoration(
+                                      focusedBorder: InputBorder.none,
+                                      enabledBorder: InputBorder.none,
+                                      labelText: 'Waiting Duration')),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Card(
+                            elevation: 2,
+                            child: Column(children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  'Were you satisfied with the performance?',
+                                  style: TextStyle(fontSize: 17),
+                                ),
+                              ),
+                              SizedBox(height: 18),
+                              DefaultTabController(
+                                length: 2,
+                                child: TabBar(
+                                    unselectedLabelColor: Colors.redAccent,
+                                    indicatorSize: TabBarIndicatorSize.label,
+                                    indicator: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(50),
+                                        color: Colors.redAccent),
+                                    tabs: [
+                                      Tab(
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(50),
+                                              border: Border.all(
+                                                  color: Colors.redAccent,
+                                                  width: 1)),
+                                          child: Align(
+                                            alignment: Alignment.center,
+                                            child: Text("Yes"),
+                                          ),
+                                        ),
+                                      ),
+                                      Tab(
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(50),
+                                              border: Border.all(
+                                                  color: Colors.redAccent,
+                                                  width: 1)),
+                                          child: Align(
+                                            alignment: Alignment.center,
+                                            child: Text("No"),
+                                          ),
+                                        ),
+                                      ),
+                                    ]),
+                              ),
+                              SizedBox(height: 30),
+                            ]),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Card(
+                            elevation: 2,
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'Did the service provider ask for any extra payment?',
+                                    style: TextStyle(fontSize: 17),
+                                  ),
+                                ),
+                                SizedBox(height: 18),
+                                DefaultTabController(
+                                  length: 2,
+                                  child: TabBar(
+                                      unselectedLabelColor: Colors.redAccent,
+                                      indicatorSize: TabBarIndicatorSize.label,
+                                      indicator: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(50),
+                                          color: Colors.redAccent),
+                                      tabs: [
+                                        Tab(
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(50),
+                                                border: Border.all(
+                                                    color: Colors.redAccent,
+                                                    width: 1)),
+                                            child: Align(
+                                              alignment: Alignment.center,
+                                              child: Text("Yes"),
+                                            ),
+                                          ),
+                                        ),
+                                        Tab(
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(50),
+                                                border: Border.all(
+                                                    color: Colors.redAccent,
+                                                    width: 1)),
+                                            child: Align(
+                                              alignment: Alignment.center,
+                                              child: Text("No"),
+                                            ),
+                                          ),
+                                        ),
+                                      ]),
+                                ),
+                                SizedBox(height: 30)
+                              ],
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Card(
+                            elevation: 2,
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'How was the customer service?',
+                                    style: TextStyle(fontSize: 17),
+                                  ),
+                                ),
+                                SizedBox(height: 18),
+                                DefaultTabController(
+                                  length: 2,
+                                  child: TabBar(
+                                      unselectedLabelColor: Colors.redAccent,
+                                      indicatorSize: TabBarIndicatorSize.label,
+                                      indicator: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(50),
+                                          color: Colors.redAccent),
+                                      tabs: [
+                                        Tab(
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(50),
+                                                border: Border.all(
+                                                    color: Colors.redAccent,
+                                                    width: 1)),
+                                            child: Align(
+                                              alignment: Alignment.center,
+                                              child: Text("Good"),
+                                            ),
+                                          ),
+                                        ),
+                                        Tab(
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(50),
+                                                border: Border.all(
+                                                    color: Colors.redAccent,
+                                                    width: 1)),
+                                            child: Align(
+                                              alignment: Alignment.center,
+                                              child: Text("Bad"),
+                                            ),
+                                          ),
+                                        ),
+                                      ]),
+                                ),
+                                SizedBox(height: 30)
+                              ],
+                            ),
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(8),
+                          // color: blue,
+                          height: 230,
+                          child: Card(
+                              elevation: 2,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 138.0, top: 10),
+                                    child: Text('Rating',
+                                        style: TextStyle(fontSize: 20)),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Service',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 5, bottom: 5.0, top: 5),
+                                              child: RatingBar.builder(
+                                                initialRating: 3,
+                                                minRating: 1,
+                                                direction: Axis.horizontal,
+                                                allowHalfRating: false,
+                                                itemCount: 5,
+                                                itemSize: 18,
+                                                itemPadding:
+                                                    EdgeInsets.symmetric(
+                                                        horizontal: 4.0),
+                                                itemBuilder: (context, _) =>
+                                                    Icon(
+                                                  Icons.star,
+                                                  color: Colors.red,
+                                                  size: 2,
+                                                ),
+                                                onRatingUpdate: (rating1) {},
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(height: 5),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Wait Time',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 5, bottom: 4.0, top: 5),
+                                              child: RatingBar.builder(
+                                                initialRating: 3,
+                                                minRating: 1,
+                                                direction: Axis.horizontal,
+                                                allowHalfRating: false,
+                                                itemCount: 5,
+                                                itemSize: 18,
+                                                itemPadding:
+                                                    EdgeInsets.symmetric(
+                                                        horizontal: 4.0),
+                                                itemBuilder: (context, _) =>
+                                                    Icon(
+                                                  Icons.star,
+                                                  color: Colors.red,
+                                                  size: 2,
+                                                ),
+                                                onRatingUpdate: (rating2) {},
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(height: 5),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Satisfaction',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 5, bottom: 5.0, top: 5),
+                                              child: RatingBar.builder(
+                                                initialRating: 3,
+                                                minRating: 1,
+                                                direction: Axis.horizontal,
+                                                allowHalfRating: false,
+                                                itemCount: 5,
+                                                itemSize: 18,
+                                                itemPadding:
+                                                    EdgeInsets.symmetric(
+                                                        horizontal: 4.0),
+                                                itemBuilder: (context, _) =>
+                                                    Icon(
+                                                  Icons.star,
+                                                  color: Colors.red,
+                                                  size: 2,
+                                                ),
+                                                onRatingUpdate: (rating3) {},
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(height: 5),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Price',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 5, bottom: 5.0, top: 5),
+                                              child: RatingBar.builder(
+                                                initialRating: 3,
+                                                minRating: 1,
+                                                direction: Axis.horizontal,
+                                                allowHalfRating: false,
+                                                itemCount: 5,
+                                                itemSize: 18,
+                                                itemPadding:
+                                                    EdgeInsets.symmetric(
+                                                        horizontal: 4.0),
+                                                itemBuilder: (context, _) =>
+                                                    Icon(
+                                                  Icons.star,
+                                                  color: Colors.red,
+                                                  size: 2,
+                                                ),
+                                                onRatingUpdate: (rating4) {},
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              )),
+                        ),
+                      ],
+                    )
+                  : SizedBox(width: 1),
+              SizedBox(height: 10),
+              //market
+
+              _category == '1' || _category == null || _category == '6'
+                  ? Column(
+                      children: [
+                        Container(
+                          height: 56,
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            margin: EdgeInsets.only(left: 15, right: 15),
+                            elevation: 3,
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 12.0, bottom: 6),
+                              child: TextFormField(
+                                  controller: pnameController,
+                                  validator: (value) {
+                                    if (value.isEmpty) {
+                                      return 'Please enter Product Name';
+                                    }
+                                  },
+                                  onChanged: (value) {
+                                    pname = value;
+                                  },
+                                  style: TextStyle(color: Colors.black),
+                                  decoration: InputDecoration(
+                                      focusedBorder: InputBorder.none,
+                                      enabledBorder: InputBorder.none,
+                                      labelText: 'Product Name')),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Container(
+                          height: 56,
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            margin: EdgeInsets.only(left: 15, right: 15),
+                            elevation: 3,
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 12.0, bottom: 6),
+                              child: TextFormField(
+                                  controller: pbrandController,
+                                  validator: (value) {
+                                    if (value.isEmpty) {
+                                      return 'Please enter Product Brand';
+                                    }
+                                  },
+                                  onChanged: (value) {
+                                    pbrand = value;
+                                  },
+                                  style: TextStyle(color: Colors.black),
+                                  decoration: InputDecoration(
+                                      focusedBorder: InputBorder.none,
+                                      enabledBorder: InputBorder.none,
+                                      labelText: 'Product Brand')),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Container(
+                          height: 56,
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            margin: EdgeInsets.only(left: 15, right: 15),
+                            elevation: 3,
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 12.0, bottom: 6),
+                              child: TextFormField(
+                                  controller: dateController,
+                                  validator: (value) {
+                                    if (value.isEmpty) {
+                                      return 'Please enter Date';
+                                    }
+                                  },
+                                  onChanged: (value) {
+                                    date = value;
+                                  },
+                                  style: TextStyle(color: Colors.black),
+                                  decoration: InputDecoration(
+                                      focusedBorder: InputBorder.none,
+                                      enabledBorder: InputBorder.none,
+                                      labelText: 'Date of product purchased')),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Container(
+                          height: 56,
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            margin: EdgeInsets.only(left: 15, right: 15),
+                            elevation: 3,
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 12.0, bottom: 6),
+                              child: TextFormField(
+                                  controller: placeController,
+                                  validator: (value) {
+                                    if (value.isEmpty) {
+                                      return 'Please enter Place of Purchaseds';
+                                    }
+                                  },
+                                  onChanged: (value) {
+                                    place = value;
+                                  },
+                                  style: TextStyle(color: Colors.black),
+                                  decoration: InputDecoration(
+                                      focusedBorder: InputBorder.none,
+                                      enabledBorder: InputBorder.none,
+                                      labelText: 'Place of Purchaseds')),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Container(
+                          height: 56,
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            margin: EdgeInsets.only(left: 15, right: 15),
+                            elevation: 3,
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 12.0, bottom: 6),
+                              child: TextFormField(
+                                  controller: durationController,
+                                  validator: (value) {
+                                    if (value.isEmpty) {
+                                      return 'Please enter Duration of use';
+                                    } else {
+                                      return null;
+                                    }
+                                  },
+                                  onChanged: (value) {
+                                    duration = value;
+                                  },
+                                  style: TextStyle(color: Colors.black),
+                                  decoration: InputDecoration(
+                                      focusedBorder: InputBorder.none,
+                                      enabledBorder: InputBorder.none,
+                                      labelText: 'Duration of use')),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Card(
+                            elevation: 2,
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'Do You Like The Product?',
+                                    style: TextStyle(fontSize: 17),
+                                  ),
+                                ),
+                                SizedBox(height: 18),
+                                DefaultTabController(
+                                  length: 2,
+                                  child: TabBar(
+                                      unselectedLabelColor: Colors.redAccent,
+                                      indicatorSize: TabBarIndicatorSize.label,
+                                      indicator: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(50),
+                                          color: Colors.redAccent),
+                                      tabs: [
+                                        Tab(
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(50),
+                                                border: Border.all(
+                                                    color: Colors.redAccent,
+                                                    width: 1)),
+                                            child: Align(
+                                              alignment: Alignment.center,
+                                              child: Text("Yes"),
+                                            ),
+                                          ),
+                                        ),
+                                        Tab(
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(50),
+                                                border: Border.all(
+                                                    color: Colors.redAccent,
+                                                    width: 1)),
+                                            child: Align(
+                                              alignment: Alignment.center,
+                                              child: Text("No"),
+                                            ),
+                                          ),
+                                        ),
+                                      ]),
+                                ),
+                                SizedBox(height: 30)
+                              ],
+                            ),
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(8),
+                          // color: blue,
+                          height: 230,
+                          child: Card(
+                              elevation: 2,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 138.0, top: 10),
+                                    child: Text('Rating',
+                                        style: TextStyle(fontSize: 20)),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Design',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 5, bottom: 5.0, top: 5),
+                                              child: RatingBar.builder(
+                                                initialRating: 3,
+                                                minRating: 1,
+                                                direction: Axis.horizontal,
+                                                allowHalfRating: false,
+                                                itemCount: 5,
+                                                itemSize: 18,
+                                                itemPadding:
+                                                    EdgeInsets.symmetric(
+                                                        horizontal: 4.0),
+                                                itemBuilder: (context, _) =>
+                                                    Icon(
+                                                  Icons.star,
+                                                  color: Colors.red,
+                                                  size: 2,
+                                                ),
+                                                onRatingUpdate: (rating1) {},
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(height: 5),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Price',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 5, bottom: 5.0, top: 5),
+                                              child: RatingBar.builder(
+                                                initialRating: 3,
+                                                minRating: 1,
+                                                direction: Axis.horizontal,
+                                                allowHalfRating: false,
+                                                itemCount: 5,
+                                                itemSize: 18,
+                                                itemPadding:
+                                                    EdgeInsets.symmetric(
+                                                        horizontal: 4.0),
+                                                itemBuilder: (context, _) =>
+                                                    Icon(
+                                                  Icons.star,
+                                                  color: Colors.red,
+                                                  size: 2,
+                                                ),
+                                                onRatingUpdate: (rating2) {},
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(height: 5),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Quality',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 5, bottom: 5.0, top: 5),
+                                              child: RatingBar.builder(
+                                                initialRating: 3,
+                                                minRating: 1,
+                                                direction: Axis.horizontal,
+                                                allowHalfRating: false,
+                                                itemCount: 5,
+                                                itemSize: 18,
+                                                itemPadding:
+                                                    EdgeInsets.symmetric(
+                                                        horizontal: 4.0),
+                                                itemBuilder: (context, _) =>
+                                                    Icon(
+                                                  Icons.star,
+                                                  color: Colors.red,
+                                                  size: 2,
+                                                ),
+                                                onRatingUpdate: (rating3) {},
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(height: 5),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Delivery',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 5, bottom: 5.0, top: 5),
+                                              child: RatingBar.builder(
+                                                initialRating: 3,
+                                                minRating: 1,
+                                                direction: Axis.horizontal,
+                                                allowHalfRating: false,
+                                                itemCount: 5,
+                                                itemSize: 18,
+                                                itemPadding:
+                                                    EdgeInsets.symmetric(
+                                                        horizontal: 4.0),
+                                                itemBuilder: (context, _) =>
+                                                    Icon(
+                                                  Icons.star,
+                                                  color: Colors.red,
+                                                  size: 2,
+                                                ),
+                                                onRatingUpdate: (rating4) {},
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              )),
+                        ),
+                      ],
+                    )
+                  : SizedBox(width: 1),
+
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -846,18 +2832,18 @@ class _ReviewState extends State<Review> {
                                         value
                                             .reviewPost(reviewPost)
                                             .then((response) {
-                                          if (response.statusCode == 200) {
+                                          if (response.statusCode == 201) {
                                             var snackBar = SnackBar(
                                                 content:
                                                     Text('Review Sucessful!'));
-                                            ScaffoldMessenger.of(context)
+                                            Scaffold.of(context)
                                                 .showSnackBar(snackBar);
                                           } else {
                                             final snackbar = SnackBar(
                                               content:
                                                   Text('Review Unsucessfull!'),
                                             );
-                                            ScaffoldMessenger.of(context)
+                                            Scaffold.of(context)
                                                 .showSnackBar(snackbar);
                                           }
                                         });

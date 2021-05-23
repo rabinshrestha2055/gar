@@ -142,21 +142,18 @@ class _LoginScreenState extends State<LoginScreen> {
                                       MaterialPageRoute(
                                           builder: (_) => Garjoo()));
 
-                                  ScaffoldMessenger.of(context)
-                                      .showSnackBar(snackbar);
+                                  Scaffold.of(context).showSnackBar(snackbar);
                                 } else if (response.statusCode == 422) {
                                   final snackbar = SnackBar(
                                       content: Text(
                                           "Your account hasn't been activated"));
 
-                                  ScaffoldMessenger.of(context)
-                                      .showSnackBar(snackbar);
+                                  Scaffold.of(context).showSnackBar(snackbar);
                                 } else {
                                   final snackbar = SnackBar(
                                       content: Text('Login Unsucessfull!'));
 
-                                  ScaffoldMessenger.of(context)
-                                      .showSnackBar(snackbar);
+                                  Scaffold.of(context).showSnackBar(snackbar);
                                 }
                               }).catchError((error) => print(error));
                             } catch (e) {

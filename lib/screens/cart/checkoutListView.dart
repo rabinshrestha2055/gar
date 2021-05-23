@@ -172,14 +172,12 @@ class CheckOutListView extends StatelessWidget {
                             final snackbar = SnackBar(
                                 content: Text("Please check your email"));
 
-                            ScaffoldMessenger.of(context)
-                                .showSnackBar(snackbar);
+                            Scaffold.of(context).showSnackBar(snackbar);
                           } else {
                             final snackbar =
                                 SnackBar(content: Text("Verification Failed"));
 
-                            ScaffoldMessenger.of(context)
-                                .showSnackBar(snackbar);
+                            Scaffold.of(context).showSnackBar(snackbar);
                           }
                         });
                       },

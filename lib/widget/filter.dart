@@ -14,6 +14,8 @@ class Filter extends StatefulWidget {
 class _FilterState extends State<Filter> {
   List location;
   List category;
+  List subCategory;
+  String _subCategory;
   String _chosenValue;
   String _choosenLocation;
   @override
@@ -57,18 +59,19 @@ class _FilterState extends State<Filter> {
             ChangeNotifierProvider(
               create: (context) => UserDetailsProvider(),
               child: Consumer<UserDetailsProvider>(
-                builder: (context, value1, child) {
+                builder: (context, value, child) {
                   return FutureBuilder(
-                      future: value1.getParent(),
+                      future: value.getParent(),
                       builder: (context, snapshot) {
                         if (snapshot.hasError) {
                           return Container();
-                        } else if (snapshot.hasData) {
+                        } else if (snapshot.connectionState ==
+                            ConnectionState.done) {
                           var response = snapshot.data;
                           var jsonData = json.decode(response);
-                          category = jsonData;
+                          subCategory = jsonData[0]['childs'];
                           return Container(
-                            height: 55,
+                            height: 65,
                             width: 340,
                             child: Card(
                               shape: RoundedRectangleBorder(
@@ -80,12 +83,13 @@ class _FilterState extends State<Filter> {
                                   alignedDropdown: true,
                                   child: DropdownButton<String>(
                                     isExpanded: true,
-                                    value: _chosenValue,
+                                    value: _subCategory,
                                     style: TextStyle(color: Colors.black),
-                                    items: category?.map((item) {
+                                    items: subCategory?.map((item) {
                                           return DropdownMenuItem<String>(
                                             value: item['id'].toString(),
-                                            child: Text(item['label']),
+                                            child:
+                                                Text(item['label'].toString()),
                                           );
                                         })?.toList() ??
                                         [],
@@ -100,7 +104,7 @@ class _FilterState extends State<Filter> {
                                     ),
                                     onChanged: (String value) {
                                       setState(() {
-                                        _chosenValue = value;
+                                        _subCategory = value;
                                       });
                                     },
                                   ),
@@ -116,26 +120,7 @@ class _FilterState extends State<Filter> {
               ),
             ),
             SizedBox(height: 8),
-            Expanded(
-              flex: 0,
-              child: Row(
-                children: [
-                  Text('Price:', style: TextStyle(color: black)),
-                  SizedBox(width: 8),
-                  Container(
-                      height: 30,
-                      width: 90,
-                      decoration: BoxDecoration(
-                          border: Border.all(color: orange),
-                          borderRadius: BorderRadius.circular(8)),
-                      child: Center(
-                          child: TextField(
-                              keyboardType: TextInputType.number,
-                              decoration:
-                                  InputDecoration(border: InputBorder.none)))),
-                ],
-              ),
-            ),
+            Text('Price', style: TextStyle(color: black)),
             SizedBox(height: 12),
             Container(
               child: Expanded(
@@ -177,123 +162,61 @@ class _FilterState extends State<Filter> {
             ),
             SizedBox(height: 10),
             Text('Location', style: TextStyle(color: black)),
-            ChangeNotifierProvider(
-              create: (context) => UserDetailsProvider(),
-              child: Consumer<UserDetailsProvider>(
-                builder: (context, value1, child) {
-                  return FutureBuilder(
-                      future: value1.getLocation(),
-                      builder: (context, snapshot) {
-                        if (snapshot.hasError) {
-                          return Container();
-                        } else if (snapshot.hasData) {
-                          var response = snapshot.data;
-                          var jsonData = json.decode(response);
-                          location = jsonData;
-                          return Container(
-                            height: 55,
-                            width: 340,
-                            child: Card(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(12)),
-                              margin: EdgeInsets.only(left: 15, right: 15),
-                              elevation: 2.0,
-                              child: DropdownButtonHideUnderline(
-                                child: ButtonTheme(
-                                  alignedDropdown: true,
-                                  child: DropdownButton<String>(
-                                    isExpanded: true,
-                                    value: _choosenLocation,
-                                    style: TextStyle(color: Colors.black),
-                                    items: location.map((item) {
-                                      return DropdownMenuItem<String>(
-                                        value: item.toString(),
-                                        child: Text(item),
-                                      );
-                                    })?.toList(),
-                                    hint: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Text(
-                                        "Select Location",
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                        ),
-                                      ),
-                                    ),
-                                    onChanged: (String value) {
-                                      setState(() {
-                                        _chosenValue = value;
-                                      });
-                                    },
-                                  ),
-                                ),
-                              ),
-                            ),
-                          );
-                        } else {
-                          return Container();
-                        }
-                      });
-                },
+            SizedBox(height: 5),
+            Container(
+              width: 340,
+              child: Card(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12)),
+                margin: EdgeInsets.only(left: 15, right: 15),
+                elevation: 2.0,
+                child: DropdownButtonHideUnderline(
+                  child: ButtonTheme(
+                    alignedDropdown: true,
+                    child: DropdownButton<String>(
+                      isExpanded: true,
+                      value: _chosenValue,
+                      style: TextStyle(color: Colors.black),
+                      items: <String>[
+                        'Kathmandu',
+                        'Bhaktapur',
+                        'Baglung',
+                        'Ilam',
+                        'Biratnagar',
+                        'Lalitpur'
+                      ].map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                      hint: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          "Location",
+                          style: TextStyle(
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                      onChanged: (String value) {
+                        setState(() {
+                          _chosenValue = value;
+                        });
+                      },
+                    ),
+                  ),
+                ),
               ),
             ),
-            ChangeNotifierProvider(
-              create: (context) => UserDetailsProvider(),
-              child: Consumer<UserDetailsProvider>(
-                builder: (context, value1, child) {
-                  return FutureBuilder(
-                      future: value1.getLocation(),
-                      builder: (context, snapshot) {
-                        if (snapshot.hasError) {
-                          return Container();
-                        } else if (snapshot.hasData) {
-                          var response = snapshot.data;
-                          var jsonData = json.decode(response);
-                          location = jsonData;
-                          return Container(
-                            width: 250,
-                            child: Card(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(12)),
-                              elevation: 2.0,
-                              child: DropdownButtonHideUnderline(
-                                child: ButtonTheme(
-                                  alignedDropdown: true,
-                                  child: DropdownButton<String>(
-                                    value: _chosenValue,
-                                    style: TextStyle(color: Colors.black),
-                                    items: location.map((item) {
-                                      return DropdownMenuItem<String>(
-                                        value: item,
-                                        child: Text(item),
-                                      );
-                                    }).toList(),
-                                    hint: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Text(
-                                        "Select Location",
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                        ),
-                                      ),
-                                    ),
-                                    onChanged: (String value) {
-                                      setState(() {
-                                        _chosenValue = value;
-                                      });
-                                    },
-                                  ),
-                                ),
-                              ),
-                            ),
-                          );
-                        } else {
-                          return Container();
-                        }
-                      });
-                },
-              ),
-            ),
+            MaterialButton(
+              color: Colors.amber,
+              child: Text('Filter'),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => QuickLinkDetail()));
+              },
+            )
           ],
         ),
       ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:garjoo/widget/logoutDailog.dart';
 import '../../core.dart';
-import '../../main.dart';
 
 class Profile extends StatefulWidget {
   final String email;
