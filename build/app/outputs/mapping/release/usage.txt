@@ -4939,11 +4939,11 @@ androidx.recyclerview.widget.GridLayoutManager:
     private static final java.lang.String TAG
     public static final int DEFAULT_SPAN_COUNT
 androidx.media.AudioManagerCompat
-androidx.annotation.AnimRes
 com.google.android.exoplayer2.upstream.HttpDataSource$Factory:
     public abstract com.google.android.exoplayer2.upstream.HttpDataSource$RequestProperties getDefaultRequestProperties()
     public abstract com.google.android.exoplayer2.upstream.HttpDataSource$Factory setDefaultRequestProperties(java.util.Map)
     public synthetic bridge com.google.android.exoplayer2.upstream.DataSource createDataSource()
+androidx.annotation.AnimRes
 com.google.common.collect.Tables$TransformedTable$3
 kotlin.jvm.internal.Ref$ShortRef
 com.google.gson.JsonObject:
@@ -14329,8 +14329,8 @@ com.google.android.exoplayer2.source.hls.HlsChunkSource$HlsMediaPlaylistSegmentI
     private final java.lang.String playlistBaseUri
 com.google.android.exoplayer2.ui.StyledPlayerView$ComponentListener
 io.flutter.embedding.engine.deferredcomponents.PlayStoreDeferredComponentManager:
-    public synthetic void lambda$installDeferredComponent$1$PlayStoreDeferredComponentManager(int,java.lang.String,java.lang.Exception)
     public synthetic void lambda$installDeferredComponent$0$PlayStoreDeferredComponentManager(java.lang.String,int,java.lang.Integer)
+    public synthetic void lambda$installDeferredComponent$1$PlayStoreDeferredComponentManager(int,java.lang.String,java.lang.Exception)
 com.google.android.exoplayer2.ui.StyledPlayerControlView$TrackSelectionAdapter
 androidx.recyclerview.widget.RecyclerView$RecyclerViewDataObserver:
     final synthetic androidx.recyclerview.widget.RecyclerView this$0
@@ -14676,21 +14676,21 @@ io.flutter.embedding.engine.deferredcomponents.-$$Lambda$PlayStoreDeferredCompon
     public final void onFailure(java.lang.Exception)
 io.flutter.embedding.engine.deferredcomponents.-$$Lambda$PlayStoreDeferredComponentManager$omduCs2FVXzWSeh_qx7q-N89fLE:
     public final void onSuccess(java.lang.Object)
-com.google.android.exoplayer2.audio.AudioRendererEventListener$-CC
+com.google.android.exoplayer2.source.ads.AdsLoader$AdViewProvider$-CC
 com.google.android.exoplayer2.audio.AudioSink$Listener$-CC
-com.google.android.exoplayer2.audio.AudioListener$-CC
 com.google.android.exoplayer2.upstream.LoadErrorHandlingPolicy$-CC:
     public static long $default$getBlacklistDurationMsFor(com.google.android.exoplayer2.upstream.LoadErrorHandlingPolicy,int,long,java.io.IOException,int)
     public static long $default$getBlacklistDurationMsFor(com.google.android.exoplayer2.upstream.LoadErrorHandlingPolicy,com.google.android.exoplayer2.upstream.LoadErrorHandlingPolicy$LoadErrorInfo)
     public static long $default$getRetryDelayMsFor(com.google.android.exoplayer2.upstream.LoadErrorHandlingPolicy,int,long,java.io.IOException,int)
     public static long $default$getRetryDelayMsFor(com.google.android.exoplayer2.upstream.LoadErrorHandlingPolicy,com.google.android.exoplayer2.upstream.LoadErrorHandlingPolicy$LoadErrorInfo)
+com.google.android.exoplayer2.ui.PlayerNotificationManager$NotificationListener$-CC
 com.google.android.exoplayer2.drm.DrmSessionEventListener$-CC
-com.google.android.exoplayer2.source.ads.AdsLoader$AdViewProvider$-CC
+com.google.android.exoplayer2.video.VideoListener$-CC
+com.google.android.exoplayer2.device.DeviceListener$-CC
+com.google.android.exoplayer2.video.VideoRendererEventListener$-CC
 com.google.android.exoplayer2.source.MediaSourceEventListener$-CC
+com.google.android.exoplayer2.audio.AudioListener$-CC
 com.google.android.exoplayer2.drm.DrmSession$-CC:
     public static boolean $default$playClearSamplesWithoutKeys(com.google.android.exoplayer2.drm.DrmSession)
-com.google.android.exoplayer2.video.VideoRendererEventListener$-CC
-com.google.android.exoplayer2.device.DeviceListener$-CC
-com.google.android.exoplayer2.video.VideoListener$-CC
-com.google.android.exoplayer2.ui.PlayerNotificationManager$NotificationListener$-CC
+com.google.android.exoplayer2.audio.AudioRendererEventListener$-CC
 com.google.android.exoplayer2.analytics.AnalyticsListener$-CC

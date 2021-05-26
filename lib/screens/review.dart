@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:garjoo/models/category.dart';
 import 'package:garjoo/models/reviewpost.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -13,26 +14,20 @@ class Review extends StatefulWidget {
 }
 
 class _ReviewState extends State<Review> {
-  SharedPreferences data;
-
-  String email;
-
+  UserDetailsProvider user = UserDetailsProvider();
+  Future myParent;
   @override
   void initState() {
     super.initState();
-    initial();
-  }
-
-  void initial() async {
-    data = await SharedPreferences.getInstance();
-    setState(() {
-      email = data.getString('email');
-    });
+    myParent = user.getParent1();
   }
 
   String _chosenValue;
+  int index = 0;
+  int index1 = 0;
   String _category;
   String _subCategory;
+  String _childCategory;
   bool _checkbox = false;
   int rating1;
   int rating2;
@@ -126,14 +121,14 @@ class _ReviewState extends State<Review> {
                 child: Consumer<UserDetailsProvider>(
                   builder: (context, value1, child) {
                     return FutureBuilder(
-                        future: value1.getParent(),
+                        future: myParent,
                         builder: (context, snapshot) {
                           if (snapshot.hasError) {
                             return Container();
                           } else if (snapshot.hasData) {
-                            var response = snapshot.data;
-                            var jsonData = json.decode(response);
-                            category = jsonData;
+                            var response =
+                                snapshot.data as List<ParentCategory>;
+
                             return Container(
                               height: 65,
                               width: 340,
@@ -149,10 +144,10 @@ class _ReviewState extends State<Review> {
                                       isExpanded: true,
                                       value: _category,
                                       style: TextStyle(color: Colors.black),
-                                      items: category?.map((item) {
+                                      items: response?.map((item) {
                                             return DropdownMenuItem<String>(
-                                              value: item['id'].toString(),
-                                              child: Text(item['label']),
+                                              value: item.label.toString(),
+                                              child: Text(item.label),
                                             );
                                           })?.toList() ??
                                           [],
@@ -168,6 +163,10 @@ class _ReviewState extends State<Review> {
                                       onChanged: (String value) {
                                         setState(() {
                                           _category = value;
+                                          index = response.indexWhere(
+                                              (element) =>
+                                                  element.label == value);
+                                          print(index);
                                         });
                                       },
                                     ),
@@ -335,15 +334,15 @@ class _ReviewState extends State<Review> {
                 child: Consumer<UserDetailsProvider>(
                   builder: (context, value, child) {
                     return FutureBuilder(
-                        future: value.getParent(),
+                        future: myParent,
                         builder: (context, snapshot) {
                           if (snapshot.hasError) {
                             return Container();
                           } else if (snapshot.connectionState ==
                               ConnectionState.done) {
-                            var response = snapshot.data;
-                            var jsonData = json.decode(response);
-                            subCategory = jsonData[0]['childs'];
+                            var response =
+                                snapshot.data as List<ParentCategory>;
+
                             return Container(
                               height: 65,
                               width: 340,
@@ -359,26 +358,35 @@ class _ReviewState extends State<Review> {
                                       isExpanded: true,
                                       value: _subCategory,
                                       style: TextStyle(color: Colors.black),
-                                      items: subCategory?.map((item) {
+                                      items: response[index]
+                                              .childs
+                                              ?.map((item) {
                                             return DropdownMenuItem<String>(
-                                              value: item['id'].toString(),
-                                              child: Text(
-                                                  item['label'].toString()),
+                                              value: item.label.toString(),
+                                              child:
+                                                  Text(item.label.toString()),
                                             );
                                           })?.toList() ??
                                           [],
                                       hint: Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Text(
-                                          "Market Category",
+                                          _category == null
+                                              ? "sub category"
+                                              : _category + " Category",
                                           style: TextStyle(
                                             fontSize: 16,
                                           ),
                                         ),
                                       ),
-                                      onChanged: (String value) {
+                                      onChanged: (String newValue) {
                                         setState(() {
-                                          _subCategory = value;
+                                          _subCategory = newValue;
+                                          index1 = response[index]
+                                              .childs
+                                              .indexWhere((element) =>
+                                                  element.label == newValue);
+                                          print(index1);
                                         });
                                       },
                                     ),
@@ -452,6 +460,75 @@ class _ReviewState extends State<Review> {
                       ),
                     ),
               SizedBox(height: 10),
+              ChangeNotifierProvider(
+                create: (context) => UserDetailsProvider(),
+                child: Consumer<UserDetailsProvider>(
+                  builder: (context, value, child) {
+                    return FutureBuilder(
+                        future: myParent,
+                        builder: (context, snapshot) {
+                          if (snapshot.hasError) {
+                            return Container();
+                          } else if (snapshot.connectionState ==
+                              ConnectionState.done) {
+                            var response =
+                                snapshot.data as List<ParentCategory>;
+
+                            return Container(
+                              height: 65,
+                              width: 340,
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12)),
+                                margin: EdgeInsets.only(left: 15, right: 15),
+                                elevation: 2.0,
+                                child: DropdownButtonHideUnderline(
+                                  child: ButtonTheme(
+                                    alignedDropdown: true,
+                                    child: DropdownButton<String>(
+                                      isExpanded: true,
+                                      value: _childCategory,
+                                      style: TextStyle(color: Colors.black),
+                                      items: response[index]
+                                              .childs[index1]
+                                              .childs
+                                              ?.map((item) {
+                                            print(item);
+                                            return DropdownMenuItem<String>(
+                                              value: item.label.toString(),
+                                              child:
+                                                  Text(item.label.toString()),
+                                            );
+                                          })?.toList() ??
+                                          [],
+                                      hint: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                          _subCategory == null
+                                              ? "child category"
+                                              : _subCategory + " Category",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      onChanged: (String value) {
+                                        setState(() {
+                                          _childCategory = value;
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            );
+                          } else {
+                            return Container();
+                          }
+                        });
+                  },
+                ),
+              ),
               SizedBox(height: 10),
               Container(
                 height: 56,
@@ -481,52 +558,6 @@ class _ReviewState extends State<Review> {
                   ),
                 ),
               ),
-              // Container(
-              //   width: 340,
-              //   child: Card(
-              //     shape: RoundedRectangleBorder(
-              //         borderRadius: BorderRadius.circular(12)),
-              //     margin: EdgeInsets.only(left: 15, right: 15),
-              //     elevation: 2.0,
-              //     child: DropdownButtonHideUnderline(
-              //       child: ButtonTheme(
-              //         alignedDropdown: true,
-              //         child: DropdownButton<String>(
-              //           isExpanded: true,
-              //           value: _chosenValue,
-              //           style: TextStyle(color: Colors.black),
-              //           items: <String>[
-              //             'Market',
-              //             'Jobs',
-              //             'Service',
-              //             'Real Estate',
-              //             'Motor',
-              //             'Accomodation',
-              //           ].map<DropdownMenuItem<String>>((String value) {
-              //             return DropdownMenuItem<String>(
-              //               value: value,
-              //               child: Text(value),
-              //             );
-              //           }).toList(),
-              //           hint: Padding(
-              //             padding: const EdgeInsets.all(8.0),
-              //             child: Text(
-              //               "Select Sub-  Category for Review",
-              //               style: TextStyle(
-              //                 fontSize: 16,
-              //               ),
-              //             ),
-              //           ),
-              //           onChanged: (String value) {
-              //             setState(() {
-              //               _chosenValue = value;
-              //             });
-              //           },
-              //         ),
-              //       ),
-              //     ),
-              //   ),
-              // ),
               SizedBox(height: 10),
               Container(
                 height: 56,

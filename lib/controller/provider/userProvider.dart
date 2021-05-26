@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:garjoo/core.dart';
+import 'package:garjoo/models/category.dart';
 import 'package:garjoo/models/cod.dart';
 
 import 'package:garjoo/models/imePay.dart';
@@ -263,6 +264,19 @@ class UserDetailsProvider with ChangeNotifier {
       );
 
       return response.body;
+    } catch (e) {}
+  }
+
+  Future<List<ParentCategory>> getParent1() async {
+    try {
+      final response = await http.get(
+        BaseURl.baseUrl + AppURl.navigationParent,
+        headers: {
+          "Accept": "application/json",
+        },
+      );
+
+      return categoryFromJson(response.body);
     } catch (e) {}
   }
 

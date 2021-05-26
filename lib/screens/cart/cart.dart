@@ -17,7 +17,9 @@ class _CartState extends State<Cart> {
   final CartModel _cart = (VxState.store as MyStore).cart;
   @override
   Widget build(BuildContext context) {
-    VxState.watch(context, on: [RemoveMutation]);
+    VxState.watch(context, on: [
+      RemoveMutation,
+    ]);
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,

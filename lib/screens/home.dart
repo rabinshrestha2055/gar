@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:garjoo/core.dart';
-import 'package:garjoo/models/similar.dart';
+import 'package:garjoo/models/category.dart';
 import 'package:garjoo/widget/customAppBar.dart';
 
 import '../core.dart';
@@ -20,11 +20,19 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   Future myMarket;
+  Future myArrival;
+  Future getFProduct;
+  Future myDiscount;
+  Future myCategory;
 
   UserDetailsProvider user = UserDetailsProvider();
   @override
   void initState() {
     myMarket = user.getMarket();
+    myArrival = user.getArrivals();
+    myDiscount = user.getDiscount();
+    getFProduct = user.getFProduct();
+    myCategory = user.getParent1();
   }
 
   @override
@@ -36,14 +44,14 @@ class _HomeState extends State<Home> {
               topRight: Radius.circular(20), topLeft: Radius.circular(1)),
           child: Drawer(
             child: FutureBuilder(
-                future: myMarket,
+                future: myCategory,
                 builder: (context, snapshot) {
                   if (snapshot.hasError) {
                     return Center(
                       child: CircularProgressIndicator(),
                     );
                   } else if (snapshot.connectionState == ConnectionState.done) {
-                    var response = snapshot.data as List<Item>;
+                    var response = snapshot.data as List<Category1>;
 
                     return ListView.builder(
                       itemCount: response.length,
@@ -66,7 +74,7 @@ class _HomeState extends State<Home> {
                                           color: Colors.white),
                                     ),
                                     Text(
-                                      response[index].label,
+                                      response[index].label.toString(),
                                       style: TextStyle(fontSize: 10),
                                     ),
                                   ],

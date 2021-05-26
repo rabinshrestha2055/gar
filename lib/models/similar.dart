@@ -13,6 +13,8 @@ class ProductModel {
       orElse: () => items.first,
     );
   }
+
+  Item getByPosition(int pos) => items[pos];
 }
 
 class Item {
